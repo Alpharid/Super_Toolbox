@@ -77,6 +77,17 @@
                       "role":  "Méta-liste de toutes les listes awesome (point de départ pour n importe quel sujet logiciel)",
                       "synced_commit":  "bc98e517d",
                       "synced_on":  "2026-10-12"
+                  },
+                  {
+                      "name":  "awesome-mcp-servers",
+                      "url":  "https://github.com/punkpeye/awesome-mcp-servers",
+                      "branch":  "main",
+                      "prefix":  "upstream/awesome-mcp-servers",
+                      "license":  "The MIT License (MIT)",
+                      "category":  "listes",
+                      "role":  "Serveurs MCP pour donner des outils aux agents IA (Ghidra, bases de données, navigateurs…)",
+                      "synced_commit":  "cc7f1f42c",
+                      "synced_on":  "2026-10-12"
                   }
               ]
 }
