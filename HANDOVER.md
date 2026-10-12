@@ -13,7 +13,7 @@ pour modder des jeux et en créer, et s'en servir avec Claude et avec Alphred.
 
 ## 2. État (2026-10-12)
 
-- 2 dépôts intégrés : `universal-modder` et `rea` (voir §3 et `CATALOGUE.md`). Lus et documentés, **rien n'est encore installé**
+- 12 dépôts intégrés en 3 catégories (`modding`, `listes`, `dev`), voir §3 et `CATALOGUE.md`. **Rien n'est encore installé**
   sur le PC (pas de `uv`, ffmpeg, Blender, Ghidra, JDK 21, ni du paquet npm `rea-agents`). On installe à la demande, pour un
   projet de mod précis (règle de l'utilisateur : vérifier d'abord si l'outil existe déjà sur le PC, ne jamais installer de doublon).
 - PC : Windows 11, RTX 3090 Ti, Python 3.13, Node, .NET, git, gh présents. `python3` = alias Microsoft Store qui ne lance rien.
@@ -28,6 +28,18 @@ pour modder des jeux et en créer, et s'en servir avec Claude et avec Alphred.
 |---|---|---|---|
 | `upstream/universal-modder` | rehan-remade/universal-modder (MIT) | 11 skills Markdown + CLI Python `um` + base de connaissances (`knowledge/`, ~180 notes sur des jeux et techniques) + playbooks par moteur | Toute demande « modder le jeu X » : recon du jeu, choix de la route, sauvegardes, assets, tests en jeu, vidéo, publication |
 | `upstream/rea` | morluto/rea (MIT) | CLI + serveur MCP `rea` (npm `rea-agents`) : reverse engineering avec preuves (Ghidra/IDA pour le natif, parseur .NET intégré, ressources PE, JS/Electron, archives) | Comprendre le code d'un jeu : trouver une fonction, une chaîne, décompiler, obtenir l'offset fichier d'une adresse |
+
+Ajoutés le 2026-10-12 (détail dans `CATALOGUE.md`) :
+- **modding** : `GhidraMCP` (Ghidra piloté par Claude en MCP), `Il2CppDumper` (jeux Unity IL2CPP : noms des classes/méthodes, ce que rea ne fait pas).
+- **dev** : `minhook` (bibliothèque C de hooks x86/x64 pour mods natifs).
+- **listes** (Markdown, à fouiller avec Grep) : `public-apis` (~1 400 API gratuites, 52 catégories), `awesome-godot`, `magictools`,
+  `awesome-gamedev` (création de jeux, assets libres), `awesome` (méta-liste tous sujets), `awesome-mcp-servers` (outils pour agents),
+  `awesome-claude-code` (licence CC BY-NC-ND : usage perso, ne pas modifier).
+- Gros outils **non copiés** (installés depuis leurs releases quand un projet en a besoin) : BepInEx, MelonLoader, UE4SS, ASI Loader,
+  AssetRipper, ILSpy, dnSpyEx, Cpp2IL, FModel, ImGui… Liste avec liens en fin de `CATALOGUE.md`. `free-for-dev` : pas de licence → lien seulement.
+
+Critères pour ajouter un dépôt : utile aux projets de l'utilisateur (modding, jeux, Godot, logiciels, agents IA), maintenu, licence
+qui autorise la copie (sinon : simple lien dans `CATALOGUE.md`), copie raisonnable (< ~50 Mo ; au-delà, lien + install depuis les releases).
 
 Détail des skills, commandes et moteurs : `CATALOGUE.md`. Les deux se complètent : universal-modder dit **quoi faire** (méthode,
 route, vérification) ; rea **lit l'intérieur des binaires** (étape « reverse-engineering » de universal-modder).
@@ -84,7 +96,9 @@ contexte de ~128k tokens (compaction vers ~110k). Donc :
 5. **Périmètre réaliste** : recon (`um scan`, `um kb`), mods de données/assets et via loader officiel (tModLoader, BepInEx,
    SMAPI, UE4SS Lua, Fabric…), lecture ciblée de code .NET (`rea inspect-managed-members --type …`). Le reverse engineering natif
    long (hooks C++, trampolines) et les mashups : proposer à l'utilisateur de le faire avec Claude.
-6. Tenir un `MODLOG.md` dans le dossier du mod (méthode de universal-modder) : c'est ta mémoire si la conversation est compactée.
+6. **Listes (`upstream/public-apis`, `awesome-*`, `magictools`) : jamais en entier** (certaines font des milliers de lignes).
+   `grep -n "^### " <README>` pour voir les catégories, puis Read autour de la ligne, ou `grep -in "<mot>"` directement.
+7. Tenir un `MODLOG.md` dans le dossier du mod (méthode de universal-modder) : c'est ta mémoire si la conversation est compactée.
    Coupe-circuit : 3 échecs identiques → arrêter et expliquer.
 
 ## 7. Règles (légalité / sécurité) — non négociables
@@ -120,6 +134,8 @@ D:\Modding_Tools_Kit\
 ├─ scripts\kit.ps1           list / check / update / add (PowerShell 5.1, UTF-8 avec BOM)
 ├─ upstream\universal-modder skills\ (11 SKILL.md), um\ (CLI Python), knowledge\ (INDEX.md, games\, techniques\), examples\ (4 mods)
 ├─ upstream\rea              scripts\rea.mjs (CLI/MCP), src\, bridge\ (Ghidra/Hopper), docs\ (installation, windows-ghidra-p0…), .agents\skills\
+├─ upstream\GhidraMCP, Il2CppDumper, minhook          outils (sources) — voir CATALOGUE.md
+├─ upstream\public-apis, awesome*, magictools          listes de ressources (README.md / readme.md)
 └─ (ignorés par git) work\ decomp\ dumps\ captures\ .local\ .env .venv node_modules
 ```
 
@@ -135,3 +151,5 @@ D:\Modding_Tools_Kit\
 - **2026-10-12** — Création du kit par Claude (Claude Code) : `universal-modder` (2c220143) et `rea` (c22111ec) intégrés en
   subtree --squash, `scripts\kit.ps1` (testé : check / add / update sur copies jetables), docs de passation, dépôt privé GitHub.
   Alphred (agent local) informé du kit (`D:\Alphred_AI\HANDOVER.md` + prompt de `agent.ps1`).
+- **2026-10-12** — +10 dépôts : listes `public-apis`, `awesome-godot`, `magictools`, `awesome-gamedev`, `awesome`, `awesome-mcp-servers`,
+  `awesome-claude-code` ; outils `GhidraMCP`, `Il2CppDumper`, `minhook`. `kit.ps1` : catégories (`-Category`), licence via l'API GitHub.

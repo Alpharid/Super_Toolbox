@@ -59,3 +59,33 @@ Installer via npm (pas depuis les sources sous Windows). Aucune clé API, tout e
 Moteurs : **Ghidra 12.1.x + JDK 21** (Windows : lecture seule, PE natifs x86/x64), IDA Pro via ida-pro-mcp. Hopper : macOS/Linux
 seulement. Non pris en charge : IL2CPP (décodage), x64dbg, Frida, radare2. Skill utilisateur :
 `.agents/skills/reverse-engineer-anything/SKILL.md` (+ `references/native-and-artifacts.md`). Doc Windows : `docs/windows-ghidra-p0.md`.
+
+## Outils de modding complémentaires
+
+| Dossier | Licence | Sert à | Comment |
+|---|---|---|---|
+| `upstream/GhidraMCP/` | Apache-2.0 | Piloter **Ghidra depuis Claude** (plugin Ghidra + pont MCP Python `bridge_mcp_ghidra.py`) : décompiler, renommer, lister fonctions/xrefs. Recommandé par le skill `reverse-engineering` de universal-modder | Installer l'extension (release GitHub du projet) dans Ghidra, lancer le pont, `claude mcp add` — pour Claude seulement (trop d'outils pour Alphred) |
+| `upstream/Il2CppDumper/` | MIT | **Jeux Unity IL2CPP** : à partir de `GameAssembly.dll` + `global-metadata.dat`, restaure les noms de classes/méthodes/champs, génère des DLL factices (lisibles avec ILSpy/rea) et des scripts Ghidra/IDA pour nommer les fonctions. Comble le trou de rea (qui ne décode pas IL2CPP) | Prendre l'exe dans les releases du projet (C# .NET) ; sortie → `work\<jeu>\il2cpp\` |
+| `upstream/minhook/` | BSD-2-Clause | Bibliothèque C de **hooks x86/x64** : intercepter une fonction du jeu dans un mod natif (proxy DLL `version.dll`/`dinput8.dll`, ASI). Voir le playbook `engines/native.md` | Se compile avec CMake/MSVC dans le projet du mod |
+
+## Listes de ressources (à fouiller avec Grep, jamais à lire en entier)
+
+| Dossier | Licence | Contenu | Astuce de recherche |
+|---|---|---|---|
+| `upstream/public-apis/` | MIT | ~1 400 **API publiques gratuites**, 52 catégories (Games & Comics, Machine Learning, Weather, Music, Anime, Finance, Open Data, Authentication…), avec colonnes Auth / HTTPS / CORS | Catégories : `grep -n "^### " upstream/public-apis/README.md` ; une catégorie : lire autour du numéro de ligne ; une API : `grep -in "steam\|twitch" upstream/public-apis/README.md` |
+| `upstream/awesome-godot/` | CC-BY-4.0 | Écosystème **Godot** : plugins, modules, scripts, shaders, démos, jeux open source | `grep -in "<mot-clé>" upstream/awesome-godot/README.md` (vérifier la version Godot 4 de chaque plugin) |
+| `upstream/magictools/` | MIT | **Création de jeux** : moteurs, graphismes, pixel art, 3D, audio, animation, level design, IA de jeu, publication, cours | `grep -n "^## \|^### " upstream/magictools/README.md` |
+| `upstream/awesome-gamedev/` | CC-BY-SA-4.0 | Logiciels et **assets libres** pour faire des jeux (graphismes, sons, musiques, polices, moteurs) | idem |
+| `upstream/awesome/` | CC0-1.0 | **Méta-liste** de toutes les listes « awesome » (tous sujets logiciels) : point de départ quand rien d'autre ne couvre le sujet | `grep -in "<sujet>" upstream/awesome/readme.md` puis ouvrir le lien de la liste trouvée |
+| `upstream/awesome-mcp-servers/` | MIT | **Serveurs MCP** (outils pour agents) : RE, navigateurs, bases de données, fichiers, jeux… | `grep -in "ghidra\|ida\|game\|godot" upstream/awesome-mcp-servers/README.md` |
+| `upstream/awesome-claude-code/` | CC-BY-NC-ND-4.0 | Skills, hooks, commandes slash, outils et workflows pour **Claude Code** | Tableau complet : `THE_RESOURCES_TABLE_NEW.csv` (Grep). Usage perso uniquement, ne pas modifier |
+
+## Références non copiées (à récupérer depuis leurs releases quand un projet en a besoin)
+
+- Loaders / frameworks de mod : [BepInEx](https://github.com/BepInEx/BepInEx) (Unity, LGPL), [MelonLoader](https://github.com/LavaGang/MelonLoader),
+  [RE-UE4SS](https://github.com/UE4SS-RE/RE-UE4SS) (Unreal), [Ultimate ASI Loader](https://github.com/ThirteenAG/Ultimate-ASI-Loader) (natif),
+  [UnityExplorer](https://github.com/yukieiji/UnityExplorer).
+- Extraction / décompilation : [AssetRipper](https://github.com/AssetRipper/AssetRipper) (Unity, GPL, 440 Mo), [ILSpy](https://github.com/icsharpcode/ILSpy)
+  (`dotnet tool install -g ilspycmd`), [dnSpyEx](https://github.com/dnSpyEx/dnSpy), [Cpp2IL](https://github.com/SamboyCoding/Cpp2IL), [FModel](https://github.com/4sval/FModel) (Unreal).
+- Bibliothèques : [Dear ImGui](https://github.com/ocornut/imgui) (menus en jeu), [Godot demo projects](https://github.com/godotengine/godot-demo-projects) (exemples officiels Godot 4, 550 Mo).
+- Services gratuits pour développeurs (hébergement, BDD, e-mail…) : [free-for-dev](https://github.com/ripienaar/free-for-dev) — **pas de licence**, donc non copié.
