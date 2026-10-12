@@ -121,6 +121,17 @@
                       "role":  "Jeux Unity IL2CPP : restaure noms de classes/méthodes depuis global-metadata.dat (ce que rea ne fait pas)",
                       "synced_commit":  "4741d46ba",
                       "synced_on":  "2026-10-12"
+                  },
+                  {
+                      "name":  "minhook",
+                      "url":  "https://github.com/TsudaKageyu/minhook",
+                      "branch":  "master",
+                      "prefix":  "upstream/minhook",
+                      "license":  "MinHook - The Minimalistic API Hooking Library for x64/x86",
+                      "category":  "dev",
+                      "role":  "Bibliothèque C de hooks x86/x64 : base des mods natifs (proxy DLL)",
+                      "synced_commit":  "8af6b4aca",
+                      "synced_on":  "2026-10-12"
                   }
               ]
 }
