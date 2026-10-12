@@ -60,7 +60,7 @@ try {
         "check" {
             foreach ($r in (Choisir $cfg)) {
                 $ref = Distant $r
-                $tete = (Invoke-Git rev-parse --short $ref).Trim()
+                $tete = (Invoke-Git rev-parse --short=8 $ref).Trim()
                 $n = [int](Invoke-Git rev-list --count "$($r.synced_commit)..$ref")
                 if ($n -eq 0) { "OK: $($r.name) est à jour ($tete)."; continue }
                 "OK: $($r.name) : $n nouveau(x) commit(s) en amont ($($r.synced_commit) -> $tete). Les plus récents :"
@@ -74,7 +74,7 @@ try {
             Propre
             $r = (Choisir $cfg)[0]
             $ref = Distant $r
-            $tete = (Invoke-Git rev-parse --short $ref).Trim()
+            $tete = (Invoke-Git rev-parse --short=8 $ref).Trim()
             if ($tete -eq $r.synced_commit) { "OK: $($r.name) déjà à jour ($tete)."; break }
             Invoke-Git subtree pull --prefix=$($r.prefix) "up-$($r.name)" $r.branch --squash -m "MAJ $($r.name) : $($r.synced_commit) -> $tete" | Out-Null
             $r.synced_commit = $tete
@@ -96,10 +96,16 @@ try {
             $r = [pscustomobject]@{ name = $Name; url = $Url; branch = $Branch; prefix = "upstream/$Name"; license = "?"; category = $Category; role = $Role; synced_commit = ""; synced_on = "" }
             $ref = Distant $r
             Invoke-Git subtree add --prefix=$($r.prefix) "up-$Name" $Branch --squash -m "Ajout de $Name en subtree" | Out-Null
-            $r.synced_commit = (Invoke-Git rev-parse --short $ref).Trim()
+            $r.synced_commit = (Invoke-Git rev-parse --short=8 $ref).Trim()
             $r.synced_on = (Get-Date -Format "yyyy-MM-dd")
+            # Licence : identifiant SPDX donné par GitHub, sinon 1re ligne du fichier LICENSE
+            if ($Url -match 'github\.com[/:]([^/]+)/([^/.]+)') {
+                $spdx = & gh api "repos/$($Matches[1])/$($Matches[2])/license" --jq .license.spdx_id 2>$null
+                if ($LASTEXITCODE -eq 0 -and $spdx -and $spdx -ne "NOASSERTION") { $r.license = "$spdx".Trim() }
+            }
             $lic = Get-ChildItem -LiteralPath (Join-Path $racine $r.prefix) -Filter "LICENSE*" -ErrorAction SilentlyContinue | Select-Object -First 1
-            if ($lic) { $r.license = ((Get-Content -LiteralPath $lic.FullName -TotalCount 1) -join "").Trim() }
+            if ($r.license -eq "?" -and $lic) { $r.license = ((Get-Content -LiteralPath $lic.FullName -TotalCount 1 -Encoding UTF8) -join "").Trim() }
+            if ($r.license -eq "?") { Write-Host "ATTENTION : pas de licence trouvée pour $Name (tous droits réservés ?) : vérifier avant de le garder." -ForegroundColor Yellow }
             $cfg.repos += $r
             Ecrire $cfg
             Invoke-Git add upstreams.json | Out-Null
