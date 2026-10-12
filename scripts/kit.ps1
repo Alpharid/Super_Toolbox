@@ -1,12 +1,14 @@
 ﻿# Gestion des dépôts tiers du kit (git subtree --squash), liste dans upstreams.json.
 #   powershell -ExecutionPolicy Bypass -File scripts\kit.ps1 list
 #   powershell -ExecutionPolicy Bypass -File scripts\kit.ps1 check  [-Name rea]        # nouveautés en amont (rien n'est modifié)
+#   powershell -ExecutionPolicy Bypass -File scripts\kit.ps1 verify                    # santé du kit : dossiers, synchro, patches locaux
 #   powershell -ExecutionPolicy Bypass -File scripts\kit.ps1 update -Name rea [-Push]  # intègre la dernière version (commit local)
 #   powershell -ExecutionPolicy Bypass -File scripts\kit.ps1 add -Name x -Url https://github.com/a/x [-Branch main] [-Category listes] [-Role "..."] [-Push]
-#   Catégories : modding (outils de mod / RE), listes (listes de ressources), dev (bibliothèques et outils de création).
+#   Catégories : modding (outils de mod / RE), physique (moteurs, contraintes, IK, destruction), godot (addons Godot 4),
+#   dev (bibliothèques et outils de création), listes (listes de ressources).
 # Sortie : lignes « OK: … » / « ERREUR: … ». Le dépôt local est le dossier parent de scripts\.
 param(
-    [Parameter(Position = 0)][ValidateSet("list", "check", "update", "add")][string]$Action = "list",
+    [Parameter(Position = 0)][ValidateSet("list", "check", "update", "add", "verify")][string]$Action = "list",
     [string]$Name,
     [string]$Url,
     [string]$Branch,
@@ -84,6 +86,23 @@ try {
             Invoke-Git commit -q -m "upstreams.json : $($r.name) synchronisé sur $tete" | Out-Null
             "OK: $($r.name) mis à jour ($tete). Pense à noter les changements utiles dans HANDOVER.md (Historique)."
             if ($Push) { Invoke-Git push -q origin main | Out-Null; "OK: poussé sur GitHub." }
+        }
+        "verify" {
+            # Pour chaque dépôt : dossier présent, dernier squash du subtree = commit noté, commits locaux qui touchent upstream/<nom>.
+            $problemes = 0
+            foreach ($r in $cfg.repos) {
+                $dir = Join-Path $racine $r.prefix
+                if (-not (Test-Path -LiteralPath $dir)) { "ERREUR: $($r.name) : dossier $($r.prefix) absent."; $problemes++; continue }
+                $msg = (& git.exe log -n 1 --format=%B --grep="git-subtree-dir: $($r.prefix)$" 2>$null) -join "`n"
+                if ($msg -notmatch "git-subtree-split: ([0-9a-f]{7,40})") { "ERREUR: $($r.name) : aucun commit subtree trouvé (dossier déplacé ou copié à la main ?)."; $problemes++; continue }
+                $split = $Matches[1]
+                if (-not $split.StartsWith($r.synced_commit)) { "ERREUR: $($r.name) : upstreams.json dit $($r.synced_commit), le subtree est sur $($split.Substring(0,8))."; $problemes++ }
+                $locaux = @(& git.exe log --format="%h %s" -- $r.prefix 2>$null | Where-Object { $_ -notmatch "^\w+ (Squashed '|Ajout de |MAJ |Merge commit )" })
+                if ($locaux) { "ATTENTION: $($r.name) : $($locaux.Count) commit(s) local(aux) dans $($r.prefix) (patch à documenter au §8 de HANDOVER.md) : $($locaux -join ' | ')" }
+            }
+            $orphelins = Get-ChildItem -LiteralPath (Join-Path $racine "upstream") -Directory | Where-Object { $n = $_.Name; -not ($cfg.repos | Where-Object { $_.prefix -eq "upstream/$n" }) }
+            foreach ($o in $orphelins) { "ERREUR: upstream/$($o.Name) n'est pas dans upstreams.json."; $problemes++ }
+            if ($problemes -eq 0) { "OK: $(@($cfg.repos).Count) dépôts vérifiés, kit cohérent." } else { throw "$problemes problème(s)." }
         }
         "add" {
             if (-not $Name -or -not $Url) { throw "précise -Name et -Url." }
