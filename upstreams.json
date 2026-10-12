@@ -143,6 +143,17 @@
                       "role":  "Le moteur physique de Godot 4.4+ (et de Stryder) : sources C++ + Samples (contraintes, cordes, ragdolls, flottaison, soft bodies, véhicules) = la référence pour comprendre ses limites",
                       "synced_commit":  "3c91764e",
                       "synced_on":  "2026-10-12"
+                  },
+                  {
+                      "name":  "netfox",
+                      "url":  "https://github.com/foxssake/netfox",
+                      "branch":  "main",
+                      "prefix":  "upstream/netfox",
+                      "license":  "MIT",
+                      "category":  "godot",
+                      "role":  "Multijoueur Godot 4 : synchro d etat, rollback, prédiction, lag compensation (coop physique)",
+                      "synced_commit":  "cf5189d1",
+                      "synced_on":  "2026-10-12"
                   }
               ]
 }
