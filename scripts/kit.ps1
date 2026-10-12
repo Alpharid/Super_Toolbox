@@ -23,7 +23,13 @@ function Ecrire($cfg) {
     $json = $cfg | ConvertTo-Json -Depth 5
     [IO.File]::WriteAllText($fichier, $json + "`n", (New-Object Text.UTF8Encoding $false))
 }
-function Invoke-Git { $out = & git.exe @args 2>&1; if ($LASTEXITCODE -ne 0) { throw "git $($args -join ' ') : $out" }; $out }
+# git écrit ses messages normaux sur stderr : en PowerShell 5.1 il ne faut pas les traiter comme des erreurs.
+function Invoke-Git {
+    $ErrorActionPreference = "Continue"
+    $out = & git.exe @args 2>&1 | ForEach-Object { "$_" }
+    if ($LASTEXITCODE -ne 0) { throw "git $($args -join ' ') : $($out -join ' ')" }
+    $out | Where-Object { $_ -notmatch '^(From |remote: |warning: )' -and $_ -notmatch '^\s+\S+\.\.\S+\s' -and $_ -notmatch '^ \* ' }
+}
 function Distant($r) {
     $nom = "up-" + $r.name
     if (-not ((& git.exe remote) -contains $nom)) { Invoke-Git remote add $nom $r.url | Out-Null }
