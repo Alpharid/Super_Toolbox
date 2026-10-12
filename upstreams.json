@@ -187,6 +187,17 @@
                       "role":  "Cinématique inverse 3D (FABRIK) pour Godot 4.3+ : pattes, bras, créatures procédurales",
                       "synced_commit":  "4336869a",
                       "synced_on":  "2026-10-12"
+                  },
+                  {
+                      "name":  "godot-destruction-plugin",
+                      "url":  "https://github.com/Jummit/godot-destruction-plugin",
+                      "branch":  "master",
+                      "prefix":  "upstream/godot-destruction-plugin",
+                      "license":  "MIT",
+                      "category":  "physique",
+                      "role":  "Convertit des meshes fragmentés en corps rigides : base simple de destruction",
+                      "synced_commit":  "eb7ccb71",
+                      "synced_on":  "2026-10-12"
                   }
               ]
 }
