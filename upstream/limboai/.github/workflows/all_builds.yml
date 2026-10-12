@@ -1,0 +1,78 @@
+name: 🔗 All builds
+on:
+  workflow_dispatch:
+    inputs:
+      godot-ref:
+        description: Godot tag, branch, or commit hash. Leave empty to use default.
+        type: string
+        default: ""
+
+jobs:
+  resolve-godot-ref:
+    name: 🔖 Godot ref
+    uses: ./.github/workflows/resolve-godot-ref.yml
+    with:
+      godot-ref: ${{ inputs.godot-ref }}
+
+  android-build:
+    name: 🤖 Android
+    needs: resolve-godot-ref
+    uses: ./.github/workflows/android.yml
+    with:
+      godot-ref: ${{ needs.resolve-godot-ref.outputs.godot-sha }}
+
+  ios-build:
+    name: 🍏 iOS
+    needs: resolve-godot-ref
+    uses: ./.github/workflows/ios.yml
+    with:
+      godot-ref: ${{ needs.resolve-godot-ref.outputs.godot-sha }}
+
+  linux-build:
+    name: 🐧 Linux
+    needs: resolve-godot-ref
+    uses: ./.github/workflows/linux.yml
+    with:
+      godot-ref: ${{ needs.resolve-godot-ref.outputs.godot-sha }}
+      test-build: false
+
+  macos-build:
+    name: 🍎 macOS
+    needs: resolve-godot-ref
+    uses: ./.github/workflows/macos.yml
+    with:
+      godot-ref: ${{ needs.resolve-godot-ref.outputs.godot-sha }}
+
+  windows-build:
+    name: 🪟 Windows
+    needs: resolve-godot-ref
+    uses: ./.github/workflows/windows.yml
+    with:
+      godot-ref: ${{ needs.resolve-godot-ref.outputs.godot-sha }}
+      test-build: false
+
+  web-build:
+    name: 🌐 Web
+    needs: resolve-godot-ref
+    uses: ./.github/workflows/web.yml
+    with:
+      godot-ref: ${{ needs.resolve-godot-ref.outputs.godot-sha }}
+
+  gdextension:
+    name: 🔌 GDExtension
+    uses: ./.github/workflows/gdextension.yml
+    with:
+      test-build: false
+
+  demo:
+    name: 🎮️ Demo project
+    needs: resolve-godot-ref
+    uses: ./.github/workflows/demo.yml
+
+  merge_templates:
+    name: 📦 Merge templates
+    if: ${{ always() }}
+    needs: [resolve-godot-ref, android-build, ios-build, linux-build, macos-build, windows-build, web-build]
+    uses: ./.github/workflows/merge_templates.yml
+    with:
+      godot-ref: ${{ needs.resolve-godot-ref.outputs.godot-sha }}

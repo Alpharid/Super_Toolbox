@@ -1,0 +1,50 @@
+BasedOnStyle: LLVM
+AccessModifierOffset: -4
+AlignAfterOpenBracket: DontAlign
+AlignEscapedNewlines: DontAlign # Aligning leads to long diffs.
+AlignOperands: DontAlign
+AlignTrailingComments:
+  Kind: Never
+  OverEmptyLines: 0
+AllowAllParametersOfDeclarationOnNextLine: false
+AllowShortFunctionsOnASingleLine: Inline
+AttributeMacros:
+  - _ALWAYS_INLINE_
+  - _FORCE_INLINE_
+  - _NO_INLINE_
+BreakConstructorInitializers: AfterColon
+ColumnLimit: 0
+ConstructorInitializerIndentWidth: 8
+ContinuationIndentWidth: 8
+Cpp11BracedListStyle: false
+IncludeBlocks: Regroup
+IncludeCategories:
+  - Regex: ^"(core|drivers|editor|main|scene|servers|tests)/.*"$
+    Priority: 20
+  - Regex: ^"(modules|platform)/.*"$
+    Priority: 30
+  - Regex: ^<thirdparty/.*>$
+    Priority: 40
+  - Regex: ^<(windows|Jolt/Jolt|platform_gl)\.h>$
+    Priority: 50
+  - Regex: ^<.*\.(h|hpp)>$
+    Priority: 60
+  - Regex: ^<.*>$
+    Priority: 70
+  - Regex: ^".*\.compat\.inc"$
+    Priority: 0
+    SortPriority: 1
+  - Regex: ^".*"$
+    Priority: 10
+IndentCaseLabels: true
+IndentWidth: 4
+InsertBraces: true
+KeepEmptyLinesAtTheStartOfBlocks: false
+PackConstructorInitializers: NextLine
+RemoveSemicolon: true
+SpacesInLineCommentPrefix:
+  Minimum: 0 # Allow disabled code without a space after the comment marker.
+  Maximum: -1
+Standard: c++20
+TabWidth: 4
+UseTab: Always
