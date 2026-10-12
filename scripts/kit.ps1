@@ -2,7 +2,8 @@
 #   powershell -ExecutionPolicy Bypass -File scripts\kit.ps1 list
 #   powershell -ExecutionPolicy Bypass -File scripts\kit.ps1 check  [-Name rea]        # nouveautés en amont (rien n'est modifié)
 #   powershell -ExecutionPolicy Bypass -File scripts\kit.ps1 update -Name rea [-Push]  # intègre la dernière version (commit local)
-#   powershell -ExecutionPolicy Bypass -File scripts\kit.ps1 add -Name x -Url https://github.com/a/x [-Branch main] [-Role "..."] [-Push]
+#   powershell -ExecutionPolicy Bypass -File scripts\kit.ps1 add -Name x -Url https://github.com/a/x [-Branch main] [-Category listes] [-Role "..."] [-Push]
+#   Catégories : modding (outils de mod / RE), listes (listes de ressources), dev (bibliothèques et outils de création).
 # Sortie : lignes « OK: … » / « ERREUR: … ». Le dépôt local est le dossier parent de scripts\.
 param(
     [Parameter(Position = 0)][ValidateSet("list", "check", "update", "add")][string]$Action = "list",
@@ -10,6 +11,7 @@ param(
     [string]$Url,
     [string]$Branch,
     [string]$Role = "",
+    [string]$Category = "dev",
     [int]$Max = 25,
     [switch]$Push
 )
@@ -51,7 +53,7 @@ try {
     switch ($Action) {
         "list" {
             foreach ($r in $cfg.repos) {
-                "{0,-20} {1}  (synchro {2} le {3})" -f $r.name, $r.prefix, $r.synced_commit, $r.synced_on
+                "{0,-20} [{1}] {2}  (synchro {3} le {4})" -f $r.name, $r.category, $r.prefix, $r.synced_commit, $r.synced_on
                 "{0,-20} {1}" -f "", $r.role
             }
         }
@@ -91,7 +93,7 @@ try {
                 $sym = & git.exe ls-remote --symref $Url HEAD 2>$null | Select-Object -First 1
                 $Branch = if ($sym -match "refs/heads/(\S+)") { $Matches[1] } else { "main" }
             }
-            $r = [pscustomobject]@{ name = $Name; url = $Url; branch = $Branch; prefix = "upstream/$Name"; license = "?"; role = $Role; synced_commit = ""; synced_on = "" }
+            $r = [pscustomobject]@{ name = $Name; url = $Url; branch = $Branch; prefix = "upstream/$Name"; license = "?"; category = $Category; role = $Role; synced_commit = ""; synced_on = "" }
             $ref = Distant $r
             Invoke-Git subtree add --prefix=$($r.prefix) "up-$Name" $Branch --squash -m "Ajout de $Name en subtree" | Out-Null
             $r.synced_commit = (Invoke-Git rev-parse --short $ref).Trim()
