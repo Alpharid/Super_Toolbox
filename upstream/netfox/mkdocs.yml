@@ -1,0 +1,88 @@
+site_name: netfox
+site_url: 'https://foxssake.github.io/netfox/'
+theme:
+  name: readthedocs
+  custom_dir: docs/custom_theme/
+extra_css:
+  - css/version-selector.css
+  - css/twemoji.css
+plugins:
+  - search
+  - plantuml:
+      puml_url: !ENV [PLANTUML_URL, "http://www.plantuml.com/plantuml/"]
+      theme:
+        enabled: false
+      interaction:
+        enabled: false
+  - include_dir_to_nav
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+nav:
+  - 'index.md'
+  - 'upgrading.md'
+  - 'changelog.md'
+  - 'made-with-netfox.md'
+  - 'faq.md'
+  - 'hosting.md'
+  - 'external-tutorials.md'
+  - 'press-kit.md'
+  - 'contributors.md'
+  - netfox:
+    - Tutorials:
+      - 'netfox/tutorials/responsive-player-movement.md'
+      - 'netfox/tutorials/input-gathering-tips-and-tricks.md'
+      - 'netfox/tutorials/predicting-input.md'
+      - 'netfox/tutorials/using-rollbacksynchronizer-without-inputs.md'
+      - 'netfox/tutorials/spawning-and-despawning-in-rollback.md'
+      - 'netfox/tutorials/modifying-objects-during-rollback.md'
+      - 'netfox/tutorials/configuring-properties-from-code.md'
+      - 'netfox/tutorials/rollback-caveats.md'
+      - 'netfox/tutorials/interpolation-caveats.md'
+    - Concepts:
+      - 'netfox/concepts/servers-clients-ownership.md'
+      - 'netfox/concepts/authoritative-servers.md'
+    - Guides:
+      - 'netfox/guides/logging.md'
+      - 'netfox/guides/network-time.md'
+      - 'netfox/guides/network-time-synchronizer.md'
+      - 'netfox/guides/network-events.md'
+      - 'netfox/guides/interpolators.md'
+      - 'netfox/guides/property-paths.md'
+      - 'netfox/guides/network-rollback.md'
+      - 'netfox/guides/network-performance.md'
+      - 'netfox/guides/network-command-server.md'
+      - 'netfox/guides/network-schemas.md'
+      - 'netfox/guides/visibility-management.md'
+      - 'netfox/guides/netfox-sharp.md'
+    - Nodes:
+      - 'netfox/nodes/tick-interpolator.md'
+      - 'netfox/nodes/rollback-synchronizer.md'
+      - 'netfox/nodes/predictive-synchronizer.md'
+      - 'netfox/nodes/state-synchronizer.md'
+      - 'netfox/nodes/rewindable-action.md'
+  - netfox.noray:
+    - Guides:
+      - 'netfox.noray/guides/noray.md'
+      - 'netfox.noray/guides/packet-handshake.md'
+  - netfox.extras:
+    - Guides:
+      - 'netfox.extras/guides/physics.md'
+      - 'netfox.extras/guides/network-simulator.md'
+      - 'netfox.extras/guides/base-net-input.md'
+      - 'netfox.extras/guides/network-weapon.md'
+      - 'netfox.extras/guides/rewindable-state-machine.md'
+      - 'netfox.extras/guides/rewindable-random-number-generator.md'
+      - 'netfox.extras/guides/window-tiler.md'
+  - Reference:
+    - Classes:
+      - 'class-reference/'
