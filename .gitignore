@@ -1,0 +1,29 @@
+# Secrets (FAL_KEY, clés Nexus…) : jamais dans git
+.env
+.env.*
+*.key
+secrets*.json
+
+# Environnements et dépendances installés localement
+.venv/
+venv/
+__pycache__/
+*.pyc
+node_modules/
+.pnpm-store/
+
+# Sorties de travail : décompilations, dumps, captures, builds (jamais redistribuer du code/des fichiers de jeu)
+work/
+decomp/
+dumps/
+captures/
+dist/
+build/
+*.log
+
+# Outils installés hors git (Ghidra, ffmpeg, ilspycmd…)
+.local/
+
+# Divers
+.DS_Store
+Thumbs.db
