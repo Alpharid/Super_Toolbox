@@ -154,6 +154,17 @@
                       "role":  "Multijoueur Godot 4 : synchro d etat, rollback, prédiction, lag compensation (coop physique)",
                       "synced_commit":  "cf5189d1",
                       "synced_on":  "2026-10-12"
+                  },
+                  {
+                      "name":  "limboai",
+                      "url":  "https://github.com/limbonaut/limboai",
+                      "branch":  "master",
+                      "prefix":  "upstream/limboai",
+                      "license":  "MIT",
+                      "category":  "godot",
+                      "role":  "Behavior trees + machines à états pour Godot 4 (IA des ennemis), GDExtension avec éditeur visuel",
+                      "synced_commit":  "df8933d3",
+                      "synced_on":  "2026-10-12"
                   }
               ]
 }
