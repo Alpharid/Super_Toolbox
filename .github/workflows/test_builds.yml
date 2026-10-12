@@ -1,0 +1,146 @@
+name: 🔎 Test builds
+on:
+  workflow_dispatch:
+
+  push:
+    branches: [master]
+    paths-ignore:
+      - "README.md"
+      - "LICENSE.md"
+      - "**/*.png"
+      - "demo/**"
+      - "doc/**"
+
+  pull_request:
+    branches: [master]
+    paths-ignore:
+      - "README.md"
+      - "LICENSE.md"
+      - "**/*.png"
+      - "demo/**"
+      - "doc/**"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  resolve-godot-ref:
+    name: 🔖 Godot ref
+    uses: ./.github/workflows/resolve-godot-ref.yml
+
+  unit-tests:
+    name: 🧪 Unit tests
+    runs-on: "ubuntu-22.04"
+    needs: resolve-godot-ref
+
+    # Settings
+    env:
+      SCONSFLAGS: platform=linuxbsd target=editor arch=x86_64 production=false dev_build=true tests=true verbose=yes warnings=extra strict_checks=yes
+      BIN: godot.linuxbsd.editor.dev.x86_64
+      CACHE_LIMIT: 7
+
+    steps:
+      - name: Clone Godot
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          repository: godotengine/godot
+          ref: ${{ needs.resolve-godot-ref.outputs.godot-sha }}
+          fetch-tags: true
+
+      - name: Clone LimboAI module
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          path: modules/limboai
+
+      # Init version environment variables.
+      - uses: ./modules/limboai/.github/actions/init-version
+
+      - name: Set up Linux toolchain
+        uses: ./modules/limboai/.github/actions/setup-linux-toolchain
+        with:
+          arch: x86_64
+
+      - name: Set up scons cache
+        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+        with:
+          path: ${{github.workspace}}/.scons_cache/
+          key: ${{env.BIN}}-${{needs.resolve-godot-ref.outputs.godot-sha}}-${{github.ref}}-${{github.sha}}
+          restore-keys: |
+            ${{env.BIN}}-${{needs.resolve-godot-ref.outputs.godot-sha}}-${{github.ref}}-${{github.sha}}
+            ${{env.BIN}}-${{needs.resolve-godot-ref.outputs.godot-sha}}-${{github.ref}}
+            ${{env.BIN}}-${{needs.resolve-godot-ref.outputs.godot-sha}}
+        continue-on-error: true
+
+      - name: Set up Python 3.x
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: "3.x"
+          architecture: "x64"
+
+      - name: Set up scons
+        run: |
+          python -c "import sys; print(sys.version)"
+          python -m pip install scons=="${{env.SCONS_VERSION}}"
+          python --version
+          scons --version
+
+      - name: Set up AccessKit SDK
+        run: python ./misc/scripts/install_accesskit.py
+
+      - name: Compilation
+        run: |
+          PATH=${GITHUB_WORKSPACE}/buildroot/bin:$PATH
+          scons ${{env.SCONSFLAGS}} cache_path=${{github.workspace}}/.scons_cache/ cache_limit=${{env.CACHE_LIMIT}}
+
+      - name: Verify build
+        run: |
+          ls -l bin/
+          bin/${{ env.BIN }} --version
+          bin/${{ env.BIN }} --help
+
+      - name: Unit tests
+        run: |
+          bin/${{ env.BIN }} --test --headless
+
+  static-checks:
+    name: ⚙️ Static checks
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Clone LimboAI module
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+
+      - name: Code style checks
+        uses: pre-commit/action@2c7b3805fd2a0fd8c1884dcaebf91fc102a13ecd # v3.0.1
+        with:
+          extra_args: --all-files
+
+  linux-test-build:
+    name: 🐧 Linux
+    needs: resolve-godot-ref
+    uses: ./.github/workflows/linux.yml
+    with:
+      godot-ref: ${{ needs.resolve-godot-ref.outputs.godot-sha }}
+      test-build: true
+
+  windows-test-build:
+    name: 🪟 Windows
+    needs: resolve-godot-ref
+    uses: ./.github/workflows/windows.yml
+    with:
+      godot-ref: ${{ needs.resolve-godot-ref.outputs.godot-sha }}
+      test-build: true
+
+  macos-test-build:
+    name: 🍎 macOS
+    needs: resolve-godot-ref
+    uses: ./.github/workflows/macos.yml
+    with:
+      godot-ref: ${{ needs.resolve-godot-ref.outputs.godot-sha }}
+      test-build: true
+
+  gdextension:
+    name: 🔌 GDExtension
+    uses: ./.github/workflows/gdextension.yml
+    with:
+      test-build: true
