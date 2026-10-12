@@ -33,6 +33,17 @@
                       "role":  "~1400 API publiques gratuites classées par thème (jeux, IA, météo, finance, médias…), avec auth/HTTPS/CORS",
                       "synced_commit":  "3a416d89e",
                       "synced_on":  "2026-10-12"
+                  },
+                  {
+                      "name":  "awesome-godot",
+                      "url":  "https://github.com/Calinou/awesome-godot",
+                      "branch":  "master",
+                      "prefix":  "upstream/awesome-godot",
+                      "license":  "## creative commons",
+                      "category":  "listes",
+                      "role":  "Ressources Godot : modules, plugins, scripts, démos, jeux open source",
+                      "synced_commit":  "9aa855ff8",
+                      "synced_on":  "2026-10-12"
                   }
               ]
 }
