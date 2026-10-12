@@ -110,6 +110,17 @@
                       "role":  "Plugin Ghidra + serveur MCP : piloter Ghidra depuis Claude (recommandé par universal-modder)",
                       "synced_commit":  "1e9802520",
                       "synced_on":  "2026-10-12"
+                  },
+                  {
+                      "name":  "Il2CppDumper",
+                      "url":  "https://github.com/Perfare/Il2CppDumper",
+                      "branch":  "master",
+                      "prefix":  "upstream/Il2CppDumper",
+                      "license":  "MIT License",
+                      "category":  "modding",
+                      "role":  "Jeux Unity IL2CPP : restaure noms de classes/méthodes depuis global-metadata.dat (ce que rea ne fait pas)",
+                      "synced_commit":  "4741d46ba",
+                      "synced_on":  "2026-10-12"
                   }
               ]
 }
