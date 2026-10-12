@@ -1,0 +1,25 @@
+{
+  "_info": "Dépôts tiers intégrés au kit (git subtree --squash). Géré par scripts/kit.ps1 : ne pas éditer à la main sauf pour corriger une note.",
+  "repos": [
+    {
+      "name": "universal-modder",
+      "url": "https://github.com/rehan-remade/universal-modder.git",
+      "branch": "main",
+      "prefix": "upstream/universal-modder",
+      "license": "MIT",
+      "role": "Skills/outils Claude Code pour modder presque n'importe quel jeu PC (recon, RE, assets, tests en jeu).",
+      "synced_commit": "2c220143",
+      "synced_on": "2026-10-12"
+    },
+    {
+      "name": "rea",
+      "url": "https://github.com/morluto/rea.git",
+      "branch": "main",
+      "prefix": "upstream/rea",
+      "license": "MIT",
+      "role": "Reverse engineering par agents (CLI + MCP) : du comportement d'une appli jusqu'aux binaires natifs.",
+      "synced_commit": "c22111ec",
+      "synced_on": "2026-10-12"
+    }
+  ]
+}
