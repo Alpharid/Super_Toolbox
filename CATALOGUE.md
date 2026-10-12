@@ -1,6 +1,6 @@
 # Catalogue des outils du kit
 
-Référence rapide : quoi utiliser pour quoi. Chemins relatifs à `D:\Modding_Tools_Kit\`. Méthode et règles : [HANDOVER.md](HANDOVER.md).
+Référence **par dépôt** (pour une entrée **par besoin** : [guides/](guides/README.md)). Chemins relatifs à `D:\Modding_Tools_Kit\`. Méthode et règles : [HANDOVER.md](HANDOVER.md).
 
 ## universal-modder — `upstream/universal-modder/` (MIT, v0.2.0)
 
@@ -60,6 +60,22 @@ Moteurs : **Ghidra 12.1.x + JDK 21** (Windows : lecture seule, PE natifs x86/x64
 seulement. Non pris en charge : IL2CPP (décodage), x64dbg, Frida, radare2. Skill utilisateur :
 `.agents/skills/reverse-engineer-anything/SKILL.md` (+ `references/native-and-artifacts.md`). Doc Windows : `docs/windows-ghidra-p0.md`.
 
+## Physique — catégorie `physique`
+
+| Dossier | Licence | Contenu | Entrées utiles |
+|---|---|---|---|
+| `upstream/JoltPhysics/` | MIT | Le moteur physique de **Godot 4.4+** (C++) : sources, `Docs/Architecture.md` (contraintes, casse, personnages, grands mondes, déterminisme, rollback, corps mous), ~150 démos dans `Samples/Tests/` | Guide : `guides/physique-et-godot.md` §1. Démos : `Constraints/` (cordes, poulies, engrenages, charnières motorisées), `Water/` (flottaison), `Rig/` (ragdolls, corps qui suivent une animation), `SoftBody/`, `Character/CharacterSpaceShipTest` (marcher sur un vaisseau en mouvement) |
+| `upstream/GodotIK/` | MIT | IK 3D (FABRIK) pour Godot 4.3+, GDExtension, contraintes scriptables | `GodotIK/README.md`, démo `GodotIK/godot_project` ; utiliser la release |
+| `upstream/godot-destruction-plugin/` | MIT | Remplace un objet par ses fragments en corps rigides (fragments faits dans Blender) | `README.md` ; Godot 4 : addon des releases |
+
+## Godot — catégorie `godot`
+
+| Dossier | Licence | Contenu | Entrées utiles |
+|---|---|---|---|
+| `upstream/netfox/` | MIT | Multijoueur Godot 4 : temps réseau, synchro d'état, rollback, prédiction d'entrées, lag compensation, NAT (noray) | `docs/` (concepts, guides, `faq.md`), `docs/netfox.extras/guides/physics.md` (**rollback des RigidBody = stepping manuel, absent de Godot officiel**), `examples/` (multiplayer-simple, rollback-fps, rollback-npc…) |
+| `upstream/limboai/` | MIT | Behavior trees + machines à états hiérarchiques, éditeur visuel, blackboard (GDExtension C++) | `README.md`, `doc/`, projet `demo/` ; utiliser la release |
+| `upstream/beehave/` | MIT | Behavior trees en **pur GDScript** (lisible, modifiable, sans compilation) | `docs/`, `examples/`, `addons/beehave/` |
+
 ## Outils de modding complémentaires
 
 | Dossier | Licence | Sert à | Comment |
@@ -88,4 +104,8 @@ seulement. Non pris en charge : IL2CPP (décodage), x64dbg, Frida, radare2. Skil
 - Extraction / décompilation : [AssetRipper](https://github.com/AssetRipper/AssetRipper) (Unity, GPL, 440 Mo), [ILSpy](https://github.com/icsharpcode/ILSpy)
   (`dotnet tool install -g ilspycmd`), [dnSpyEx](https://github.com/dnSpyEx/dnSpy), [Cpp2IL](https://github.com/SamboyCoding/Cpp2IL), [FModel](https://github.com/4sval/FModel) (Unreal).
 - Bibliothèques : [Dear ImGui](https://github.com/ocornut/imgui) (menus en jeu), [Godot demo projects](https://github.com/godotengine/godot-demo-projects) (exemples officiels Godot 4, 550 Mo).
+- Physique / Godot (détails dans `guides/physique-et-godot.md` §3) : [Godot Rapier Physics](https://github.com/appsinacup/godot-rapier-physics) (stepping + fluides),
+  [Ten Minute Physics](https://matthias-research.github.io/pages/) (XPBD, sans licence), [corde verlet 3D](https://github.com/2nafish117/godot-verlet-rope),
+  [Phantom Camera](https://github.com/ramokz/phantom-camera), [Terrain3D](https://github.com/TokisanGames/Terrain3D), [godot_voxel](https://github.com/Zylann/godot_voxel),
+  [GodotSteam](https://codeberg.org/godotsteam/godotsteam) (déménagé sur Codeberg), [GUT](https://github.com/bitwes/Gut), [gdUnit4](https://github.com/godot-gdunit-labs/gdUnit4), [godot-debug-menu](https://github.com/godot-extended-libraries/godot-debug-menu).
 - Services gratuits pour développeurs (hébergement, BDD, e-mail…) : [free-for-dev](https://github.com/ripienaar/free-for-dev) — **pas de licence**, donc non copié.

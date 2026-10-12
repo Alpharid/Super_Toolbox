@@ -1,6 +1,7 @@
 # Modding_Tools_Kit
 
 Kit d'outils de modding et de création de jeux (dépôts tiers en git subtree dans `upstream/`). Tout est décrit ici : @HANDOVER.md
+Pour s'orienter : `guides/README.md` (par besoin), puis `CATALOGUE.md` (par dépôt).
 
 Règles :
 - Ne jamais modifier `upstream/` : mises à jour uniquement via `scripts\kit.ps1` (check → résumé à l'utilisateur → update).

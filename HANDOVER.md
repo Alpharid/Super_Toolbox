@@ -13,36 +13,37 @@ pour modder des jeux et en créer, et s'en servir avec Claude et avec Alphred.
 
 ## 2. État (2026-10-12)
 
-- 12 dépôts intégrés en 3 catégories (`modding`, `listes`, `dev`), voir §3 et `CATALOGUE.md`. **Rien n'est encore installé**
-  sur le PC (pas de `uv`, ffmpeg, Blender, Ghidra, JDK 21, ni du paquet npm `rea-agents`). On installe à la demande, pour un
-  projet de mod précis (règle de l'utilisateur : vérifier d'abord si l'outil existe déjà sur le PC, ne jamais installer de doublon).
-- PC : Windows 11, RTX 3090 Ti, Python 3.13, Node, .NET, git, gh présents. `python3` = alias Microsoft Store qui ne lance rien.
+- **18 dépôts** en 5 catégories (§3), **4 guides par besoin** dans `guides/`, catalogue par dépôt dans `CATALOGUE.md`.
+  `scripts\kit.ps1 verify` → « kit cohérent ».
+- **Rien n'est installé** sur le PC (ni `uv`, ffmpeg, Blender, Ghidra, JDK 21, `rea-agents`, ni les addons Godot) : on installe à
+  la demande, pour un projet précis, en vérifiant d'abord ce qui existe déjà (règle de l'utilisateur : jamais de doublon).
+- PC : Windows 11, RTX 3090 Ti, Python 3.13, Node, .NET, git, gh. `python3` = alias Microsoft Store qui ne lance rien.
 
 ### À faire / idées
-- L'utilisateur a « quelques idées derrière la tête » : attendre ses demandes, puis installer seulement ce qu'il faut.
-- Ajouter les dépôts pertinents qu'il demandera (`scripts\kit.ps1 add …`), et les documenter ici + dans `CATALOGUE.md`.
+- Projet à venir : **Stryder_Symbiosis** (jeu Godot 4.7 + Jolt, physique avancée, coop ; dépôt `C-Chafik/Stryder-Symbiosis`, local
+  `C:\Stryder-Symbiosis`, géré depuis une autre session Claude) → `guides/physique-et-godot.md` est écrit pour lui.
+- Ajouter les dépôts pertinents au fil des demandes (critères ci-dessous) et maintenir à jour sur demande (§4).
 
 ## 3. Contenu
 
-| Dossier | Origine (licence) | Quoi | Quand s'en servir |
-|---|---|---|---|
-| `upstream/universal-modder` | rehan-remade/universal-modder (MIT) | 11 skills Markdown + CLI Python `um` + base de connaissances (`knowledge/`, ~180 notes sur des jeux et techniques) + playbooks par moteur | Toute demande « modder le jeu X » : recon du jeu, choix de la route, sauvegardes, assets, tests en jeu, vidéo, publication |
-| `upstream/rea` | morluto/rea (MIT) | CLI + serveur MCP `rea` (npm `rea-agents`) : reverse engineering avec preuves (Ghidra/IDA pour le natif, parseur .NET intégré, ressources PE, JS/Electron, archives) | Comprendre le code d'un jeu : trouver une fonction, une chaîne, décompiler, obtenir l'offset fichier d'une adresse |
+Rangement : **un dossier par dépôt dans `upstream/`** (plat : git subtree retrouve chaque dépôt par son chemin, on ne déplace
+jamais un dossier — cf. §8), la catégorie est un champ de `upstreams.json`. Pour s'orienter : `guides/` (par besoin) puis
+`CATALOGUE.md` (par dépôt, avec chemins précis).
 
-Ajoutés le 2026-10-12 (détail dans `CATALOGUE.md`) :
-- **modding** : `GhidraMCP` (Ghidra piloté par Claude en MCP), `Il2CppDumper` (jeux Unity IL2CPP : noms des classes/méthodes, ce que rea ne fait pas).
-- **dev** : `minhook` (bibliothèque C de hooks x86/x64 pour mods natifs).
-- **listes** (Markdown, à fouiller avec Grep) : `public-apis` (~1 400 API gratuites, 52 catégories), `awesome-godot`, `magictools`,
-  `awesome-gamedev` (création de jeux, assets libres), `awesome` (méta-liste tous sujets), `awesome-mcp-servers` (outils pour agents),
-  `awesome-claude-code` (licence CC BY-NC-ND : usage perso, ne pas modifier).
-- Gros outils **non copiés** (installés depuis leurs releases quand un projet en a besoin) : BepInEx, MelonLoader, UE4SS, ASI Loader,
-  AssetRipper, ILSpy, dnSpyEx, Cpp2IL, FModel, ImGui… Liste avec liens en fin de `CATALOGUE.md`. `free-for-dev` : pas de licence → lien seulement.
+| Catégorie | Dépôts | Rôle |
+|---|---|---|
+| `modding` | `universal-modder`, `rea`, `GhidraMCP`, `Il2CppDumper`, `minhook` | Méthode complète de modding + CLI `um` + base de connaissances ; reverse engineering (rea CLI/MCP, Ghidra piloté par Claude) ; Unity IL2CPP ; hooks natifs |
+| `physique` | `JoltPhysics`, `GodotIK`, `godot-destruction-plugin` | Le moteur physique de Godot 4.4+ (sources, doc d'architecture, ~150 démos : cordes, poulies, flottaison, ragdolls, corps mous) ; IK 3D ; destruction |
+| `godot` | `netfox`, `limboai`, `beehave` | Multijoueur (synchro, rollback) ; IA par behavior trees / machines à états |
+| `listes` | `public-apis`, `awesome-godot`, `magictools`, `awesome-gamedev`, `awesome`, `awesome-mcp-servers`, `awesome-claude-code` | API gratuites ; ressources Godot / gamedev / assets libres ; méta-liste ; serveurs MCP ; outils Claude Code |
 
-Critères pour ajouter un dépôt : utile aux projets de l'utilisateur (modding, jeux, Godot, logiciels, agents IA), maintenu, licence
-qui autorise la copie (sinon : simple lien dans `CATALOGUE.md`), copie raisonnable (< ~50 Mo ; au-delà, lien + install depuis les releases).
+universal-modder dit **quoi faire** (méthode, route, vérification) ; rea et Ghidra **lisent l'intérieur des binaires**. Les gros
+outils (BepInEx, UE4SS, AssetRipper, ILSpy, Rapier, Terrain3D…) ne sont **pas copiés** : liens à la fin de `CATALOGUE.md` et dans
+les guides ; ils s'installent depuis leurs releases officielles.
 
-Détail des skills, commandes et moteurs : `CATALOGUE.md`. Les deux se complètent : universal-modder dit **quoi faire** (méthode,
-route, vérification) ; rea **lit l'intérieur des binaires** (étape « reverse-engineering » de universal-modder).
+**Critères pour ajouter un dépôt** : utile aux projets de l'utilisateur (modding, création de jeux — surtout Godot —, logiciels,
+agents IA), maintenu, licence qui autorise la copie (sinon : simple lien), copie raisonnable (< ~50 Mo de fichiers ; au-delà :
+lien). Mesurer avant : `gh api "repos/<owner>/<repo>/git/trees/HEAD?recursive=1" --jq '[.tree[]|select(.type=="blob")|.size]|add'`.
 
 ## 4. Garder le kit à jour (`scripts\kit.ps1`)
 
@@ -50,7 +51,8 @@ route, vérification) ; rea **lit l'intérieur des binaires** (étape « reverse
 powershell -ExecutionPolicy Bypass -File scripts\kit.ps1 list                    # dépôts et commit synchronisé
 powershell -ExecutionPolicy Bypass -File scripts\kit.ps1 check [-Name rea]       # nouveautés en amont (ne modifie rien)
 powershell -ExecutionPolicy Bypass -File scripts\kit.ps1 update -Name rea [-Push] # intègre la dernière version (commit)
-powershell -ExecutionPolicy Bypass -File scripts\kit.ps1 add -Name x -Url https://github.com/a/x [-Role "..."] [-Push]
+powershell -ExecutionPolicy Bypass -File scripts\kit.ps1 add -Name x -Url https://github.com/a/x -Category godot [-Role "..."] [-Push]
+powershell -ExecutionPolicy Bypass -File scripts\kit.ps1 verify                  # santé : dossiers, synchro, patches locaux
 ```
 - `upstreams.json` = registre (url, branche, dossier, licence, rôle, commit et date de synchro). Écrit par le script.
 - Procédure quand l'utilisateur demande « mets à jour » : `check` → lire les commits (`git show --stat <hash>` sur ceux qui
@@ -72,11 +74,23 @@ powershell -ExecutionPolicy Bypass -File scripts\kit.ps1 add -Name x -Url https:
   Brancher le MCP : `rea setup --client claude_code --dry-run --json` puis `--yes` — **modifie `~/.claude.json` de
   l'utilisateur : demander d'abord.** Mettre `REA_MCP_INPUT_SCHEMA_PROFILE=compact`.
 
+## 5 bis. Utiliser le kit depuis un autre projet (ex. Stryder_Symbiosis, autre session Claude)
+
+- Le kit est **une bibliothèque de référence**, pas une dépendance : on le lit depuis `D:\Modding_Tools_Kit` (ou on le clone :
+  `gh repo clone Alpharid/Modding_Tools_Kit`, dépôt privé du compte Alpharid). Ne pas le copier dans le projet du jeu.
+- Commencer par `guides/README.md`, puis le guide du besoin (`guides/physique-et-godot.md` pour Stryder).
+- Un addon (netfox, LimboAI, GodotIK…) s'installe dans le projet du jeu depuis **sa release officielle** (`addons/…`), pas depuis
+  `upstream/` (qui contient les sources de développement, parfois sans les binaires GDExtension compilés).
+- **Licences** pour un jeu vendu (Steam) : MIT / Apache-2.0 / BSD → OK, garder leur licence dans les crédits ; **interdit** d'embarquer
+  du code sans licence, du CC BY-NC-ND, et méfiance avec le GPL. Détail : `guides/physique-et-godot.md` §4.
+- Le kit ne contient rien de propre au jeu : les décisions du jeu restent dans le dépôt du jeu (ses ADR).
+
 ## 6. Utilisation par Alphred (agent local Qwen 27B, `D:\Alphred_AI\scripts\agent.ps1`)
 
 Alphred tourne dans Claude Code avec **6 outils seulement** (Bash, Read, Edit, Write, Glob, Grep), **sans skills ni MCP** et un
 contexte de ~128k tokens (compaction vers ~110k). Donc :
 
+0. **Commence par `guides/README.md`** (une ligne par besoin → le bon guide), pas par les dépôts.
 1. **Les skills se lisent comme des modes d'emploi.** Pour « modder le jeu X » : lire `upstream/universal-modder/skills/mod-any-game/SKILL.md`
    (par morceaux de 300 lignes max), puis seulement le skill de l'étape en cours (`game-recon`, `reverse-engineering`…) et le
    playbook du moteur (`upstream/universal-modder/skills/mod-any-game/references/engines/<moteur>.md`). Jamais tout d'un coup.
@@ -123,19 +137,28 @@ Demander avant : piloter souris/clavier, installer un loader, toucher au registr
 5. `FAL_KEY` (fal.ai) est la seule clé de universal-modder ; elle va dans l'environnement ou un `.env` (ignoré par git), jamais dans un fichier suivi.
 6. Gros fichiers tiers (GIF 6 Mo, modèles .glb 4-5 Mo) : OK pour GitHub (< 50 Mo). Ne jamais ajouter de binaires de jeux ou d'outils (Ghidra…) au dépôt : `.local/` est ignoré.
 
-**Patches locaux dans `upstream/`** : aucun.
+7. **Ne jamais déplacer ni renommer un dossier de `upstream/`** : `git subtree` retrouve chaque dépôt par le chemin noté dans ses
+   commits (`git-subtree-dir:`) ; un dossier déplacé ne peut plus être mis à jour. Pour réorganiser : changer la catégorie dans
+   `upstreams.json`, les guides et le catalogue — pas les dossiers.
+8. Les dépôts d'addons Godot (`netfox`, `limboai`, `GodotIK`) sont des **sources de développement** : `GodotIK/godot-cpp` est un
+   sous-module vide, LimboAI se compile avec SCons. Pour les utiliser : releases officielles.
+
+**Patches locaux dans `upstream/`** : aucun (`kit.ps1 verify` les signale).
 
 ## 9. Carte des fichiers
 
 ```
 D:\Modding_Tools_Kit\
 ├─ HANDOVER.md / CLAUDE.md / AGENTS.md / README.md / CATALOGUE.md
-├─ upstreams.json            registre des dépôts tiers (écrit par kit.ps1)
-├─ scripts\kit.ps1           list / check / update / add (PowerShell 5.1, UTF-8 avec BOM)
+├─ upstreams.json            registre des dépôts tiers : catégorie, licence, rôle, commit synchronisé (écrit par kit.ps1)
+├─ scripts\kit.ps1           list / check / update / add / verify (PowerShell 5.1, UTF-8 avec BOM)
 ├─ upstream\universal-modder skills\ (11 SKILL.md), um\ (CLI Python), knowledge\ (INDEX.md, games\, techniques\), examples\ (4 mods)
 ├─ upstream\rea              scripts\rea.mjs (CLI/MCP), src\, bridge\ (Ghidra/Hopper), docs\ (installation, windows-ghidra-p0…), .agents\skills\
-├─ upstream\GhidraMCP, Il2CppDumper, minhook          outils (sources) — voir CATALOGUE.md
+├─ upstream\GhidraMCP, Il2CppDumper, minhook          outils de modding (sources) — voir CATALOGUE.md
+├─ upstream\JoltPhysics, GodotIK, godot-destruction-plugin   physique
+├─ upstream\netfox, limboai, beehave                  addons Godot
 ├─ upstream\public-apis, awesome*, magictools          listes de ressources (README.md / readme.md)
+├─ guides\                  README (index par besoin), modder-un-jeu, physique-et-godot, trouver-une-ressource
 └─ (ignorés par git) work\ decomp\ dumps\ captures\ .local\ .env .venv node_modules
 ```
 
@@ -153,3 +176,6 @@ D:\Modding_Tools_Kit\
   Alphred (agent local) informé du kit (`D:\Alphred_AI\HANDOVER.md` + prompt de `agent.ps1`).
 - **2026-10-12** — +10 dépôts : listes `public-apis`, `awesome-godot`, `magictools`, `awesome-gamedev`, `awesome`, `awesome-mcp-servers`,
   `awesome-claude-code` ; outils `GhidraMCP`, `Il2CppDumper`, `minhook`. `kit.ps1` : catégories (`-Category`), licence via l'API GitHub.
+- **2026-10-12** — Audit + restructuration : `guides/` (entrées par besoin), catégories `modding / physique / godot / listes`,
+  `kit.ps1 verify`. +6 dépôts pour la physique et Godot (Stryder_Symbiosis) : `JoltPhysics`, `GodotIK`, `godot-destruction-plugin`,
+  `netfox`, `limboai`, `beehave` ; liens vers Rapier, Ten Minute Physics, corde verlet, Terrain3D, godot_voxel, GodotSteam (Codeberg), GUT, gdUnit4.
