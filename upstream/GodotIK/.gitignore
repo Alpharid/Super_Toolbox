@@ -1,0 +1,9 @@
+compile_commands.json
+.sconsign.dblite
+godot_project/addons/libik/bin
+.cache
+**/*.os
+gdb.txt
+.vscode/
+
+
