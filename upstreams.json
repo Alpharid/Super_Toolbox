@@ -88,6 +88,17 @@
                       "role":  "Serveurs MCP pour donner des outils aux agents IA (Ghidra, bases de données, navigateurs…)",
                       "synced_commit":  "cc7f1f42c",
                       "synced_on":  "2026-10-12"
+                  },
+                  {
+                      "name":  "awesome-claude-code",
+                      "url":  "https://github.com/hesreallyhim/awesome-claude-code",
+                      "branch":  "main",
+                      "prefix":  "upstream/awesome-claude-code",
+                      "license":  "Awesome Claude Code Â© 2026 by hesreallyhim is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-nd/4.0/",
+                      "category":  "listes",
+                      "role":  "Skills, hooks, commandes et outils pour Claude Code (licence CC BY-NC-ND : usage perso, ne pas modifier)",
+                      "synced_commit":  "1e515d510",
+                      "synced_on":  "2026-10-12"
                   }
               ]
 }
