@@ -44,6 +44,17 @@
                       "role":  "Ressources Godot : modules, plugins, scripts, démos, jeux open source",
                       "synced_commit":  "9aa855ff8",
                       "synced_on":  "2026-10-12"
+                  },
+                  {
+                      "name":  "magictools",
+                      "url":  "https://github.com/ellisonleao/magictools",
+                      "branch":  "main",
+                      "prefix":  "upstream/magictools",
+                      "license":  "MIT License",
+                      "category":  "listes",
+                      "role":  "Ressources de création de jeux : moteurs, art, son, animation, outils, cours",
+                      "synced_commit":  "4ec63e7a9",
+                      "synced_on":  "2026-10-12"
                   }
               ]
 }
