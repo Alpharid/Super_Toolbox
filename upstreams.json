@@ -66,6 +66,17 @@
                       "role":  "Logiciels et assets LIBRES pour faire des jeux (graphismes, audio, moteurs)",
                       "synced_commit":  "9918eea4f",
                       "synced_on":  "2026-10-12"
+                  },
+                  {
+                      "name":  "awesome",
+                      "url":  "https://github.com/sindresorhus/awesome",
+                      "branch":  "main",
+                      "prefix":  "upstream/awesome",
+                      "license":  "CC0 1.0 Universal",
+                      "category":  "listes",
+                      "role":  "Méta-liste de toutes les listes awesome (point de départ pour n importe quel sujet logiciel)",
+                      "synced_commit":  "bc98e517d",
+                      "synced_on":  "2026-10-12"
                   }
               ]
 }
