@@ -176,6 +176,17 @@
                       "role":  "Behavior trees en pur GDScript (plus simple à lire et modifier que LimboAI)",
                       "synced_commit":  "fe589153",
                       "synced_on":  "2026-10-12"
+                  },
+                  {
+                      "name":  "GodotIK",
+                      "url":  "https://github.com/monxa/GodotIK",
+                      "branch":  "main",
+                      "prefix":  "upstream/GodotIK",
+                      "license":  "MIT",
+                      "category":  "physique",
+                      "role":  "Cinématique inverse 3D (FABRIK) pour Godot 4.3+ : pattes, bras, créatures procédurales",
+                      "synced_commit":  "4336869a",
+                      "synced_on":  "2026-10-12"
                   }
               ]
 }
