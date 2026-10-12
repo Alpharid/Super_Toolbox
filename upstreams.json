@@ -99,6 +99,17 @@
                       "role":  "Skills, hooks, commandes et outils pour Claude Code (licence CC BY-NC-ND : usage perso, ne pas modifier)",
                       "synced_commit":  "1e515d510",
                       "synced_on":  "2026-10-12"
+                  },
+                  {
+                      "name":  "GhidraMCP",
+                      "url":  "https://github.com/LaurieWired/GhidraMCP",
+                      "branch":  "main",
+                      "prefix":  "upstream/GhidraMCP",
+                      "license":  "Apache License",
+                      "category":  "modding",
+                      "role":  "Plugin Ghidra + serveur MCP : piloter Ghidra depuis Claude (recommandé par universal-modder)",
+                      "synced_commit":  "1e9802520",
+                      "synced_on":  "2026-10-12"
                   }
               ]
 }
