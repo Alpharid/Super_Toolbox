@@ -55,6 +55,17 @@
                       "role":  "Ressources de création de jeux : moteurs, art, son, animation, outils, cours",
                       "synced_commit":  "4ec63e7a9",
                       "synced_on":  "2026-10-12"
+                  },
+                  {
+                      "name":  "awesome-gamedev",
+                      "url":  "https://github.com/Calinou/awesome-gamedev",
+                      "branch":  "master",
+                      "prefix":  "upstream/awesome-gamedev",
+                      "license":  "## creative commons",
+                      "category":  "listes",
+                      "role":  "Logiciels et assets LIBRES pour faire des jeux (graphismes, audio, moteurs)",
+                      "synced_commit":  "9918eea4f",
+                      "synced_on":  "2026-10-12"
                   }
               ]
 }
