@@ -1,27 +1,38 @@
 {
-  "_info": "Dépôts tiers intégrés au kit (git subtree --squash). Géré par scripts/kit.ps1 : ne pas éditer à la main sauf pour corriger une note.",
-  "repos": [
-    {
-      "name": "universal-modder",
-      "url": "https://github.com/rehan-remade/universal-modder.git",
-      "branch": "main",
-      "prefix": "upstream/universal-modder",
-      "category": "modding",
-      "license": "MIT",
-      "role": "Skills/outils Claude Code pour modder presque n'importe quel jeu PC (recon, RE, assets, tests en jeu).",
-      "synced_commit": "2c220143",
-      "synced_on": "2026-10-12"
-    },
-    {
-      "name": "rea",
-      "url": "https://github.com/morluto/rea.git",
-      "branch": "main",
-      "prefix": "upstream/rea",
-      "category": "modding",
-      "license": "MIT",
-      "role": "Reverse engineering par agents (CLI + MCP) : du comportement d'une appli jusqu'aux binaires natifs.",
-      "synced_commit": "c22111ec",
-      "synced_on": "2026-10-12"
-    }
-  ]
+    "_info":  "Dépôts tiers intégrés au kit (git subtree --squash). Géré par scripts/kit.ps1 : ne pas éditer à la main sauf pour corriger une note.",
+    "repos":  [
+                  {
+                      "name":  "universal-modder",
+                      "url":  "https://github.com/rehan-remade/universal-modder.git",
+                      "branch":  "main",
+                      "prefix":  "upstream/universal-modder",
+                      "category":  "modding",
+                      "license":  "MIT",
+                      "role":  "Skills/outils Claude Code pour modder presque n\u0027importe quel jeu PC (recon, RE, assets, tests en jeu).",
+                      "synced_commit":  "2c220143",
+                      "synced_on":  "2026-10-12"
+                  },
+                  {
+                      "name":  "rea",
+                      "url":  "https://github.com/morluto/rea.git",
+                      "branch":  "main",
+                      "prefix":  "upstream/rea",
+                      "category":  "modding",
+                      "license":  "MIT",
+                      "role":  "Reverse engineering par agents (CLI + MCP) : du comportement d\u0027une appli jusqu\u0027aux binaires natifs.",
+                      "synced_commit":  "c22111ec",
+                      "synced_on":  "2026-10-12"
+                  },
+                  {
+                      "name":  "public-apis",
+                      "url":  "https://github.com/public-apis/public-apis",
+                      "branch":  "master",
+                      "prefix":  "upstream/public-apis",
+                      "license":  "MIT License",
+                      "category":  "listes",
+                      "role":  "~1400 API publiques gratuites classées par thème (jeux, IA, météo, finance, médias…), avec auth/HTTPS/CORS",
+                      "synced_commit":  "3a416d89e",
+                      "synced_on":  "2026-10-12"
+                  }
+              ]
 }
