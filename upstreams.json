@@ -264,6 +264,17 @@
                       "role":  "",
                       "synced_commit":  "0724291b",
                       "synced_on":  "2026-10-16"
+                  },
+                  {
+                      "name":  "Harmony",
+                      "url":  "https://github.com/pardeike/Harmony",
+                      "branch":  "master",
+                      "prefix":  "upstream/Harmony",
+                      "license":  "MIT",
+                      "category":  "modding",
+                      "role":  "",
+                      "synced_commit":  "b79f2f1a",
+                      "synced_on":  "2026-10-16"
                   }
               ]
 }
