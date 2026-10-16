@@ -275,6 +275,17 @@
                       "role":  "",
                       "synced_commit":  "b79f2f1a",
                       "synced_on":  "2026-10-16"
+                  },
+                  {
+                      "name":  "ida-pro-mcp",
+                      "url":  "https://github.com/mrexodia/ida-pro-mcp",
+                      "branch":  "main",
+                      "prefix":  "upstream/ida-pro-mcp",
+                      "license":  "MIT",
+                      "category":  "modding",
+                      "role":  "",
+                      "synced_commit":  "c133c385",
+                      "synced_on":  "2026-10-16"
                   }
               ]
 }
