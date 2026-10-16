@@ -1,0 +1,78 @@
+{
+  "_info": "Heimdall — carte des DOMAINES de veille et de leurs SOURCES. Lu par heimdall.ps1 et par l'agent de veille. L'intelligence (lire le web, juger la pertinence) est faite par Claude ; ce fichier dit OÙ regarder. Ajouter une source = l'ajouter ici. Les ids de domaine servent aussi dans projects.json.",
+  "domaines": {
+    "godot": {
+      "nom": "Godot & création de jeux",
+      "mots_cles": ["godot 4", "godot addon", "gdextension", "gdscript", "godot ui", "godot tool"],
+      "sources": [
+        { "nom": "Godot — actualités", "url": "https://godotengine.org/news/", "type": "blog" },
+        { "nom": "Godot — releases", "url": "https://github.com/godotengine/godot/releases", "type": "releases" },
+        { "nom": "Godot Asset Library", "url": "https://godotengine.org/asset-library/asset", "type": "registre" },
+        { "nom": "awesome-godot (dans le kit)", "url": "upstream/awesome-godot/README.md", "type": "liste" },
+        { "nom": "GitHub topic godot-addon", "url": "https://github.com/topics/godot-addon", "type": "topic" },
+        { "nom": "r/godot", "url": "https://www.reddit.com/r/godot/top/?t=week", "type": "forum" }
+      ]
+    },
+    "physique-netcode": {
+      "nom": "Physique & multijoueur temps réel",
+      "mots_cles": ["jolt physics", "soft body", "rollback netcode", "xpbd", "destruction", "fluid sim", "rapier"],
+      "sources": [
+        { "nom": "JoltPhysics — releases (dans le kit)", "url": "https://github.com/jrouwe/JoltPhysics/releases", "type": "releases" },
+        { "nom": "netfox — releases (dans le kit)", "url": "https://github.com/foxssake/netfox/releases", "type": "releases" },
+        { "nom": "godot-rapier-physics — releases", "url": "https://github.com/appsinacup/godot-rapier-physics/releases", "type": "releases" },
+        { "nom": "Ten Minute Physics (XPBD)", "url": "https://matthias-research.github.io/pages/", "type": "blog" },
+        { "nom": "GitHub topic physics-engine", "url": "https://github.com/topics/physics-engine", "type": "topic" },
+        { "nom": "r/gamedev (netcode/physics)", "url": "https://www.reddit.com/r/gamedev/top/?t=week", "type": "forum" }
+      ]
+    },
+    "modding-re": {
+      "nom": "Modding & reverse engineering",
+      "mots_cles": ["game mod loader", "asset ripper", "reverse engineering", "il2cpp", "frida", "ghidra", "bepinex"],
+      "sources": [
+        { "nom": "universal-modder — commits (dans le kit)", "url": "https://github.com/rehan-remade/universal-modder/commits/main", "type": "commits" },
+        { "nom": "rea — releases (dans le kit)", "url": "https://github.com/morluto/rea/releases", "type": "releases" },
+        { "nom": "Ghidra — releases", "url": "https://github.com/NationalSecurityAgency/ghidra/releases", "type": "releases" },
+        { "nom": "BepInEx — releases", "url": "https://github.com/BepInEx/BepInEx/releases", "type": "releases" },
+        { "nom": "GitHub topic game-modding", "url": "https://github.com/topics/game-modding", "type": "topic" },
+        { "nom": "GitHub topic reverse-engineering", "url": "https://github.com/topics/reverse-engineering", "type": "topic" }
+      ]
+    },
+    "ia-agents": {
+      "nom": "Agents IA, MCP & LLM local",
+      "mots_cles": ["mcp server", "claude code", "ollama", "llama.cpp", "local llm", "agent framework", "tts stt", "rag"],
+      "sources": [
+        { "nom": "Claude Code — changelog", "url": "https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md", "type": "changelog" },
+        { "nom": "MCP — registre officiel", "url": "https://github.com/modelcontextprotocol/registry", "type": "registre" },
+        { "nom": "awesome-mcp-servers (dans le kit)", "url": "upstream/awesome-mcp-servers/README.md", "type": "liste" },
+        { "nom": "awesome-claude-code (dans le kit)", "url": "upstream/awesome-claude-code/README.md", "type": "liste" },
+        { "nom": "Ollama — releases", "url": "https://github.com/ollama/ollama/releases", "type": "releases" },
+        { "nom": "Open WebUI — releases", "url": "https://github.com/open-webui/open-webui/releases", "type": "releases" },
+        { "nom": "r/LocalLLaMA", "url": "https://www.reddit.com/r/LocalLLaMA/top/?t=week", "type": "forum" }
+      ]
+    },
+    "secu-reseau": {
+      "nom": "Sécurité, réseau & audit défensif",
+      "mots_cles": ["network scanner", "onvif", "ip camera audit", "wifi audit", "hardening", "raspberry pi security", "nmap"],
+      "sources": [
+        { "nom": "Kali Linux — blog", "url": "https://www.kali.org/blog/", "type": "blog" },
+        { "nom": "Nmap — releases", "url": "https://github.com/nmap/nmap/releases", "type": "releases" },
+        { "nom": "GitHub topic network-security", "url": "https://github.com/topics/network-security", "type": "topic" },
+        { "nom": "GitHub topic security-audit", "url": "https://github.com/topics/security-audit", "type": "topic" },
+        { "nom": "r/netsec", "url": "https://www.reddit.com/r/netsec/top/?t=week", "type": "forum" },
+        { "nom": "r/homelab (réseau/caméras)", "url": "https://www.reddit.com/r/homelab/top/?t=week", "type": "forum" }
+      ]
+    },
+    "devtools": {
+      "nom": "Outils dev, CLI/TUI, automatisation & QOL",
+      "mots_cles": ["tui library", "cli framework", "release automation", "windows automation", "developer tools"],
+      "sources": [
+        { "nom": "GitHub Trending", "url": "https://github.com/trending", "type": "trending" },
+        { "nom": "Hacker News (Show/front)", "url": "https://news.ycombinator.com/", "type": "forum" },
+        { "nom": "awesome (méta-liste, dans le kit)", "url": "upstream/awesome/readme.md", "type": "liste" },
+        { "nom": "GitHub topic tui", "url": "https://github.com/topics/tui", "type": "topic" },
+        { "nom": "GitHub topic cli", "url": "https://github.com/topics/cli", "type": "topic" },
+        { "nom": "r/commandline", "url": "https://www.reddit.com/r/commandline/top/?t=week", "type": "forum" }
+      ]
+    }
+  }
+}

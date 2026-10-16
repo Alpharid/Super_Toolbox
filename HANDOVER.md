@@ -1,20 +1,29 @@
-# Modding_Tools_Kit — HANDOVER
+# Super_Toolbox — HANDOVER
 
 > Document de passation : permet à n'importe quelle IA (Claude, Alphred l'IA locale, une autre) de reprendre sans contexte.
 > **Si tu es Alphred (modèle local) : lis d'abord le §6, il est écrit pour toi.** Mets à jour l'Historique (§11) après chaque changement.
 
 ## 1. Ce que c'est
 
-Le **kit d'outils de modding et de création de jeux** de l'utilisateur (compte GitHub Alpharid, dépôt **privé**
-`Alpharid/Modding_Tools_Kit`, local `D:\Modding_Tools_Kit`). Il rassemble des dépôts tiers utiles, copiés dans `upstream/`
-avec **git subtree** (une vraie copie dans ce dépôt + un lien vers l'original pour récupérer ses nouveautés), plus notre
-documentation et nos scripts à la racine. Objectif de l'utilisateur : y ajouter au fil du temps tous les dépôts pertinents
-pour modder des jeux et en créer, et s'en servir avec Claude et avec Alphred.
+La **boîte à outils open-source** de l'utilisateur (compte GitHub Alpharid, dépôt **public**
+`Alpharid/Super_Toolbox`, local `D:\Super_Toolbox`). Elle rassemble les meilleurs outils open-source utiles à
+**tous ses projets** (passés, présents, futurs) : modding/création de jeux, mais aussi IA/agents, réseau/sécurité
+défensive, Godot UI, outils dev. Les dépôts tiers sont copiés dans `upstream/` avec **git subtree** (une vraie copie
++ un lien vers l'original pour récupérer ses nouveautés) ; notre documentation et nos scripts sont à la racine.
 
-## 2. État (2026-10-12)
+**Deux usages, en réflexe** (lire `INDEX.md` d'abord — c'est le pilier, token-léger) :
+1. **À chaque projet touché** : consulter l'index + `heimdall.ps1 project -Name <P>` → proposer les outils pertinents déjà présents, et repérer les manques.
+2. **Un manque, ou une veille planifiée** : **Heimdall** (le veilleur, `heimdall/`) cherche de nouveaux outils, propose les meilleurs, et tient l'index à jour. Voir §4 bis.
 
-- **18 dépôts** en 5 catégories (§3), **4 guides par besoin** dans `guides/`, catalogue par dépôt dans `CATALOGUE.md`.
+C'est public et open-source car presque tout vient de la communauté open source (chaque outil garde sa licence).
+
+## 2. État (2026-10-16)
+
+- **Renommé** `Modding_Tools_Kit` → **`Super_Toolbox`**, passé **public**. Pilier : `INDEX.md` (à lire en premier, token-léger).
+- Cœur **Heimdall** ajouté (`heimdall/`) : veille techno sur 6 domaines + réflexe projet (§4 bis). 1er digest : `heimdall/reports/2026-10-16.md`.
+- **18 dépôts** copiés en 5 catégories (§3), **4 guides par besoin** dans `guides/`, catalogue par dépôt dans `CATALOGUE.md`.
   `scripts\kit.ps1 verify` → « kit cohérent ».
+- Digest hebdo : agent cloud planifié (routine `schedule`) qui lance une passe Heimdall et pousse un digest daté.
 - **Rien n'est installé** sur le PC (ni `uv`, ffmpeg, Blender, Ghidra, JDK 21, `rea-agents`, ni les addons Godot) : on installe à
   la demande, pour un projet précis, en vérifiant d'abord ce qui existe déjà (règle de l'utilisateur : jamais de doublon).
 - PC : Windows 11, RTX 3090 Ti, Python 3.13, Node, .NET, git, gh. `python3` = alias Microsoft Store qui ne lance rien.
@@ -62,10 +71,20 @@ powershell -ExecutionPolicy Bypass -File scripts\kit.ps1 verify                 
   à la racine (docs, scripts). Si un patch local est inévitable, le décrire au §8 (Patches locaux).
 - Les remotes `up-<nom>` sont recréés automatiquement par le script (un clone neuf du kit n'a que `origin`).
 
+## 4 bis. Heimdall — le veilleur (cœur de la toolbox)
+
+Doc complète : **`heimdall/README.md`**. En bref :
+- `heimdall/sources.json` = 6 domaines (`godot`, `physique-netcode`, `modding-re`, `ia-agents`, `secu-reseau`, `devtools`) et leurs sources de veille.
+- `heimdall/projects.json` = carte projet → domaines → outils du kit + manques (c'est la base du **réflexe**).
+- `heimdall/reports/AAAA-MM-JJ.md` = digests datés. `heimdall/heimdall.ps1` = helper (`domains`, `sources`, `project`, `brief`, `report`, `log`).
+- **Réflexe** quand on ouvre un projet : `heimdall.ps1 project -Name <P>` → outils applicables + manques ; un manque non couvert → passe de veille ciblée, puis proposer/ajouter.
+- **Passe de veille** (recette dans `heimdall/README.md`) : `brief` → recherche web par domaine → `report` → remplir → décider lien vs subtree (`kit.ps1 add`) → MAJ `INDEX.md` → commit/push.
+- L'intelligence (lire le web, juger) est faite par Claude ; le `.ps1` ne fait que la mécanique (données, squelettes).
+
 ## 5. Utilisation avec Claude (gros modèle)
 
 - **universal-modder** :
-  - en plugin : `/plugin marketplace add D:\Modding_Tools_Kit\upstream\universal-modder` puis `/plugin install universal-modder@universal-modder` (non testé en local ; sinon le marketplace GitHub `rehan-remade/universal-modder`) ;
+  - en plugin : `/plugin marketplace add D:\Super_Toolbox\upstream\universal-modder` puis `/plugin install universal-modder@universal-modder` (non testé en local ; sinon le marketplace GitHub `rehan-remade/universal-modder`) ;
   - ou en lançant Claude Code **dans** `upstream\universal-modder` (ses `.claude\skills` et `.claude\settings.json` s'appliquent).
   - Point d'entrée : skill `mod-any-game` (`skills/mod-any-game/SKILL.md`). Le MCP `fal` exige `FAL_KEY` (payant, fal.ai) : sans
     clé, le désactiver via `/mcp` ; tout le reste marche (images locales possibles via ComfyUI : `um comfy`).
@@ -76,8 +95,8 @@ powershell -ExecutionPolicy Bypass -File scripts\kit.ps1 verify                 
 
 ## 5 bis. Utiliser le kit depuis un autre projet (ex. Stryder_Symbiosis, autre session Claude)
 
-- Le kit est **une bibliothèque de référence**, pas une dépendance : on le lit depuis `D:\Modding_Tools_Kit` (ou on le clone :
-  `gh repo clone Alpharid/Modding_Tools_Kit`, dépôt privé du compte Alpharid). Ne pas le copier dans le projet du jeu.
+- Le kit est **une bibliothèque de référence**, pas une dépendance : on le lit depuis `D:\Super_Toolbox` (ou on le clone :
+  `gh repo clone Alpharid/Super_Toolbox`, dépôt **public**). Ne pas le copier dans le projet du jeu.
 - Commencer par `guides/README.md`, puis le guide du besoin (`guides/physique-et-godot.md` pour Stryder).
 - Un addon (netfox, LimboAI, GodotIK…) s'installe dans le projet du jeu depuis **sa release officielle** (`addons/…`), pas depuis
   `upstream/` (qui contient les sources de développement, parfois sans les binaires GDExtension compilés).
@@ -95,7 +114,7 @@ contexte de ~128k tokens (compaction vers ~110k). Donc :
    (par morceaux de 300 lignes max), puis seulement le skill de l'étape en cours (`game-recon`, `reverse-engineering`…) et le
    playbook du moteur (`upstream/universal-modder/skills/mod-any-game/references/engines/<moteur>.md`). Jamais tout d'un coup.
 2. **CLI `um`** (universal-modder), depuis Bash :
-   `PYTHONPATH=/d/Modding_Tools_Kit/upstream/universal-modder python -m um <commande>` (le lanceur `bin/um` peut tomber sur
+   `PYTHONPATH=/d/Super_Toolbox/upstream/universal-modder python -m um <commande>` (le lanceur `bin/um` peut tomber sur
    l'alias `python3` cassé). Dépendances une fois : `python -m pip install pillow numpy pyyaml`.
    Le plus utile et sans risque : `um scan --list`, `um scan "<jeu>" --json > scan.json`, `um kb search "<jeu>"`, `um kb show <note>`,
    `um backup create …`. **Interdit ici : `um kb pr`** (il commite et pousse dans CE dépôt, cf. §8).
@@ -148,8 +167,10 @@ Demander avant : piloter souris/clavier, installer un loader, toucher au registr
 ## 9. Carte des fichiers
 
 ```
-D:\Modding_Tools_Kit\
+D:\Super_Toolbox\
+├─ INDEX.md                  ★ à lire en premier : tout le contenu par domaine + carte projet→outils + Heimdall (token-léger)
 ├─ HANDOVER.md / CLAUDE.md / AGENTS.md / README.md / CATALOGUE.md
+├─ heimdall\                 README (le veilleur), sources.json (domaines+sources), projects.json (projet→outils), heimdall.ps1, reports\AAAA-MM-JJ.md
 ├─ upstreams.json            registre des dépôts tiers : catégorie, licence, rôle, commit synchronisé (écrit par kit.ps1)
 ├─ scripts\kit.ps1           list / check / update / add / verify (PowerShell 5.1, UTF-8 avec BOM)
 ├─ upstream\universal-modder skills\ (11 SKILL.md), um\ (CLI Python), knowledge\ (INDEX.md, games\, techniques\), examples\ (4 mods)
@@ -165,8 +186,8 @@ D:\Modding_Tools_Kit\
 ## 10. Conventions
 
 - Docs, commentaires, journaux en **français** ; scripts PowerShell en UTF-8 **avec BOM**, sortie `OK: …` / `ERREUR: …`.
-- Commits : `Alpharid <67369311+Alpharid@users.noreply.github.com>` (configuré dans le dépôt local). Dépôt **privé**.
-- Pas de binaires dans git (Releases GitHub si besoin). Pas de secrets. Avant chaque push : HANDOVER à jour + scan des secrets.
+- Commits : `Alpharid <67369311+Alpharid@users.noreply.github.com>` (configuré dans le dépôt local). Dépôt **public**.
+- Pas de binaires dans git (Releases GitHub si besoin). Pas de secrets (dépôt public). Avant chaque push : `INDEX.md` et HANDOVER à jour + scan des secrets.
 - Chaque mod = son propre dossier de travail (`work\<jeu>-<mod>\`, ignoré) ou son propre dépôt ; le kit contient des outils, pas des mods.
 
 ## 11. Historique
@@ -179,3 +200,7 @@ D:\Modding_Tools_Kit\
 - **2026-10-12** — Audit + restructuration : `guides/` (entrées par besoin), catégories `modding / physique / godot / listes`,
   `kit.ps1 verify`. +6 dépôts pour la physique et Godot (Stryder_Symbiosis) : `JoltPhysics`, `GodotIK`, `godot-destruction-plugin`,
   `netfox`, `limboai`, `beehave` ; liens vers Rapier, Ten Minute Physics, corde verlet, Terrain3D, godot_voxel, GodotSteam (Codeberg), GUT, gdUnit4.
+- **2026-10-16** — **Super_Toolbox** : renommage `Modding_Tools_Kit` → `Super_Toolbox`, dépôt passé **public/open-source**. Portée
+  élargie à tous les projets de l'utilisateur. Ajout du pilier `INDEX.md` (token-léger) et du cœur **Heimdall** (`heimdall/` :
+  `sources.json` 6 domaines, `projects.json` 6 projets, `heimdall.ps1`, `reports/`). 1er digest de veille (`reports/2026-10-16.md`,
+  ~36 outils repérés, vérifiés) + propositions d'ajout. Agent cloud hebdo planifié pour le digest. Contenu copié inchangé (18 dépôts).

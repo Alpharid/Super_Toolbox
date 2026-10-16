@@ -1,6 +1,6 @@
 # Catalogue des outils du kit
 
-Référence **par dépôt** (pour une entrée **par besoin** : [guides/](guides/README.md)). Chemins relatifs à `D:\Modding_Tools_Kit\`. Méthode et règles : [HANDOVER.md](HANDOVER.md).
+Référence **par dépôt** (pour une entrée **par besoin** : [guides/](guides/README.md)). Chemins relatifs à `D:\Super_Toolbox\`. Méthode et règles : [HANDOVER.md](HANDOVER.md).
 
 ## universal-modder — `upstream/universal-modder/` (MIT, v0.2.0)
 

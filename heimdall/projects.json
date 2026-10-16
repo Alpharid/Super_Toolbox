@@ -1,0 +1,51 @@
+{
+  "_info": "Heimdall — carte PROJETS → domaines → outils. Sert au RÉFLEXE : quand on ouvre/lance un projet, lire cette entrée pour savoir quels outils de la toolbox s'appliquent (outils_kit) et quels manques Heimdall doit combler (manques). Les ids de domaine viennent de sources.json. Tenir à jour quand un projet naît ou change de besoin.",
+  "fil_rouge": "Presque tous les projets de l'utilisateur ont un PANEL/DATAPAD en Godot 4.7 construit 100% en code (fenêtre sans bord, fond transparent, style rétro-futuriste). Toute ressource Godot UI/thème/composants-en-code sert à plusieurs projets d'un coup → priorité de veille dans le domaine godot.",
+  "projets": {
+    "Stryder_Symbiosis": {
+      "chemin": "C:\\Stryder-Symbiosis",
+      "resume": "Jeu Godot 4.7 coop « tout est physique » (Jolt).",
+      "domaines": ["godot", "physique-netcode"],
+      "outils_kit": ["JoltPhysics", "GodotIK", "godot-destruction-plugin", "netfox", "limboai", "beehave"],
+      "guide": "guides/physique-et-godot.md",
+      "manques": ["soft body / cordes avancées", "outils de debug physique en jeu", "interpolation/lag-compensation prête à l'emploi"]
+    },
+    "MixMaster_Regenesis": {
+      "chemin": "C:\\MixMaster_Regenesis",
+      "resume": "Serveur privé MixMaster (reprise du client FR, 2 mondes) + Control Panel Godot 4.7.",
+      "domaines": ["modding-re", "godot"],
+      "outils_kit": ["rea", "universal-modder", "Il2CppDumper", "GhidraMCP"],
+      "manques": ["outils réseau/émulation de serveur de jeu", "composants Godot UI réutilisables pour le panel"]
+    },
+    "Alphred_AI": {
+      "chemin": "D:\\Alphred_AI",
+      "resume": "IA locale « majordome » (Ollama + Open WebUI + SillyTavern) + panel datapad Godot + assistant vocal « Sonnette ».",
+      "domaines": ["ia-agents", "godot", "devtools"],
+      "outils_kit": ["awesome-mcp-servers", "awesome-claude-code"],
+      "manques": ["TTS/STT local de qualité (voix de l'assistant)", "serveurs MCP utiles (fichiers, web, système)", "mémoire longue / RAG local", "frameworks d'agents vocaux"]
+    },
+    "WifiSentinel": {
+      "chemin": "C:\\WifiSentinel",
+      "resume": "Audit DÉFENSIF WiFi/LAN/caméras IP (engine Python) + datapad Godot vert Matrix. Recon passive + connexion légitime seulement.",
+      "domaines": ["secu-reseau", "godot"],
+      "outils_kit": ["public-apis"],
+      "manques": ["bibliothèques ONVIF/RTSP robustes", "scanners réseau Python", "modèles de rapport de durcissement"],
+      "ligne_rouge": "Audit défensif uniquement. Pas de crack de clé ni d'accès non autorisé. Voir mémoire wifisentinel."
+    },
+    "Kali-Pi": {
+      "chemin": "C:\\Users\\Shayu\\Downloads\\Kali-Pi5",
+      "resume": "Raspberry Pi 5 sous Kali + écran tactile 7\" : audit réseau familial autorisé, datapad Matrix en kiosque, fonction Stream Deck pour le JDR.",
+      "domaines": ["secu-reseau", "devtools"],
+      "outils_kit": [],
+      "manques": ["outils réseau légers pour ARM/Pi", "équivalent Stream Deck open-source (déclencher des actions PC)", "kiosque/UI tactile"],
+      "ligne_rouge": "Réseaux possédés ou audités avec accord explicite, pour patcher. Voir mémoire kali-pi."
+    },
+    "Super_Toolbox": {
+      "chemin": "D:\\Super_Toolbox",
+      "resume": "La boîte à outils elle-même (ce dépôt) + Heimdall.",
+      "domaines": ["godot", "physique-netcode", "modding-re", "ia-agents", "secu-reseau", "devtools"],
+      "outils_kit": ["tous"],
+      "manques": []
+    }
+  }
+}

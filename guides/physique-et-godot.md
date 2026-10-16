@@ -4,7 +4,7 @@ Contexte visé : Godot **4.7**, GDScript, moteur physique **Jolt** (intégré à
 jeu « tout est physique » : cordes qui se tendent et cassent selon leur matière, structures qui cèdent sous le poids, eau qui
 fait tourner une roue, joueurs bousculés sur le dos d'une créature géante qui marche, coop en ligne.
 
-> Les chemins sont relatifs à `D:\Modding_Tools_Kit\`. Ce qui est marqué **(à vérifier)** n'a pas été testé dans Godot 4.7 :
+> Les chemins sont relatifs à `D:\Super_Toolbox\`. Ce qui est marqué **(à vérifier)** n'a pas été testé dans Godot 4.7 :
 > le prouver par un petit prototype avant de bâtir dessus.
 
 ## 1. Comprendre Jolt (le moteur sous Godot) — `upstream/JoltPhysics/`

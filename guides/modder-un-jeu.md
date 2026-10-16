@@ -1,7 +1,7 @@
 # Modder un jeu PC — guide
 
 Règles d'abord : jeu **possédé**, solo / hors ligne ou serveur à soi, aucun contournement d'anti-cheat ou de DRM, rien du jeu
-ni de décompilé dans git (voir `HANDOVER.md` §7). Chemins relatifs à `D:\Modding_Tools_Kit\`.
+ni de décompilé dans git (voir `HANDOVER.md` §7). Chemins relatifs à `D:\Super_Toolbox\`.
 
 ## La méthode (universal-modder)
 1. Lire `upstream/universal-modder/skills/mod-any-game/SKILL.md` (la boucle complète) — par morceaux.

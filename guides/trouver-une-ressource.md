@@ -2,7 +2,7 @@
 
 Toutes les listes sont dans `upstream/` ; elles font de quelques centaines à plusieurs milliers de lignes : **Grep, jamais lecture complète**.
 
-| Je cherche… | Où | Commande type (Bash, depuis `D:\Modding_Tools_Kit`) |
+| Je cherche… | Où | Commande type (Bash, depuis `D:\Super_Toolbox`) |
 |---|---|---|
 | Une **API** gratuite (jeux, IA, météo, musique, anime, finance, données ouvertes…) | `upstream/public-apis/README.md` | `grep -n "^### " upstream/public-apis/README.md` (les 52 catégories) puis Read autour de la ligne ; ou `grep -in "twitch\|steam" upstream/public-apis/README.md`. Colonnes : Auth (clé ?), HTTPS, CORS |
 | Un **plugin / addon Godot** | `upstream/awesome-godot/README.md` | `grep -in "rope\|water\|network" upstream/awesome-godot/README.md` — vérifier la compatibilité Godot 4 |
