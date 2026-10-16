@@ -1,203 +1,214 @@
 {
-  "_info": "Dépôts tiers intégrés au kit (git subtree --squash). Géré par scripts/kit.ps1 : ne pas éditer à la main sauf pour corriger une note.",
-  "repos": [
-    {
-      "name": "GhidraMCP",
-      "url": "https://github.com/LaurieWired/GhidraMCP",
-      "branch": "main",
-      "prefix": "upstream/GhidraMCP",
-      "license": "Apache-2.0",
-      "category": "modding",
-      "role": "Plugin Ghidra + serveur MCP : piloter Ghidra depuis Claude (recommandé par universal-modder)",
-      "synced_commit": "1e980252",
-      "synced_on": "2026-10-12"
-    },
-    {
-      "name": "Il2CppDumper",
-      "url": "https://github.com/Perfare/Il2CppDumper",
-      "branch": "master",
-      "prefix": "upstream/Il2CppDumper",
-      "license": "MIT",
-      "category": "modding",
-      "role": "Jeux Unity IL2CPP : restaure noms de classes/méthodes depuis global-metadata.dat (ce que rea ne fait pas)",
-      "synced_commit": "4741d46b",
-      "synced_on": "2026-10-12"
-    },
-    {
-      "name": "minhook",
-      "url": "https://github.com/TsudaKageyu/minhook",
-      "branch": "master",
-      "prefix": "upstream/minhook",
-      "license": "BSD-2-Clause",
-      "category": "modding",
-      "role": "Bibliothèque C de hooks x86/x64 : base des mods natifs (proxy DLL)",
-      "synced_commit": "8af6b4ac",
-      "synced_on": "2026-10-12"
-    },
-    {
-      "name": "rea",
-      "url": "https://github.com/morluto/rea.git",
-      "branch": "main",
-      "prefix": "upstream/rea",
-      "category": "modding",
-      "license": "MIT",
-      "role": "Reverse engineering par agents (CLI + MCP) : du comportement d'une appli jusqu'aux binaires natifs.",
-      "synced_commit": "c22111ec",
-      "synced_on": "2026-10-12"
-    },
-    {
-      "name": "universal-modder",
-      "url": "https://github.com/rehan-remade/universal-modder.git",
-      "branch": "main",
-      "prefix": "upstream/universal-modder",
-      "category": "modding",
-      "license": "MIT",
-      "role": "Skills/outils Claude Code pour modder presque n'importe quel jeu PC (recon, RE, assets, tests en jeu).",
-      "synced_commit": "2c220143",
-      "synced_on": "2026-10-12"
-    },
-    {
-      "name": "godot-destruction-plugin",
-      "url": "https://github.com/Jummit/godot-destruction-plugin",
-      "branch": "master",
-      "prefix": "upstream/godot-destruction-plugin",
-      "license": "MIT",
-      "category": "physique",
-      "role": "Convertit des meshes fragmentés en corps rigides : base simple de destruction",
-      "synced_commit": "eb7ccb71",
-      "synced_on": "2026-10-12"
-    },
-    {
-      "name": "GodotIK",
-      "url": "https://github.com/monxa/GodotIK",
-      "branch": "main",
-      "prefix": "upstream/GodotIK",
-      "license": "MIT",
-      "category": "physique",
-      "role": "Cinématique inverse 3D (FABRIK) pour Godot 4.3+ : pattes, bras, créatures procédurales",
-      "synced_commit": "4336869a",
-      "synced_on": "2026-10-12"
-    },
-    {
-      "name": "JoltPhysics",
-      "url": "https://github.com/jrouwe/JoltPhysics",
-      "branch": "master",
-      "prefix": "upstream/JoltPhysics",
-      "license": "MIT",
-      "category": "physique",
-      "role": "Le moteur physique de Godot 4.4+ (et de Stryder) : sources C++ + Samples (contraintes, cordes, ragdolls, flottaison, soft bodies, véhicules) = la référence pour comprendre ses limites",
-      "synced_commit": "3c91764e",
-      "synced_on": "2026-10-12"
-    },
-    {
-      "name": "beehave",
-      "url": "https://github.com/bitbrain/beehave",
-      "branch": "godot-4.x",
-      "prefix": "upstream/beehave",
-      "license": "MIT",
-      "category": "godot",
-      "role": "Behavior trees en pur GDScript (plus simple à lire et modifier que LimboAI)",
-      "synced_commit": "fe589153",
-      "synced_on": "2026-10-12"
-    },
-    {
-      "name": "limboai",
-      "url": "https://github.com/limbonaut/limboai",
-      "branch": "master",
-      "prefix": "upstream/limboai",
-      "license": "MIT",
-      "category": "godot",
-      "role": "Behavior trees + machines à états pour Godot 4 (IA des ennemis), GDExtension avec éditeur visuel",
-      "synced_commit": "df8933d3",
-      "synced_on": "2026-10-12"
-    },
-    {
-      "name": "netfox",
-      "url": "https://github.com/foxssake/netfox",
-      "branch": "main",
-      "prefix": "upstream/netfox",
-      "license": "MIT",
-      "category": "godot",
-      "role": "Multijoueur Godot 4 : synchro d etat, rollback, prédiction, lag compensation (coop physique)",
-      "synced_commit": "cf5189d1",
-      "synced_on": "2026-10-12"
-    },
-    {
-      "name": "awesome",
-      "url": "https://github.com/sindresorhus/awesome",
-      "branch": "main",
-      "prefix": "upstream/awesome",
-      "license": "CC0-1.0",
-      "category": "listes",
-      "role": "Méta-liste de toutes les listes awesome (point de départ pour n importe quel sujet logiciel)",
-      "synced_commit": "bc98e517",
-      "synced_on": "2026-10-12"
-    },
-    {
-      "name": "awesome-claude-code",
-      "url": "https://github.com/hesreallyhim/awesome-claude-code",
-      "branch": "main",
-      "prefix": "upstream/awesome-claude-code",
-      "license": "CC-BY-NC-ND-4.0 (usage perso, ne pas modifier ni redistribuer)",
-      "category": "listes",
-      "role": "Skills, hooks, commandes et outils pour Claude Code (licence CC BY-NC-ND : usage perso, ne pas modifier)",
-      "synced_commit": "1e515d51",
-      "synced_on": "2026-10-12"
-    },
-    {
-      "name": "awesome-gamedev",
-      "url": "https://github.com/Calinou/awesome-gamedev",
-      "branch": "master",
-      "prefix": "upstream/awesome-gamedev",
-      "license": "CC-BY-SA-4.0",
-      "category": "listes",
-      "role": "Logiciels et assets LIBRES pour faire des jeux (graphismes, audio, moteurs)",
-      "synced_commit": "9918eea4",
-      "synced_on": "2026-10-12"
-    },
-    {
-      "name": "awesome-godot",
-      "url": "https://github.com/Calinou/awesome-godot",
-      "branch": "master",
-      "prefix": "upstream/awesome-godot",
-      "license": "CC-BY-4.0",
-      "category": "listes",
-      "role": "Ressources Godot : modules, plugins, scripts, démos, jeux open source",
-      "synced_commit": "9aa855ff",
-      "synced_on": "2026-10-12"
-    },
-    {
-      "name": "awesome-mcp-servers",
-      "url": "https://github.com/punkpeye/awesome-mcp-servers",
-      "branch": "main",
-      "prefix": "upstream/awesome-mcp-servers",
-      "license": "MIT",
-      "category": "listes",
-      "role": "Serveurs MCP pour donner des outils aux agents IA (Ghidra, bases de données, navigateurs…)",
-      "synced_commit": "cc7f1f42",
-      "synced_on": "2026-10-12"
-    },
-    {
-      "name": "magictools",
-      "url": "https://github.com/ellisonleao/magictools",
-      "branch": "main",
-      "prefix": "upstream/magictools",
-      "license": "MIT",
-      "category": "listes",
-      "role": "Ressources de création de jeux : moteurs, art, son, animation, outils, cours",
-      "synced_commit": "4ec63e7a",
-      "synced_on": "2026-10-12"
-    },
-    {
-      "name": "public-apis",
-      "url": "https://github.com/public-apis/public-apis",
-      "branch": "master",
-      "prefix": "upstream/public-apis",
-      "license": "MIT",
-      "category": "listes",
-      "role": "~1400 API publiques gratuites classées par thème (jeux, IA, météo, finance, médias…), avec auth/HTTPS/CORS",
-      "synced_commit": "3a416d89",
-      "synced_on": "2026-10-12"
-    }
-  ]
+    "_info":  "Dépôts tiers intégrés au kit (git subtree --squash). Géré par scripts/kit.ps1 : ne pas éditer à la main sauf pour corriger une note.",
+    "repos":  [
+                  {
+                      "name":  "GhidraMCP",
+                      "url":  "https://github.com/LaurieWired/GhidraMCP",
+                      "branch":  "main",
+                      "prefix":  "upstream/GhidraMCP",
+                      "license":  "Apache-2.0",
+                      "category":  "modding",
+                      "role":  "Plugin Ghidra + serveur MCP : piloter Ghidra depuis Claude (recommandé par universal-modder)",
+                      "synced_commit":  "1e980252",
+                      "synced_on":  "2026-10-12"
+                  },
+                  {
+                      "name":  "Il2CppDumper",
+                      "url":  "https://github.com/Perfare/Il2CppDumper",
+                      "branch":  "master",
+                      "prefix":  "upstream/Il2CppDumper",
+                      "license":  "MIT",
+                      "category":  "modding",
+                      "role":  "Jeux Unity IL2CPP : restaure noms de classes/méthodes depuis global-metadata.dat (ce que rea ne fait pas)",
+                      "synced_commit":  "4741d46b",
+                      "synced_on":  "2026-10-12"
+                  },
+                  {
+                      "name":  "minhook",
+                      "url":  "https://github.com/TsudaKageyu/minhook",
+                      "branch":  "master",
+                      "prefix":  "upstream/minhook",
+                      "license":  "BSD-2-Clause",
+                      "category":  "modding",
+                      "role":  "Bibliothèque C de hooks x86/x64 : base des mods natifs (proxy DLL)",
+                      "synced_commit":  "8af6b4ac",
+                      "synced_on":  "2026-10-12"
+                  },
+                  {
+                      "name":  "rea",
+                      "url":  "https://github.com/morluto/rea.git",
+                      "branch":  "main",
+                      "prefix":  "upstream/rea",
+                      "category":  "modding",
+                      "license":  "MIT",
+                      "role":  "Reverse engineering par agents (CLI + MCP) : du comportement d\u0027une appli jusqu\u0027aux binaires natifs.",
+                      "synced_commit":  "c22111ec",
+                      "synced_on":  "2026-10-12"
+                  },
+                  {
+                      "name":  "universal-modder",
+                      "url":  "https://github.com/rehan-remade/universal-modder.git",
+                      "branch":  "main",
+                      "prefix":  "upstream/universal-modder",
+                      "category":  "modding",
+                      "license":  "MIT",
+                      "role":  "Skills/outils Claude Code pour modder presque n\u0027importe quel jeu PC (recon, RE, assets, tests en jeu).",
+                      "synced_commit":  "2c220143",
+                      "synced_on":  "2026-10-12"
+                  },
+                  {
+                      "name":  "godot-destruction-plugin",
+                      "url":  "https://github.com/Jummit/godot-destruction-plugin",
+                      "branch":  "master",
+                      "prefix":  "upstream/godot-destruction-plugin",
+                      "license":  "MIT",
+                      "category":  "physique",
+                      "role":  "Convertit des meshes fragmentés en corps rigides : base simple de destruction",
+                      "synced_commit":  "eb7ccb71",
+                      "synced_on":  "2026-10-12"
+                  },
+                  {
+                      "name":  "GodotIK",
+                      "url":  "https://github.com/monxa/GodotIK",
+                      "branch":  "main",
+                      "prefix":  "upstream/GodotIK",
+                      "license":  "MIT",
+                      "category":  "physique",
+                      "role":  "Cinématique inverse 3D (FABRIK) pour Godot 4.3+ : pattes, bras, créatures procédurales",
+                      "synced_commit":  "4336869a",
+                      "synced_on":  "2026-10-12"
+                  },
+                  {
+                      "name":  "JoltPhysics",
+                      "url":  "https://github.com/jrouwe/JoltPhysics",
+                      "branch":  "master",
+                      "prefix":  "upstream/JoltPhysics",
+                      "license":  "MIT",
+                      "category":  "physique",
+                      "role":  "Le moteur physique de Godot 4.4+ (et de Stryder) : sources C++ + Samples (contraintes, cordes, ragdolls, flottaison, soft bodies, véhicules) = la référence pour comprendre ses limites",
+                      "synced_commit":  "3c91764e",
+                      "synced_on":  "2026-10-12"
+                  },
+                  {
+                      "name":  "beehave",
+                      "url":  "https://github.com/bitbrain/beehave",
+                      "branch":  "godot-4.x",
+                      "prefix":  "upstream/beehave",
+                      "license":  "MIT",
+                      "category":  "godot",
+                      "role":  "Behavior trees en pur GDScript (plus simple à lire et modifier que LimboAI)",
+                      "synced_commit":  "fe589153",
+                      "synced_on":  "2026-10-12"
+                  },
+                  {
+                      "name":  "limboai",
+                      "url":  "https://github.com/limbonaut/limboai",
+                      "branch":  "master",
+                      "prefix":  "upstream/limboai",
+                      "license":  "MIT",
+                      "category":  "godot",
+                      "role":  "Behavior trees + machines à états pour Godot 4 (IA des ennemis), GDExtension avec éditeur visuel",
+                      "synced_commit":  "df8933d3",
+                      "synced_on":  "2026-10-12"
+                  },
+                  {
+                      "name":  "netfox",
+                      "url":  "https://github.com/foxssake/netfox",
+                      "branch":  "main",
+                      "prefix":  "upstream/netfox",
+                      "license":  "MIT",
+                      "category":  "godot",
+                      "role":  "Multijoueur Godot 4 : synchro d etat, rollback, prédiction, lag compensation (coop physique)",
+                      "synced_commit":  "cf5189d1",
+                      "synced_on":  "2026-10-12"
+                  },
+                  {
+                      "name":  "awesome",
+                      "url":  "https://github.com/sindresorhus/awesome",
+                      "branch":  "main",
+                      "prefix":  "upstream/awesome",
+                      "license":  "CC0-1.0",
+                      "category":  "listes",
+                      "role":  "Méta-liste de toutes les listes awesome (point de départ pour n importe quel sujet logiciel)",
+                      "synced_commit":  "bc98e517",
+                      "synced_on":  "2026-10-12"
+                  },
+                  {
+                      "name":  "awesome-claude-code",
+                      "url":  "https://github.com/hesreallyhim/awesome-claude-code",
+                      "branch":  "main",
+                      "prefix":  "upstream/awesome-claude-code",
+                      "license":  "CC-BY-NC-ND-4.0 (usage perso, ne pas modifier ni redistribuer)",
+                      "category":  "listes",
+                      "role":  "Skills, hooks, commandes et outils pour Claude Code (licence CC BY-NC-ND : usage perso, ne pas modifier)",
+                      "synced_commit":  "1e515d51",
+                      "synced_on":  "2026-10-12"
+                  },
+                  {
+                      "name":  "awesome-gamedev",
+                      "url":  "https://github.com/Calinou/awesome-gamedev",
+                      "branch":  "master",
+                      "prefix":  "upstream/awesome-gamedev",
+                      "license":  "CC-BY-SA-4.0",
+                      "category":  "listes",
+                      "role":  "Logiciels et assets LIBRES pour faire des jeux (graphismes, audio, moteurs)",
+                      "synced_commit":  "9918eea4",
+                      "synced_on":  "2026-10-12"
+                  },
+                  {
+                      "name":  "awesome-godot",
+                      "url":  "https://github.com/Calinou/awesome-godot",
+                      "branch":  "master",
+                      "prefix":  "upstream/awesome-godot",
+                      "license":  "CC-BY-4.0",
+                      "category":  "listes",
+                      "role":  "Ressources Godot : modules, plugins, scripts, démos, jeux open source",
+                      "synced_commit":  "9aa855ff",
+                      "synced_on":  "2026-10-12"
+                  },
+                  {
+                      "name":  "awesome-mcp-servers",
+                      "url":  "https://github.com/punkpeye/awesome-mcp-servers",
+                      "branch":  "main",
+                      "prefix":  "upstream/awesome-mcp-servers",
+                      "license":  "MIT",
+                      "category":  "listes",
+                      "role":  "Serveurs MCP pour donner des outils aux agents IA (Ghidra, bases de données, navigateurs…)",
+                      "synced_commit":  "cc7f1f42",
+                      "synced_on":  "2026-10-12"
+                  },
+                  {
+                      "name":  "magictools",
+                      "url":  "https://github.com/ellisonleao/magictools",
+                      "branch":  "main",
+                      "prefix":  "upstream/magictools",
+                      "license":  "MIT",
+                      "category":  "listes",
+                      "role":  "Ressources de création de jeux : moteurs, art, son, animation, outils, cours",
+                      "synced_commit":  "4ec63e7a",
+                      "synced_on":  "2026-10-12"
+                  },
+                  {
+                      "name":  "public-apis",
+                      "url":  "https://github.com/public-apis/public-apis",
+                      "branch":  "master",
+                      "prefix":  "upstream/public-apis",
+                      "license":  "MIT",
+                      "category":  "listes",
+                      "role":  "~1400 API publiques gratuites classées par thème (jeux, IA, météo, finance, médias…), avec auth/HTTPS/CORS",
+                      "synced_commit":  "3a416d89",
+                      "synced_on":  "2026-10-12"
+                  },
+                  {
+                      "name":  "godot-statecharts",
+                      "url":  "https://github.com/derkork/godot-statecharts",
+                      "branch":  "main",
+                      "prefix":  "upstream/godot-statecharts",
+                      "license":  "MIT",
+                      "category":  "godot",
+                      "role":  "",
+                      "synced_commit":  "76d226a3",
+                      "synced_on":  "2026-10-16"
+                  }
+              ]
 }
