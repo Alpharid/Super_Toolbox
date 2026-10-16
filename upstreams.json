@@ -231,6 +231,17 @@
                       "role":  "",
                       "synced_commit":  "f61a1f3a",
                       "synced_on":  "2026-10-16"
+                  },
+                  {
+                      "name":  "godot-softbody2d",
+                      "url":  "https://github.com/appsinacup/godot-softbody2d",
+                      "branch":  "main",
+                      "prefix":  "upstream/godot-softbody2d",
+                      "license":  "MIT",
+                      "category":  "physique",
+                      "role":  "",
+                      "synced_commit":  "7b4c80e3",
+                      "synced_on":  "2026-10-16"
                   }
               ]
 }
