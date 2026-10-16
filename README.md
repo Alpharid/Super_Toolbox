@@ -1,0 +1,130 @@
+<p align="center">
+<img src="https://github.com/appsinacup/godot-softbody2d/blob/main/softbody2d_banner.jpg?raw=true"/>
+</p>
+<p align="center">
+		<img src="https://img.shields.io/badge/Godot-4.4+-%23478cbf?logo=godot-engine&logoColor=white" />
+</p>
+
+<p align = "center">
+	<strong>
+		<a href="http://softbody2d.appsinacup.com">Documentation</a> | <a href="https://discord.gg/v649emcpAu">Discord</a>
+	</strong>
+</p>
+
+
+-----
+
+<p align = "center">
+<b>2D squishy softbodies</b>
+<i>for the Godot game engine.</i>
+</p>
+
+-----
+
+Adds the SoftBody2D node which creates a set of RigidBody2Ds and Joint2Ds used with a Skeleton2D in order to deform the texture.
+
+<img src="docs/godot_softbody.gif"/>
+</p>
+
+# Installation
+
+- Automatic (Recommended): Download the plugin from the official [Godot Asset Store](https://store.godotengine.org/asset/appsinacup/softbody2d/) using the `Asset Store` tab in Godot.
+- Manual: Download the source code and move only the addons folder into your project addons folder.
+
+Requires Godot 4.4 or newer.
+
+### Optional: Godot Rapier Physics
+
+Force based breaking (`break_mode = FORCE`) needs [Godot Rapier Physics](https://godot.rapier.rs):
+install it and select **Rapier2D** under *Project Settings → Physics → 2D*. Everything else
+works on stock Godot Physics.
+
+## Video Tutorial
+
+[![Video Tutorial](https://img.youtube.com/vi/M2n6KXE1YII/0.jpg)](https://www.youtube.com/watch?v=M2n6KXE1YII)
+
+# Features
+
+You can create multiple types of softbodies with this plugin, such as:
+
+- Bouncy SoftBody2D
+- Breakable/Deformable SoftBody2D
+- SoftBody2D with Hole
+
+Recent additions (see [CHANGELOG.md](CHANGELOG.md)): shape holding `joint_reach`, force
+based breaking, `cut()`, `edge_clearance`, `bake_scale` and `debug_draw`.
+
+Demos live in `demos/` (open `demos/demo_hub.tscn`) and tests in `tests/`
+(`godot --headless res://tests/run_tests.tscn`). Run `./lint.sh` before committing.
+
+# How this plugin creates a softbody
+
+<table>
+
+<tr>
+<td>
+1. Create polygon from texture around edge.
+</td>
+<td>
+<img width="128px"src="docs/texture_edge.png"/> 
+</td>
+</tr>
+
+<tr>
+<td>
+2. Optionally do the same for hole texture.
+</td>
+<td>
+<img width="128px"src="docs/texture_inner.png"/> 
+</td>
+</tr>
+
+<tr>
+<td>
+3. Create multiple regions of same size around polygon.
+</td>
+<td>
+<img width="128px"src="docs/texture_regions.png"/> 
+</td>
+</tr>
+
+<tr>
+<td>
+4. Delete the regions the polygon or inside the hole polygon.
+</td>
+<td>
+<img width="128px"src="docs/texture_regions_cut.png"/> 
+</td>
+</tr>
+
+<tr>
+<td>
+5. Creates a `Skeleton2D` child. Creates a set of `Bone2D` nodes of the `Skeleton2D`, each having a region and assign correct weights to them.
+</td>
+<td>
+<img width="128px"src="docs/skeleton_regions.png"/> 
+</td>
+</tr>
+
+
+<tr>
+<td>
+6. Creates a set of `RigidBody2D` nodes, one for each region with a `CollisionShape2D` child, a `RemoteTransform2D` child that targets the coresponding `Bone2D` position, and a set of `Joint2D` children that connect neighbouring rigidbodies. Also for each `Bone2D` node, make it lookat another neighbour node.
+</td>
+<td>
+<img width="128px"src="docs/softbody_final.png"/> 
+</td>
+</tr>
+<tr>
+
+<td>
+7. When the joint length is too big, the joints breaks. Then, the weights for both bones are updated to no longer have weights in the other region.
+</td>
+<td width=256>
+</td>
+</tr>
+</table>
+
+## Star History
+
+[![Star History Chart](https://star-history.dera.page/svg?repos=appsinacup/godot-softbody2d&type=date&legend=top-left)](https://star-history.dera.page/#appsinacup/godot-softbody2d&type=date&legend=top-left)

@@ -1,0 +1,21 @@
+# Exclude all top-level files and directories (except addons) from ZIP downloads.
+# This makes installing through the AssetLib easier, because no files and folders
+# need to be unchecked.
+
+/.github/FUNDING.yml export-ignore
+/.gitattributes export-ignore
+/.gitignore export-ignore
+/README.md export-ignore
+/LICENSE export-ignore
+/softbody2d_banner.jpg export-ignore
+/CHANGELOG.md export-ignore
+/project.godot export-ignore
+/docs export-ignore
+/docs/godot_softbody.gif export-ignore
+/docs/texture_edge.png export-ignore
+/docs/texture_regions.png export-ignore
+/docs/texture_inner.png export-ignore
+/docs/texture_regions_cut.png export-ignore
+/docs/skeleton_regions.png export-ignore
+/docs/softbody_final.png export-ignore
+
