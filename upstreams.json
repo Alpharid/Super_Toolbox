@@ -253,6 +253,17 @@
                       "role":  "",
                       "synced_commit":  "e0041949",
                       "synced_on":  "2026-10-16"
+                  },
+                  {
+                      "name":  "mem0",
+                      "url":  "https://github.com/mem0ai/mem0",
+                      "branch":  "main",
+                      "prefix":  "upstream/mem0",
+                      "license":  "Apache-2.0",
+                      "category":  "ia-agents",
+                      "role":  "",
+                      "synced_commit":  "0724291b",
+                      "synced_on":  "2026-10-16"
                   }
               ]
 }
