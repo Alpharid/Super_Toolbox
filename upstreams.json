@@ -242,6 +242,17 @@
                       "role":  "",
                       "synced_commit":  "7b4c80e3",
                       "synced_on":  "2026-10-16"
+                  },
+                  {
+                      "name":  "context7",
+                      "url":  "https://github.com/upstash/context7",
+                      "branch":  "master",
+                      "prefix":  "upstream/context7",
+                      "license":  "MIT",
+                      "category":  "ia-agents",
+                      "role":  "",
+                      "synced_commit":  "e0041949",
+                      "synced_on":  "2026-10-16"
                   }
               ]
 }
