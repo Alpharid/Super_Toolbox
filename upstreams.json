@@ -209,6 +209,17 @@
                       "role":  "",
                       "synced_commit":  "76d226a3",
                       "synced_on":  "2026-10-16"
+                  },
+                  {
+                      "name":  "limbo_console",
+                      "url":  "https://github.com/limbonaut/limbo_console",
+                      "branch":  "master",
+                      "prefix":  "upstream/limbo_console",
+                      "license":  "MIT",
+                      "category":  "godot",
+                      "role":  "",
+                      "synced_commit":  "65b54786",
+                      "synced_on":  "2026-10-16"
                   }
               ]
 }
