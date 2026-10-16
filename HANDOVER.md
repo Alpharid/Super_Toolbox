@@ -21,7 +21,7 @@ C'est public et open-source car presque tout vient de la communauté open source
 
 - **Renommé** `Modding_Tools_Kit` → **`Super_Toolbox`**, passé **public**. Pilier : `INDEX.md` (à lire en premier, token-léger).
 - Cœur **Heimdall** ajouté (`heimdall/`) : veille techno sur 6 domaines + réflexe projet (§4 bis). 1er digest : `heimdall/reports/2026-10-16.md`.
-- **18 dépôts** copiés en 5 catégories (§3), **4 guides par besoin** dans `guides/`, catalogue par dépôt dans `CATALOGUE.md`.
+- **26 dépôts** copiés (18 d'origine + 8 de la 1ère vague Heimdall), **4 guides par besoin** dans `guides/`, catalogue par dépôt dans `CATALOGUE.md`.
   `scripts\kit.ps1 verify` → « kit cohérent ».
 - Digest hebdo : agent cloud planifié (routine `schedule`) qui lance une passe Heimdall et pousse un digest daté.
 - **Rien n'est installé** sur le PC (ni `uv`, ffmpeg, Blender, Ghidra, JDK 21, `rea-agents`, ni les addons Godot) : on installe à
@@ -75,9 +75,10 @@ powershell -ExecutionPolicy Bypass -File scripts\kit.ps1 verify                 
 
 Doc complète : **`heimdall/README.md`**. En bref :
 - `heimdall/sources.json` = 6 domaines (`godot`, `physique-netcode`, `modding-re`, `ia-agents`, `secu-reseau`, `devtools`) et leurs sources de veille.
-- `heimdall/projects.json` = carte projet → domaines → outils du kit + manques (c'est la base du **réflexe**).
+- `heimdall/projects.json` = carte projet → domaines → outils du kit + manques + **pistes** (c'est la base du **réflexe**).
 - `heimdall/reports/AAAA-MM-JJ.md` = digests datés. `heimdall/heimdall.ps1` = helper (`domains`, `sources`, `project`, `brief`, `report`, `log`).
-- **Réflexe** quand on ouvre un projet : `heimdall.ps1 project -Name <P>` → outils applicables + manques ; un manque non couvert → passe de veille ciblée, puis proposer/ajouter.
+- **Réflexe** quand on ouvre/relance un projet de l'utilisateur (consigne permanente) : `heimdall.ps1 project -Name <P>` → outils applicables + manques + **pistes** déjà notées ; proposer/utiliser ce qui est pertinent ; un manque non couvert → passe de veille ciblée.
+- **Pistes** (`pistes` dans `projects.json`) : quand on trouve un outil qui irait bien à un projet précis (en veille ou en bossant), l'y **noter**. Au prochain passage sur ce projet, le proposer à l'utilisateur — ou l'utiliser directement si c'est évident et sans risque. Retirer la piste une fois adoptée (passe dans `outils_kit`) ou écartée.
 - **Passe de veille** (recette dans `heimdall/README.md`) : `brief` → recherche web par domaine → `report` → remplir → décider lien vs subtree (`kit.ps1 add`) → MAJ `INDEX.md` → commit/push.
 - L'intelligence (lire le web, juger) est faite par Claude ; le `.ps1` ne fait que la mécanique (données, squelettes).
 
@@ -203,4 +204,8 @@ D:\Super_Toolbox\
 - **2026-10-16** — **Super_Toolbox** : renommage `Modding_Tools_Kit` → `Super_Toolbox`, dépôt passé **public/open-source**. Portée
   élargie à tous les projets de l'utilisateur. Ajout du pilier `INDEX.md` (token-léger) et du cœur **Heimdall** (`heimdall/` :
   `sources.json` 6 domaines, `projects.json` 6 projets, `heimdall.ps1`, `reports/`). 1er digest de veille (`reports/2026-10-16.md`,
-  ~36 outils repérés, vérifiés) + propositions d'ajout. Agent cloud hebdo planifié pour le digest. Contenu copié inchangé (18 dépôts).
+  ~36 outils repérés, vérifiés) + propositions d'ajout. Agent cloud hebdo planifié pour le digest.
+- **2026-10-16** — **1ère vague Heimdall** : +8 dépôts en subtree (`godot-statecharts`, `limbo_console`, `godot-gdscript-toolkit`,
+  `godot-softbody2d`, `context7`, `mem0`, `Harmony`, `ida-pro-mcp`) → **26 dépôts**. Serena et ~10 autres gardés en **lien**
+  (licence non permissive, binaire ou pip) dans `CATALOGUE.md` § Ajouts Heimdall. Mécanisme **pistes** ajouté (`projects.json`
+  + `heimdall.ps1 project` les affiche) : notes par projet à proposer/utiliser au prochain passage. Réflexe inscrit dans CLAUDE.md/AGENTS.md.

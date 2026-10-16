@@ -13,7 +13,7 @@ est pertinent — est faite par le modèle ; le script dit **où regarder** et r
 | Fichier | Rôle |
 |---|---|
 | `sources.json` | Les **6 domaines** de veille et leurs **sources** (blogs, releases, listes, topics GitHub, forums). C'est la carte « où regarder ». |
-| `projects.json` | La carte **projet → domaines → outils du kit + manques**. C'est ce qu'on lit en RÉFLEXE quand on touche un projet. |
+| `projects.json` | La carte **projet → domaines → outils du kit + manques + pistes**. C'est ce qu'on lit en RÉFLEXE quand on touche un projet. |
 | `reports/AAAA-MM-JJ.md` | Les **digests datés** produits à chaque passe de veille. L'historique de ce qui est sorti. |
 
 Les 6 domaines : `godot` · `physique-netcode` · `modding-re` · `ia-agents` · `secu-reseau` · `devtools`.
@@ -58,6 +58,8 @@ schedulée. C'est l'équilibre fraîcheur / tokens choisi par l'utilisateur.
 ## Étendre Heimdall
 
 - **Nouvelle source** : l'ajouter au bon domaine dans `sources.json`.
-- **Nouveau projet** : ajouter une entrée dans `projects.json` (chemin, domaines, outils_kit, manques) — à faire
+- **Nouveau projet** : ajouter une entrée dans `projects.json` (chemin, domaines, outils_kit, manques, pistes) — à faire
   dès qu'un projet naît, c'est ce qui rend le réflexe utile.
+- **Nouvelle piste** : trouvé un outil qui irait bien à un projet précis ? L'ajouter à `pistes` de ce projet dans
+  `projects.json`. `heimdall.ps1 project -Name <P>` les affiche → au prochain passage, on les propose ou on les utilise.
 - **Nouveau domaine** : l'ajouter dans `sources.json` (il apparaît automatiquement dans `domains`, `brief`, `report`).

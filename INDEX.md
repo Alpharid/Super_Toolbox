@@ -14,26 +14,34 @@ Le cœur vivant de la toolbox est **[Heimdall](heimdall/README.md)**, le veilleu
 ### 🎮 godot — addons Godot 4
 - **limboai** — `limbonaut/limboai` · MIT · behavior trees + machines à états hiérarchiques (éditeur visuel, GDExtension).
 - **beehave** — `bitbrain/beehave` · MIT · behavior trees en **pur GDScript** (lisible, sans compilation).
+- **godot-statecharts** — `derkork/godot-statecharts` · MIT · machines à états hiérarchiques/parallèles pilotables 100 % en code (idéal panels datapad).
+- **limbo_console** — `limbonaut/limbo_console` · MIT · console de debug in-game (commandes) pour déboguer les builds exportés sans éditeur.
+- **godot-gdscript-toolkit** — `Scony/godot-gdscript-toolkit` · MIT · linter + formateur GDScript en CLI (gdformat/gdlint), workflow tout-en-code.
 
 ### 🧱 physique-netcode — physique & multijoueur
 - **JoltPhysics** — `jrouwe/JoltPhysics` · MIT · le moteur physique de Godot 4.4+ (sources + ~150 démos : cordes, flottaison, ragdolls, corps mous).
 - **GodotIK** — `monxa/GodotIK` · MIT · IK 3D (FABRIK) pour Godot 4.3+.
 - **godot-destruction-plugin** — `Jummit/godot-destruction-plugin` · MIT · fragments → corps rigides (destruction simple).
 - **netfox** — `foxssake/netfox` · MIT · multijoueur Godot 4 : rollback, synchro d'état, prédiction d'entrées.
+- **godot-softbody2d** — `appsinacup/godot-softbody2d` · MIT · soft bodies 2D (ressorts/points) : déformation, blobs, cordes (Stryder).
 
 ### 🔧 modding-re — modding & reverse engineering
 - **universal-modder** — `rehan-remade/universal-modder` · MIT · **la méthode complète** pour modder presque n'importe quel jeu (CLI `um`, 11 skills, playbooks par moteur).
 - **rea** — `morluto/rea` · MIT · reverse engineering avec preuves (CLI/MCP, Ghidra, .NET, Electron).
 - **GhidraMCP** — `LaurieWired/GhidraMCP` · Apache-2.0 · piloter Ghidra depuis Claude (plugin + pont MCP).
+- **ida-pro-mcp** — `mrexodia/ida-pro-mcp` · MIT · piloter IDA depuis Claude (décompilation, xrefs, renommage) — pendant de GhidraMCP.
+- **Harmony** — `pardeike/Harmony` · MIT · patch runtime de méthodes .NET/C# (via BepInEx/MelonLoader) — standard du modding Unity.
 - **Il2CppDumper** — `Perfare/Il2CppDumper` · MIT · jeux Unity IL2CPP (restaure noms de classes/méthodes).
 - **minhook** — `TsudaKageyu/minhook` · BSD-2 · bibliothèque C de hooks x86/x64 (mods natifs).
 
 ### 🤖 ia-agents — agents IA, MCP & LLM local
+- **context7** — `upstash/context7` · MIT · serveur MCP qui injecte la doc à jour des libs dans le contexte (anti-hallucination d'API).
+- **mem0** — `mem0ai/mem0` · Apache-2.0 · mémoire longue durée pour agents/LLM (extraction + vectoriel) — mémoire persistante (Alphred).
 - **awesome-mcp-servers** — `punkpeye/awesome-mcp-servers` · MIT · liste de serveurs MCP (outils pour agents).
 - **awesome-claude-code** — `hesreallyhim/awesome-claude-code` · CC-BY-NC-ND · skills/hooks/commandes pour Claude Code (usage perso, lien-liste).
 
 ### 🛡️ secu-reseau — sécurité, réseau & audit défensif
-- _(rien de copié pour l'instant — domaine suivi par Heimdall ; voir le dernier digest et `projects.json`)._
+- _(rien de copié — licences surtout GPL/SSPL → référencées en lien : Nuclei, Cameradar, CrowdSec, RustScan, Lynis… voir `CATALOGUE.md` § Liens Heimdall et `heimdall/reports/`)._
 
 ### 🧰 devtools + listes transverses
 - **public-apis** — `public-apis/public-apis` · MIT · ~1 400 API gratuites classées.
@@ -69,7 +77,7 @@ Se tient au courant de ce qui sort d'utile, et garde cet index à jour. Tout : *
 
 ### Dernières nouveautés
 <!-- HEIMDALL:LATEST -->
-- **2026-10-16** — Premier digest : voir [heimdall/reports/2026-10-16.md](heimdall/reports/2026-10-16.md).
+- **2026-10-16** — Premier digest + **1ère vague** : +8 outils copiés, ~11 en lien. Détail : [heimdall/reports/2026-10-16.md](heimdall/reports/2026-10-16.md) · liens : [CATALOGUE.md](CATALOGUE.md) § Ajouts Heimdall.
 <!-- /HEIMDALL:LATEST -->
 
 ## 4. Maintenir / étendre

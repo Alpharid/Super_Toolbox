@@ -1,5 +1,6 @@
 {
-  "_info": "Heimdall — carte PROJETS → domaines → outils. Sert au RÉFLEXE : quand on ouvre/lance un projet, lire cette entrée pour savoir quels outils de la toolbox s'appliquent (outils_kit) et quels manques Heimdall doit combler (manques). Les ids de domaine viennent de sources.json. Tenir à jour quand un projet naît ou change de besoin.",
+  "_info": "Heimdall — carte PROJETS → domaines → outils. Sert au RÉFLEXE : quand on ouvre/lance un projet, lire cette entrée pour savoir quels outils de la toolbox s'appliquent (outils_kit), quels manques Heimdall doit combler (manques), et les PISTES déjà repérées pour ce projet (pistes). Les ids de domaine viennent de sources.json. Tenir à jour quand un projet naît ou change de besoin.",
+  "_pistes_info": "pistes = notes à moi-même (Claude). Quand je trouve un outil qui irait bien à un projet précis (pendant une veille ou en bossant), je l'ajoute ici. Au prochain passage sur ce projet, je le PROPOSE à l'utilisateur, ou je m'en sers directement si c'est évident et sans risque. Retirer une piste une fois adoptée (l'outil passe alors dans outils_kit) ou écartée.",
   "fil_rouge": "Presque tous les projets de l'utilisateur ont un PANEL/DATAPAD en Godot 4.7 construit 100% en code (fenêtre sans bord, fond transparent, style rétro-futuriste). Toute ressource Godot UI/thème/composants-en-code sert à plusieurs projets d'un coup → priorité de veille dans le domaine godot.",
   "projets": {
     "Stryder_Symbiosis": {
@@ -8,21 +9,39 @@
       "domaines": ["godot", "physique-netcode"],
       "outils_kit": ["JoltPhysics", "GodotIK", "godot-destruction-plugin", "netfox", "limboai", "beehave"],
       "guide": "guides/physique-et-godot.md",
-      "manques": ["soft body / cordes avancées", "outils de debug physique en jeu", "interpolation/lag-compensation prête à l'emploi"]
+      "manques": ["soft body / cordes avancées", "outils de debug physique en jeu", "interpolation/lag-compensation prête à l'emploi"],
+      "pistes": [
+        "godot-softbody2d (copié) → soft body 2D : déformation/blobs/cordes",
+        "godot-statecharts (copié) → machines à états pour l'IA et le flux de jeu",
+        "limbo_console (copié) → console de debug dans les builds exportés (physique en jeu)",
+        "godot-rollback-netcode (lien GitLab) → rollback de référence si netfox ne suffit pas pour le coop déterministe"
+      ]
     },
     "MixMaster_Regenesis": {
       "chemin": "C:\\MixMaster_Regenesis",
       "resume": "Serveur privé MixMaster (reprise du client FR, 2 mondes) + Control Panel Godot 4.7.",
       "domaines": ["modding-re", "godot"],
       "outils_kit": ["rea", "universal-modder", "Il2CppDumper", "GhidraMCP"],
-      "manques": ["outils réseau/émulation de serveur de jeu", "composants Godot UI réutilisables pour le panel"]
+      "manques": ["outils réseau/émulation de serveur de jeu", "composants Godot UI réutilisables pour le panel"],
+      "pistes": [
+        "ida-pro-mcp (copié) → RE du client via IDA piloté par Claude, en plus de rea/Ghidra",
+        "Harmony (copié) → si un jour patch runtime .NET côté client",
+        "godot-statecharts + limbo_console (copiés) → états et debug du Control Panel"
+      ]
     },
     "Alphred_AI": {
       "chemin": "D:\\Alphred_AI",
       "resume": "IA locale « majordome » (Ollama + Open WebUI + SillyTavern) + panel datapad Godot + assistant vocal « Sonnette ».",
       "domaines": ["ia-agents", "godot", "devtools"],
-      "outils_kit": ["awesome-mcp-servers", "awesome-claude-code"],
-      "manques": ["TTS/STT local de qualité (voix de l'assistant)", "serveurs MCP utiles (fichiers, web, système)", "mémoire longue / RAG local", "frameworks d'agents vocaux"]
+      "outils_kit": ["awesome-mcp-servers", "awesome-claude-code", "context7", "mem0"],
+      "manques": ["TTS/STT local de qualité (voix de l'assistant)", "serveurs MCP utiles (fichiers, web, système)", "mémoire longue / RAG local", "frameworks d'agents vocaux"],
+      "pistes": [
+        "mem0 (copié) → mémoire longue de l'assistant (remplace/complète voice/memoire.json)",
+        "context7 (copié) → doc à jour en contexte quand Alphred code",
+        "Kokoro (lien, Apache) → voix TTS locale pour la Sonnette",
+        "faster-whisper (lien, MIT) → écoute vocale (STT) locale, rapide",
+        "Serena (lien) → MCP symbolique si Alphred bosse sur du gros code"
+      ]
     },
     "WifiSentinel": {
       "chemin": "C:\\WifiSentinel",
@@ -30,6 +49,12 @@
       "domaines": ["secu-reseau", "godot"],
       "outils_kit": ["public-apis"],
       "manques": ["bibliothèques ONVIF/RTSP robustes", "scanners réseau Python", "modèles de rapport de durcissement"],
+      "pistes": [
+        "Cameradar (lien, MIT) → inventaire caméras RTSP + routes/credentials par défaut (sur SON réseau)",
+        "Nuclei (lien, MIT) → audit de vulns de ses propres services, en complément de l'engine",
+        "Nuitka (lien) → packager l'engine Python en .exe portable",
+        "godot-statecharts + limbo_console (copiés) → pour le datapad"
+      ],
       "ligne_rouge": "Audit défensif uniquement. Pas de crack de clé ni d'accès non autorisé. Voir mémoire wifisentinel."
     },
     "Kali-Pi": {
@@ -38,6 +63,11 @@
       "domaines": ["secu-reseau", "devtools"],
       "outils_kit": [],
       "manques": ["outils réseau légers pour ARM/Pi", "équivalent Stream Deck open-source (déclencher des actions PC)", "kiosque/UI tactile"],
+      "pistes": [
+        "CrowdSec (lien, MIT) → IDS/IPS léger de défense continue sur le Pi/routeur",
+        "Lynis (lien, GPL) → audit de durcissement du système + rapport de remédiation",
+        "RustScan + Nuclei (liens) → inventaire et audit des réseaux audités (avec accord)"
+      ],
       "ligne_rouge": "Réseaux possédés ou audités avec accord explicite, pour patcher. Voir mémoire kali-pi."
     },
     "Super_Toolbox": {
@@ -45,7 +75,11 @@
       "resume": "La boîte à outils elle-même (ce dépôt) + Heimdall.",
       "domaines": ["godot", "physique-netcode", "modding-re", "ia-agents", "secu-reseau", "devtools"],
       "outils_kit": ["tous"],
-      "manques": []
+      "manques": [],
+      "pistes": [
+        "godot-gdscript-toolkit (copié) → lint/format des scripts GDScript des projets, en CI",
+        "uv (lien) → gérer les deps Python des outils du kit"
+      ]
     }
   }
 }

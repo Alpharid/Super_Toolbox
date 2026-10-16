@@ -96,6 +96,29 @@ seulement. Non pris en charge : IL2CPP (décodage), x64dbg, Frida, radare2. Skil
 | `upstream/awesome-mcp-servers/` | MIT | **Serveurs MCP** (outils pour agents) : RE, navigateurs, bases de données, fichiers, jeux… | `grep -in "ghidra\|ida\|game\|godot" upstream/awesome-mcp-servers/README.md` |
 | `upstream/awesome-claude-code/` | CC-BY-NC-ND-4.0 | Skills, hooks, commandes slash, outils et workflows pour **Claude Code** | Tableau complet : `THE_RESOURCES_TABLE_NEW.csv` (Grep). Usage perso uniquement, ne pas modifier |
 
+## Ajouts Heimdall — 1ère vague (2026-10-16)
+
+Copiés en subtree (détail du digest : `heimdall/reports/2026-10-16.md`) :
+
+| Dossier | Licence | Sert à |
+|---|---|---|
+| `upstream/godot-statecharts/` | MIT | Machines à états hiérarchiques/parallèles (IA, UI, flux) pilotables 100 % en code — panels datapad. |
+| `upstream/limbo_console/` | MIT | Console de debug in-game (commandes, autocomplétion) — déboguer les builds exportés sans éditeur. |
+| `upstream/godot-gdscript-toolkit/` | MIT | Linter + formateur GDScript en CLI (`gdformat`/`gdlint`) — workflow tout-en-code et CI. |
+| `upstream/godot-softbody2d/` | MIT | Soft bodies 2D (ressorts/points) Godot 4 — déformation, blobs, cordes (Stryder). |
+| `upstream/context7/` | MIT | Serveur MCP : injecte la doc à jour des bibliothèques dans le contexte (anti-hallucination d'API). |
+| `upstream/mem0/` | Apache-2.0 | Mémoire longue durée pour agents/LLM (extraction + vectoriel) — mémoire persistante (Alphred). |
+| `upstream/Harmony/` | MIT | Patch runtime de méthodes .NET/C# (via BepInEx/MelonLoader) — standard du modding Unity. |
+| `upstream/ida-pro-mcp/` | MIT | Serveur MCP exposant IDA à un agent/Claude (décompilation, xrefs, renommage) — pendant de GhidraMCP. |
+
+Référencés en **lien** (licence non permissive, binaire, ou à installer depuis la release/pip) :
+
+- **ia-agents** : [Serena](https://github.com/oraios/serena) (MCP « IDE pour agents », licence mixte par composant → lien), [Kokoro](https://github.com/hexgrad/kokoro) (TTS local, Apache-2.0, poids lourds), [faster-whisper](https://github.com/SYSTRAN/faster-whisper) (STT, MIT, pip). Alt RAG : [LightRAG](https://github.com/HKUDS/LightRAG).
+- **physique-netcode** : [godot-rollback-netcode](https://gitlab.com/snopek-games/godot-rollback-netcode) (MIT, GitLab) — netcode rollback de référence (Stryder).
+- **modding-re** : [UABEA](https://github.com/nesrak1/UABEA) (assets Unity, MIT, binaire), [MelonLoader](https://github.com/LavaGang/MelonLoader), [Frida](https://github.com/frida/frida).
+- **secu-reseau** (audit **défensif** uniquement) : [Nuclei](https://github.com/projectdiscovery/nuclei) (MIT), [Cameradar](https://github.com/Ullaakut/cameradar) (RTSP, MIT), [CrowdSec](https://github.com/crowdsecurity/crowdsec) (MIT), [RustScan](https://github.com/RustScan/RustScan) (GPL), [Lynis](https://github.com/CISOfy/lynis) (hardening, GPL).
+- **devtools** : [uv](https://github.com/astral-sh/uv) (Python tout-en-un), [Textual](https://github.com/Textualize/textual) (TUI Python), [Nuitka](https://github.com/Nuitka/Nuitka) (Python → .exe), [lazygit](https://github.com/jesseduffield/lazygit), [yazi](https://github.com/sxyazi/yazi), [Gum](https://github.com/charmbracelet/gum).
+
 ## Références non copiées (à récupérer depuis leurs releases quand un projet en a besoin)
 
 - Loaders / frameworks de mod : [BepInEx](https://github.com/BepInEx/BepInEx) (Unity, LGPL), [MelonLoader](https://github.com/LavaGang/MelonLoader),

@@ -61,6 +61,7 @@ switch ($Action) {
         Write-Output ("OK: outils kit: {0}" -f (($x.outils_kit -join ", ") -replace '^$', '(aucun pour l''instant)'))
         if ($x.guide) { Write-Output ("OK: guide    : {0}" -f $x.guide) }
         if ($x.manques) { foreach ($m in $x.manques) { Write-Output ("OK: manque -> {0}" -f $m) } }
+        if ($x.pistes) { Write-Output "-- PISTES repérées (à proposer ou utiliser) --"; foreach ($p in $x.pistes) { Write-Output ("OK: piste -> {0}" -f $p) } }
         if ($x.ligne_rouge) { Write-Output ("OK: LIGNE ROUGE : {0}" -f $x.ligne_rouge) }
     }
     "brief" {
