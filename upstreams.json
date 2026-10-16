@@ -206,7 +206,7 @@
                       "prefix":  "upstream/godot-statecharts",
                       "license":  "MIT",
                       "category":  "godot",
-                      "role":  "",
+                      "role":  "Machines à états hiérarchiques/parallèles (IA, UI, flux de jeu) pilotables 100% en code — idéal pour les panels datapad",
                       "synced_commit":  "76d226a3",
                       "synced_on":  "2026-10-16"
                   },
@@ -217,7 +217,7 @@
                       "prefix":  "upstream/limbo_console",
                       "license":  "MIT",
                       "category":  "godot",
-                      "role":  "",
+                      "role":  "Console de debug in-game (commandes, autocomplétion) — déboguer les builds exportés sans éditeur",
                       "synced_commit":  "65b54786",
                       "synced_on":  "2026-10-16"
                   },
@@ -228,7 +228,7 @@
                       "prefix":  "upstream/godot-gdscript-toolkit",
                       "license":  "MIT",
                       "category":  "godot",
-                      "role":  "",
+                      "role":  "Linter + formateur GDScript en ligne de commande (gdformat/gdlint) — workflow tout-en-code et CI",
                       "synced_commit":  "f61a1f3a",
                       "synced_on":  "2026-10-16"
                   },
@@ -239,7 +239,7 @@
                       "prefix":  "upstream/godot-softbody2d",
                       "license":  "MIT",
                       "category":  "physique",
-                      "role":  "",
+                      "role":  "Soft bodies 2D (ressorts/points) pour Godot 4 — déformation, blobs, cordes (Stryder)",
                       "synced_commit":  "7b4c80e3",
                       "synced_on":  "2026-10-16"
                   },
@@ -250,7 +250,7 @@
                       "prefix":  "upstream/context7",
                       "license":  "MIT",
                       "category":  "ia-agents",
-                      "role":  "",
+                      "role":  "Serveur MCP qui injecte la doc à jour des bibliothèques dans le contexte — réduit les hallucinations d\u0027API",
                       "synced_commit":  "e0041949",
                       "synced_on":  "2026-10-16"
                   },
@@ -261,7 +261,7 @@
                       "prefix":  "upstream/mem0",
                       "license":  "Apache-2.0",
                       "category":  "ia-agents",
-                      "role":  "",
+                      "role":  "Mémoire longue durée pour agents/LLM (extraction + stockage vectoriel) — mémoire persistante (Alphred)",
                       "synced_commit":  "0724291b",
                       "synced_on":  "2026-10-16"
                   },
@@ -272,7 +272,7 @@
                       "prefix":  "upstream/Harmony",
                       "license":  "MIT",
                       "category":  "modding",
-                      "role":  "",
+                      "role":  "Patch runtime de méthodes .NET/C# (via BepInEx/MelonLoader) — standard du modding Unity",
                       "synced_commit":  "b79f2f1a",
                       "synced_on":  "2026-10-16"
                   },
@@ -283,7 +283,7 @@
                       "prefix":  "upstream/ida-pro-mcp",
                       "license":  "MIT",
                       "category":  "modding",
-                      "role":  "",
+                      "role":  "Serveur MCP exposant IDA à un agent/Claude (décompilation, xrefs, renommage) — pendant de GhidraMCP",
                       "synced_commit":  "c133c385",
                       "synced_on":  "2026-10-16"
                   }
