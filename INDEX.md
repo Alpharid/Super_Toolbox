@@ -4,7 +4,7 @@
 > domaine, en une ligne par outil. Pour le détail d'un outil → `CATALOGUE.md`. Pour « je veux faire X » → `guides/`.
 > **Ne pas lire `CATALOGUE.md` ni fouiller `upstream/` tant que cet index suffit** (économie de tokens).
 
-**6 domaines** : `godot` · `physique-netcode` · `modding-re` · `ia-agents` · `secu-reseau` · `devtools`.
+**7 domaines** : `godot` · `physique-netcode` · `modding-re` · `ia-agents` · `secu-reseau` · `devtools` · `creation-assets`.
 Le cœur vivant de la toolbox est **[Heimdall](heimdall/README.md)**, le veilleur (§ en bas).
 
 ---
@@ -50,6 +50,13 @@ Le cœur vivant de la toolbox est **[Heimdall](heimdall/README.md)**, le veilleu
 - **awesome-gamedev** — `Calinou/awesome-gamedev` · CC-BY-SA · logiciels & assets libres.
 - **awesome** — `sindresorhus/awesome` · CC0 · méta-liste de toutes les listes « awesome ».
 
+### 🎨 creation-assets — images, 3D, sprites, audio (installé en local, pas copié)
+- **Atelier IA** — `C:\Atelier_IA` · ComfyUI portable + modèles partagés (`modeles/`) · lancer `lancer_comfyui.bat` → **guide [creer-des-assets.md](guides/creer-des-assets.md)**.
+- **Modèles** (licences vérifiées UE + commercial) : Z-Image Turbo/base + Fun ControlNet (Apache) · Qwen-Image-2512 / Edit-2511 + LoRA angles + ControlNet Union (Apache) · **TRELLIS.2** image→3D natif (MIT) · BiRefNet (MIT).
+- **Krita + krita-ai-diffusion** — repeindre par-dessus / inpainting branché sur l'atelier (casse le « look IA »).
+- **scripts/comfy_client.py** — piloter ComfyUI depuis un script (txt2img, édition, upload).
+- Audio/vidéo : ffmpeg, Audacity, **Surge XT** (microtonal, maqâms), 7-Zip, uv. Pistes : ai-toolkit (LoRA), ACE-Step (musique), Kimodo (mouvement), Wan VACE.
+
 > Les listes se **grep**, jamais se lisent en entier. Gros outils non copiés (BepInEx, UE4SS, AssetRipper, ILSpy,
 > Rapier, Terrain3D…) : liens en fin de `CATALOGUE.md`.
 
@@ -64,6 +71,7 @@ Quand on ouvre un projet : `heimdall.ps1 project -Name <Projet>` (détail dans `
 | **Alphred_AI** (IA locale + panel + voix) | ia-agents, godot, devtools | awesome-mcp-servers, awesome-claude-code |
 | **WifiSentinel** (audit réseau + panel) | secu-reseau, godot | public-apis _(manques : ONVIF/RTSP, scanners — Heimdall)_ |
 | **Kali-Pi** (Pi Kali, datapad, stream-deck) | secu-reseau, devtools | _(manques — Heimdall)_ |
+| **Guardians_of_the_Seal** (MMORPG djinn, Godot) | creation-assets, godot, physique-netcode | Atelier IA, comfy_client, universal-modder (asset-pipeline iso8), netfox → `guides/creer-des-assets.md` |
 
 **Fil rouge** : presque tous ont un **panel/datapad Godot 4.7 construit 100 % en code** → toute ressource Godot
 UI/thème/composants-en-code sert plusieurs projets : priorité de veille `godot`.
@@ -77,6 +85,7 @@ Se tient au courant de ce qui sort d'utile, et garde cet index à jour. Tout : *
 
 ### Dernières nouveautés
 <!-- HEIMDALL:LATEST -->
+- **2026-10-18** — Nouveau domaine **`creation-assets`** : Atelier IA local (ComfyUI, Z-Image, Qwen-Image/Edit, TRELLIS.2, Krita AI) + guide [creer-des-assets.md](guides/creer-des-assets.md) + `scripts/comfy_client.py`.
 - **2026-10-16** — Premier digest + **1ère vague** : +8 outils copiés, ~11 en lien. Détail : [heimdall/reports/2026-10-16.md](heimdall/reports/2026-10-16.md) · liens : [CATALOGUE.md](CATALOGUE.md) § Ajouts Heimdall.
 <!-- /HEIMDALL:LATEST -->
 

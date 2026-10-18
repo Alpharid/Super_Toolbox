@@ -132,3 +132,19 @@ Référencés en **lien** (licence non permissive, binaire, ou à installer depu
   [Phantom Camera](https://github.com/ramokz/phantom-camera), [Terrain3D](https://github.com/TokisanGames/Terrain3D), [godot_voxel](https://github.com/Zylann/godot_voxel),
   [GodotSteam](https://codeberg.org/godotsteam/godotsteam) (déménagé sur Codeberg), [GUT](https://github.com/bitwes/Gut), [gdUnit4](https://github.com/godot-gdunit-labs/gdUnit4), [godot-debug-menu](https://github.com/godot-extended-libraries/godot-debug-menu).
 - Services gratuits pour développeurs (hébergement, BDD, e-mail…) : [free-for-dev](https://github.com/ripienaar/free-for-dev) — **pas de licence**, donc non copié.
+
+## Atelier IA — catégorie `creation-assets` (installé en local le 2026-10-18, pas de subtree)
+
+Installé dans `C:\Atelier_IA` (hors dépôt : ~110 Go de modèles). Mode d'emploi, licences et recettes : **`guides/creer-des-assets.md`**.
+
+| Outil | Source | Licence | Rôle |
+|---|---|---|---|
+| ComfyUI portable v0.41 | https://github.com/Comfy-Org/ComfyUI | GPL-3.0 | moteur de génération (API http://127.0.0.1:8188) |
+| Z-Image / Turbo / Fun ControlNet Union 2.1 | https://huggingface.co/Tongyi-MAI/Z-Image | Apache-2.0 | images rapides, contrôle profondeur/contours/pose |
+| Qwen-Image-2512, Qwen-Image-Edit-2511 | https://huggingface.co/Qwen | Apache-2.0 | qualité max, édition à partir d'images de référence |
+| fal Multiple-Angles LoRA | https://huggingface.co/fal/Qwen-Image-Edit-2511-Multiple-Angles-LoRA | Apache-2.0 | vues sous 8 angles |
+| InstantX Qwen ControlNet Union | https://huggingface.co/InstantX/Qwen-Image-ControlNet-Union | Apache-2.0 | contrôle pour Qwen-Image |
+| TRELLIS.2 (nœuds natifs ComfyUI) | https://github.com/microsoft/TRELLIS.2 | MIT | image → modèle 3D texturé (GLB) |
+| BiRefNet | https://huggingface.co/Comfy-Org/BiRefNet | MIT | détourage |
+| krita-ai-diffusion 1.53 | https://github.com/Acly/krita-ai-diffusion | GPL-3.0 | IA dans Krita (repeindre, inpainting) |
+| `scripts/comfy_client.py` | ce dépôt | MIT (kit) | client Python de ComfyUI |

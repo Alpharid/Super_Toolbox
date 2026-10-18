@@ -33,6 +33,9 @@ C'est public et open-source car presque tout vient de la communauté open source
   `C:\Stryder-Symbiosis`, géré depuis une autre session Claude) → `guides/physique-et-godot.md` est écrit pour lui.
 - Ajouter les dépôts pertinents au fil des demandes (critères ci-dessous) et maintenir à jour sur demande (§4).
 
+### Mise à jour 2026-10-18
+- **Atelier IA installé** (`C:\Atelier_IA`, ~110 Go de modèles) pour Guardians of the Seal et tous les projets à venir : 7ᵉ domaine `creation-assets`, guide `guides/creer-des-assets.md`, client `scripts/comfy_client.py`. Installés par winget : Krita (+ krita-ai-diffusion), ffmpeg, 7-Zip, Audacity, Surge XT, uv.
+
 ## 3. Contenu
 
 Rangement : **un dossier par dépôt dans `upstream/`** (plat : git subtree retrouve chaque dépôt par son chemin, on ne déplace
@@ -192,6 +195,8 @@ D:\Super_Toolbox\
 - Chaque mod = son propre dossier de travail (`work\<jeu>-<mod>\`, ignoré) ou son propre dépôt ; le kit contient des outils, pas des mods.
 
 ## 11. Historique
+
+- **2026-10-18** — Domaine `creation-assets` + Atelier IA local (ComfyUI, Z-Image, Qwen-Image/Edit, TRELLIS.2, Krita AI) ; projet Guardians_of_the_Seal ajouté à Heimdall.
 
 - **2026-10-12** — Création du kit par Claude (Claude Code) : `universal-modder` (2c220143) et `rea` (c22111ec) intégrés en
   subtree --squash, `scripts\kit.ps1` (testé : check / add / update sur copies jetables), docs de passation, dépôt privé GitHub.

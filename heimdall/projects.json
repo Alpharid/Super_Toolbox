@@ -6,10 +6,24 @@
     "Stryder_Symbiosis": {
       "chemin": "C:\\Stryder-Symbiosis",
       "resume": "Jeu Godot 4.7 coop « tout est physique » (Jolt).",
-      "domaines": ["godot", "physique-netcode"],
-      "outils_kit": ["JoltPhysics", "GodotIK", "godot-destruction-plugin", "netfox", "limboai", "beehave"],
+      "domaines": [
+        "godot",
+        "physique-netcode"
+      ],
+      "outils_kit": [
+        "JoltPhysics",
+        "GodotIK",
+        "godot-destruction-plugin",
+        "netfox",
+        "limboai",
+        "beehave"
+      ],
       "guide": "guides/physique-et-godot.md",
-      "manques": ["soft body / cordes avancées", "outils de debug physique en jeu", "interpolation/lag-compensation prête à l'emploi"],
+      "manques": [
+        "soft body / cordes avancées",
+        "outils de debug physique en jeu",
+        "interpolation/lag-compensation prête à l'emploi"
+      ],
       "pistes": [
         "godot-softbody2d (copié) → soft body 2D : déformation/blobs/cordes",
         "godot-statecharts (copié) → machines à états pour l'IA et le flux de jeu",
@@ -20,9 +34,20 @@
     "MixMaster_Regenesis": {
       "chemin": "C:\\MixMaster_Regenesis",
       "resume": "Serveur privé MixMaster (reprise du client FR, 2 mondes) + Control Panel Godot 4.7.",
-      "domaines": ["modding-re", "godot"],
-      "outils_kit": ["rea", "universal-modder", "Il2CppDumper", "GhidraMCP"],
-      "manques": ["outils réseau/émulation de serveur de jeu", "composants Godot UI réutilisables pour le panel"],
+      "domaines": [
+        "modding-re",
+        "godot"
+      ],
+      "outils_kit": [
+        "rea",
+        "universal-modder",
+        "Il2CppDumper",
+        "GhidraMCP"
+      ],
+      "manques": [
+        "outils réseau/émulation de serveur de jeu",
+        "composants Godot UI réutilisables pour le panel"
+      ],
       "pistes": [
         "ida-pro-mcp (copié) → RE du client via IDA piloté par Claude, en plus de rea/Ghidra",
         "Harmony (copié) → si un jour patch runtime .NET côté client",
@@ -32,9 +57,23 @@
     "Alphred_AI": {
       "chemin": "D:\\Alphred_AI",
       "resume": "IA locale « majordome » (Ollama + Open WebUI + SillyTavern) + panel datapad Godot + assistant vocal « Sonnette ».",
-      "domaines": ["ia-agents", "godot", "devtools"],
-      "outils_kit": ["awesome-mcp-servers", "awesome-claude-code", "context7", "mem0"],
-      "manques": ["TTS/STT local de qualité (voix de l'assistant)", "serveurs MCP utiles (fichiers, web, système)", "mémoire longue / RAG local", "frameworks d'agents vocaux"],
+      "domaines": [
+        "ia-agents",
+        "godot",
+        "devtools"
+      ],
+      "outils_kit": [
+        "awesome-mcp-servers",
+        "awesome-claude-code",
+        "context7",
+        "mem0"
+      ],
+      "manques": [
+        "TTS/STT local de qualité (voix de l'assistant)",
+        "serveurs MCP utiles (fichiers, web, système)",
+        "mémoire longue / RAG local",
+        "frameworks d'agents vocaux"
+      ],
       "pistes": [
         "mem0 (copié) → mémoire longue de l'assistant (remplace/complète voice/memoire.json)",
         "context7 (copié) → doc à jour en contexte quand Alphred code",
@@ -46,9 +85,18 @@
     "WifiSentinel": {
       "chemin": "C:\\WifiSentinel",
       "resume": "Audit DÉFENSIF WiFi/LAN/caméras IP (engine Python) + datapad Godot vert Matrix. Recon passive + connexion légitime seulement.",
-      "domaines": ["secu-reseau", "godot"],
-      "outils_kit": ["public-apis"],
-      "manques": ["bibliothèques ONVIF/RTSP robustes", "scanners réseau Python", "modèles de rapport de durcissement"],
+      "domaines": [
+        "secu-reseau",
+        "godot"
+      ],
+      "outils_kit": [
+        "public-apis"
+      ],
+      "manques": [
+        "bibliothèques ONVIF/RTSP robustes",
+        "scanners réseau Python",
+        "modèles de rapport de durcissement"
+      ],
       "pistes": [
         "Cameradar (lien, MIT) → inventaire caméras RTSP + routes/credentials par défaut (sur SON réseau)",
         "Nuclei (lien, MIT) → audit de vulns de ses propres services, en complément de l'engine",
@@ -60,9 +108,16 @@
     "Kali-Pi": {
       "chemin": "C:\\Users\\Shayu\\Downloads\\Kali-Pi5",
       "resume": "Raspberry Pi 5 sous Kali + écran tactile 7\" : audit réseau familial autorisé, datapad Matrix en kiosque, fonction Stream Deck pour le JDR.",
-      "domaines": ["secu-reseau", "devtools"],
+      "domaines": [
+        "secu-reseau",
+        "devtools"
+      ],
       "outils_kit": [],
-      "manques": ["outils réseau légers pour ARM/Pi", "équivalent Stream Deck open-source (déclencher des actions PC)", "kiosque/UI tactile"],
+      "manques": [
+        "outils réseau légers pour ARM/Pi",
+        "équivalent Stream Deck open-source (déclencher des actions PC)",
+        "kiosque/UI tactile"
+      ],
       "pistes": [
         "CrowdSec (lien, MIT) → IDS/IPS léger de défense continue sur le Pi/routeur",
         "Lynis (lien, GPL) → audit de durcissement du système + rapport de remédiation",
@@ -73,12 +128,50 @@
     "Super_Toolbox": {
       "chemin": "D:\\Super_Toolbox",
       "resume": "La boîte à outils elle-même (ce dépôt) + Heimdall.",
-      "domaines": ["godot", "physique-netcode", "modding-re", "ia-agents", "secu-reseau", "devtools"],
-      "outils_kit": ["tous"],
+      "domaines": [
+        "godot",
+        "physique-netcode",
+        "modding-re",
+        "ia-agents",
+        "secu-reseau",
+        "devtools"
+      ],
+      "outils_kit": [
+        "tous"
+      ],
       "manques": [],
       "pistes": [
         "godot-gdscript-toolkit (copié) → lint/format des scripts GDScript des projets, en CI",
         "uv (lien) → gérer les deps Python des outils du kit"
+      ]
+    },
+    "Guardians_of_the_Seal": {
+      "chemin": "C:\\Guardians_of_the_Seal",
+      "resume": "MMORPG isométrique façon MixMaster : Djinn, Sceaux, Conjonction ; univers sombre inspiré de l'Algérie d'autrefois. Client Godot 4.7 (C# prévu), serveur C# autoritaire.",
+      "domaines": [
+        "creation-assets",
+        "godot",
+        "physique-netcode"
+      ],
+      "outils_kit": [
+        "universal-modder (asset-pipeline : um render3d --preset iso8, um sprite)",
+        "netfox",
+        "godot-statecharts",
+        "limbo_console",
+        "comfy_client.py (scripts/)"
+      ],
+      "guide": "guides/creer-des-assets.md",
+      "manques": [
+        "LoRA de style maison (non entraînée)",
+        "musique maqâm (ACE-Step non installé, pas d'oud libre)",
+        "animation des personnages (Kimodo/Mixamo non branchés)",
+        "serveur MMO C# (rien choisi dans le kit)"
+      ],
+      "pistes": [
+        "ai-toolkit (MIT) → LoRA de style sur peintres du domaine public (Guillaumet, Fromentin, Dinet)",
+        "ACE-Step 1.5 XL (MIT) → musique ; MIDI + Surge XT (Scala) pour les quarts de ton",
+        "Wan 2.2 VACE (Apache-2.0) → repeindre les animations rendues dans Blender",
+        "NVIDIA Kimodo (SOMA/G1) → animations à partir de texte"
       ]
     }
   }
