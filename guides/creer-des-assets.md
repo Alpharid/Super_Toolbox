@@ -60,6 +60,8 @@ Une sortie 100 % IA paraît générique, et elle est difficile à protéger par 
 - Audio libre : Sonniss GDC bundles, Kenney (CC0), Freesound filtré CC0, darbuka Coyotus. Pas de bonne banque libre d'oud ou de qanûn : celles qui valent le coup sont payantes (Sonokinetic, Sonuscore).
 
 ## Pièges
+- **ComfyUI meurt sans erreur dans son journal** (Windows : événement 153 de `nvlddmkm` dans le journal Système). Le GPU qui gère l'affichage est réinitialisé dès qu'un calcul dépasse 2 s (TDR). Correctif standard : `HKLM\System\CurrentControlSet\Control\GraphicsDrivers` → `TdrDelay` et `TdrDdiDelay` = 60 (DWORD, admin, **redémarrage**). Fait sur ce PC le 2026-10-18. En attendant le redémarrage : images ≤ 1 MP avec Qwen.
+- **Lancer ComfyUI détaché** (il survit à la console) : `Start-Process python_embeded\python.exe -ArgumentList '-s','ComfyUI\main.py','--windows-standalone-build','--listen','127.0.0.1','--port','8188' -WorkingDirectory C:\Atelier_IA\ComfyUI_windows_portable -WindowStyle Minimized`.
 - **Qwen-Image 20B sur 24 Go** : fp8 + déchargement automatique, environ 5 min par image en édition. Z-Image Turbo pour itérer, Qwen pour finaliser.
 - **Archive ComfyUI portable** : filtre BCJ2, que **py7zr ne sait pas lire**. Utiliser 7-Zip ou `7zr.exe` (7-zip.org, autonome).
 - **Nouveau dossier de modèles** (ex. `background_removal`) : l'ajouter dans `extra_model_paths.yaml` **et redémarrer** ComfyUI.
