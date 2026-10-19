@@ -72,20 +72,29 @@
         "mem0"
       ],
       "manques": [
-        "TTS/STT local de qualité (voix de l'assistant)",
         "serveurs MCP utiles (fichiers, web, système)",
         "mémoire longue / RAG local",
-        "frameworks d'agents vocaux"
+        "frameworks d'agents vocaux",
+        "voix FR expressive sur CPU (candidats : Pocket TTS, Qwen3-TTS VoiceDesign)"
       ],
       "pistes": [
         "mem0 (copié) → mémoire longue de l'assistant (remplace/complète voice/memoire.json)",
         "context7 (copié) → doc à jour en contexte quand Alphred code",
-        "Kokoro (lien, Apache) → voix TTS locale pour la Sonnette",
         "faster-whisper (lien, MIT) → écoute vocale (STT) locale, rapide",
         "Serena (lien) → MCP symbolique si Alphred bosse sur du gros code",
         "Caveman (lien, Apache-2.0) → `caveman shrink` compresse les sorties d'outils (JSON/logs) avant lecture : moins de tokens pour l'agent local",
-        "modèle ArtCraft « chaque action = commande nommée » (guide RE §10) → actions du datapad pilotables à l'identique par clic, raccourci ou agent"
-      ]
+        "modèle ArtCraft « chaque action = commande nommée » (guide RE §10) → actions du datapad pilotables à l'identique par clic, raccourci ou agent",
+        "Qwen3.8-27B + MTP (qwen3.8:27b-mtp-*, Apache-2.0, Ollama ≥ 0.32.12) → ~1,5-2× en génération ; A/B contre le modèle actuel (VRAM +1 Go : tester 96k de contexte)",
+        "Ollama 0.40.6 (installé : 0.40.3) + templates froggeric/Qwen-Fixed-Chat-Templates → moins de boucles et d'appels d'outils ratés",
+        "Pi (earendil-works/pi, MIT) → harnais d'agent léger à comparer à Claude Code sur 3 tâches > 50k tokens",
+        "Pocket TTS (kyutai-labs/pocket-tts, MIT/CC-BY) → voix FR sur CPU + clonage, à comparer à Piper fr_FR-gilles-low",
+        "Smart Turn v3.2 (pipecat-ai/smart-turn, BSD-2) → fin de tour à l'intonation (8 Mo CPU), en plus du VAD Silero",
+        "livekit-wakeword (Apache-2.0) → modèle « Hey Alphred » dédié, libère whisper de l'écoute permanente",
+        "SearXNG + mcp-searxng + crawl4ai → recherche web locale à la place de tools/web.py (scraping Bing/DDG)",
+        "Windows-MCP (MIT) → contrôle du bureau pour la Sonnette, derrière « Je confirme » ; Home Assistant MCP si domotique",
+        "RTK (Apache-2.0) → compresser les sorties de commandes lues par l'agent local"
+      ],
+      "guide": "guides/ia-locale-performante.md"
     },
     "WifiSentinel": {
       "chemin": "C:\\WifiSentinel",

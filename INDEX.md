@@ -40,6 +40,7 @@ Le cœur vivant de la toolbox est **[Heimdall](heimdall/README.md)**, le veilleu
 - **context7** — `upstash/context7` · MIT · serveur MCP qui injecte la doc à jour des libs dans le contexte (anti-hallucination d'API).
 - **mem0** — `mem0ai/mem0` · Apache-2.0 · mémoire longue durée pour agents/LLM (extraction + vectoriel) — mémoire persistante (Alphred).
 - **awesome-mcp-servers** — `punkpeye/awesome-mcp-servers` · MIT · liste de serveurs MCP (outils pour agents).
+- 📘 **IA locale rapide et fiable (24 Go)** : moteur/modèle (Qwen3.8 MTP), agent (Pi), voix FR sur CPU, web local → [guides/ia-locale-performante.md](guides/ia-locale-performante.md).
 - **awesome-claude-code** — `hesreallyhim/awesome-claude-code` · CC-BY-NC-ND · skills/hooks/commandes pour Claude Code (usage perso, lien-liste).
 
 ### 🛡️ secu-reseau — sécurité, réseau & audit défensif
@@ -70,7 +71,7 @@ Quand on ouvre un projet : `heimdall.ps1 project -Name <Projet>` (détail dans `
 |---|---|---|
 | **Stryder_Symbiosis** (jeu Godot+Jolt) | godot, physique-netcode | JoltPhysics, GodotIK, godot-destruction-plugin, netfox, limboai, beehave → `guides/physique-et-godot.md` |
 | **MixMaster_Regenesis** (serveur + panel) | modding-re, godot | rea, universal-modder, Il2CppDumper, GhidraMCP → `guides/reverse-engineering-avec-claude.md` (clean-room serveur) |
-| **Alphred_AI** (IA locale + panel + voix) | ia-agents, godot, devtools | awesome-mcp-servers, awesome-claude-code |
+| **Alphred_AI** (IA locale + panel + voix) | ia-agents, godot, devtools | context7, mem0, awesome-mcp-servers → `guides/ia-locale-performante.md` |
 | **WifiSentinel** (audit réseau + panel) | secu-reseau, godot | public-apis _(manques : ONVIF/RTSP, scanners — Heimdall)_ |
 | **Kali-Pi** (Pi Kali, datapad, stream-deck) | secu-reseau, devtools | _(manques — Heimdall)_ |
 | **Waze_SA_Mod** (APK Waze re-packagé, sans root) | modding-re | android-reverse-engineering-skill → `guides/reverse-engineering-avec-claude.md` |
@@ -88,6 +89,7 @@ Se tient au courant de ce qui sort d'utile, et garde cet index à jour. Tout : *
 
 ### Dernières nouveautés
 <!-- HEIMDALL:LATEST -->
+- **2026-10-19** — Veille **Alphred** : guide [ia-locale-performante.md](guides/ia-locale-performante.md) (Qwen3.8 MTP, Ollama 0.40.6, Pi, Pocket TTS, Smart Turn, SearXNG…) · [rapport](heimdall/reports/2026-10-19-alphred.md).
 - **2026-10-19** — Cours RE de @0xMovez exploité : guide [reverse-engineering-avec-claude.md](guides/reverse-engineering-avec-claude.md) (11 étapes, prompts, clean-room, parité) + modèle de règles RE ; +1 subtree `android-reverse-engineering-skill` ; liens Caveman, ghidra-mcp (bethington), IDA MCP officiel, ImHex, mitmproxy, ArtCraft. Détail : [heimdall/reports/2026-10-19-cours-re.md](heimdall/reports/2026-10-19-cours-re.md).
 - **2026-10-19** — 6 trouvailles : voir [heimdall/reports/2026-10-19.md](heimdall/reports/2026-10-19.md).
 - **2026-10-18** — Nouveau domaine **`creation-assets`** : Atelier IA local (ComfyUI, Z-Image, Qwen-Image/Edit, TRELLIS.2, Krita AI) + guide [creer-des-assets.md](guides/creer-des-assets.md) + `scripts/comfy_client.py`.

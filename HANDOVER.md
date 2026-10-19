@@ -29,6 +29,7 @@ C'est public et open-source car presque tout vient de la communauté open source
 - PC : Windows 11, RTX 3090 Ti, Python 3.13, Node, .NET, git, gh. `python3` = alias Microsoft Store qui ne lance rien.
 
 ### Mise à jour 2026-10-19
+- Veille ciblée **Alphred** : guide `guides/ia-locale-performante.md` (moteur/modèle, agent, voix FR CPU, web local), rapport `heimdall/reports/2026-10-19-alphred.md`, pistes Alphred réécrites dans `projects.json`, sources ia-agents enrichies.
 - Cours « Reverse Engineer Anything with Opus 5.5 » (@0xMovez) exploité : guide `guides/reverse-engineering-avec-claude.md` (méthode 11 étapes adaptée au kit : rea en CLI, Ghidra lecture seule sous Windows ; prompts triage/annotation/obfuscation/essaim/spec clean-room/parité), modèle `guides/modeles/CLAUDE.re-house-rules.md`, +1 subtree `android-reverse-engineering-skill` (**27 dépôts**), liens dans `CATALOGUE.md`, projet `Waze_SA_Mod` ajouté à Heimdall.
 
 ### À faire / idées
@@ -187,7 +188,7 @@ D:\Super_Toolbox\
 ├─ upstream\netfox, limboai, beehave                  addons Godot
 ├─ upstream\public-apis, awesome*, magictools          listes de ressources (README.md / readme.md)
 ├─ guides\                  README (index par besoin), modder-un-jeu, physique-et-godot, trouver-une-ressource, creer-des-assets,
-│                           reverse-engineering-avec-claude (+ modeles\CLAUDE.re-house-rules.md)
+│                           reverse-engineering-avec-claude (+ modeles\CLAUDE.re-house-rules.md), ia-locale-performante
 └─ (ignorés par git) work\ decomp\ dumps\ captures\ .local\ .env .venv node_modules
 ```
 
@@ -200,6 +201,7 @@ D:\Super_Toolbox\
 
 ## 11. Historique
 
+- **2026-10-19** — Veille Alphred → guide `ia-locale-performante.md` + rapport `2026-10-19-alphred.md` + pistes Alphred (Qwen3.8 MTP, Pi, Pocket TTS, Smart Turn, SearXNG…).
 - **2026-10-19** — Cours RE @0xMovez → guide `reverse-engineering-avec-claude.md` + modèle de règles RE ; subtree `android-reverse-engineering-skill` ; liens Caveman, bethington/ghidra-mcp, IDA MCP officiel, ImHex, mitmproxy, ArtCraft ; projet Waze_SA_Mod dans Heimdall ; digest `reports/2026-10-19-cours-re.md`.
 - **2026-10-19** — Digest Heimdall hebdo : semaine calme (Godot 4.7.1, Jolt 5.6 à synchroniser, Ghidra 12.1.4, Suricata/Zeek en lien).
 - **2026-10-18** — Domaine `creation-assets` + Atelier IA local (ComfyUI, Z-Image, Qwen-Image/Edit, TRELLIS.2, Krita AI) ; projet Guardians_of_the_Seal ajouté à Heimdall.

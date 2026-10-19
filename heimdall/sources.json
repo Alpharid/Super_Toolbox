@@ -160,7 +160,11 @@
         "local llm",
         "agent framework",
         "tts stt",
-        "rag"
+        "rag",
+        "MTP speculative decoding",
+        "local TTS french",
+        "turn detection",
+        "agent harness local"
       ],
       "sources": [
         {
@@ -197,6 +201,26 @@
           "nom": "r/LocalLLaMA",
           "url": "https://www.reddit.com/r/LocalLLaMA/top/?t=week",
           "type": "forum"
+        },
+        {
+          "nom": "Ollama — releases",
+          "url": "https://github.com/ollama/ollama/releases",
+          "type": "releases"
+        },
+        {
+          "nom": "Qwen — modèles (Hugging Face)",
+          "url": "https://huggingface.co/Qwen",
+          "type": "org"
+        },
+        {
+          "nom": "Kyutai — dépôts (TTS/STT)",
+          "url": "https://github.com/kyutai-labs",
+          "type": "org"
+        },
+        {
+          "nom": "Open WebUI — releases",
+          "url": "https://github.com/open-webui/open-webui/releases",
+          "type": "releases"
         }
       ]
     },

@@ -133,6 +133,15 @@ En **lien** :
 - **ia-agents / devtools** : [Caveman](https://github.com/JuliusBrussee/caveman) (Apache-2.0, skill + proxy : `caveman shrink -- <cmd>` compresse sorties JSON/logs, `/caveman-compress` réduit les CLAUDE.md ; −33 % de tokens d'entrée mesurés par session).
 - **creation-assets** : [ArtCraft / Crafting Apps](https://github.com/storytold) (Apache-2.0/MIT, Rust pur, alpha) — [PhotoCraft](https://github.com/storytold/photocraft), [VectorCraft](https://github.com/storytold/vectorcraft), [FilmCraft](https://github.com/storytold/filmcraft), [PdfCraft](https://github.com/storytold/pdfcraft), [SoundCraft](https://github.com/storytold/soundcraft), [WordCraft](https://github.com/storytold/wordcraft). Modèle d'architecture à copier : couches + registre de commandes nommées pilotable par agent.
 
+## Ajouts Heimdall — veille Alphred / IA locale (2026-10-19)
+
+Synthèse et ordre d'essai : **`guides/ia-locale-performante.md`** · détail : `heimdall/reports/2026-10-19-alphred.md`. Tout en **lien** (paquets pip/npm/Docker, ou modèles).
+
+- **Moteur / modèle** : [Ollama](https://github.com/ollama/ollama) 0.40.6 · [Qwen3.8-27B](https://huggingface.co/Qwen/Qwen3.8-27B) (Apache-2.0, MTP, `qwen3.8:27b-mtp-*`) · [llama.cpp](https://github.com/ggml-org/llama.cpp) (MIT) · [Qwen-Fixed-Chat-Templates](https://huggingface.co/froggeric/Qwen-Fixed-Chat-Templates) (Apache-2.0).
+- **Harnais d'agent** : [Pi](https://github.com/earendil-works/pi) (MIT, léger) · [OpenCode](https://github.com/anomalyco/opencode) (MIT) · [Hermes Agent](https://github.com/NousResearch/hermes-agent) (MIT).
+- **Voix** : [Pocket TTS](https://github.com/kyutai-labs/pocket-tts) (MIT, poids CC-BY-4.0, FR, CPU) · [Smart Turn](https://github.com/pipecat-ai/smart-turn) (BSD-2) · [livekit-wakeword](https://github.com/livekit/livekit-wakeword) (Apache-2.0) · [Qwen3-TTS](https://github.com/QwenLM/Qwen3-TTS) (Apache-2.0) · [Chatterbox](https://github.com/resemble-ai/chatterbox) (MIT).
+- **Web / outils** : [SearXNG](https://github.com/searxng/searxng) (AGPL) + [mcp-searxng](https://github.com/ihor-sokoliuk/mcp-searxng) (MIT) · [crawl4ai](https://github.com/unclecode/crawl4ai) (Apache-2.0) · [Windows-MCP](https://github.com/CursorTouch/Windows-MCP) (MIT) · [Open Terminal](https://github.com/open-webui/open-terminal) (MIT) · [Home Assistant MCP](https://www.home-assistant.io/integrations/mcp_server/) · [RTK](https://github.com/rtk-ai/rtk) (Apache-2.0).
+
 ## Références non copiées (à récupérer depuis leurs releases quand un projet en a besoin)
 
 - Loaders / frameworks de mod : [BepInEx](https://github.com/BepInEx/BepInEx) (Unity, LGPL), [MelonLoader](https://github.com/LavaGang/MelonLoader),
