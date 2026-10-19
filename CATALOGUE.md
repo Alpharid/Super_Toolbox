@@ -119,6 +119,20 @@ Référencés en **lien** (licence non permissive, binaire, ou à installer depu
 - **secu-reseau** (audit **défensif** uniquement) : [Nuclei](https://github.com/projectdiscovery/nuclei) (MIT), [Cameradar](https://github.com/Ullaakut/cameradar) (RTSP, MIT), [CrowdSec](https://github.com/crowdsecurity/crowdsec) (MIT), [RustScan](https://github.com/RustScan/RustScan) (GPL), [Lynis](https://github.com/CISOfy/lynis) (hardening, GPL).
 - **devtools** : [uv](https://github.com/astral-sh/uv) (Python tout-en-un), [Textual](https://github.com/Textualize/textual) (TUI Python), [Nuitka](https://github.com/Nuitka/Nuitka) (Python → .exe), [lazygit](https://github.com/jesseduffield/lazygit), [yazi](https://github.com/sxyazi/yazi), [Gum](https://github.com/charmbracelet/gum).
 
+## Ajouts Heimdall — cours RE de @0xMovez (2026-10-19)
+
+Méthode complète et prompts : **`guides/reverse-engineering-avec-claude.md`** (+ modèle `guides/modeles/CLAUDE.re-house-rules.md`). Détail : `heimdall/reports/2026-10-19.md`.
+
+| Dossier | Licence | Sert à |
+|---|---|---|
+| `upstream/android-reverse-engineering-skill/` | Apache-2.0 | Skill Claude Code (`plugins/android-reverse-engineering/`) : triage d'APK/XAPK (framework, pile HTTP, niveau d'obfuscation), décompilation jadx/Vineflower, **noms Kotlin récupérés malgré R8**, extraction des API (Retrofit, OkHttp, Ktor, Apollo). Scripts bash + `.ps1` (Windows expérimental). Prérequis : JDK 17+, jadx. |
+
+En **lien** :
+
+- **modding-re** : [bethington/ghidra-mcp](https://github.com/bethington/ghidra-mcp) (Apache-2.0, 200+ outils à chargement paresseux, headless/Docker — alternative à GhidraMCP), [HexRaysSA/ida-mcp](https://github.com/HexRaysSA/ida-mcp) (MIT, serveur MCP **officiel** d'IDA, licence IDA payante), [ImHex](https://github.com/WerWolv/ImHex) (GPL-2.0, éditeur hexa pour RE, MCP intégré désactivé par défaut), [mitmproxy](https://github.com/mitmproxy/mitmproxy) (MIT, proxy HTTP(S) qui enregistre les requêtes → cartographier l'API d'une appli), [rea showcase](https://rea.tools/showcase/) (cas d'étude DX-Ball, Notion). Lecture : [Elastic — LLM reversing vs LLM obfuscation](https://www.elastic.co/security-labs/llm-reversing-vs-llm-obfuscation) (Claude vs Tigress).
+- **ia-agents / devtools** : [Caveman](https://github.com/JuliusBrussee/caveman) (Apache-2.0, skill + proxy : `caveman shrink -- <cmd>` compresse sorties JSON/logs, `/caveman-compress` réduit les CLAUDE.md ; −33 % de tokens d'entrée mesurés par session).
+- **creation-assets** : [ArtCraft / Crafting Apps](https://github.com/storytold) (Apache-2.0/MIT, Rust pur, alpha) — [PhotoCraft](https://github.com/storytold/photocraft), [VectorCraft](https://github.com/storytold/vectorcraft), [FilmCraft](https://github.com/storytold/filmcraft), [PdfCraft](https://github.com/storytold/pdfcraft), [SoundCraft](https://github.com/storytold/soundcraft), [WordCraft](https://github.com/storytold/wordcraft). Modèle d'architecture à copier : couches + registre de commandes nommées pilotable par agent.
+
 ## Références non copiées (à récupérer depuis leurs releases quand un projet en a besoin)
 
 - Loaders / frameworks de mod : [BepInEx](https://github.com/BepInEx/BepInEx) (Unity, LGPL), [MelonLoader](https://github.com/LavaGang/MelonLoader),

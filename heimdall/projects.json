@@ -51,7 +51,10 @@
       "pistes": [
         "ida-pro-mcp (copié) → RE du client via IDA piloté par Claude, en plus de rea/Ghidra",
         "Harmony (copié) → si un jour patch runtime .NET côté client",
-        "godot-statecharts + limbo_console (copiés) → états et debug du Control Panel"
+        "godot-statecharts + limbo_console (copiés) → états et debug du Control Panel",
+        "guides/reverse-engineering-avec-claude.md → méthode RE en 11 étapes : tri par xrefs, essaim contrôleur/workers pour cartographier le client, prompts d'annotation",
+        "clean-room (même guide §9-§11) → spec du serveur écrite depuis le comportement du client (paquets observés), implémentée dans un autre contexte, + banc de parité",
+        "bethington/ghidra-mcp (lien, Apache-2.0) → MCP Ghidra à chargement paresseux (200+ outils, headless) si le CLI rea ne suffit pas"
       ]
     },
     "Alphred_AI": {
@@ -79,7 +82,9 @@
         "context7 (copié) → doc à jour en contexte quand Alphred code",
         "Kokoro (lien, Apache) → voix TTS locale pour la Sonnette",
         "faster-whisper (lien, MIT) → écoute vocale (STT) locale, rapide",
-        "Serena (lien) → MCP symbolique si Alphred bosse sur du gros code"
+        "Serena (lien) → MCP symbolique si Alphred bosse sur du gros code",
+        "Caveman (lien, Apache-2.0) → `caveman shrink` compresse les sorties d'outils (JSON/logs) avant lecture : moins de tokens pour l'agent local",
+        "modèle ArtCraft « chaque action = commande nommée » (guide RE §10) → actions du datapad pilotables à l'identique par clic, raccourci ou agent"
       ]
     },
     "WifiSentinel": {
@@ -142,7 +147,8 @@
       "manques": [],
       "pistes": [
         "godot-gdscript-toolkit (copié) → lint/format des scripts GDScript des projets, en CI",
-        "uv (lien) → gérer les deps Python des outils du kit"
+        "uv (lien) → gérer les deps Python des outils du kit",
+        "Caveman (lien) → compresser les sorties JSON de rea avant lecture (règle « fichier puis extrait »)"
       ]
     },
     "Guardians_of_the_Seal": {
@@ -173,6 +179,24 @@
         "Wan 2.2 VACE (Apache-2.0) → repeindre les animations rendues dans Blender",
         "NVIDIA Kimodo (SOMA/G1) → animations à partir de texte"
       ]
+    },
+    "Waze_SA_Mod": {
+      "chemin": "C:\\Waze_SA_Mod",
+      "resume": "Waze officiel re-packagé (thème GTA San Andreas + voiture GC8 STi), sans root, installé sur le OnePlus 12.",
+      "domaines": [
+        "modding-re"
+      ],
+      "outils_kit": [
+        "android-reverse-engineering-skill"
+      ],
+      "guide": "guides/reverse-engineering-avec-claude.md",
+      "manques": [
+        "repérer vite où vivent thème/icônes/voix dans un APK obfusqué R8"
+      ],
+      "pistes": [
+        "android-reverse-engineering-skill (copié) → Phase 0 fingerprint + noms Kotlin récupérés malgré R8 : localiser les classes de thème/rendu avant de patcher l'overlay"
+      ],
+      "ligne_rouge": "Pas de root (applis bancaires), pas de contournement des contrôles Google/Play Integrity. Voir mémoire waze-san-andreas."
     }
   }
 }

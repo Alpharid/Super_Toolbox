@@ -28,6 +28,9 @@ C'est public et open-source car presque tout vient de la communauté open source
   la demande, pour un projet précis, en vérifiant d'abord ce qui existe déjà (règle de l'utilisateur : jamais de doublon).
 - PC : Windows 11, RTX 3090 Ti, Python 3.13, Node, .NET, git, gh. `python3` = alias Microsoft Store qui ne lance rien.
 
+### Mise à jour 2026-10-19
+- Cours « Reverse Engineer Anything with Opus 5.5 » (@0xMovez) exploité : guide `guides/reverse-engineering-avec-claude.md` (méthode 11 étapes adaptée au kit : rea en CLI, Ghidra lecture seule sous Windows ; prompts triage/annotation/obfuscation/essaim/spec clean-room/parité), modèle `guides/modeles/CLAUDE.re-house-rules.md`, +1 subtree `android-reverse-engineering-skill` (**27 dépôts**), liens dans `CATALOGUE.md`, projet `Waze_SA_Mod` ajouté à Heimdall.
+
 ### À faire / idées
 - Projet à venir : **Stryder_Symbiosis** (jeu Godot 4.7 + Jolt, physique avancée, coop ; dépôt `C-Chafik/Stryder-Symbiosis`, local
   `C:\Stryder-Symbiosis`, géré depuis une autre session Claude) → `guides/physique-et-godot.md` est écrit pour lui.
@@ -44,7 +47,7 @@ jamais un dossier — cf. §8), la catégorie est un champ de `upstreams.json`. 
 
 | Catégorie | Dépôts | Rôle |
 |---|---|---|
-| `modding` | `universal-modder`, `rea`, `GhidraMCP`, `Il2CppDumper`, `minhook` | Méthode complète de modding + CLI `um` + base de connaissances ; reverse engineering (rea CLI/MCP, Ghidra piloté par Claude) ; Unity IL2CPP ; hooks natifs |
+| `modding` | `universal-modder`, `rea`, `GhidraMCP`, `Il2CppDumper`, `minhook`, `android-reverse-engineering-skill` | Méthode complète de modding + CLI `um` + base de connaissances ; reverse engineering (rea CLI/MCP, Ghidra piloté par Claude) ; Unity IL2CPP ; hooks natifs |
 | `physique` | `JoltPhysics`, `GodotIK`, `godot-destruction-plugin` | Le moteur physique de Godot 4.4+ (sources, doc d'architecture, ~150 démos : cordes, poulies, flottaison, ragdolls, corps mous) ; IK 3D ; destruction |
 | `godot` | `netfox`, `limboai`, `beehave` | Multijoueur (synchro, rollback) ; IA par behavior trees / machines à états |
 | `listes` | `public-apis`, `awesome-godot`, `magictools`, `awesome-gamedev`, `awesome`, `awesome-mcp-servers`, `awesome-claude-code` | API gratuites ; ressources Godot / gamedev / assets libres ; méta-liste ; serveurs MCP ; outils Claude Code |
@@ -183,7 +186,8 @@ D:\Super_Toolbox\
 ├─ upstream\JoltPhysics, GodotIK, godot-destruction-plugin   physique
 ├─ upstream\netfox, limboai, beehave                  addons Godot
 ├─ upstream\public-apis, awesome*, magictools          listes de ressources (README.md / readme.md)
-├─ guides\                  README (index par besoin), modder-un-jeu, physique-et-godot, trouver-une-ressource
+├─ guides\                  README (index par besoin), modder-un-jeu, physique-et-godot, trouver-une-ressource, creer-des-assets,
+│                           reverse-engineering-avec-claude (+ modeles\CLAUDE.re-house-rules.md)
 └─ (ignorés par git) work\ decomp\ dumps\ captures\ .local\ .env .venv node_modules
 ```
 
@@ -196,6 +200,7 @@ D:\Super_Toolbox\
 
 ## 11. Historique
 
+- **2026-10-19** — Cours RE @0xMovez → guide `reverse-engineering-avec-claude.md` + modèle de règles RE ; subtree `android-reverse-engineering-skill` ; liens Caveman, bethington/ghidra-mcp, IDA MCP officiel, ImHex, mitmproxy, ArtCraft ; projet Waze_SA_Mod dans Heimdall ; digest `reports/2026-10-19.md`.
 - **2026-10-18** — Domaine `creation-assets` + Atelier IA local (ComfyUI, Z-Image, Qwen-Image/Edit, TRELLIS.2, Krita AI) ; projet Guardians_of_the_Seal ajouté à Heimdall.
 
 - **2026-10-12** — Création du kit par Claude (Claude Code) : `universal-modder` (2c220143) et `rea` (c22111ec) intégrés en

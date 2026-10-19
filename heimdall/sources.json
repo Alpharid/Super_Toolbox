@@ -97,7 +97,10 @@
         "il2cpp",
         "frida",
         "ghidra",
-        "bepinex"
+        "bepinex",
+        "clean-room",
+        "llm deobfuscation",
+        "apk reverse engineering"
       ],
       "sources": [
         {
@@ -129,6 +132,21 @@
           "nom": "GitHub topic reverse-engineering",
           "url": "https://github.com/topics/reverse-engineering",
           "type": "topic"
+        },
+        {
+          "nom": "Elastic Security Labs (RE assisté par LLM, obfuscation)",
+          "url": "https://www.elastic.co/security-labs",
+          "type": "blog"
+        },
+        {
+          "nom": "rea — showcase (cas d'étude)",
+          "url": "https://rea.tools/showcase/",
+          "type": "site"
+        },
+        {
+          "nom": "ArtCraft / Crafting Apps (clean-room en Rust)",
+          "url": "https://github.com/storytold",
+          "type": "org"
         }
       ]
     },

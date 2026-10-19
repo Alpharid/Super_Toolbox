@@ -33,6 +33,8 @@ Le cœur vivant de la toolbox est **[Heimdall](heimdall/README.md)**, le veilleu
 - **Harmony** — `pardeike/Harmony` · MIT · patch runtime de méthodes .NET/C# (via BepInEx/MelonLoader) — standard du modding Unity.
 - **Il2CppDumper** — `Perfare/Il2CppDumper` · MIT · jeux Unity IL2CPP (restaure noms de classes/méthodes).
 - **minhook** — `TsudaKageyu/minhook` · BSD-2 · bibliothèque C de hooks x86/x64 (mods natifs).
+- **android-reverse-engineering-skill** — `SimoneAvogadro/android-reverse-engineering-skill` · Apache-2.0 · skill Claude Code : APK → jadx, noms Kotlin malgré R8, API web extraites (Waze_SA_Mod).
+- 📘 **Méthode RE avec Claude** (11 étapes, prompts prêts, clean-room, parité) → [guides/reverse-engineering-avec-claude.md](guides/reverse-engineering-avec-claude.md).
 
 ### 🤖 ia-agents — agents IA, MCP & LLM local
 - **context7** — `upstash/context7` · MIT · serveur MCP qui injecte la doc à jour des libs dans le contexte (anti-hallucination d'API).
@@ -67,10 +69,11 @@ Quand on ouvre un projet : `heimdall.ps1 project -Name <Projet>` (détail dans `
 | Projet | Domaines | Outils du kit qui s'appliquent |
 |---|---|---|
 | **Stryder_Symbiosis** (jeu Godot+Jolt) | godot, physique-netcode | JoltPhysics, GodotIK, godot-destruction-plugin, netfox, limboai, beehave → `guides/physique-et-godot.md` |
-| **MixMaster_Regenesis** (serveur + panel) | modding-re, godot | rea, universal-modder, Il2CppDumper, GhidraMCP |
+| **MixMaster_Regenesis** (serveur + panel) | modding-re, godot | rea, universal-modder, Il2CppDumper, GhidraMCP → `guides/reverse-engineering-avec-claude.md` (clean-room serveur) |
 | **Alphred_AI** (IA locale + panel + voix) | ia-agents, godot, devtools | awesome-mcp-servers, awesome-claude-code |
 | **WifiSentinel** (audit réseau + panel) | secu-reseau, godot | public-apis _(manques : ONVIF/RTSP, scanners — Heimdall)_ |
 | **Kali-Pi** (Pi Kali, datapad, stream-deck) | secu-reseau, devtools | _(manques — Heimdall)_ |
+| **Waze_SA_Mod** (APK Waze re-packagé, sans root) | modding-re | android-reverse-engineering-skill → `guides/reverse-engineering-avec-claude.md` |
 | **Guardians_of_the_Seal** (MMORPG djinn, Godot) | creation-assets, godot, physique-netcode | Atelier IA, comfy_client, universal-modder (asset-pipeline iso8), netfox → `guides/creer-des-assets.md` |
 
 **Fil rouge** : presque tous ont un **panel/datapad Godot 4.7 construit 100 % en code** → toute ressource Godot
@@ -85,6 +88,7 @@ Se tient au courant de ce qui sort d'utile, et garde cet index à jour. Tout : *
 
 ### Dernières nouveautés
 <!-- HEIMDALL:LATEST -->
+- **2026-10-19** — Cours RE de @0xMovez exploité : guide [reverse-engineering-avec-claude.md](guides/reverse-engineering-avec-claude.md) (11 étapes, prompts, clean-room, parité) + modèle de règles RE ; +1 subtree `android-reverse-engineering-skill` ; liens Caveman, ghidra-mcp (bethington), IDA MCP officiel, ImHex, mitmproxy, ArtCraft. Détail : [heimdall/reports/2026-10-19.md](heimdall/reports/2026-10-19.md).
 - **2026-10-18** — Nouveau domaine **`creation-assets`** : Atelier IA local (ComfyUI, Z-Image, Qwen-Image/Edit, TRELLIS.2, Krita AI) + guide [creer-des-assets.md](guides/creer-des-assets.md) + `scripts/comfy_client.py`.
 - **2026-10-16** — Premier digest + **1ère vague** : +8 outils copiés, ~11 en lien. Détail : [heimdall/reports/2026-10-16.md](heimdall/reports/2026-10-16.md) · liens : [CATALOGUE.md](CATALOGUE.md) § Ajouts Heimdall.
 <!-- /HEIMDALL:LATEST -->
