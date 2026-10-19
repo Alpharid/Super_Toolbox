@@ -286,6 +286,17 @@
                       "role":  "Serveur MCP exposant IDA à un agent/Claude (décompilation, xrefs, renommage) — pendant de GhidraMCP",
                       "synced_commit":  "c133c385",
                       "synced_on":  "2026-10-16"
+                  },
+                  {
+                      "name":  "android-reverse-engineering-skill",
+                      "url":  "https://github.com/SimoneAvogadro/android-reverse-engineering-skill",
+                      "branch":  "master",
+                      "prefix":  "upstream/android-reverse-engineering-skill",
+                      "license":  "Apache-2.0",
+                      "category":  "modding",
+                      "role":  "Skill Claude Code : décompiler un APK (jadx/apktool), lister les API web appelées et le login — Waze_SA_Mod",
+                      "synced_commit":  "0c7cf898",
+                      "synced_on":  "2026-10-19"
                   }
               ]
 }
