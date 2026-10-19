@@ -142,6 +142,12 @@ Synthèse et ordre d'essai : **`guides/ia-locale-performante.md`** · détail : 
 - **Voix** : [Pocket TTS](https://github.com/kyutai-labs/pocket-tts) (MIT, poids CC-BY-4.0, FR, CPU) · [Smart Turn](https://github.com/pipecat-ai/smart-turn) (BSD-2) · [livekit-wakeword](https://github.com/livekit/livekit-wakeword) (Apache-2.0) · [Qwen3-TTS](https://github.com/QwenLM/Qwen3-TTS) (Apache-2.0) · [Chatterbox](https://github.com/resemble-ai/chatterbox) (MIT).
 - **Web / outils** : [SearXNG](https://github.com/searxng/searxng) (AGPL) + [mcp-searxng](https://github.com/ihor-sokoliuk/mcp-searxng) (MIT) · [crawl4ai](https://github.com/unclecode/crawl4ai) (Apache-2.0) · [Windows-MCP](https://github.com/CursorTouch/Windows-MCP) (MIT) · [Open Terminal](https://github.com/open-webui/open-terminal) (MIT) · [Home Assistant MCP](https://www.home-assistant.io/integrations/mcp_server/) · [RTK](https://github.com/rtk-ai/rtk) (Apache-2.0).
 
+## Ajout — coop-anything (2026-10-19, demandé par l'utilisateur)
+
+| Dossier | Licence | Sert à |
+|---|---|---|
+| `upstream/coop-anything/` | MIT | Playbook pour agents (`AGENTS.md`, skills dans `.claude/skills` : coop-research, coop-revive, coop-reverse-engineer, coop-build-from-zero, coop-networking, coop-qa) + **serveur MCP** `tools/mcp/coop_mcp.py` (cherche dans l'annuaire, détecte le moteur d'un jeu depuis son dossier, valide une contribution). `DIRECTORY.md` = 230+ mods coop avec ce qu'ils synchronisent vraiment ; `playbook/` : `split-screen.md` (Nucleus Co-op, **PartyDeck** pour SteamOS), `console-emulators.md` (netplay RetroArch/Dolphin, coop par synchro mémoire entre 2 émulateurs), `decomp-and-recomp.md`, `networking-steam-spacewar.md` (relais Steam sans ouvrir de port), `engine-families.md`, `tools.md`. Se combine avec rea / GhidraMCP / ida-pro-mcp / Harmony déjà dans le kit. |
+
 ## Références non copiées (à récupérer depuis leurs releases quand un projet en a besoin)
 
 - Loaders / frameworks de mod : [BepInEx](https://github.com/BepInEx/BepInEx) (Unity, LGPL), [MelonLoader](https://github.com/LavaGang/MelonLoader),

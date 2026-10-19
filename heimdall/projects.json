@@ -206,6 +206,37 @@
         "android-reverse-engineering-skill (copié) → Phase 0 fingerprint + noms Kotlin récupérés malgré R8 : localiser les classes de thème/rendu avant de patcher l'overlay"
       ],
       "ligne_rouge": "Pas de root (applis bancaires), pas de contournement des contrôles Google/Play Integrity. Voir mémoire waze-san-andreas."
+    },
+    "SteamDeck": {
+      "chemin": "C:\\SteamDeck",
+      "resume": "Steam Deck OLED de l'utilisateur : SteamOS, ES-DE + EmuDeck (~2 450 jeux), multi local à 4 manettes, Moonlight, piloté en SSH.",
+      "domaines": [
+        "modding-re"
+      ],
+      "outils_kit": [],
+      "manques": [
+        "jouer en coop/écran partagé à des jeux PC solo ou sans écran partagé sur le Deck"
+      ],
+      "pistes": [
+        "coop-anything (copié) → playbook/split-screen.md : PartyDeck (MIT, Gamescope + Bubblewrap, jusqu'à 4 instances, une manette par instance) pour l'écran partagé sur SteamOS",
+        "coop-anything → playbook/console-emulators.md : netplay Dolphin/RetroArch (quels cœurs marchent), ports PC coop (Ocarina of Time via Ship of Harkinian, Mega Man X recomp)"
+      ],
+      "ligne_rouge": "Claude ne télécharge pas de ROMs commerciales. Voir C:\\SteamDeck\\HANDOVER.md."
+    },
+    "GTA_SA_Chill_Trainer": {
+      "chemin": "C:\\SA_Chill_Trainer",
+      "resume": "GTA San Andreas moddé (Steam, E:) + trainer ImGui F8/F9.",
+      "domaines": [
+        "modding-re"
+      ],
+      "outils_kit": [
+        "minhook"
+      ],
+      "manques": [],
+      "pistes": [
+        "coop-anything (copié) → DIRECTORY.md : « Player 2 - Drop In, Drop Out » (CLEO, coop histoire en local) et SA-MP/MTA ; playbook pour fiabiliser une coop si l'utilisateur la veut"
+      ],
+      "ligne_rouge": "Ne pas toucher la copie MTA dans E:\\Games."
     }
   }
 }

@@ -34,6 +34,7 @@ Le cœur vivant de la toolbox est **[Heimdall](heimdall/README.md)**, le veilleu
 - **Il2CppDumper** — `Perfare/Il2CppDumper` · MIT · jeux Unity IL2CPP (restaure noms de classes/méthodes).
 - **minhook** — `TsudaKageyu/minhook` · BSD-2 · bibliothèque C de hooks x86/x64 (mods natifs).
 - **android-reverse-engineering-skill** — `SimoneAvogadro/android-reverse-engineering-skill` · Apache-2.0 · skill Claude Code : APK → jadx, noms Kotlin malgré R8, API web extraites (Waze_SA_Mod).
+- **coop-anything** — `cranebeaker/coop-anything` · MIT · playbook + serveur MCP pour rendre **coop n'importe quel jeu solo** (en ligne ou écran partagé) : reprise de mods abandonnés, RE, netcode Steam relay, QA par bots ; annuaire de 230+ mods coop, coop d'émulateurs, PartyDeck (écran partagé Steam Deck).
 - 📘 **Méthode RE avec Claude** (11 étapes, prompts prêts, clean-room, parité) → [guides/reverse-engineering-avec-claude.md](guides/reverse-engineering-avec-claude.md).
 
 ### 🤖 ia-agents — agents IA, MCP & LLM local
@@ -75,6 +76,8 @@ Quand on ouvre un projet : `heimdall.ps1 project -Name <Projet>` (détail dans `
 | **WifiSentinel** (audit réseau + panel) | secu-reseau, godot | public-apis _(manques : ONVIF/RTSP, scanners — Heimdall)_ |
 | **Kali-Pi** (Pi Kali, datapad, stream-deck) | secu-reseau, devtools | _(manques — Heimdall)_ |
 | **Waze_SA_Mod** (APK Waze re-packagé, sans root) | modding-re | android-reverse-engineering-skill → `guides/reverse-engineering-avec-claude.md` |
+| **SteamDeck** (Deck OLED, émulation, multi local) | modding-re | coop-anything (PartyDeck écran partagé, netplay Dolphin/RetroArch, ports PC coop) |
+| **GTA_SA_Chill_Trainer** (GTA SA moddé + trainer) | modding-re | coop-anything (annuaire : « Player 2 » CLEO drop-in/out, SA-MP/MTA), minhook |
 | **Guardians_of_the_Seal** (MMORPG djinn, Godot) | creation-assets, godot, physique-netcode | Atelier IA, comfy_client, universal-modder (asset-pipeline iso8), netfox → `guides/creer-des-assets.md` |
 
 **Fil rouge** : presque tous ont un **panel/datapad Godot 4.7 construit 100 % en code** → toute ressource Godot
@@ -89,6 +92,7 @@ Se tient au courant de ce qui sort d'utile, et garde cet index à jour. Tout : *
 
 ### Dernières nouveautés
 <!-- HEIMDALL:LATEST -->
+- **2026-10-19** — +1 subtree **coop-anything** (MIT) : rendre coop n'importe quel jeu solo (playbook, MCP, annuaire 230+ mods) ; pistes ajoutées pour SteamDeck et GTA_SA_Chill_Trainer.
 - **2026-10-19** — Veille **Alphred** : guide [ia-locale-performante.md](guides/ia-locale-performante.md) (Qwen3.8 MTP, Ollama 0.40.6, Pi, Pocket TTS, Smart Turn, SearXNG…) · [rapport](heimdall/reports/2026-10-19-alphred.md).
 - **2026-10-19** — Cours RE de @0xMovez exploité : guide [reverse-engineering-avec-claude.md](guides/reverse-engineering-avec-claude.md) (11 étapes, prompts, clean-room, parité) + modèle de règles RE ; +1 subtree `android-reverse-engineering-skill` ; liens Caveman, ghidra-mcp (bethington), IDA MCP officiel, ImHex, mitmproxy, ArtCraft. Détail : [heimdall/reports/2026-10-19-cours-re.md](heimdall/reports/2026-10-19-cours-re.md).
 - **2026-10-19** — 6 trouvailles : voir [heimdall/reports/2026-10-19.md](heimdall/reports/2026-10-19.md).
