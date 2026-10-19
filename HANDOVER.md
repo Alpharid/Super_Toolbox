@@ -200,7 +200,7 @@ D:\Super_Toolbox\
 
 ## 11. Historique
 
-- **2026-10-19** — Cours RE @0xMovez → guide `reverse-engineering-avec-claude.md` + modèle de règles RE ; subtree `android-reverse-engineering-skill` ; liens Caveman, bethington/ghidra-mcp, IDA MCP officiel, ImHex, mitmproxy, ArtCraft ; projet Waze_SA_Mod dans Heimdall ; digest `reports/2026-10-19.md`.
+- **2026-10-19** — Cours RE @0xMovez → guide `reverse-engineering-avec-claude.md` + modèle de règles RE ; subtree `android-reverse-engineering-skill` ; liens Caveman, bethington/ghidra-mcp, IDA MCP officiel, ImHex, mitmproxy, ArtCraft ; projet Waze_SA_Mod dans Heimdall ; digest `reports/2026-10-19-cours-re.md`.
 - **2026-10-18** — Domaine `creation-assets` + Atelier IA local (ComfyUI, Z-Image, Qwen-Image/Edit, TRELLIS.2, Krita AI) ; projet Guardians_of_the_Seal ajouté à Heimdall.
 
 - **2026-10-12** — Création du kit par Claude (Claude Code) : `universal-modder` (2c220143) et `rea` (c22111ec) intégrés en

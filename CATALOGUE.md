@@ -121,7 +121,7 @@ Référencés en **lien** (licence non permissive, binaire, ou à installer depu
 
 ## Ajouts Heimdall — cours RE de @0xMovez (2026-10-19)
 
-Méthode complète et prompts : **`guides/reverse-engineering-avec-claude.md`** (+ modèle `guides/modeles/CLAUDE.re-house-rules.md`). Détail : `heimdall/reports/2026-10-19.md`.
+Méthode complète et prompts : **`guides/reverse-engineering-avec-claude.md`** (+ modèle `guides/modeles/CLAUDE.re-house-rules.md`). Détail : `heimdall/reports/2026-10-19-cours-re.md`.
 
 | Dossier | Licence | Sert à |
 |---|---|---|
