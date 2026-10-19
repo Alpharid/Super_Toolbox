@@ -297,6 +297,17 @@
                       "role":  "Skill Claude Code : décompiler un APK (jadx/apktool), lister les API web appelées et le login — Waze_SA_Mod",
                       "synced_commit":  "0c7cf898",
                       "synced_on":  "2026-10-19"
+                  },
+                  {
+                      "name":  "coop-anything",
+                      "url":  "https://github.com/cranebeaker/coop-anything",
+                      "branch":  "main",
+                      "prefix":  "upstream/coop-anything",
+                      "license":  "MIT",
+                      "category":  "modding",
+                      "role":  "Playbook + serveur MCP : rendre jouable en coop (en ligne/écran partagé) n\u0027importe quel jeu solo — recherche, revival de mods abandonnés, RE, netcode Steam relay, QA par bots ; annuaire de 230+ mods coop",
+                      "synced_commit":  "bffd56f0",
+                      "synced_on":  "2026-10-19"
                   }
               ]
 }
