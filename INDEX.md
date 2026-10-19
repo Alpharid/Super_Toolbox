@@ -85,8 +85,7 @@ Se tient au courant de ce qui sort d'utile, et garde cet index à jour. Tout : *
 
 ### Dernières nouveautés
 <!-- HEIMDALL:LATEST -->
-- **2026-10-18** — Nouveau domaine **`creation-assets`** : Atelier IA local (ComfyUI, Z-Image, Qwen-Image/Edit, TRELLIS.2, Krita AI) + guide [creer-des-assets.md](guides/creer-des-assets.md) + `scripts/comfy_client.py`.
-- **2026-10-16** — Premier digest + **1ère vague** : +8 outils copiés, ~11 en lien. Détail : [heimdall/reports/2026-10-16.md](heimdall/reports/2026-10-16.md) · liens : [CATALOGUE.md](CATALOGUE.md) § Ajouts Heimdall.
+- **2026-10-19** — 6 trouvailles : voir [heimdall/reports/2026-10-19.md](heimdall/reports/2026-10-19.md).
 <!-- /HEIMDALL:LATEST -->
 
 ## 4. Maintenir / étendre
