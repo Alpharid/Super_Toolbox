@@ -80,7 +80,7 @@ Quand on ouvre un projet : `heimdall.ps1 project -Name <Projet>` (détail dans `
 | **GTA_SA_Chill_Trainer** (GTA SA moddé + trainer) | modding-re | coop-anything (annuaire : « Player 2 » CLEO drop-in/out, SA-MP/MTA), minhook |
 | **Guardians_of_the_Seal** (MMORPG djinn, Godot) | creation-assets, godot, physique-netcode | Atelier IA, comfy_client, universal-modder (asset-pipeline iso8), netfox → `guides/creer-des-assets.md` |
 | **Tokyo_Hikitori** (jeu VR Unreal, Tokyo 1996) | creation-assets, physique-netcode, godot, devtools | Atelier IA (moodboard/repeints seulement), launcher d'Oddyseus _(manques : mains physiques VR, ragdoll actif, néons en VR — Heimdall)_ → `guides/creer-des-assets.md` |
-| **Acapella_Record** (clip a cappella en mosaïque, Electron + ffmpeg) | creation-assets, devtools | ffmpeg _(manques : accordeur temps réel, alignement audio — Heimdall)_ |
+| **Medusa_Record** (ex-Acapella, clip a cappella en mosaïque, Electron + ffmpeg) | creation-assets, devtools | ffmpeg _(manques : accordeur temps réel, alignement audio — Heimdall)_ |
 
 **Fil rouge** : presque tous ont un **panel/datapad Godot 4.7 construit 100 % en code** → toute ressource Godot
 UI/thème/composants-en-code sert plusieurs projets : priorité de veille `godot`.

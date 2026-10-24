@@ -265,9 +265,9 @@
       ],
       "ligne_rouge": "Pas de look IA par défaut : moodboard de références humaines validé avant toute production. Voir C:\\Tokyo_Hikitori\\HANDOVER.md."
     },
-    "Acapella_Record": {
-      "chemin": "C:\\Acapella_Record",
-      "resume": "Logiciel Electron : prises a cappella guidées, synchronisées et mixées en un clip mosaïque de 1 à 99 vignettes (ffmpeg).",
+    "Medusa_Record": {
+      "chemin": "C:\\Medusa_Record",
+      "resume": "Medusa Record (ex-Acapella Record) : Logiciel Electron : prises a cappella guidées, synchronisées et mixées en un clip mosaïque de 1 à 99 vignettes (ffmpeg).",
       "domaines": [
         "creation-assets",
         "devtools"
@@ -282,7 +282,7 @@
         "MediaPipe Face Detector (Apache-2.0) → recadrage automatique du visage",
         "ffmpeg xstack + loudnorm → grille et volume final"
       ],
-      "ligne_rouge": "Voir C:\\Acapella_Record\\HANDOVER.md."
+      "ligne_rouge": "Voir C:\\Medusa_Record\\HANDOVER.md."
     }
   }
 }
