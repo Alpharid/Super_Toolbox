@@ -237,6 +237,52 @@
         "coop-anything (copié) → DIRECTORY.md : « Player 2 - Drop In, Drop Out » (CLEO, coop histoire en local) et SA-MP/MTA ; playbook pour fiabiliser une coop si l'utilisateur la veut"
       ],
       "ligne_rouge": "Ne pas toucher la copie MTA dans E:\\Games."
+    },
+    "Tokyo_Hikitori": {
+      "chemin": "C:\\Tokyo_Hikitori",
+      "resume": "Jeu VR solo (Unreal 5 + OpenXR) : yakuza livreur à pied dans le Tokyo de 1996, combat physique, ralenti / time stop ; launcher Godot 4.7 STABLE/UNSTABLE.",
+      "domaines": [
+        "creation-assets",
+        "physique-netcode",
+        "godot",
+        "devtools"
+      ],
+      "outils_kit": [],
+      "guide": "guides/creer-des-assets.md",
+      "manques": [
+        "Unreal VR : mains physiques et saisie d'objets (combat de mêlée)",
+        "ragdoll actif / réactions aux coups dans Unreal",
+        "éclairage néon + sol mouillé performant en VR (90 Hz stéréo)",
+        "outils de composition de musique années 90 (synthés, samples d'époque)",
+        "mocap pour les animations de combat"
+      ],
+      "pistes": [
+        "VR Expansion Plugin (mordentral, licence à vérifier) → saisies physiques, armes à deux mains",
+        "Physics Control (plugin Unreal intégré, expérimental) → ennemis en ragdoll actif",
+        "Dexed (DX7), Surge XT, Vital → OST années 90 ; ACE-Step seulement pour des maquettes",
+        "Kimodo (piste toolbox) → mouvements de combat",
+        "launcher d'Oddyseus (C:\\Oddyseus\\launcher) → base du launcher STABLE/UNSTABLE"
+      ],
+      "ligne_rouge": "Pas de look IA par défaut : moodboard de références humaines validé avant toute production. Voir C:\\Tokyo_Hikitori\\HANDOVER.md."
+    },
+    "Acapella_Record": {
+      "chemin": "C:\\Acapella_Record",
+      "resume": "Logiciel Electron : prises a cappella guidées, synchronisées et mixées en un clip mosaïque de 1 à 99 vignettes (ffmpeg).",
+      "domaines": [
+        "creation-assets",
+        "devtools"
+      ],
+      "outils_kit": [],
+      "manques": [
+        "détection de hauteur temps réel (accordeur) en AudioWorklet",
+        "alignement audio par corrélation / détection de transitoire",
+        "ffmpeg LGPL redistribuable"
+      ],
+      "pistes": [
+        "MediaPipe Face Detector (Apache-2.0) → recadrage automatique du visage",
+        "ffmpeg xstack + loudnorm → grille et volume final"
+      ],
+      "ligne_rouge": "Voir C:\\Acapella_Record\\HANDOVER.md."
     }
   }
 }
