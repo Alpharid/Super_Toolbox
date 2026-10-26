@@ -54,6 +54,8 @@ Le cœur vivant de la toolbox est **[Heimdall](heimdall/README.md)**, le veilleu
 - **awesome-gamedev** — `Calinou/awesome-gamedev` · CC-BY-SA · logiciels & assets libres.
 - **awesome** — `sindresorhus/awesome` · CC0 · méta-liste de toutes les listes « awesome ».
 
+- 📘 **Vieux jeu PC dans le navigateur** (source port → WebAssembly, pièges WebGL/ANGLE, hébergement Cloudflare Pages, cache IndexedDB, tests Chrome pilotés) → [guides/porter-un-jeu-pc-dans-le-navigateur.md](guides/porter-un-jeu-pc-dans-le-navigateur.md).
+
 ### 🎨 creation-assets — images, 3D, sprites, audio (installé en local, pas copié)
 - **Atelier IA** — `C:\Atelier_IA` · ComfyUI portable + modèles partagés (`modeles/`) · lancer `lancer_comfyui.bat` → **guide [creer-des-assets.md](guides/creer-des-assets.md)**.
 - **Modèles** (licences vérifiées UE + commercial) : Z-Image Turbo/base + Fun ControlNet (Apache) · Qwen-Image-2512 / Edit-2511 + LoRA angles + ControlNet Union (Apache) · **TRELLIS.2** image→3D natif (MIT) · BiRefNet (MIT).
@@ -81,6 +83,7 @@ Quand on ouvre un projet : `heimdall.ps1 project -Name <Projet>` (détail dans `
 | **Guardians_of_the_Seal** (MMORPG djinn, Godot) | creation-assets, godot, physique-netcode | Atelier IA, comfy_client, universal-modder (asset-pipeline iso8), netfox → `guides/creer-des-assets.md` |
 | **Tokyo_Hikitori** (jeu VR Unreal, Tokyo 1996) | creation-assets, physique-netcode, godot, devtools | Atelier IA (moodboard/repeints seulement), launcher d'Oddyseus _(manques : mains physiques VR, ragdoll actif, néons en VR — Heimdall)_ → `guides/creer-des-assets.md` |
 | **Medusa_Record** (ex-Acapella, clip a cappella en mosaïque, Electron + ffmpeg) | creation-assets, devtools | ffmpeg _(manques : accordeur temps réel, alignement audio — Heimdall)_ |
+| **MM2_Web** (Midtown Madness 2 dans le navigateur, OpenMM2 → WASM) | devtools, modding-re | coop-anything (annuaire, pour un futur multi) → `guides/porter-un-jeu-pc-dans-le-navigateur.md` |
 
 **Fil rouge** : presque tous ont un **panel/datapad Godot 4.7 construit 100 % en code** → toute ressource Godot
 UI/thème/composants-en-code sert plusieurs projets : priorité de veille `godot`.
@@ -94,6 +97,7 @@ Se tient au courant de ce qui sort d'utile, et garde cet index à jour. Tout : *
 
 ### Dernières nouveautés
 <!-- HEIMDALL:LATEST -->
+- **2026-10-26** — Portage web de **Midtown Madness 2** : guide [porter-un-jeu-pc-dans-le-navigateur.md](guides/porter-un-jeu-pc-dans-le-navigateur.md) (OpenMM2, Emscripten, Boxedwine, v86, js-dos, Cloudflare Pages) ; liens dans `CATALOGUE.md` § Portage web.
 - **2026-10-26** — 3 trouvailles : voir [heimdall/reports/2026-10-26.md](heimdall/reports/2026-10-26.md).
 - **2026-10-19** — +1 subtree **coop-anything** (MIT) : rendre coop n'importe quel jeu solo (playbook, MCP, annuaire 230+ mods) ; pistes ajoutées pour SteamDeck et GTA_SA_Chill_Trainer.
 - **2026-10-19** — Veille **Alphred** : guide [ia-locale-performante.md](guides/ia-locale-performante.md) (Qwen3.8 MTP, Ollama 0.40.6, Pi, Pocket TTS, Smart Turn, SearXNG…) · [rapport](heimdall/reports/2026-10-19-alphred.md).

@@ -148,6 +148,20 @@ Synthèse et ordre d'essai : **`guides/ia-locale-performante.md`** · détail : 
 |---|---|---|
 | `upstream/coop-anything/` | MIT | Playbook pour agents (`AGENTS.md`, skills dans `.claude/skills` : coop-research, coop-revive, coop-reverse-engineer, coop-build-from-zero, coop-networking, coop-qa) + **serveur MCP** `tools/mcp/coop_mcp.py` (cherche dans l'annuaire, détecte le moteur d'un jeu depuis son dossier, valide une contribution). `DIRECTORY.md` = 230+ mods coop avec ce qu'ils synchronisent vraiment ; `playbook/` : `split-screen.md` (Nucleus Co-op, **PartyDeck** pour SteamOS), `console-emulators.md` (netplay RetroArch/Dolphin, coop par synchro mémoire entre 2 émulateurs), `decomp-and-recomp.md`, `networking-steam-spacewar.md` (relais Steam sans ouvrir de port), `engine-families.md`, `tools.md`. Se combine avec rea / GhidraMCP / ida-pro-mcp / Harmony déjà dans le kit. |
 
+## Ajouts — portage web d'un jeu PC (2026-10-26, projet MM2_Web)
+
+Liens seulement (rien copié) ; méthode dans `guides/porter-un-jeu-pc-dans-le-navigateur.md`.
+
+- **OpenMM2** — https://github.com/lowlevelmetal/OpenMM2 · GPL-3.0 · réimplémentation de Midtown Madness 2 (C++23, SDL3, Vulkan/OpenGL) qui lit le CD original ; portée en WASM dans `C:\MM2_Web`.
+- **Open1560** — https://github.com/0x1F9F1/Open1560 · GPL-3.0 · réimplémentation de Midtown Madness 1 (build 1560), même moteur Angel.
+- **Emscripten** — https://emscripten.org · MIT/NCSA · C/C++ → WebAssembly ; image Docker `emscripten/emsdk`.
+- **Boxedwine** — https://github.com/danoon2/Boxedwine · GPL-2.0 · Wine + CPU émulé, tourne aussi dans le navigateur (lent, 2D surtout).
+- **v86** — https://github.com/copy/v86 · BSD-2 · PC x86 émulé en WASM (Win9x, Linux) ; sans 3D accélérée.
+- **js-dos** — https://js-dos.com · GPL-2.0 · DOSBox dans le navigateur.
+- **awesome-decomp-games** — https://github.com/myuu-151/awesome-decomp-games · liste notée de décomps, recomps, source ports et portages navigateur.
+- **puppeteer-core** — https://pptr.dev · Apache-2.0 · piloter le Chrome installé pour tester un jeu web (captures, FPS, profil CPU).
+- **Wrangler / Cloudflare Pages** — https://developers.cloudflare.com/pages/ · déploiement statique gratuit, 25 Mio par fichier, bande passante illimitée.
+
 ## Références non copiées (à récupérer depuis leurs releases quand un projet en a besoin)
 
 - Loaders / frameworks de mod : [BepInEx](https://github.com/BepInEx/BepInEx) (Unity, LGPL), [MelonLoader](https://github.com/LavaGang/MelonLoader),

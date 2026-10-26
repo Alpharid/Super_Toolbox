@@ -309,6 +309,24 @@
         "ffmpeg xstack + loudnorm → grille et volume final"
       ],
       "ligne_rouge": "Voir C:\\Medusa_Record\\HANDOVER.md."
+    },
+    "MM2_Web": {
+      "chemin": "C:\\MM2_Web",
+      "resume": "Midtown Madness 2 (2000) jouable dans un navigateur : OpenMM2 compilé en WebAssembly/WebGL 2, données du CD en cache IndexedDB, hébergé sur Cloudflare Pages.",
+      "domaines": [
+        "devtools",
+        "modding-re"
+      ],
+      "outils_kit": [],
+      "guide": "guides/porter-un-jeu-pc-dans-le-navigateur.md",
+      "manques": [
+        "multijoueur en ligne : transport WebRTC/WebSocket + relais pour remplacer ENet/UDP",
+        "audio SDL3 en ScriptProcessorNode (déprécié) : passer à AudioWorklet"
+      ],
+      "pistes": [
+        "coop-anything (MIT) → patterns de netcode/relais si on veut rendre le multi jouable dans le navigateur",
+        "Cloudflare Access (e-mail OTP, gratuit ≤ 50 personnes) → réserver l'URL au père"
+      ]
     }
   }
 }

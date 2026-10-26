@@ -10,6 +10,7 @@ Points d'entrée **par besoin** (le `CATALOGUE.md` est rangé par dépôt). Chaq
 | Faire tourner un LLM / un agent / une voix en local, vite et fiable sur 24 Go — ex. **Alphred_AI** | [ia-locale-performante.md](ia-locale-performante.md) |
 | Trouver une API, un outil, un asset libre, un plugin Godot, un serveur MCP | [trouver-une-ressource.md](trouver-une-ressource.md) |
 | Créer des assets (concept, décors, personnages, sprites iso, icônes, musique) en local, licences UE vérifiées — ex. **Guardians_of_the_Seal** | [creer-des-assets.md](creer-des-assets.md) |
+| Faire tourner un vieux jeu PC dans un navigateur (le vrai jeu, pas un remake) et l'héberger — ex. **MM2_Web** | [porter-un-jeu-pc-dans-le-navigateur.md](porter-un-jeu-pc-dans-le-navigateur.md) |
 | Utiliser le kit depuis un autre projet / une autre session Claude | [../HANDOVER.md](../HANDOVER.md) §5 bis |
 
 Règle commune : **lire par morceaux** (Grep d'abord, puis Read sur les lignes utiles). Le kit pèse ~140 Mo de texte : il ne se lit jamais en entier.
