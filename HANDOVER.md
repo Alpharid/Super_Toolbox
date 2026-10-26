@@ -201,6 +201,7 @@ D:\Super_Toolbox\
 
 ## 11. Historique
 
+- **2026-10-26** — Veille « compagnon IA dans les jeux » : pistes Minecraft/Player2/NitroGen sur Alphred_AI ; nouveau projet **Orphan_Protocol** (mod Fallout 4, `C:\Orphan_Protocol`) dans `heimdall/projects.json` avec ses pistes (Mantella AGPL, CommonLibF4, faster-whisper).
 - **2026-10-26** — Digest Heimdall hebdo : semaine calme (Godot 4.7.2, GodotSteam unifié ; Jolt 5.6 et GhidraMCP à synchroniser), aucun ajout.
 - **2026-10-19** — +1 subtree `coop-anything` (MIT, **28 dépôts**) à la demande de l'utilisateur : playbook + MCP pour rendre coop un jeu solo ; projets SteamDeck et GTA_SA_Chill_Trainer ajoutés à `heimdall/projects.json` avec leurs pistes.
 - **2026-10-19** — Veille Alphred → guide `ia-locale-performante.md` + rapport `2026-10-19-alphred.md` + pistes Alphred (Qwen3.8 MTP, Pi, Pocket TTS, Smart Turn, SearXNG…).

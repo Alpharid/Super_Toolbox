@@ -92,9 +92,35 @@
         "livekit-wakeword (Apache-2.0) → modèle « Hey Alphred » dédié, libère whisper de l'écoute permanente",
         "SearXNG + mcp-searxng + crawl4ai → recherche web locale à la place de tools/web.py (scraping Bing/DDG)",
         "Windows-MCP (MIT) → contrôle du bureau pour la Sonnette, derrière « Je confirme » ; Home Assistant MCP si domotique",
-        "RTK (Apache-2.0) → compresser les sorties de commandes lues par l'agent local"
+        "RTK (Apache-2.0) → compresser les sorties de commandes lues par l'agent local",
+        "Compagnon Minecraft (veille 2026-10-26) : VoxelMind Local 0.5 (Fabric 1.21→26.2, Ollama/LM Studio, compagnon/bâtisseur/MJ) = 1er essai ; Mindcraft / mindcraft-ce (MIT, Mineflayer, Andy-4.2 9B) = bot joueur ; AI Companion Fabric (1.20.1, local + voix Kokoro)",
+        "Player2 / Player2NPC = service cloud (app + compte + crédits « joules »), pas de modèle local confirmé → écarté pour Alphred (désinstallé le 25/10)",
+        "NitroGen (MineDojo, 500M, recherche) → pilote manette par l'image sur n'importe quel jeu, réflexe seulement (pas de plan) : à suivre, pas un compagnon"
       ],
       "guide": "guides/ia-locale-performante.md"
+    },
+    "Orphan_Protocol": {
+      "chemin": "C:\\Orphan_Protocol",
+      "resume": "Mod Fallout 4 (PC) : un chef synthétique piloté par LLM local (sarcastique) commande 29 S.P.A.R.E. (rôles sniper/diversion/garde du corps/assaut, loot, échanges d'armes).",
+      "domaines": [
+        "modding-re",
+        "ia-agents"
+      ],
+      "outils_kit": [
+        "universal-modder",
+        "mem0"
+      ],
+      "manques": [
+        "plugin F4SE C++ (CommonLibF4) : raycasts, scan d'acteurs, regard du joueur",
+        "TTS anglais voix FO4 (xVASynth) + lipsync .fuz/.lip",
+        "planificateur tactique (points hauts, lignes de vue)"
+      ],
+      "pistes": [
+        "Mantella (AGPL-3.0, lien) → micro → LLM → voix + lipsync FO4 ; tel quel ou référence, ne pas copier le code",
+        "CommonLibF4 (alandtse, MIT) → base du plugin F4SE",
+        "faster-whisper (lien, MIT) → STT local",
+        "Companion Infinite Ammo MULTI / Amazing Follower Tweaks → munitions de la troupe"
+      ]
     },
     "WifiSentinel": {
       "chemin": "C:\\WifiSentinel",
