@@ -94,6 +94,7 @@ Se tient au courant de ce qui sort d'utile, et garde cet index à jour. Tout : *
 
 ### Dernières nouveautés
 <!-- HEIMDALL:LATEST -->
+- **2026-10-26** — 3 trouvailles : voir [heimdall/reports/2026-10-26.md](heimdall/reports/2026-10-26.md).
 - **2026-10-19** — +1 subtree **coop-anything** (MIT) : rendre coop n'importe quel jeu solo (playbook, MCP, annuaire 230+ mods) ; pistes ajoutées pour SteamDeck et GTA_SA_Chill_Trainer.
 - **2026-10-19** — Veille **Alphred** : guide [ia-locale-performante.md](guides/ia-locale-performante.md) (Qwen3.8 MTP, Ollama 0.40.6, Pi, Pocket TTS, Smart Turn, SearXNG…) · [rapport](heimdall/reports/2026-10-19-alphred.md).
 - **2026-10-19** — Cours RE de @0xMovez exploité : guide [reverse-engineering-avec-claude.md](guides/reverse-engineering-avec-claude.md) (11 étapes, prompts, clean-room, parité) + modèle de règles RE ; +1 subtree `android-reverse-engineering-skill` ; liens Caveman, ghidra-mcp (bethington), IDA MCP officiel, ImHex, mitmproxy, ArtCraft. Détail : [heimdall/reports/2026-10-19-cours-re.md](heimdall/reports/2026-10-19-cours-re.md).
