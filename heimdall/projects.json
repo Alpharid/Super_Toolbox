@@ -327,6 +327,26 @@
         "coop-anything (MIT) → patterns de netcode/relais si on veut rendre le multi jouable dans le navigateur",
         "Cloudflare Access (e-mail OTP, gratuit ≤ 50 personnes) → réserver l'URL au père"
       ]
+    },
+    "MCM_Online": {
+      "chemin": "C:\\MCM_Online",
+      "resume": "Motocross Madness 1 & 2 d'origine à 8 par Internet : IPXWrapper (mode DOSBox) + relais DOSBox-IPX maison sur le Kali-Pi, correctif registre sans admin (dinput.dll + MinHook), lanceur Windows .NET 4.8, script Mac (Wine), Cloudflare Pages.",
+      "domaines": [
+        "modding-re",
+        "devtools"
+      ],
+      "outils_kit": [
+        "minhook"
+      ],
+      "guide": "guides/jouer-en-reseau-a-un-vieux-jeu.md",
+      "manques": [
+        "test réel en course à plusieurs (2+ machines)",
+        "Mac : script jamais exécuté sur un vrai Mac"
+      ],
+      "pistes": [
+        "lobby DirectPlay (IDirectPlayLobby::RunApplication) → bouton « Rejoindre » direct depuis le lanceur",
+        "ipxbox (GPL-2) → si le relais Python devient trop limité"
+      ]
     }
   }
 }

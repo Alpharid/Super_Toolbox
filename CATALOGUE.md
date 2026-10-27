@@ -162,6 +162,17 @@ Liens seulement (rien copié) ; méthode dans `guides/porter-un-jeu-pc-dans-le-n
 - **puppeteer-core** — https://pptr.dev · Apache-2.0 · piloter le Chrome installé pour tester un jeu web (captures, FPS, profil CPU).
 - **Wrangler / Cloudflare Pages** — https://developers.cloudflare.com/pages/ · déploiement statique gratuit, 25 Mio par fichier, bande passante illimitée.
 
+## Ajouts — multijoueur réseau d'un vieux jeu PC (2026-10-27, projet MCM_Online)
+
+Liens seulement (rien copié) ; méthode dans `guides/jouer-en-reseau-a-un-vieux-jeu.md`.
+
+- **IPXWrapper** — https://github.com/solemnwarning/ipxwrapper · GPL-2.0 · IPX/SPX et DirectPlay IPX sur Windows récent ; mode « DOSBox UDP » = jeu LAN par Internet via un relais. `tools/dptool.c` = client DirectPlay de test.
+- **Serveur IPX DOSBox** — https://www.dosbox.com/wiki/IPX · protocole du relais (réimplémenté en Python durci dans `C:\MCM_Online\relay`).
+- **ipxbox** — https://github.com/fragglet/ipxbox · GPL-2.0 · serveur IPX DOSBox en Go (passerelles, pcap), alternative au relais maison.
+- **Frida** — https://frida.re · wxWindows · tracer un vieux jeu sans débogueur (registre, OutputDebugString, exceptions).
+- **innounp** — https://github.com/jrathlev/InnoUnpacker-Windows-GUI · lire le script `[Registry]`/`[Run]` d'un installeur Inno Setup.
+- **Builds Wine macOS (WineHQ, Gcenx)** — https://github.com/Gcenx/macOS_Wine_builds · LGPL · Wine prêt à l'emploi sur Mac (32 bits via WoW64).
+
 ## Références non copiées (à récupérer depuis leurs releases quand un projet en a besoin)
 
 - Loaders / frameworks de mod : [BepInEx](https://github.com/BepInEx/BepInEx) (Unity, LGPL), [MelonLoader](https://github.com/LavaGang/MelonLoader),
