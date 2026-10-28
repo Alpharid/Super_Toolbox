@@ -192,23 +192,32 @@
       "domaines": [
         "creation-assets",
         "godot",
-        "physique-netcode"
+        "physique-netcode",
+        "ia-agents"
       ],
       "outils_kit": [
         "universal-modder (asset-pipeline : um render3d --preset iso8, um sprite)",
         "netfox",
         "godot-statecharts",
         "limbo_console",
-        "comfy_client.py (scripts/)"
+        "comfy_client.py (scripts/)",
+        "guides/joueurs-ia-dans-un-jeu-en-ligne.md (les Descellés, joueurs IA, docs/11-descelles.md)",
+        "guides/ia-locale-performante.md (modèle local des Descellés sur Ollama)"
       ],
       "guide": "guides/creer-des-assets.md",
       "manques": [
-        "LoRA de style maison (non entraînée)",
+        "LoRA de style maison (v1 ratée sur Z-Image Turbo ; v2 sur le modèle de base prête, pas lancée)",
         "musique maqâm (ACE-Step non installé, pas d'oud libre)",
-        "animation des personnages (Kimodo/Mixamo non branchés)",
-        "serveur MMO C# (rien choisi dans le kit)"
+        "animation des personnages : rig automatique des modèles TRELLIS (Kimodo/Mixamo non branchés)",
+        "sons (Kenney CC0, Sonniss : à choisir)"
+      ],
+      "fait": [
+        "2026-10-26 : serveur MMO C# maison (quêtes, PNJ, économie, chemins A*) : le manque « serveur MMO C# » est comblé sans outil du kit",
+        "2026-10-26 : carte peinte en tuiles isométriques (Blender, Kuwahara du compositeur) + hauteur des décors dans l'alpha pour l'occlusion dans Godot"
       ],
       "pistes": [
+        "mem0 (dans la boîte) → mémoire longue des Descellés (souvenirs, relations) si la mémoire maison en PostgreSQL ne suffit pas",
+        "llama.cpp llama-server -np N → débit en parallèle pour beaucoup de Descellés si Ollama ne suit pas",
         "ai-toolkit (MIT) → LoRA de style sur peintres du domaine public (Guillaumet, Fromentin, Dinet)",
         "ACE-Step 1.5 XL (MIT) → musique ; MIDI + Surge XT (Scala) pour les quarts de ton",
         "Wan 2.2 VACE (Apache-2.0) → repeindre les animations rendues dans Blender",

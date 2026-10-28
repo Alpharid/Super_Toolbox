@@ -42,6 +42,7 @@ Le cœur vivant de la toolbox est **[Heimdall](heimdall/README.md)**, le veilleu
 - **mem0** — `mem0ai/mem0` · Apache-2.0 · mémoire longue durée pour agents/LLM (extraction + vectoriel) — mémoire persistante (Alphred).
 - **awesome-mcp-servers** — `punkpeye/awesome-mcp-servers` · MIT · liste de serveurs MCP (outils pour agents).
 - 📘 **IA locale rapide et fiable (24 Go)** : moteur/modèle (Qwen3.8 MTP), agent (Pi), voix FR sur CPU, web local → [guides/ia-locale-performante.md](guides/ia-locale-performante.md).
+- 📘 **Joueurs IA dans un jeu en ligne** (bots qui jouent vraiment sans tricher : Corps / Tête / Esprit LLM sur événement, mémoire et relations, bots testeurs d'équilibre et d'exploits) → [guides/joueurs-ia-dans-un-jeu-en-ligne.md](guides/joueurs-ia-dans-un-jeu-en-ligne.md).
 - **awesome-claude-code** — `hesreallyhim/awesome-claude-code` · CC-BY-NC-ND · skills/hooks/commandes pour Claude Code (usage perso, lien-liste).
 
 ### 🛡️ secu-reseau — sécurité, réseau & audit défensif
