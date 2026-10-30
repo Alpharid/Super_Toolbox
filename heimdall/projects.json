@@ -188,7 +188,7 @@
     },
     "Guardians_of_the_Seal": {
       "chemin": "C:\\Guardians_of_the_Seal",
-      "resume": "MMORPG isométrique façon MixMaster : Djinn, Sceaux, Conjonction ; univers sombre inspiré de l'Algérie d'autrefois. Client Godot 4.7 (C# prévu), serveur C# autoritaire.",
+      "resume": "MMORPG isométrique façon MixMaster : Djinn, Sceaux, Conjonction ; univers sombre inspiré de l'Algérie d'autrefois. Client Godot .NET 4.7 (C#), serveur C# autoritaire (.NET 10, PostgreSQL), launcher qui s'installe et se met à jour, joueurs IA (Descellés). En ligne pour la famille (Tailscale Funnel).",
       "domaines": [
         "creation-assets",
         "godot",
@@ -207,13 +207,16 @@
       "guide": "guides/creer-des-assets.md",
       "manques": [
         "LoRA de style maison (v1 ratée sur Z-Image Turbo ; v2 sur le modèle de base prête, pas lancée)",
-        "musique maqâm (ACE-Step non installé, pas d'oud libre)",
-        "animation des personnages : rig automatique des modèles TRELLIS (Kimodo/Mixamo non branchés)",
-        "sons (Kenney CC0, Sonniss : à choisir)"
+        "musique maqâm : ACE-Step 1.5 XL branché (morceaux provisoires choisis), pas d'oud libre ni de quarts de ton",
+        "animation des djinn : silhouettes non humaines (bêtes, arbustes, pierres, lanternes), modèles TRELLIS non riggés ; pas de capture possible (humains : CMU + robe simulée, fait)"
       ],
       "fait": [
         "2026-10-26 : serveur MMO C# maison (quêtes, PNJ, économie, chemins A*) : le manque « serveur MMO C# » est comblé sans outil du kit",
-        "2026-10-26 : carte peinte en tuiles isométriques (Blender, Kuwahara du compositeur) + hauteur des décors dans l'alpha pour l'occlusion dans Godot"
+        "2026-10-26 : carte peinte en tuiles isométriques (Blender, Kuwahara du compositeur) + hauteur des décors dans l'alpha pour l'occlusion dans Godot",
+        "2026-10-28 : animation du Gardien en local sans Mixamo : mouvements CMU (BVH) retargetés sur un squelette maison, robe simulée (tissu Blender figé en clés de forme), rendu 8 directions",
+        "2026-10-29 : musique (ACE-Step 1.5 XL dans ComfyUI) et bruitages (MOSS-SoundEffect v2.0) en local ; Demucs + Whisper pour vérifier qu'aucune parole n'est chantée",
+        "2026-10-30 : mise en ligne sans domaine : Tailscale Funnel (443 → port joueurs), IP réelle via X-Forwarded-For crue seulement depuis la boucle locale ; un seul .exe (launcher Godot) qui s'installe, se met à jour et met le jeu à jour (manifeste sha256)",
+        "2026-10-30 : entités 3D en série : concept Z-Image (base) → fiche Qwen-Image-Edit → TRELLIS.2 → rendu Blender 8 directions → sprites ; lueur recréée par couleur de texel (TRELLIS éteint les lumières)"
       ],
       "pistes": [
         "mem0 (dans la boîte) → mémoire longue des Descellés (souvenirs, relations) si la mémoire maison en PostgreSQL ne suffit pas",
@@ -221,7 +224,9 @@
         "ai-toolkit (MIT) → LoRA de style sur peintres du domaine public (Guillaumet, Fromentin, Dinet)",
         "ACE-Step 1.5 XL (MIT) → musique ; MIDI + Surge XT (Scala) pour les quarts de ton",
         "Wan 2.2 VACE (Apache-2.0) → repeindre les animations rendues dans Blender",
-        "NVIDIA Kimodo (SOMA/G1) → animations à partir de texte"
+        "NVIDIA Kimodo (SOMA/G1) → animations à partir de texte",
+        "UniRig (VAST-AI / Tsinghua, SIGGRAPH 2025) → squelette et poids automatiques sur n'importe quel GLB, créatures non humaines comprises ; à essayer sur les GLB TRELLIS des djinn avant de rigger à la main (licence et poids publiés à vérifier)",
+        "RigAnything (SIGGRAPH TOG 2025), Make-It-Animatable → autres rigs automatiques sans gabarit, à comparer à UniRig"
       ]
     },
     "Waze_SA_Mod": {
