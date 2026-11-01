@@ -2,7 +2,8 @@
 
 Faire vivre un monde en ligne avec des personnages joués par des IA : ils farment, craftent, échangent, discutent,
 se groupent et se fâchent, **sans tricher** et **sans comportement scripté**. Ils servent aussi de testeurs
-(équilibre, bugs bloquants, exploits). Méthode tirée de la conception des « Descellés » d'un MMO maison (oct. 2026).
+(équilibre, bugs bloquants, exploits, quêtes, économie, charge). Méthode tirée de la conception des « Descellés »
+d'un MMO maison, Guardians of the Seal (oct.-nov. 2026), écrite pour servir à n'importe quel jeu.
 
 ## 1. La règle d'or : un bot est un client
 
@@ -55,20 +56,93 @@ pirouette qui ne ment pas franchement.
 - Aucun bot en ligne → décharger le modèle (`keep_alive: 0`).
 - Une API (Claude…) seulement pour les moments rares et importants : sinon le coût récurrent grimpe vite.
 
-## 6. Les bots testeurs
+## 6. Des profils de joueurs, écrits pour chaque jeu
 
-Chaque bot note ce qu'il voit, un orchestrateur agrège (JSONL + résumé Markdown lisible par une IA) :
-`blocage` (position figée, quête qui ne valide pas), `anomalie` (résultat hors des bornes des règles partagées),
-`refus` inattendu, `exploit` (gains aberrants vs la distribution : duplication, faille), `equilibre` (XP/h par lieu,
-temps de kill, builds dominants). Des bots « fouineurs » qui cherchent la faille (actions hors portée, déconnexion au pire
-moment, rafales) **uniquement sur un monde de test**.
+La personnalité (§3) dit comment un bot se tient avec les autres ; le **profil** dit comment il **joue**. Les deux se
+combinent : un tryhard radin, un casual bavard, un chill rancunier. Les profils s'écrivent **sur mesure pour le jeu** :
+ce qu'un tryhard optimise dans un MMO de capture (trio de créatures, ordre des quêtes) n'a rien à voir avec ce qu'il
+optimise dans un jeu de course ou de survie. Une base de départ :
 
-## 7. Démarrer petit
+| Profil | Comment il joue | Ce qu'il fait remonter |
+|---|---|---|
+| **Tryhard** | longues séances, suit le chemin le plus rentable, copie et pousse la méta, compte tout | temps plancher du contenu, builds dominants, détours inutiles, ce qui est trop facile ou trop lent |
+| **Joueur moyen** | rythme ordinaire, suit les quêtes, se trompe parfois | la référence : les temps « normaux » auxquels comparer les autres |
+| **Casual** | séances courtes et espacées, lit en diagonale, se perd, abandonne quand ça coince | où l'on décroche, ce qui n'est pas compris, combien de séances avant d'arrêter |
+| **Chill** | flâne, récolte, fabrique, discute, explore sans but | les coins vides, l'ennui, la vie du monde, l'artisanat et l'économie du quotidien |
+| **Tricheur** | cherche l'abus **avec les seuls moyens d'un joueur** (ordre des gestes, déconnexion au pire moment, échange interrompu, rafales, cas limites des règles) | chaque faille, avec la marche à suivre pour la reproduire |
+| **Streamer / vidéaste** | cherche ce qu'il montrerait à sa communauté : le spectaculaire, le drôle, le secret, le raté | les moments à montrer, les longs passages sans rien à montrer, les secrets trouvés trop tôt ou jamais |
+
+Selon le jeu, en ajouter : le meneur de groupe, le marchand, le complétionniste qui veut tout le bestiaire, le
+fouineur qui ouvre chaque porte, le gêneur social. Règles :
+
+- **Un profil = des réglages de la Tête**, pas un script : poids des options, durée et fréquence des séances, patience,
+  tolérance à l'échec, envie d'explorer, attention portée aux textes. Le casual n'est pas un tryhard ralenti : il fait
+  d'autres choix.
+- **Le tricheur ne triche jamais vraiment.** Pas de client modifié, pas de lecture de mémoire, pas de message hors du
+  protocole du jeu. Quand il trouve une faille, il la reproduit une fois, la signale et passe à autre chose : il
+  n'en profite pas et ne la répand pas. Ses essais agressifs (rafales, actions hors portée) restent sur un monde de test.
+- **Un profil qui agit sur les autres** (gêneur, meneur, tricheur) fausse leurs mesures : le signaler dans le rapport de
+  séance et comparer avec une séance sans lui.
+
+## 7. Séances et rapports
+
+**Séances d'un seul profil** : la mesure propre d'une manière de jouer. Dix casuals disent où l'on décroche, dix
+tryhards donnent le temps plancher du contenu et la méta qui en sort.
+
+**Séances mélangées** : une composition proche d'une vraie population (par exemple moitié de joueurs moyens, un quart
+de casuals, des chill, quelques tryhards, un tricheur, un streamer). On y voit ce qui ne naît qu'à plusieurs : la
+concurrence sur une ressource rare, la cible volée, l'entraide, la file devant un personnage de quête, les prix qui bougent.
+
+Chaque séance note sa **graine**, la **version** du jeu, la **composition** et l'**accélération** du monde, pour la
+rejouer à l'identique après un correctif. Un monde accéléré crée ses propres artefacts (une cible disparaît entre la vue
+et l'ordre) : revoir à vitesse réelle avant de conclure à un défaut du jeu.
+
+**Chaque bot rend un rapport en deux parties :**
+
+1. **Les mesures**, au même format pour tous (JSONL) : temps par étape et par quête, XP et gains par heure, K.O.,
+   abandons, refus, chemin suivi. C'est ce qui permet de comparer les profils entre eux et d'une version à l'autre.
+2. **Un récit dans sa voix** : le tryhard râle que l'étape 4 est un détour de six minutes ; le casual écrit qu'il n'a
+   pas trouvé où aller et qu'il a quitté ; le streamer liste trois moments à montrer et dit qu'entre la 20e et la 45e
+   minute il n'avait rien à filmer ; le tricheur décrit sa faille pas à pas. Sans LLM, des gabarits par profil remplis
+   par les mesures suffisent ; avec un LLM, le récit s'écrit **à partir des mesures seulement** (chaque phrase
+   renvoie à une ligne mesurée, rien d'inventé).
+
+Un orchestrateur agrège tout (JSONL + résumé Markdown lisible par une IA, qui peut proposer les corrections). Les
+**écarts entre profils** parlent plus qu'un chiffre seul : si le casual met trois fois plus que le joueur moyen sur
+une quête, elle est mal expliquée ; si le tryhard la finit en deux minutes, elle est peut-être contournable.
+
+Genres de signalements :
+
+| Genre | Ce qui le déclenche |
+|---|---|
+| `blocage` | position figée malgré l'intention, chemin introuvable, étape de quête qui ne se valide pas |
+| `anomalie` | résultat hors des bornes des règles partagées, objet ou monnaie apparus sans cause |
+| `refus` | refus du serveur que le bot n'attendait pas (désaccord client / serveur) |
+| `exploit` | gains aberrants par rapport à la distribution, ou faille trouvée par le tricheur |
+| `equilibre` | XP/h par lieu et par niveau, temps pour vaincre, K.O. par adversaire, builds gagnants, quêtes abandonnées |
+| `ressenti` | ce que le profil a vécu : ennui, confusion, frustration, envie de montrer (le récit, en résumé) |
+
+## 8. À quoi ils servent
+
+- **Peupler le monde** au début, quand il y a peu de joueurs (et l'assumer, §4).
+- **Tester l'économie des joueurs** : sources et fuites de monnaie, prix, inflation, ce qu'un profil accumule en
+  quelques heures (dans Guardians, les gains du butin montaient trop vite : vu dans les rapports).
+- **Valider le design des quêtes** : où chaque profil bloque, combien de temps il y passe, où il abandonne.
+- **Charge du serveur** : monter le nombre de bots par palier et mesurer la boucle, la mémoire, la bande passante.
+- **Ligne de base pour l'anti-triche** : les gains et rythmes de joueurs honnêtes, par profil ; un humain très au-dessus
+  de la distribution des tryhards mérite un regard.
+- **Non-régression** après chaque publication : une séance courte, toujours la même (graine et composition fixes),
+  comparée au rapport précédent.
+- **Plus tard, des personas LLM** (IC/OOC, §3 et §5) : le profil donne la manière de jouer, la persona donne la voix.
+
+## 9. Démarrer petit
 
 1. Serveur : drapeau + compteur + création des comptes bots par l'admin.
-2. 5-10 bots Corps + Tête, sans LLM : ils doivent finir le tutoriel et farmer au bon endroit.
-3. Esprit : chat, mémoire, relations.
-4. Horaires, observatoire (graphe social + « gazette » quotidienne), puis on monte en nombre en mesurant.
+2. 5-10 bots Corps + Tête, sans LLM : ils doivent finir le tutoriel et farmer au bon endroit. Dès ce stade, deux ou
+   trois profils (moyen, casual, tryhard) : leurs écarts sont la première mesure utile.
+3. Rapports par profil (mesures + récit à gabarits), séances seules puis mélangées ; le tricheur sur un monde de test.
+4. Esprit : chat, mémoire, relations, récits écrits par le LLM.
+5. Horaires, observatoire (graphe social + « gazette » quotidienne), puis on monte en nombre en mesurant.
 
 ## Références
 

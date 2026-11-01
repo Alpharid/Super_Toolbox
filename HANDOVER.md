@@ -201,6 +201,7 @@ D:\Super_Toolbox\
 
 ## 11. Historique
 
+- **2026-11-01** — Guide `joueurs-ia-dans-un-jeu-en-ligne.md` enrichi (retour de Guardians of the Seal, docs/11 §14) : profils de joueurs sur mesure (tryhard, moyen, casual, chill, tricheur qui signale sans jamais tricher, streamer), rapports en deux parties (mesures communes + récit dans la voix du profil), séances d'un seul profil et mélangées, usages des bots (peupler, économie, quêtes, charge, ligne de base anti-triche, non-régression, personas LLM).
 - **2026-10-30** — Heimdall, projet Guardians_of_the_Seal remis à jour (C# fait, en ligne par Tailscale Funnel, launcher qui se met à jour, musique ACE-Step et bruitages MOSS, chaîne des entités 3D) ; manque restant : animer les djinn (silhouettes non humaines) → pistes UniRig, RigAnything, Make-It-Animatable.
 - **2026-10-26** — Veille « compagnon IA dans les jeux » : pistes Minecraft/Player2/NitroGen sur Alphred_AI ; nouveau projet **Orphan_Protocol** (mod Fallout 4, `C:\Orphan_Protocol`) dans `heimdall/projects.json` avec ses pistes (Mantella AGPL, CommonLibF4, faster-whisper).
 - **2026-10-26** — Digest Heimdall hebdo : semaine calme (Godot 4.7.2, GodotSteam unifié ; Jolt 5.6 et GhidraMCP à synchroniser), aucun ajout.
