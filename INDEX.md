@@ -100,15 +100,7 @@ Se tient au courant de ce qui sort d'utile, et garde cet index à jour. Tout : *
 
 ### Dernières nouveautés
 <!-- HEIMDALL:LATEST -->
-- **2026-10-27** — Multijoueur d'un vieux jeu LAN par Internet (**MCM_Online**) : guide [jouer-en-reseau-a-un-vieux-jeu.md](guides/jouer-en-reseau-a-un-vieux-jeu.md) (IPXWrapper, relais DOSBox-IPX, MinHook, Frida, Wine Mac) ; liens dans `CATALOGUE.md` § Multijoueur réseau.
-- **2026-10-26** — Portage web de **Midtown Madness 2** : guide [porter-un-jeu-pc-dans-le-navigateur.md](guides/porter-un-jeu-pc-dans-le-navigateur.md) (OpenMM2, Emscripten, Boxedwine, v86, js-dos, Cloudflare Pages) ; liens dans `CATALOGUE.md` § Portage web.
-- **2026-10-26** — 3 trouvailles : voir [heimdall/reports/2026-10-26.md](heimdall/reports/2026-10-26.md).
-- **2026-10-19** — +1 subtree **coop-anything** (MIT) : rendre coop n'importe quel jeu solo (playbook, MCP, annuaire 230+ mods) ; pistes ajoutées pour SteamDeck et GTA_SA_Chill_Trainer.
-- **2026-10-19** — Veille **Alphred** : guide [ia-locale-performante.md](guides/ia-locale-performante.md) (Qwen3.8 MTP, Ollama 0.40.6, Pi, Pocket TTS, Smart Turn, SearXNG…) · [rapport](heimdall/reports/2026-10-19-alphred.md).
-- **2026-10-19** — Cours RE de @0xMovez exploité : guide [reverse-engineering-avec-claude.md](guides/reverse-engineering-avec-claude.md) (11 étapes, prompts, clean-room, parité) + modèle de règles RE ; +1 subtree `android-reverse-engineering-skill` ; liens Caveman, ghidra-mcp (bethington), IDA MCP officiel, ImHex, mitmproxy, ArtCraft. Détail : [heimdall/reports/2026-10-19-cours-re.md](heimdall/reports/2026-10-19-cours-re.md).
-- **2026-10-19** — 6 trouvailles : voir [heimdall/reports/2026-10-19.md](heimdall/reports/2026-10-19.md).
-- **2026-10-18** — Nouveau domaine **`creation-assets`** : Atelier IA local (ComfyUI, Z-Image, Qwen-Image/Edit, TRELLIS.2, Krita AI) + guide [creer-des-assets.md](guides/creer-des-assets.md) + `scripts/comfy_client.py`.
-- **2026-10-16** — Premier digest + **1ère vague** : +8 outils copiés, ~11 en lien. Détail : [heimdall/reports/2026-10-16.md](heimdall/reports/2026-10-16.md) · liens : [CATALOGUE.md](CATALOGUE.md) § Ajouts Heimdall.
+- **2026-11-02** — 1 trouvaille (semaine calme) : voir [heimdall/reports/2026-11-02.md](heimdall/reports/2026-11-02.md).
 <!-- /HEIMDALL:LATEST -->
 
 ## 4. Maintenir / étendre
