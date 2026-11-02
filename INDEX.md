@@ -4,8 +4,9 @@
 > domaine, en une ligne par outil. Pour le détail d'un outil → `CATALOGUE.md`. Pour « je veux faire X » → `guides/`.
 > **Ne pas lire `CATALOGUE.md` ni fouiller `upstream/` tant que cet index suffit** (économie de tokens).
 
-**7 domaines** : `godot` · `physique-netcode` · `modding-re` · `ia-agents` · `secu-reseau` · `devtools` · `creation-assets`.
-Le cœur vivant de la toolbox est **[Heimdall](heimdall/README.md)**, le veilleur (§ en bas).
+**8 domaines** : `godot` · `physique-netcode` · `modding-re` · `ia-agents` · `secu-reseau` · `devtools` · `creation-assets` · `qa-playtest`.
+Deux cœurs vivants : **[Heimdall](heimdall/README.md)**, le veilleur (§ en bas), et **[Hyperbole](hyperbole/README.md)**, la salle
+du temps (joueurs simulés qui testent les jeux sur le PC, §1 `qa-playtest`).
 
 ---
 
@@ -45,6 +46,17 @@ Le cœur vivant de la toolbox est **[Heimdall](heimdall/README.md)**, le veilleu
 - 📘 **Joueurs IA dans un jeu en ligne** (bots qui jouent vraiment sans tricher : Corps / Tête / Esprit LLM sur événement, mémoire et relations ; profils de joueurs sur mesure (tryhard, casual, chill, tricheur qui signale sans tricher, streamer…), rapports chiffrés + récit dans leur voix, séances d'un seul profil ou mélangées ; usages : peupler, économie, quêtes, charge, anti-triche, non-régression) → [guides/joueurs-ia-dans-un-jeu-en-ligne.md](guides/joueurs-ia-dans-un-jeu-en-ligne.md).
 - **awesome-claude-code** — `hesreallyhim/awesome-claude-code` · CC-BY-NC-ND · skills/hooks/commandes pour Claude Code (usage perso, lien-liste).
 
+### 🧪 qa-playtest — playtest automatisé (outil maison : Hyperbole)
+- **Hyperbole** — `hyperbole/` · maison (MIT comme le reste du code maison) · **la salle du temps** : Mr. Popo (orchestrateur Python
+  stdlib) envoie des **Einherjar** (joueurs simulés à profils : moyen, tryhard, casual, chill, fouineur, streamer, saboteur, meneur,
+  complétionniste, débutant) dans des **chambres** headless accélérées (ou x1 pour le réseau), cycle après cycle (**Valhalla**).
+  **Sans triche** : entrées de joueur + Sens seulement (contrôle `lint`). Rapports : rétention, fun, défi, équilibre, apprentissage,
+  bugs/blocages/failles/fuites, effet du saboteur (jumeau), A/B, non-régression, rejeu par graine ; Esprit LLM local optionnel.
+  Addon **Godot 4.7**, écrivain **C#**, **pont TCP** pour tout autre moteur. Démarrer : `python hyperbole\hyperbole.py demo --ouvrir`
+  · brancher un jeu : `hyperbole.py init <projet> --moteur godot` → [hyperbole/README.md](hyperbole/README.md).
+- Liens (veille 2026-11-02, [rapport](heimdall/reports/2026-11-02-hyperbole.md)) : gdUnit4 6.2.3 (entrées simulées, Godot 4.7), godot-qa
+  (scénarios JSON), godot-cli-control, playtest-agent, GBQA, PettingZoo, lifelines, Unreal Learning Agents → `CATALOGUE.md`.
+
 ### 🛡️ secu-reseau — sécurité, réseau & audit défensif
 - _(rien de copié — licences surtout GPL/SSPL → référencées en lien : Nuclei, Cameradar, CrowdSec, RustScan, Lynis… voir `CATALOGUE.md` § Liens Heimdall et `heimdall/reports/`)._
 
@@ -74,19 +86,24 @@ Quand on ouvre un projet : `heimdall.ps1 project -Name <Projet>` (détail dans `
 
 | Projet | Domaines | Outils du kit qui s'appliquent |
 |---|---|---|
-| **Stryder_Symbiosis** (jeu Godot+Jolt) | godot, physique-netcode | JoltPhysics, GodotIK, godot-destruction-plugin, netfox, limboai, beehave → `guides/physique-et-godot.md` |
-| **MixMaster_Regenesis** (serveur + panel) | modding-re, godot | rea, universal-modder, Il2CppDumper, GhidraMCP → `guides/reverse-engineering-avec-claude.md` (clean-room serveur) |
+| **Stryder_Symbiosis** (jeu Godot+Jolt) | godot, physique-netcode, qa-playtest | JoltPhysics, GodotIK, godot-destruction-plugin, netfox, limboai, beehave, **Hyperbole** (1er adaptateur, plan `playtest-bots.md`) → `guides/physique-et-godot.md` |
+| **MixMaster_Regenesis** (serveur + panel) | modding-re, godot | rea, universal-modder, Il2CppDumper, GhidraMCP → `guides/reverse-engineering-avec-claude.md` (clean-room serveur) ; Hyperbole (bots-clients de charge, piste) |
 | **Alphred_AI** (IA locale + panel + voix) | ia-agents, godot, devtools | context7, mem0, awesome-mcp-servers → `guides/ia-locale-performante.md` |
 | **WifiSentinel** (audit réseau + panel) | secu-reseau, godot | public-apis _(manques : ONVIF/RTSP, scanners — Heimdall)_ |
 | **Kali-Pi** (Pi Kali, datapad, stream-deck) | secu-reseau, devtools | _(manques — Heimdall)_ |
 | **Waze_SA_Mod** (APK Waze re-packagé, sans root) | modding-re | android-reverse-engineering-skill → `guides/reverse-engineering-avec-claude.md` |
 | **SteamDeck** (Deck OLED, émulation, multi local) | modding-re | coop-anything (PartyDeck écran partagé, netplay Dolphin/RetroArch, ports PC coop) |
 | **GTA_SA_Chill_Trainer** (GTA SA moddé + trainer) | modding-re | coop-anything (annuaire : « Player 2 » CLEO drop-in/out, SA-MP/MTA), minhook |
-| **Guardians_of_the_Seal** (MMORPG djinn, Godot) | creation-assets, godot, physique-netcode | Atelier IA, comfy_client, universal-modder (asset-pipeline iso8), netfox → `guides/creer-des-assets.md` |
+| **Guardians_of_the_Seal** (MMORPG djinn, Godot) | creation-assets, godot, physique-netcode, qa-playtest | Atelier IA, comfy_client, universal-modder (asset-pipeline iso8), netfox, **Hyperbole** (journal des Descellés : `csharp/HyperboleJournal.cs`) → `guides/creer-des-assets.md`, `guides/joueurs-ia-dans-un-jeu-en-ligne.md` |
 | **Tokyo_Hikitori** (jeu VR Unreal, Tokyo 1996) | creation-assets, physique-netcode, godot, devtools | Atelier IA (moodboard/repeints seulement), launcher d'Oddyseus _(manques : mains physiques VR, ragdoll actif, néons en VR — Heimdall)_ → `guides/creer-des-assets.md` |
 | **Medusa_Record** (ex-Acapella, clip a cappella en mosaïque, Electron + ffmpeg) | creation-assets, devtools | ffmpeg _(manques : accordeur temps réel, alignement audio — Heimdall)_ |
 | **MCM_Online** (Motocross Madness 1 & 2 à 8 par Internet : IPXWrapper + relais, lanceur, Mac via Wine) | modding-re, devtools | minhook (correctif registre sans admin) → `guides/jouer-en-reseau-a-un-vieux-jeu.md` |
 | **MM2_Web** (Midtown Madness 2 dans le navigateur, OpenMM2 → WASM) | devtools, modding-re | coop-anything (annuaire, pour un futur multi) → `guides/porter-un-jeu-pc-dans-le-navigateur.md` |
+| **Sanctuary** (rogue-lite : mini-jeu Electron + futur dungeon crawler 3D) | godot, creation-assets, qa-playtest | Hyperbole (runs : survie, causes de mort, contenu épuisé) |
+| **TIDIM** (FPS coop, familiers d'un héros IA vantard) | godot, ia-agents, qa-playtest | Hyperbole (familiers simulés par profils, équilibre de la barre d'ego) |
+
+**Jeux** : tout projet de jeu passe par **Hyperbole** avant les vrais joueurs (`hyperbole.py init <projet>`), c'est là que
+se testent l'équilibre, le fun et les bugs sans dépenser de tokens.
 
 **Fil rouge** : presque tous ont un **panel/datapad Godot 4.7 construit 100 % en code** → toute ressource Godot
 UI/thème/composants-en-code sert plusieurs projets : priorité de veille `godot`.
@@ -100,6 +117,7 @@ Se tient au courant de ce qui sort d'utile, et garde cet index à jour. Tout : *
 
 ### Dernières nouveautés
 <!-- HEIMDALL:LATEST -->
+- **2026-11-02** — **Hyperbole** entre dans la boîte (playtest par joueurs simulés) + veille ciblée `qa-playtest` : [heimdall/reports/2026-11-02-hyperbole.md](heimdall/reports/2026-11-02-hyperbole.md).
 - **2026-11-02** — 1 trouvaille (semaine calme) : voir [heimdall/reports/2026-11-02.md](heimdall/reports/2026-11-02.md).
 <!-- /HEIMDALL:LATEST -->
 

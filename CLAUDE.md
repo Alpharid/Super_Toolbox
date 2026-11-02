@@ -7,6 +7,9 @@ défensive, Godot UI, outils dev). Dépôts tiers en git subtree dans `upstream/
 **Réflexe (important)** : dès qu'on touche un projet de l'utilisateur, consulter `INDEX.md` puis
 `heimdall.ps1 project -Name <Projet>` → proposer les outils pertinents déjà présents et repérer les manques. Un
 manque non couvert → lancer une passe de veille **Heimdall** (`heimdall/README.md`) pour trouver/proposer/ajouter.
+**Jeux** : proposer **Hyperbole** (`hyperbole/README.md`, joueurs simulés sans triche, chambres accélérées) pour tester
+équilibre/fun/bugs sur le PC plutôt qu'en dépensant des tokens ; Heimdall le maintient (domaine `qa-playtest`). Avant de
+pousser un changement d'Hyperbole : `python -m unittest discover -s hyperbole/tests` et `python hyperbole/hyperbole.py demo --banc`.
 
 Règles :
 - S'orienter via `INDEX.md` (par domaine), puis `guides/` (par besoin), puis `CATALOGUE.md` (par dépôt). Ne pas fouiller `upstream/` si l'index suffit (tokens).

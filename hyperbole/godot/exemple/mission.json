@@ -1,0 +1,16 @@
+{
+  "_doc": "Éprouve l'addon Godot : python ../../hyperbole.py lancer mission.json --ouvrir (Godot 4.7 dans C:/Godot).",
+  "nom": "godot-plaines",
+  "jeu": {
+    "nom": "Les Plaines (exemple Godot)",
+    "cmd": ["C:/Godot/Godot_v4.7.2-stable_win64_console.exe", "--headless", "--fixed-fps", "60", "--path", "..", "res://exemple/plaines.tscn", "--", "--hyperbole={chamber_json}"]
+  },
+  "objectif": ["bugs"],
+  "lobbies": [{"personas": {"moyen": 2, "tryhard": 1, "casual": 1}}, {"pure": "fouineur", "bots": 2}],
+  "duree_min": 0.5,
+  "duree_jeu_h": 0.5,
+  "chambres": 2,
+  "heartbeat_s": 40,
+  "seuils": {"cell_size": 40, "stuck_cluster_min": 2},
+  "lint": {"racine": "..", "presets": ["godot"], "fichiers": ["addons/hyperbole/hyperbole_head.gd"], "autorises": []}
+}

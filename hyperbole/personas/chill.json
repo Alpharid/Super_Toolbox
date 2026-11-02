@@ -1,0 +1,51 @@
+{
+  "id": "chill",
+  "extends": "moyen",
+  "nom": "Chill",
+  "description": "Flâne, récolte, fabrique, discute, explore sans but.",
+  "drives": {
+    "progress": 0.2,
+    "mastery": 0.15,
+    "explore": 0.7,
+    "collect": 0.75,
+    "create": 0.75,
+    "social": 0.6,
+    "help": 0.5,
+    "show": 0.2,
+    "rest": 0.6,
+    "survive": 0.5
+  },
+  "skill": {
+    "aim": 0.4,
+    "reaction_ms": 420,
+    "mistake_rate": 0.1,
+    "apm": 35,
+    "learning_rate": 0.45
+  },
+  "patience": 0.8,
+  "frustration_tolerance": 0.45,
+  "boredom_tolerance": 0.7,
+  "risk": 0.2,
+  "curiosity": 0.7,
+  "reads_text": 0.7,
+  "session": {
+    "minutes": [
+      60,
+      180
+    ],
+    "afk_per_hour": 0.6,
+    "afk_minutes": [
+      2,
+      10
+    ]
+  },
+  "voice": {
+    "style": "détendu, contemplatif, parle des coins du monde et de ce qui manque pour flâner"
+  },
+  "surfaces": [
+    "coins vides",
+    "ennui",
+    "vie du monde",
+    "artisanat et économie du quotidien"
+  ]
+}

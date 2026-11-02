@@ -1,0 +1,60 @@
+{
+  "_doc": "Modèle pour un jeu Godot 4 avec l'addon addons/hyperbole (voir godot/README.md). Adapter les chemins.",
+  "nom": "mon-jeu",
+  "jeu": {
+    "nom": "Mon jeu",
+    "version_cmd": "git rev-parse --short HEAD",
+    "cmd": [
+      "C:/Godot/Godot_v4.7.2-stable_win64_console.exe",
+      "--headless",
+      "--path",
+      "..",
+      "res://hyperbole/chambre.tscn",
+      "--",
+      "--hyperbole={chamber_json}"
+    ],
+    "cwd": "."
+  },
+  "objectif": [
+    "equilibre",
+    "fun",
+    "bugs"
+  ],
+  "mode": "chambre",
+  "vitesse": "max",
+  "duree_min": 15,
+  "duree_jeu_h": null,
+  "chambres": "auto",
+  "valhalla": {
+    "cycles": 1
+  },
+  "personas_dirs": [
+    "personas"
+  ],
+  "params": {},
+  "seuils": {
+    "cell_size": 4,
+    "vitesse_max_deplacement": null,
+    "bornes": null,
+    "progression_figee_min": 30
+  },
+  "lint": {
+    "racine": "..",
+    "presets": [
+      "godot"
+    ],
+    "fichiers": [
+      "hyperbole/tete/**/*.gd"
+    ],
+    "autorises": [
+      "*senses*.gd",
+      "*body*.gd"
+    ],
+    "interdits": []
+  },
+  "esprit": {
+    "actif": false,
+    "modele": "mistral-nemo:12b",
+    "url": "http://127.0.0.1:11434"
+  }
+}

@@ -8,7 +8,8 @@
       "resume": "Jeu Godot 4.7 coop « tout est physique » (Jolt).",
       "domaines": [
         "godot",
-        "physique-netcode"
+        "physique-netcode",
+        "qa-playtest"
       ],
       "outils_kit": [
         "JoltPhysics",
@@ -16,7 +17,8 @@
         "godot-destruction-plugin",
         "netfox",
         "limboai",
-        "beehave"
+        "beehave",
+        "Hyperbole (hyperbole/) — joueurs simulés sans triche, chambres accélérées, rapports fun/défi/équilibre/bugs"
       ],
       "guide": "guides/physique-et-godot.md",
       "manques": [
@@ -28,7 +30,9 @@
         "godot-softbody2d (copié) → soft body 2D : déformation/blobs/cordes",
         "godot-statecharts (copié) → machines à états pour l'IA et le flux de jeu",
         "limbo_console (copié) → console de debug dans les builds exportés (physique en jeu)",
-        "godot-rollback-netcode (lien GitLab) → rollback de référence si netfox ne suffit pas pour le coop déterministe"
+        "godot-rollback-netcode (lien GitLab) → rollback de référence si netfox ne suffit pas pour le coop déterministe",
+        "Hyperbole (copié, cœur générique fait le 2026-11-02) → phase 2 du plan sandbox/design/_wip/poc-spec/playtest-bots.md : adaptateur Stryder (Corps à entrées tiré du soak bot, Sens caméra/sons/overlays, scène de chambre), `hyperbole.py init C:\\Stryder-Symbiosis --moteur godot`, voie reel = le soak actuel",
+        "godot_rl_agents_plugin (copié) → capteurs Raycast/Grid comme Sens honnêtes prêts à l'emploi pour les Einherjar"
       ]
     },
     "MixMaster_Regenesis": {
@@ -36,13 +40,15 @@
       "resume": "Serveur privé MixMaster (reprise du client FR, 2 mondes) + Control Panel Godot 4.7.",
       "domaines": [
         "modding-re",
-        "godot"
+        "godot",
+        "qa-playtest"
       ],
       "outils_kit": [
         "rea",
         "universal-modder",
         "Il2CppDumper",
-        "GhidraMCP"
+        "GhidraMCP",
+        "Hyperbole (hyperbole/) — joueurs simulés sans triche, chambres accélérées, rapports fun/défi/équilibre/bugs"
       ],
       "manques": [
         "outils réseau/émulation de serveur de jeu",
@@ -54,7 +60,8 @@
         "godot-statecharts + limbo_console (copiés) → états et debug du Control Panel",
         "guides/reverse-engineering-avec-claude.md → méthode RE en 11 étapes : tri par xrefs, essaim contrôleur/workers pour cartographier le client, prompts d'annotation",
         "clean-room (même guide §9-§11) → spec du serveur écrite depuis le comportement du client (paquets observés), implémentée dans un autre contexte, + banc de parité",
-        "bethington/ghidra-mcp (lien, Apache-2.0) → MCP Ghidra à chargement paresseux (200+ outils, headless) si le CLI rea ne suffit pas"
+        "bethington/ghidra-mcp (lien, Apache-2.0) → MCP Ghidra à chargement paresseux (200+ outils, headless) si le CLI rea ne suffit pas",
+        "Hyperbole (copié) → bots-clients du protocole MixMaster pour la charge et la non-régression du serveur privé (voie reel x1, journal JSONL)"
       ]
     },
     "Alphred_AI": {
@@ -167,14 +174,15 @@
     },
     "Super_Toolbox": {
       "chemin": "D:\\Super_Toolbox",
-      "resume": "La boîte à outils elle-même (ce dépôt) + Heimdall.",
+      "resume": "La boîte à outils elle-même (ce dépôt) + Heimdall (veille) + Hyperbole (playtest par joueurs simulés).",
       "domaines": [
         "godot",
         "physique-netcode",
         "modding-re",
         "ia-agents",
         "secu-reseau",
-        "devtools"
+        "devtools",
+        "qa-playtest"
       ],
       "outils_kit": [
         "tous"
@@ -183,7 +191,10 @@
       "pistes": [
         "godot-gdscript-toolkit (copié) → lint/format des scripts GDScript des projets, en CI",
         "uv (lien) → gérer les deps Python des outils du kit",
-        "Caveman (lien) → compresser les sorties JSON de rea avant lecture (règle « fichier puis extrait »)"
+        "Caveman (lien) → compresser les sorties JSON de rea avant lecture (règle « fichier puis extrait »)",
+        "Hyperbole : Tête MCTS à poids de profil (Holmgård 2019) si l'utility AI plafonne",
+        "Hyperbole : population simulée (compétence/persistance/ennui tirés par bot, Roohi 2020) + Cox via lifelines (optionnel)",
+        "Hyperbole : export des repros en scénarios godot-qa / tests gdUnit4 ; Esprit appelé quand un bot est bloqué"
       ]
     },
     "Guardians_of_the_Seal": {
@@ -193,7 +204,8 @@
         "creation-assets",
         "godot",
         "physique-netcode",
-        "ia-agents"
+        "ia-agents",
+        "qa-playtest"
       ],
       "outils_kit": [
         "universal-modder (asset-pipeline : um render3d --preset iso8, um sprite)",
@@ -202,7 +214,8 @@
         "limbo_console",
         "comfy_client.py (scripts/)",
         "guides/joueurs-ia-dans-un-jeu-en-ligne.md (les Descellés, joueurs IA, docs/11-descelles.md)",
-        "guides/ia-locale-performante.md (modèle local des Descellés sur Ollama)"
+        "guides/ia-locale-performante.md (modèle local des Descellés sur Ollama)",
+        "Hyperbole (hyperbole/) — joueurs simulés sans triche, chambres accélérées, rapports fun/défi/équilibre/bugs"
       ],
       "guide": "guides/creer-des-assets.md",
       "manques": [
@@ -226,7 +239,9 @@
         "Wan 2.2 VACE (Apache-2.0) → repeindre les animations rendues dans Blender",
         "NVIDIA Kimodo (SOMA/G1) → animations à partir de texte",
         "UniRig (VAST-AI / Tsinghua, SIGGRAPH 2025) → squelette et poids automatiques sur n'importe quel GLB, créatures non humaines comprises ; à essayer sur les GLB TRELLIS des djinn avant de rigger à la main (licence et poids publiés à vérifier)",
-        "RigAnything (SIGGRAPH TOG 2025), Make-It-Animatable → autres rigs automatiques sans gabarit, à comparer à UniRig"
+        "RigAnything (SIGGRAPH TOG 2025), Make-It-Animatable → autres rigs automatiques sans gabarit, à comparer à UniRig",
+        "Hyperbole (copié) → les Descellés écrivent le journal Hyperbole (csharp/HyperboleJournal.cs, mêmes genres que Rapports.cs) : rapports par profil, rétention, jumeaux saboteur/meneur, `comparer` entre versions ; voie reel (x1) pour le réseau, chambre accélérée seulement pour le monde d'essai",
+        "Hyperbole/einherjar/head.py → modèle de la Tête par profils (docs/11 §14) à reprendre dans Tete.cs (tryhard, casual, chill, fouineur, streamer…)"
       ]
     },
     "Waze_SA_Mod": {
@@ -285,9 +300,12 @@
         "creation-assets",
         "physique-netcode",
         "godot",
-        "devtools"
+        "devtools",
+        "qa-playtest"
       ],
-      "outils_kit": [],
+      "outils_kit": [
+        "Hyperbole (hyperbole/) — joueurs simulés sans triche, chambres accélérées, rapports fun/défi/équilibre/bugs"
+      ],
       "guide": "guides/creer-des-assets.md",
       "manques": [
         "Unreal VR : mains physiques et saisie d'objets (combat de mêlée)",
@@ -301,7 +319,8 @@
         "Physics Control (plugin Unreal intégré, expérimental) → ennemis en ragdoll actif",
         "Dexed (DX7), Surge XT, Vital → OST années 90 ; ACE-Step seulement pour des maquettes",
         "Kimodo (piste toolbox) → mouvements de combat",
-        "launcher d'Oddyseus (C:\\Oddyseus\\launcher) → base du launcher STABLE/UNSTABLE"
+        "launcher d'Oddyseus (C:\\Oddyseus\\launcher) → base du launcher STABLE/UNSTABLE",
+        "Hyperbole (copié) → plus tard : pont TCP (hyperbole.py pont) pour des Einherjar dans Unreal (-nullrhi), ou Unreal Learning Agents (lien) pour imiter des sessions humaines"
       ],
       "ligne_rouge": "Pas de look IA par défaut : moodboard de références humaines validé avant toute production. Voir C:\\Tokyo_Hikitori\\HANDOVER.md."
     },
@@ -360,6 +379,42 @@
       "pistes": [
         "lobby DirectPlay (IDirectPlayLobby::RunApplication) → bouton « Rejoindre » direct depuis le lanceur",
         "ipxbox (GPL-2) → si le relais Python devient trop limité"
+      ]
+    },
+    "Sanctuary": {
+      "chemin": "C:\\Sanctuary",
+      "resume": "Rogue-lite : mini-jeu de bureau Electron (v0.2.0) + futur dungeon crawler 3D FPS (immersive sim, Inquisiteurs de l'Ordo Aeternum), moteur pas choisi.",
+      "domaines": [
+        "godot",
+        "creation-assets",
+        "qa-playtest"
+      ],
+      "outils_kit": [
+        "Hyperbole (hyperbole/) — joueurs simulés sans triche, chambres accélérées, rapports fun/défi/équilibre/bugs"
+      ],
+      "manques": [
+        "moteur du jeu final à choisir"
+      ],
+      "pistes": [
+        "Hyperbole → runs de rogue-lite : run_end (durée, cause), survie par profil, causes de mort, contenu épuisé ; pont TCP pour le mini-jeu Electron"
+      ]
+    },
+    "TIDIM": {
+      "chemin": "C:\\TIDIM",
+      "resume": "« Thanks, I Did It Myself » : FPS coop 1-8 où les joueurs sont les familiers d'un héros IA vantard (barre d'ego) ; prototype s&box, Godot préféré désormais.",
+      "domaines": [
+        "godot",
+        "ia-agents",
+        "qa-playtest"
+      ],
+      "outils_kit": [
+        "Hyperbole (hyperbole/) — joueurs simulés sans triche, chambres accélérées, rapports fun/défi/équilibre/bugs"
+      ],
+      "manques": [
+        "héros IA autonome (Ego/Confiance) à concevoir"
+      ],
+      "pistes": [
+        "Hyperbole → familiers simulés par profils (support, chill, saboteur qui vole la gloire) pour équilibrer la barre d'ego ; la Tête d'Hyperbole peut servir de base au héros IA"
       ]
     }
   }

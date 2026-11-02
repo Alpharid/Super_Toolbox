@@ -1,0 +1,48 @@
+{
+  "id": "streamer",
+  "extends": "moyen",
+  "nom": "Streamer / vidéaste",
+  "description": "Cherche ce qu'il montrerait à sa communauté : le spectaculaire, le drôle, le secret, le raté.",
+  "drives": {
+    "progress": 0.45,
+    "mastery": 0.4,
+    "explore": 0.7,
+    "collect": 0.25,
+    "social": 0.6,
+    "show": 0.95,
+    "rest": 0.1,
+    "survive": 0.4
+  },
+  "skill": {
+    "aim": 0.6,
+    "reaction_ms": 300,
+    "mistake_rate": 0.08,
+    "apm": 90,
+    "learning_rate": 0.55
+  },
+  "patience": 0.4,
+  "frustration_tolerance": 0.55,
+  "boredom_tolerance": 0.2,
+  "risk": 0.7,
+  "curiosity": 0.75,
+  "reads_text": 0.4,
+  "session": {
+    "minutes": [
+      90,
+      240
+    ],
+    "afk_per_hour": 0.2,
+    "afk_minutes": [
+      1,
+      3
+    ]
+  },
+  "voice": {
+    "style": "enjoué, parle à son chat, compte les moments à clipper et les tunnels sans rien à montrer"
+  },
+  "surfaces": [
+    "moments à montrer",
+    "longs passages sans rien à filmer",
+    "secrets trouvés trop tôt ou jamais"
+  ]
+}

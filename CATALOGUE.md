@@ -173,6 +173,30 @@ Liens seulement (rien copié) ; méthode dans `guides/jouer-en-reseau-a-un-vieux
 - **innounp** — https://github.com/jrathlev/InnoUnpacker-Windows-GUI · lire le script `[Registry]`/`[Run]` d'un installeur Inno Setup.
 - **Builds Wine macOS (WineHQ, Gcenx)** — https://github.com/Gcenx/macOS_Wine_builds · LGPL · Wine prêt à l'emploi sur Mac (32 bits via WoW64).
 
+## Hyperbole — catégorie `qa-playtest` (outil maison, 2026-11-02)
+
+**Hyperbole** — `hyperbole/` (code maison) · la salle du temps : joueurs simulés sans triche (Einherjar) envoyés par
+l'orchestrateur Mr. Popo dans des chambres headless accélérées, cycle après cycle (Valhalla) ; rapports fun / défi /
+équilibre / apprentissage / bugs / failles / perf / rétention. Entrée : [hyperbole/README.md](hyperbole/README.md) ·
+contrat moteur : `hyperbole/docs/PROTOCOLE.md` · Godot : `hyperbole/godot/README.md` (addon `godot/addons/hyperbole/`,
+exemple `godot/exemple/`) · C# : `hyperbole/csharp/HyperboleJournal.cs` · autres moteurs : `hyperbole.py pont` (TCP) ·
+démo + banc de bugs injectés : `hyperbole/demo/`. Veille : [heimdall/reports/2026-11-02-hyperbole.md](heimdall/reports/2026-11-02-hyperbole.md).
+
+- **godot_rl_agents_plugin** — `upstream/godot_rl_agents_plugin/` (MIT) · capteurs RaycastSensor 2D/3D, GridSensor, caméra
+  (`addons/godot_rl_agents/sensors/`) = des **Sens honnêtes** prêts à l'emploi pour les Einherjar ; nœud Sync = le pattern
+  « Godot headless accéléré ↔ Python ». Dépôt Python compagnon (~265 Mo) en lien : [godot_rl_agents](https://github.com/edbeeching/godot_rl_agents).
+- Liens (non copiés) :
+  [gdUnit4](https://github.com/godot-gdunit-labs/gdUnit4) 6.2.3 (Godot 4.7 ; scene runner = entrées simulées, pour tester les Corps et
+  transformer un repro en test) · [gdUnit4Net](https://github.com/godot-gdunit-labs/gdUnit4Net) (C#) ·
+  [godot-qa](https://github.com/youichi-uda/godot-qa) (MIT, scénarios JSON headless → JUnit : format cible de `hyperbole.py repro`) ·
+  [godot-cli-control](https://github.com/ClaymanTwinkle/godot-cli-control) (MIT, JSON-RPC + pytest ; lit/écrit des propriétés : filtrer) ·
+  [playtest-agent](https://github.com/kevinnie2003/playtest-agent) (MIT, oracles + personas + banc, idées reprises) ·
+  [GBQA](https://github.com/camel-ai/GBQA) (Apache-2.0, benchmark QA par LLM) · [GamingAgent](https://github.com/lmgame-org/GamingAgent) (MIT,
+  harnais d'agents LLM joueurs) · [PettingZoo](https://github.com/Farama-Foundation/PettingZoo) (MIT, API multi-agents : forme du pont) ·
+  [lifelines](https://github.com/CamDavidsonPilon/lifelines) (MIT, Cox en option) · Unreal Learning Agents (Epic, pour Tokyo_Hikitori) ·
+  [awesome-LLM-game-agent-papers](https://github.com/git-disl/awesome-LLM-game-agent-papers) (sans licence, lecture).
+- Écartés (voir le rapport) : NitroGen (non commercial), Unity ML-Agents, AltTester/GameDriver/modl.ai, PlayGodot, godot-autosim.
+
 ## Références non copiées (à récupérer depuis leurs releases quand un projet en a besoin)
 
 - Loaders / frameworks de mod : [BepInEx](https://github.com/BepInEx/BepInEx) (Unity, LGPL), [MelonLoader](https://github.com/LavaGang/MelonLoader),

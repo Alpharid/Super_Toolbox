@@ -1,0 +1,49 @@
+{
+  "_doc": "Démo : La Fosse avec tous ses bugs plantés. python hyperbole.py demo --ouvrir",
+  "nom": "demo-la-fosse",
+  "jeu": {
+    "nom": "La Fosse (jeu jouet)",
+    "cmd": [
+      "python",
+      "la_fosse.py",
+      "{chamber_json}"
+    ]
+  },
+  "objectif": [
+    "equilibre",
+    "fun",
+    "bugs",
+    "social",
+    "apprentissage"
+  ],
+  "mode": "chambre",
+  "vitesse": "max",
+  "duree_min": 1,
+  "duree_jeu_h": 4,
+  "params": {
+    "bugs": [
+      "blocage_marais",
+      "double_vente",
+      "fuite_memoire",
+      "boss_injuste",
+      "erreur_forge",
+      "teleport_mine",
+      "potion_morte"
+    ]
+  },
+  "seuils": {
+    "vitesse_max_deplacement": 12,
+    "bornes": [
+      [
+        -5,
+        45
+      ],
+      [
+        -5,
+        45
+      ]
+    ],
+    "progression_figee_min": 90,
+    "cell_size": 4
+  }
+}

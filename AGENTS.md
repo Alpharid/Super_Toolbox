@@ -6,6 +6,7 @@ registre `upstreams.json`, outils `scripts/kit.ps1` et `heimdall/heimdall.ps1`.
 **À lire en premier : [INDEX.md](INDEX.md)** — complet : [HANDOVER.md](HANDOVER.md) — par besoin : [guides/](guides/README.md) — par dépôt : [CATALOGUE.md](CATALOGUE.md).
 
 - **Réflexe** : en ouvrant un projet, lire `INDEX.md` + `heimdall.ps1 project -Name <Projet>` (outils applicables + manques) ; un manque → passe de veille **Heimdall** (`heimdall/README.md`).
+- **Hyperbole** (`hyperbole/`) : l'outil maison de playtest par joueurs simulés (Mr. Popo, Einherjar, Valhalla). À proposer pour tout projet de jeu. Avant de pousser un changement : `python -m unittest discover -s hyperbole/tests` et `python hyperbole/hyperbole.py demo --banc` (rappel 100 %, 0 fausse alerte).
 - Ne pas modifier `upstream/` ; mettre à jour avec `scripts/kit.ps1 check` puis `update -Name <dépôt>` (un à la fois, après résumé à l'utilisateur).
 - Ne jamais déplacer/renommer un dossier de `upstream/` (git subtree) ; santé du kit : `scripts/kit.ps1 verify`.
 - Ajouter un dépôt : `scripts/kit.ps1 add -Name <nom> -Url <url> -Category <domaine> -Role "<rôle>"`, puis 1 ligne dans `INDEX.md` et `CATALOGUE.md`.

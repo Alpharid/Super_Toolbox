@@ -1,0 +1,36 @@
+{
+  "id": "debutant",
+  "extends": "casual",
+  "nom": "Débutant",
+  "description": "Première fois dans ce genre de jeu : ne connaît ni les codes ni les touches, apprend tout du jeu lui-même.",
+  "skill": {
+    "aim": 0.2,
+    "reaction_ms": 650,
+    "mistake_rate": 0.25,
+    "apm": 20,
+    "learning_rate": 0.25
+  },
+  "knowledge": "none",
+  "patience": 0.45,
+  "frustration_tolerance": 0.35,
+  "reads_text": 0.85,
+  "session": {
+    "minutes": [
+      20,
+      60
+    ],
+    "afk_per_hour": 0.5,
+    "afk_minutes": [
+      1,
+      5
+    ]
+  },
+  "voice": {
+    "style": "candide, dit ce qu'il n'a pas compris et ce qu'il a compris tout seul"
+  },
+  "surfaces": [
+    "apprentissage sans tutoriel",
+    "conventions supposées connues",
+    "premières minutes"
+  ]
+}

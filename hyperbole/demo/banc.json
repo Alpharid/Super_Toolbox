@@ -1,0 +1,58 @@
+{
+  "_doc": "Banc de bugs injectés : même lobbies, une fois avec les bugs, une fois sans. python hyperbole.py demo --banc",
+  "nom": "banc-la-fosse",
+  "jeu": {
+    "nom": "La Fosse (jeu jouet)",
+    "cmd": [
+      "python",
+      "la_fosse.py",
+      "{chamber_json}"
+    ]
+  },
+  "objectif": [
+    "equilibre",
+    "fun",
+    "bugs",
+    "social",
+    "apprentissage"
+  ],
+  "mode": "chambre",
+  "vitesse": "max",
+  "duree_min": 1,
+  "duree_jeu_h": 4,
+  "params": {
+    "bugs": [
+      "blocage_marais",
+      "double_vente",
+      "fuite_memoire",
+      "boss_injuste",
+      "erreur_forge",
+      "teleport_mine",
+      "potion_morte"
+    ]
+  },
+  "seuils": {
+    "vitesse_max_deplacement": 12,
+    "bornes": [
+      [
+        -5,
+        45
+      ],
+      [
+        -5,
+        45
+      ]
+    ],
+    "progression_figee_min": 90,
+    "cell_size": 4
+  },
+  "bugs_plantes": [
+    "blocage_marais",
+    "double_vente",
+    "fuite_memoire",
+    "boss_injuste",
+    "erreur_forge",
+    "teleport_mine",
+    "potion_morte"
+  ]
+}

@@ -1,0 +1,14 @@
+; Projet d'exemple Hyperbole (Godot 4.7) : l'addon addons/hyperbole + une petite scène « Les Plaines ».
+; Chambre : godot --headless --fixed-fps 60 --path . res://exemple/plaines.tscn -- --hyperbole=<chamber.json>
+
+config_version=5
+
+[application]
+
+config/name="Hyperbole - exemple"
+run/main_scene="res://exemple/plaines.tscn"
+config/features=PackedStringArray("4.7")
+
+[physics]
+
+common/physics_ticks_per_second=60

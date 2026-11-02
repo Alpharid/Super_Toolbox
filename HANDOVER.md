@@ -14,10 +14,11 @@ défensive, Godot UI, outils dev. Les dépôts tiers sont copiés dans `upstream
 **Deux usages, en réflexe** (lire `INDEX.md` d'abord — c'est le pilier, token-léger) :
 1. **À chaque projet touché** : consulter l'index + `heimdall.ps1 project -Name <P>` → proposer les outils pertinents déjà présents, et repérer les manques.
 2. **Un manque, ou une veille planifiée** : **Heimdall** (le veilleur, `heimdall/`) cherche de nouveaux outils, propose les meilleurs, et tient l'index à jour. Voir §4 bis.
+3. **Un jeu à éprouver** : **Hyperbole** (`hyperbole/`, la salle du temps) le fait jouer par des Einherjar (joueurs simulés à profils, sans triche) dans des chambres accélérées et rend un rapport (fun, défi, équilibre, bugs, failles, rétention). Voir §4 ter.
 
 C'est public et open-source car presque tout vient de la communauté open source (chaque outil garde sa licence).
 
-## 2. État (2026-10-16)
+## 2. État (2026-10-16 ; Hyperbole ajouté le 2026-11-02, §4 ter)
 
 - **Renommé** `Modding_Tools_Kit` → **`Super_Toolbox`**, passé **public**. Pilier : `INDEX.md` (à lire en premier, token-léger).
 - Cœur **Heimdall** ajouté (`heimdall/`) : veille techno sur 6 domaines + réflexe projet (§4 bis). 1er digest : `heimdall/reports/2026-10-16.md`.
@@ -88,6 +89,23 @@ Doc complète : **`heimdall/README.md`**. En bref :
 - **Pistes** (`pistes` dans `projects.json`) : quand on trouve un outil qui irait bien à un projet précis (en veille ou en bossant), l'y **noter**. Au prochain passage sur ce projet, le proposer à l'utilisateur — ou l'utiliser directement si c'est évident et sans risque. Retirer la piste une fois adoptée (passe dans `outils_kit`) ou écartée.
 - **Passe de veille** (recette dans `heimdall/README.md`) : `brief` → recherche web par domaine → `report` → remplir → décider lien vs subtree (`kit.ps1 add`) → MAJ `INDEX.md` → commit/push.
 - L'intelligence (lire le web, juger) est faite par Claude ; le `.ps1` ne fait que la mécanique (données, squelettes).
+
+## 4 ter. Hyperbole — la salle du temps (outil maison, 2026-11-02)
+
+- **Quoi** : playtest par joueurs simulés. **Mr. Popo** (`hyperbole/popo/`, Python stdlib) prépare les lobbies, ouvre K chambres
+  headless en parallèle (accélérées ou x1), surveille (journal immobile = gel, code de sortie = crash, lignes d'erreur), boucle
+  cycle après cycle (**Valhalla**) et analyse. Les **Einherjar** = Tête (utility AI réglée par un profil, `einherjar/head.py`
+  et `godot/addons/hyperbole/hyperbole_head.gd`, même logique) + Sens (ce qu'un joueur perçoit) + Corps (entrées de joueur).
+- **Né de** : les Descellés de Guardians (`C:\Guardians_of_the_Seal\docs\11-descelles.md`) + le plan Hyperbole de Stryder
+  (`C:\Stryder-Symbiosis\sandbox\design\_wip\poc-spec\playtest-bots.md`, R240-R244) + veille Heimdall du 2026-11-02.
+- **Contrat** : `hyperbole/docs/PROTOCOLE.md` (chamber.json, journal JSONL, sans triche, pont TCP, options). Godot : `hyperbole/godot/README.md`.
+- **Vérifier** : `python -m unittest discover -s hyperbole/tests` (11 tests, dont le banc de bout en bout) ; `python hyperbole/hyperbole.py demo --banc`
+  (7 bugs plantés dans La Fosse : 7/7 trouvés, 0 fausse alerte sur le jeu propre) ; exemple Godot réel :
+  `cd hyperbole/godot/exemple && python ../../hyperbole.py lancer mission.json` (Godot 4.7 dans `C:\Godot` ; le mur planté est trouvé).
+- **Pièges** : sous Windows, écrire les fichiers en LF (Python `write_text` met des CRLF) ; `--fixed-fps 60` pour accélérer Godot ;
+  l'Esprit (Ollama) ne fait que réécrire des phrases mesurées (un nombre absent = rejet) et s'endort si le GPU est occupé ;
+  un jeu en réseau ne s'accélère pas honnêtement (voie `reel`) ; `rejouer` n'est exact que si tout le hasard du jeu suit la graine.
+- **Suite** : adaptateur Stryder (phase 2 de son plan, dans le repo Stryder), journal des Descellés (Guardians), pistes en fin de `hyperbole/README.md`.
 
 ## 5. Utilisation avec Claude (gros modèle)
 
@@ -178,6 +196,8 @@ Demander avant : piloter souris/clavier, installer un loader, toucher au registr
 D:\Super_Toolbox\
 ├─ INDEX.md                  ★ à lire en premier : tout le contenu par domaine + carte projet→outils + Heimdall (token-léger)
 ├─ HANDOVER.md / CLAUDE.md / AGENTS.md / README.md / CATALOGUE.md
+├─ hyperbole\                Hyperbole : hyperbole.py (CLI), popo\ (Mr. Popo), einherjar\ (Tête + pont), personas\, missions\,
+│                           godot\ (addon + exemple), csharp\, demo\ (La Fosse + banc), docs\PROTOCOLE.md, tests\
 ├─ heimdall\                 README (le veilleur), sources.json (domaines+sources), projects.json (projet→outils), heimdall.ps1, reports\AAAA-MM-JJ.md
 ├─ upstreams.json            registre des dépôts tiers : catégorie, licence, rôle, commit synchronisé (écrit par kit.ps1)
 ├─ scripts\kit.ps1           list / check / update / add / verify (PowerShell 5.1, UTF-8 avec BOM)
@@ -201,6 +221,12 @@ D:\Super_Toolbox\
 
 ## 11. Historique
 
+- **2026-11-02** — **Hyperbole** (`hyperbole/`, demande de l'utilisateur) : outil de playtest par joueurs simulés réunissant les Descellés
+  de Guardians et le plan Hyperbole de Stryder. Mr. Popo (orchestrateur, chambres parallèles, kill switch, Valhalla, A/B, jumeaux,
+  mode mixte), 10 profils, oracles génériques, analyse (rétention KM, fun, défi, équilibre, apprentissage, économie, blocages,
+  fuites, failles), rapports HTML/MD/brief IA, comparer / rejouer (déterministe, vérifié) / repro, Esprit Ollama borné, lint sans
+  triche ; addon Godot 4.7 éprouvé en headless ; écrivain C# ; pont TCP ; démo La Fosse + banc (7/7). Domaine Heimdall
+  `qa-playtest` + veille ciblée (`heimdall/reports/2026-11-02-hyperbole.md`) ; Sanctuary et TIDIM ajoutés à `projects.json`.
 - **2026-11-02** — Digest Heimdall hebdo : semaine calme, une seule piste non vérifiée (GhidrAssistMCP, en lien), aucun ajout.
 - **2026-11-01** — Guide `joueurs-ia-dans-un-jeu-en-ligne.md` enrichi (retour de Guardians of the Seal, docs/11 §14) : profils de joueurs sur mesure (tryhard, moyen, casual, chill, tricheur qui signale sans jamais tricher, streamer), rapports en deux parties (mesures communes + récit dans la voix du profil), séances d'un seul profil et mélangées, usages des bots (peupler, économie, quêtes, charge, ligne de base anti-triche, non-régression, personas LLM).
 - **2026-10-30** — Heimdall, projet Guardians_of_the_Seal remis à jour (C# fait, en ligne par Tailscale Funnel, launcher qui se met à jour, musique ACE-Step et bruitages MOSS, chaîne des entités 3D) ; manque restant : animer les djinn (silhouettes non humaines) → pistes UniRig, RigAnything, Make-It-Animatable.

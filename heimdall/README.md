@@ -12,11 +12,17 @@ est pertinent — est faite par le modèle ; le script dit **où regarder** et r
 
 | Fichier | Rôle |
 |---|---|
-| `sources.json` | Les **6 domaines** de veille et leurs **sources** (blogs, releases, listes, topics GitHub, forums). C'est la carte « où regarder ». |
+| `sources.json` | Les **8 domaines** de veille et leurs **sources** (blogs, releases, listes, topics GitHub, forums). C'est la carte « où regarder ». |
 | `projects.json` | La carte **projet → domaines → outils du kit + manques + pistes**. C'est ce qu'on lit en RÉFLEXE quand on touche un projet. |
 | `reports/AAAA-MM-JJ.md` | Les **digests datés** produits à chaque passe de veille. L'historique de ce qui est sorti. |
 
-Les 6 domaines : `godot` · `physique-netcode` · `modding-re` · `ia-agents` · `secu-reseau` · `devtools`.
+Les 8 domaines : `godot` · `physique-netcode` · `modding-re` · `ia-agents` · `secu-reseau` · `devtools` · `creation-assets` · `qa-playtest`.
+
+**Heimdall maintient aussi Hyperbole** (`../hyperbole/`, la salle du temps des Einherjar) : le domaine `qa-playtest` suit les bots
+de test, le playtest automatisé, les métriques de fun / churn / difficulté et les agents LLM joueurs. Une trouvaille utile à
+Hyperbole va dans les pistes du projet `Super_Toolbox` (`projects.json`) ou directement dans Hyperbole si c'est évident.
+Chaque projet de jeu a Hyperbole dans ses `outils_kit`. Faire une passe `qa-playtest` de temps en temps (au moins
+quand un projet de jeu reprend).
 
 ## Les 2 déclics (la veille se lance ainsi)
 
@@ -30,7 +36,7 @@ projet n'est couvert par rien dans la toolbox → **déclencher une passe de vei
 concerné(s) (voir ci-dessous), proposer les trouvailles, et ajouter les bonnes au kit.
 
 **2. Digest planifié (1×/semaine, agent cloud).**
-Un agent programmé (routine Claude Code) fait une passe de veille large sur les 6 domaines, écrit un digest
+Un agent programmé (routine Claude Code) fait une passe de veille large sur les 8 domaines, écrit un digest
 daté, met à jour `../INDEX.md` (section « Dernières nouveautés ») et pousse. Voir `../scripts/` et la routine
 schedulée. C'est l'équilibre fraîcheur / tokens choisi par l'utilisateur.
 

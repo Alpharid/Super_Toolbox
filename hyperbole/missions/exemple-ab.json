@@ -1,0 +1,34 @@
+{
+  "_doc": "Exemple A/B d'équilibrage : chaque lobby joué pour chaque variante, même graine (seule la variante change).",
+  "nom": "ab-difficulte",
+  "jeu": {
+    "nom": "La Fosse",
+    "cmd": [
+      "python",
+      "../demo/la_fosse.py",
+      "{chamber_json}"
+    ]
+  },
+  "objectif": [
+    "equilibre"
+  ],
+  "duree_min": 0.5,
+  "duree_jeu_h": 3,
+  "params": {
+    "bugs": []
+  },
+  "variantes": [
+    {
+      "nom": "wyrm_normal",
+      "params": {}
+    },
+    {
+      "nom": "wyrm_injuste",
+      "params": {
+        "bugs": [
+          "boss_injuste"
+        ]
+      }
+    }
+  ]
+}

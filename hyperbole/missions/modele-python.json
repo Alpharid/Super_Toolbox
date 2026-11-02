@@ -1,0 +1,34 @@
+{
+  "_doc": "Modèle pour un jeu (ou une simulation) en Python qui importe einherjar.head directement (comme demo/la_fosse.py).",
+  "nom": "mon-jeu",
+  "jeu": {
+    "nom": "Mon jeu",
+    "cmd": [
+      "python",
+      "mon_jeu.py",
+      "{chamber_json}"
+    ]
+  },
+  "objectif": [
+    "equilibre",
+    "fun",
+    "bugs"
+  ],
+  "mode": "chambre",
+  "vitesse": "max",
+  "duree_min": 10,
+  "personas_dirs": [
+    "personas"
+  ],
+  "lint": {
+    "presets": [
+      "python"
+    ],
+    "fichiers": [
+      "bots/**/*.py"
+    ],
+    "autorises": [
+      "*senses*.py"
+    ]
+  }
+}

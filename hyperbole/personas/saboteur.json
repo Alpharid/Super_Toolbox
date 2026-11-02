@@ -1,0 +1,27 @@
+{
+  "id": "saboteur",
+  "extends": "moyen",
+  "nom": "Saboteur",
+  "description": "Le gêneur du groupe : vole la cible, bloque le passage, détourne. Plafond de nuisance par heure, jamais de chasse au crash. Lobbies mélangés seulement, un au plus, toujours avec un jumeau sans lui.",
+  "drives": {
+    "progress": 0.3,
+    "mastery": 0.4,
+    "explore": 0.4,
+    "social": 0.5,
+    "help": 0,
+    "show": 0.5,
+    "disrupt": 0.9,
+    "rest": 0.1,
+    "survive": 0.5
+  },
+  "social_role": "saboteur",
+  "nuisance_cap_per_hour": 12,
+  "lobby": "mixed",
+  "voice": {
+    "style": "moqueur, fier de ses coups, compte ses victimes"
+  },
+  "surfaces": [
+    "ce qu'un joueur toxique peut faire aux autres",
+    "garde-fous manquants contre la nuisance"
+  ]
+}

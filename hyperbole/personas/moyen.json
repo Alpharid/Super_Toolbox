@@ -1,0 +1,53 @@
+{
+  "id": "moyen",
+  "nom": "Joueur moyen",
+  "description": "La référence : rythme ordinaire, suit ce que le jeu propose, se trompe parfois. Les temps des autres se comparent aux siens.",
+  "drives": {
+    "progress": 0.6,
+    "mastery": 0.4,
+    "explore": 0.4,
+    "collect": 0.4,
+    "create": 0.3,
+    "social": 0.4,
+    "help": 0.3,
+    "show": 0.2,
+    "break": 0.05,
+    "disrupt": 0,
+    "lead": 0.1,
+    "rest": 0.3,
+    "survive": 0.6
+  },
+  "skill": {
+    "aim": 0.5,
+    "reaction_ms": 320,
+    "mistake_rate": 0.08,
+    "apm": 60,
+    "learning_rate": 0.5
+  },
+  "knowledge": "partial",
+  "patience": 0.5,
+  "frustration_tolerance": 0.5,
+  "boredom_tolerance": 0.5,
+  "risk": 0.45,
+  "curiosity": 0.45,
+  "reads_text": 0.6,
+  "session": {
+    "minutes": [
+      45,
+      120
+    ],
+    "afk_per_hour": 0.4,
+    "afk_minutes": [
+      1,
+      4
+    ]
+  },
+  "voice": {
+    "style": "posé, factuel, compare à ce qu'il attendait"
+  },
+  "surfaces": [
+    "temps de référence par étape",
+    "progression normale",
+    "ce qui gêne un joueur ordinaire"
+  ]
+}

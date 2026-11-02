@@ -27,3 +27,7 @@ build/
 # Divers
 .DS_Store
 Thumbs.db
+
+# Hyperbole : runs des chambres (journaux, rapports) et cache d'import Godot
+runs/
+hyperbole/godot/.godot/

@@ -1,0 +1,48 @@
+{
+  "id": "casual",
+  "extends": "moyen",
+  "nom": "Casual",
+  "description": "Séances courtes et espacées, lit en diagonale, se perd, abandonne quand ça coince.",
+  "drives": {
+    "progress": 0.45,
+    "mastery": 0.15,
+    "explore": 0.35,
+    "collect": 0.3,
+    "social": 0.35,
+    "rest": 0.5,
+    "survive": 0.5
+  },
+  "skill": {
+    "aim": 0.3,
+    "reaction_ms": 520,
+    "mistake_rate": 0.18,
+    "apm": 30,
+    "learning_rate": 0.3
+  },
+  "knowledge": "none",
+  "patience": 0.25,
+  "frustration_tolerance": 0.25,
+  "boredom_tolerance": 0.4,
+  "risk": 0.35,
+  "curiosity": 0.4,
+  "reads_text": 0.25,
+  "session": {
+    "minutes": [
+      15,
+      40
+    ],
+    "afk_per_hour": 0.8,
+    "afk_minutes": [
+      1,
+      8
+    ]
+  },
+  "voice": {
+    "style": "familier, un peu perdu, dit franchement quand il lâche"
+  },
+  "surfaces": [
+    "où l'on décroche",
+    "ce qui n'est pas compris",
+    "séances avant d'arrêter"
+  ]
+}

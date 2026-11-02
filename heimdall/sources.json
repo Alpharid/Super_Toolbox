@@ -360,6 +360,79 @@
           "type": "guide"
         }
       ]
+    },
+    "qa-playtest": {
+      "nom": "Playtest automatisé & joueurs simulés (Hyperbole)",
+      "mots_cles": [
+        "automated playtesting",
+        "game testing agent",
+        "bot playtest",
+        "player persona simulation",
+        "LLM game agent",
+        "game QA benchmark",
+        "difficulty estimation agents",
+        "churn survival analysis games",
+        "godot headless testing",
+        "imitation learning game bots",
+        "procedural personas MCTS"
+      ],
+      "sources": [
+        {
+          "nom": "Hyperbole (dans le kit) — pistes en fin de README",
+          "url": "hyperbole/README.md",
+          "type": "liste"
+        },
+        {
+          "nom": "godot_rl_agents_plugin — releases",
+          "url": "https://github.com/edbeeching/godot_rl_agents_plugin",
+          "type": "releases"
+        },
+        {
+          "nom": "gdUnit4 — releases (scene runner, entrées simulées)",
+          "url": "https://github.com/godot-gdunit-labs/gdUnit4/releases",
+          "type": "releases"
+        },
+        {
+          "nom": "godot-qa (scénarios JSON headless)",
+          "url": "https://github.com/youichi-uda/godot-qa",
+          "type": "releases"
+        },
+        {
+          "nom": "playtest-agent (oracles, personas, repro)",
+          "url": "https://github.com/kevinnie2003/playtest-agent",
+          "type": "releases"
+        },
+        {
+          "nom": "GBQA (benchmark QA par LLM, camel-ai)",
+          "url": "https://github.com/camel-ai/GBQA",
+          "type": "releases"
+        },
+        {
+          "nom": "PettingZoo (API multi-agents)",
+          "url": "https://github.com/Farama-Foundation/PettingZoo/releases",
+          "type": "releases"
+        },
+        {
+          "nom": "awesome-LLM-game-agent-papers",
+          "url": "https://github.com/git-disl/awesome-LLM-game-agent-papers",
+          "type": "liste"
+        },
+        {
+          "nom": "arXiv — cs.AI/cs.HC « playtesting »",
+          "url": "https://arxiv.org/a/search?query=automated+playtesting",
+          "type": "papiers"
+        },
+        {
+          "nom": "EA SEED — recherche tests par ML",
+          "url": "https://www.ea.com/seed",
+          "type": "blog"
+        },
+        {
+          "nom": "GitHub topic game-testing",
+          "url": "https://github.com/topics/game-testing",
+          "type": "topic"
+        }
+      ]
     }
   }
 }

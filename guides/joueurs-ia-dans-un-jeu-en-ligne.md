@@ -1,5 +1,9 @@
 # Des joueurs IA dans un jeu en ligne (qui jouent vraiment)
 
+> **L'outil existe : [Hyperbole](../hyperbole/README.md)** (2026-11-02). Ce guide en donne la méthode ; Hyperbole la met en
+> œuvre pour n'importe quel jeu : profils de base (§6), journal commun (§7), orchestrateur, rapports, jumeaux, rejeu,
+> Esprit LLM local borné. Un jeu en ligne y branche ses bots-clients par l'écrivain C# ou le pont TCP, en voie `reel` (x1).
+
 Faire vivre un monde en ligne avec des personnages joués par des IA : ils farment, craftent, échangent, discutent,
 se groupent et se fâchent, **sans tricher** et **sans comportement scripté**. Ils servent aussi de testeurs
 (équilibre, bugs bloquants, exploits, quêtes, économie, charge). Méthode tirée de la conception des « Descellés »

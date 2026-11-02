@@ -1,0 +1,29 @@
+{
+  "_doc": "Modèle pour N'IMPORTE QUEL moteur (Unreal, C#, Electron…) : le jeu se connecte au pont (têtes Python) sur {port}. Voir docs/PROTOCOLE.md §Pont.",
+  "nom": "mon-jeu",
+  "jeu": {
+    "nom": "Mon jeu",
+    "cmd": [
+      "python",
+      "D:/Super_Toolbox/hyperbole/hyperbole.py",
+      "pont",
+      "{chamber_json}",
+      "--",
+      "MonJeu.exe",
+      "-nullrhi",
+      "-hyperbole={chamber_json}",
+      "-hyperbole-port={port}"
+    ]
+  },
+  "objectif": [
+    "equilibre",
+    "fun",
+    "bugs"
+  ],
+  "mode": "mixte",
+  "vitesse": 4,
+  "duree_min": 20,
+  "personas_dirs": [
+    "personas"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "id": "tryhard",
+  "extends": "moyen",
+  "nom": "Tryhard",
+  "description": "Longues séances, chemin le plus rentable, pousse la méta, compte tout.",
+  "drives": {
+    "progress": 0.95,
+    "mastery": 0.95,
+    "explore": 0.2,
+    "collect": 0.5,
+    "create": 0.2,
+    "social": 0.15,
+    "help": 0.1,
+    "show": 0.2,
+    "rest": 0.05,
+    "survive": 0.7
+  },
+  "skill": {
+    "aim": 0.9,
+    "reaction_ms": 190,
+    "mistake_rate": 0.02,
+    "apm": 180,
+    "learning_rate": 0.9
+  },
+  "knowledge": "wiki",
+  "patience": 0.85,
+  "frustration_tolerance": 0.8,
+  "boredom_tolerance": 0.35,
+  "risk": 0.75,
+  "curiosity": 0.2,
+  "reads_text": 0.3,
+  "session": {
+    "minutes": [
+      120,
+      360
+    ],
+    "afk_per_hour": 0.1,
+    "afk_minutes": [
+      1,
+      2
+    ]
+  },
+  "voice": {
+    "style": "sec, chiffré, râle contre chaque détour et chaque seconde perdue"
+  },
+  "surfaces": [
+    "temps plancher du contenu",
+    "builds/stratégies dominants",
+    "détours inutiles",
+    "trop facile / trop lent"
+  ]
+}

@@ -41,7 +41,7 @@ Heimdall (le gardien qui voit tout, dans la mythologie nordique) est le cœur vi
 service qui tourne en continu : c'est une méthode suivie par l'IA, outillée par `heimdall/heimdall.ps1` et deux
 fichiers de données. Il veille sur ces domaines :
 
-`godot` · `physique-netcode` · `modding-re` · `ia-agents` · `secu-reseau` · `devtools` · `creation-assets`
+`godot` · `physique-netcode` · `modding-re` · `ia-agents` · `secu-reseau` · `devtools` · `creation-assets` · `qa-playtest`
 
 - **Réflexe projet** : à l'ouverture d'un projet,
   ```
@@ -53,6 +53,15 @@ fichiers de données. Il veille sur ces domaines :
   [`heimdall/reports/`](heimdall/reports/) et met à jour l'index.
 
 L'intelligence (lire le web, juger ce qui est pertinent) est faite par l'IA ; les scripts ne font que la mécanique.
+
+## Hyperbole, la salle du temps
+
+Le deuxième cœur de la boîte : **[Hyperbole](hyperbole/README.md)** fait jouer un jeu par des **joueurs simulés**
+(les Einherjar : tryhard, casual, chill, streamer, fouineur, saboteur, meneur…) qui **ne trichent pas** (entrées de joueur
+et ce qu'un joueur perçoit, rien d'autre), dans des chambres headless où une heure de PC vaut des heures de jeu. Un
+orchestrateur, Mr. Popo, les renvoie cycle après cycle (le Valhalla) et rend un rapport : le jeu tient-il des heures, est-il
+amusant, équilibré, où sont les bugs, les blocages, les failles ? Addon Godot 4.7, écrivain C#, pont TCP pour les autres
+moteurs, Python sans dépendance, LLM local optionnel. Essai : `python hyperbole\hyperbole.py demo --ouvrir`.
 
 ## Ce qu'il y a dedans (aperçu)
 

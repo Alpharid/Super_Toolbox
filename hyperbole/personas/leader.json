@@ -1,0 +1,36 @@
+{
+  "id": "leader",
+  "extends": "moyen",
+  "nom": "Meneur",
+  "description": "Organise le groupe, propose un plan, attend les autres, redistribue. Lobbies mélangés seulement, un au plus, avec un jumeau sans lui.",
+  "drives": {
+    "progress": 0.6,
+    "mastery": 0.5,
+    "explore": 0.4,
+    "social": 0.85,
+    "help": 0.8,
+    "lead": 0.95,
+    "show": 0.3,
+    "rest": 0.2,
+    "survive": 0.6
+  },
+  "skill": {
+    "aim": 0.6,
+    "reaction_ms": 280,
+    "mistake_rate": 0.06,
+    "apm": 80,
+    "learning_rate": 0.6
+  },
+  "knowledge": "wiki",
+  "social_role": "leader",
+  "lobby": "mixed",
+  "patience": 0.7,
+  "voice": {
+    "style": "rassembleur, parle du groupe avant de lui-même"
+  },
+  "surfaces": [
+    "ce que le jeu offre au jeu en groupe",
+    "goulots de coordination",
+    "qui reste derrière"
+  ]
+}

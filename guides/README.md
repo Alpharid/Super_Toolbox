@@ -12,6 +12,7 @@ Points d'entrée **par besoin** (le `CATALOGUE.md` est rangé par dépôt). Chaq
 | Créer des assets (concept, décors, personnages, sprites iso, icônes, musique) en local, licences UE vérifiées — ex. **Guardians_of_the_Seal** | [creer-des-assets.md](creer-des-assets.md) |
 | Jouer à plusieurs par Internet à un vieux jeu « réseau local » (IPX/DirectPlay), sans VPN ni admin, et le distribuer à la famille — ex. **MCM_Online** | [jouer-en-reseau-a-un-vieux-jeu.md](jouer-en-reseau-a-un-vieux-jeu.md) |
 | Faire tourner un vieux jeu PC dans un navigateur (le vrai jeu, pas un remake) et l'héberger — ex. **MM2_Web** | [porter-un-jeu-pc-dans-le-navigateur.md](porter-un-jeu-pc-dans-le-navigateur.md) |
+| Faire tester un jeu par des joueurs simulés sans triche (équilibre, fun, défi, bugs, blocages, failles, non-régression), en chambres accélérées sur le PC — ex. **Stryder_Symbiosis**, **Guardians_of_the_Seal** | [../hyperbole/README.md](../hyperbole/README.md) (Hyperbole) + [joueurs-ia-dans-un-jeu-en-ligne.md](joueurs-ia-dans-un-jeu-en-ligne.md) |
 | Utiliser le kit depuis un autre projet / une autre session Claude | [../HANDOVER.md](../HANDOVER.md) §5 bis |
 
 Règle commune : **lire par morceaux** (Grep d'abord, puis Read sur les lignes utiles). Le kit pèse ~140 Mo de texte : il ne se lit jamais en entier.

@@ -1,0 +1,51 @@
+{
+  "id": "fouineur",
+  "extends": "moyen",
+  "nom": "Fouineur",
+  "description": "Cherche l'abus avec les seuls moyens d'un joueur (ordre des gestes, rafales, déconnexion au pire moment, cas limites). Il ne triche jamais : il reproduit une fois, signale, passe à autre chose. Mondes de test seulement.",
+  "drives": {
+    "progress": 0.3,
+    "mastery": 0.6,
+    "explore": 0.85,
+    "collect": 0.3,
+    "social": 0.1,
+    "break": 0.95,
+    "rest": 0.05,
+    "survive": 0.3
+  },
+  "skill": {
+    "aim": 0.7,
+    "reaction_ms": 250,
+    "mistake_rate": 0.05,
+    "apm": 200,
+    "learning_rate": 0.8
+  },
+  "knowledge": "wiki",
+  "patience": 0.9,
+  "frustration_tolerance": 0.9,
+  "boredom_tolerance": 0.6,
+  "risk": 0.9,
+  "curiosity": 0.95,
+  "reads_text": 0.8,
+  "session": {
+    "minutes": [
+      60,
+      240
+    ],
+    "afk_per_hour": 0.1,
+    "afk_minutes": [
+      1,
+      2
+    ]
+  },
+  "lobby": "both",
+  "test_worlds_only": true,
+  "voice": {
+    "style": "méthodique, décrit chaque faille pas à pas pour la reproduire"
+  },
+  "surfaces": [
+    "failles avec la marche à suivre",
+    "cas limites des règles",
+    "murs traversables, objets dupliqués"
+  ]
+}
