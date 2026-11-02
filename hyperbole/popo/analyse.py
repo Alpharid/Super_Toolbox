@@ -72,6 +72,7 @@ def _entropy(counter: Counter, universe: int) -> float:
 def _norm_error(text: str) -> str:
     t = re.sub(r"0x[0-9a-fA-F]+", "#", text)
     t = re.sub(r"[A-Za-z]:[\\/][^\s:]+|res://[^\s:]+|/[\w./-]{6,}", "<chemin>", t)
+    t = re.sub(r"\b(\w+)=\S+", r"\1=…", t)  # bot=E103-moyen, gear=2 : même erreur, autre contexte
     t = re.sub(r"\d+(\.\d+)?", "#", t)
     t = re.sub(r"'[^']*'|\"[^\"]*\"", "'…'", t)
     return t.strip()[:220]
@@ -222,7 +223,7 @@ def analyse(run: dict) -> dict:
     blame = Counter()
 
     cover = defaultdict(lambda: defaultdict(set))  # profil -> cellule -> bots
-    mech = defaultdict(lambda: defaultdict(lambda: {"first_ok": [], "early": [0, 0], "late": [0, 0]}))
+    mech = defaultdict(lambda: defaultdict(lambda: {"first_ok": [], "early": [0, 0], "late": [0, 0], "essais": 0, "joues": 0}))
     for world, evs in run["worlds"].items():
         evs = evs + oracles.scan(sorted([e for e in evs if e.get("source") != "popo"],
                                         key=lambda e: _num(e.get("t_game"), 0)), S)
@@ -529,10 +530,11 @@ def analyse(run: dict) -> dict:
                          "par_profil": {p: len(c) for p, c in cover.items()},
                          "carte": {f"{x},{y}": len({b for c in cover.values() for b in c.get((x, y), ())}) for x, y in allcells}}
     # ---- mécaniques : premier succès et progrès entre la 1re et la 2e moitié des essais
-    out["mecaniques"] = {v: {p: {"premier_succes_min": _r(_med(d["first_ok"]), 1),
+    out["mecaniques"] = {v: {p: {"premier_succes_min": _r(_med(d["first_ok"]), 1), "essais": d["essais"],
                                  "rate_debut": _r(d["early"][1] / d["early"][0]) if d["early"][0] else None,
                                  "rate_fin": _r(d["late"][1] / d["late"][0]) if d["late"][0] else None}
-                             for p, d in by.items()} for v, by in mech.items()}
+                             for p, d in by.items()} for v, by in mech.items()
+                         if sum(d["joues"] for d in by.values()) > 0}  # un « verbe » jamais joué (piège subi) n'est pas une mécanique
     out["constats"] = findings(out, S)
     return out
 
@@ -547,23 +549,25 @@ def _cover_and_mechanics(bevs, bm, cover, mech, size, bot):
             cover[pid][c].add(bot + "@" + str(e.get("world")))
         k = e.get("kind")
         if k == "act" and e.get("verb") is not None:
-            tries[str(e["verb"])].append([_num(e.get("t_game"), 0), False])
+            tries[str(e["verb"])].append([_num(e.get("t_game"), 0), False, True])
         elif k == "fail" and e.get("verb") is not None:  # un `fail` qualifie le dernier `act` du même verbe
             lst = tries[str(e["verb"])]
             if lst and not lst[-1][1]:
                 lst[-1][1] = True
             else:
-                lst.append([_num(e.get("t_game"), 0), True])
+                lst.append([_num(e.get("t_game"), 0), True, False])  # échec sans geste joué (piège subi…)
     for verb, ts in tries.items():
         d = mech[verb][pid]
-        ok = [t for t, failed in ts if not failed]
+        ok = [t for t, failed, _p in ts if not failed]
         if ok:
             d["first_ok"].append((min(ok) - join) / 60)
         half = len(ts) // 2
-        for i, (t, failed) in enumerate(ts):
+        for i, (t, failed, _played) in enumerate(ts):
             part = d["early"] if i < half else d["late"]
             part[0] += 1
             part[1] += 1 if failed else 0
+        d["essais"] = d.get("essais", 0) + len(ts)
+        d["joues"] = d.get("joues", 0) + sum(1 for _ in ts if _[2])
 
 
 # ------------------------------------------------------------------ constats
@@ -603,9 +607,14 @@ def findings(a: dict, S: dict) -> list[dict]:
         add("probleme", "exploit", f"Faille : {what} (trouvée par {len(g['bots'])} Einherjar)",
             "étapes : " + "; ".join(map(str, x.get("steps", []) or [])) + f" — 1er : {x.get('bot')}",
             {"world": x["world"], "seed": x["seed"], "t_game": x.get("t_game")})
+    by_measure = defaultdict(list)
     for l in a["fuites"]:
-        add("probleme", "perf", f"Fuite probable : {l['mesure']} +{l['pct_h']} %/h de jeu",
-            f"{l['de']} → {l['a']} en {l['heures_jeu']} h de jeu (corrélation {l['corr']})", {"world": l["world"]})
+        by_measure[l["mesure"]].append(l)
+    for mes, ls in by_measure.items():
+        worst = max(ls, key=lambda l: l["pct_h"])
+        rng = f"+{min(l['pct_h'] for l in ls)} à +{worst['pct_h']}" if len(ls) > 1 else f"+{worst['pct_h']}"
+        add("probleme", "perf", f"Fuite probable : {mes} {rng} %/h de jeu ({len(ls)} chambre(s))",
+            f"pire : {worst['de']} → {worst['a']} en {worst['heures_jeu']} h de jeu (corrélation {worst['corr']})", {"world": worst["world"]})
 
     # économie : gains aberrants (hors fouineur, il a ses propres signalements)
     per_res = defaultdict(list)
@@ -692,10 +701,12 @@ def findings(a: dict, S: dict) -> list[dict]:
             add("info" if t["role"] == "leader" else "surveiller", "social",
                 f"Avec un {t['role']}, les autres sont frustrés {fa}/h contre {fs}/h sans lui", f"{t['avec']} vs {t['sans']}")
     for verb, by in a.get("mecaniques", {}).items():
-        for p, v in by.items():
-            if v["rate_debut"] is not None and v["rate_fin"] is not None and v["rate_fin"] >= 0.5 and v["rate_fin"] >= v["rate_debut"]:
-                add("surveiller", "apprentissage", f"« {verb} » jamais maîtrisé par {p} : {int(v['rate_fin'] * 100)} % ratés en fin de séance",
-                    f"{int(v['rate_debut'] * 100)} % au début ; pas de progrès avec la pratique")
+        stuck_p = {p: v for p, v in by.items() if v.get("essais", 0) >= 10 and v["rate_debut"] is not None and v["rate_fin"] is not None
+                   and v["rate_fin"] >= 0.5 and v["rate_fin"] >= v["rate_debut"]}
+        if stuck_p:
+            add("surveiller", "apprentissage", f"« {verb} » jamais maîtrisé ({len(stuck_p)} profil(s))",
+                "ratés début → fin : " + ", ".join(f"{p} {int(v['rate_debut'] * 100)}→{int(v['rate_fin'] * 100)} %" for p, v in stuck_p.items())
+                + " ; pas de progrès avec la pratique")
     order = {"probleme": 0, "surveiller": 1, "info": 2}
     F.sort(key=lambda f: order[f["gravite"]])
     return F
