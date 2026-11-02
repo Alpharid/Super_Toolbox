@@ -65,7 +65,7 @@ moteurs, Python sans dépendance, LLM local optionnel. Essai : `python hyperbole
 
 ## Ce qu'il y a dedans (aperçu)
 
-28 dépôts copiés dans `upstream/`, par exemple :
+29 dépôts copiés dans `upstream/`, par exemple :
 
 | Domaine | Quelques outils copiés |
 |---|---|

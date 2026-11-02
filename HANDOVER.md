@@ -226,7 +226,7 @@ D:\Super_Toolbox\
   mode mixte), 10 profils, oracles génériques, analyse (rétention KM, fun, défi, équilibre, apprentissage, économie, blocages,
   fuites, failles), rapports HTML/MD/brief IA, comparer / rejouer (déterministe, vérifié) / repro, Esprit Ollama borné, lint sans
   triche ; addon Godot 4.7 éprouvé en headless ; écrivain C# ; pont TCP ; démo La Fosse + banc (7/7). Domaine Heimdall
-  `qa-playtest` + veille ciblée (`heimdall/reports/2026-11-02-hyperbole.md`) ; Sanctuary et TIDIM ajoutés à `projects.json`.
+  `qa-playtest` + veille ciblée (`heimdall/reports/2026-11-02-hyperbole.md`) ; Sanctuary et TIDIM ajoutés à `projects.json`. +1 subtree `godot_rl_agents_plugin` (MIT, capteurs = Sens des Einherjar) → **29 dépôts**.
 - **2026-11-02** — Digest Heimdall hebdo : semaine calme, une seule piste non vérifiée (GhidrAssistMCP, en lien), aucun ajout.
 - **2026-11-01** — Guide `joueurs-ia-dans-un-jeu-en-ligne.md` enrichi (retour de Guardians of the Seal, docs/11 §14) : profils de joueurs sur mesure (tryhard, moyen, casual, chill, tricheur qui signale sans jamais tricher, streamer), rapports en deux parties (mesures communes + récit dans la voix du profil), séances d'un seul profil et mélangées, usages des bots (peupler, économie, quêtes, charge, ligne de base anti-triche, non-régression, personas LLM).
 - **2026-10-30** — Heimdall, projet Guardians_of_the_Seal remis à jour (C# fait, en ligne par Tailscale Funnel, launcher qui se met à jour, musique ACE-Step et bruitages MOSS, chaîne des entités 3D) ; manque restant : animer les djinn (silhouettes non humaines) → pistes UniRig, RigAnything, Make-It-Animatable.

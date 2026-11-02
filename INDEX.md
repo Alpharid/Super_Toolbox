@@ -18,6 +18,7 @@ du temps (joueurs simulés qui testent les jeux sur le PC, §1 `qa-playtest`).
 - **godot-statecharts** — `derkork/godot-statecharts` · MIT · machines à états hiérarchiques/parallèles pilotables 100 % en code (idéal panels datapad).
 - **limbo_console** — `limbonaut/limbo_console` · MIT · console de debug in-game (commandes) pour déboguer les builds exportés sans éditeur.
 - **godot-gdscript-toolkit** — `Scony/godot-gdscript-toolkit` · MIT · linter + formateur GDScript en CLI (gdformat/gdlint), workflow tout-en-code.
+- **godot_rl_agents_plugin** — `edbeeching/godot_rl_agents_plugin` · MIT · capteurs raycast/grille/caméra (« ce qu'un joueur voit ») = Sens prêts à l'emploi pour les Einherjar d'**Hyperbole** ; nœud Sync (headless accéléré ↔ Python).
 
 ### 🧱 physique-netcode — physique & multijoueur
 - **JoltPhysics** — `jrouwe/JoltPhysics` · MIT · le moteur physique de Godot 4.4+ (sources + ~150 démos : cordes, flottaison, ragdolls, corps mous).
