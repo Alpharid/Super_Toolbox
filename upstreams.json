@@ -308,6 +308,17 @@
                       "role":  "Playbook + serveur MCP : rendre jouable en coop (en ligne/écran partagé) n\u0027importe quel jeu solo — recherche, revival de mods abandonnés, RE, netcode Steam relay, QA par bots ; annuaire de 230+ mods coop",
                       "synced_commit":  "bffd56f0",
                       "synced_on":  "2026-10-19"
+                  },
+                  {
+                      "name":  "godot_rl_agents_plugin",
+                      "url":  "https://github.com/edbeeching/godot_rl_agents_plugin",
+                      "branch":  "main",
+                      "prefix":  "upstream/godot_rl_agents_plugin",
+                      "license":  "MIT",
+                      "category":  "godot",
+                      "role":  "Capteurs Godot (raycast, grille, caméra) = Sens honnêtes pour les Einherjar d\u0027Hyperbole ; Sync headless accéléré \u003c-\u003e Python",
+                      "synced_commit":  "998c357a",
+                      "synced_on":  "2026-11-02"
                   }
               ]
 }
