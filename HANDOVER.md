@@ -105,7 +105,11 @@ Doc complète : **`heimdall/README.md`**. En bref :
 - **Pièges** : sous Windows, écrire les fichiers en LF (Python `write_text` met des CRLF) ; `--fixed-fps 60` pour accélérer Godot ;
   l'Esprit (Ollama) ne fait que réécrire des phrases mesurées (un nombre absent = rejet) et s'endort si le GPU est occupé ;
   un jeu en réseau ne s'accélère pas honnêtement (voie `reel`) ; `rejouer` n'est exact que si tout le hasard du jeu suit la graine.
-- **Suite** : adaptateur Stryder (phase 2 de son plan, dans le repo Stryder), journal des Descellés (Guardians), pistes en fin de `hyperbole/README.md`.
+- **Leçons du 1er adaptateur (Stryder, 2026-11-05)** : `--fixed-fps 60` sinon la chambre tourne en temps réel ; APPDATA isolé par
+  `jeu.env` (`{out_dir}/appdata`) pour ne jamais toucher les sauvegardes du joueur ; Input est global au processus, donc un
+  Einherjar par chambre quand le Corps passe par `Input.action_press` ; la portée des Sens doit être celle du jeu (mesurée depuis
+  l'œil), sinon tout geste « rate » ; la Tête apprend par contexte (`head.context` lu dans `perceive()["context"]`).
+- **Suite** : journal des Descellés (Guardians), pistes en fin de `hyperbole/README.md`. Adaptateur Stryder fait (repo Stryder, `hyperbole/`).
 
 ## 5. Utilisation avec Claude (gros modèle)
 
@@ -221,6 +225,7 @@ D:\Super_Toolbox\
 
 ## 11. Historique
 
+- **2026-11-05** — Hyperbole : 1er adaptateur branché (Stryder) ; la Tête apprend par contexte (Godot + Python) ; modèle Godot avec `--fixed-fps 60` et APPDATA isolé.
 - **2026-11-02** — **Hyperbole** (`hyperbole/`, demande de l'utilisateur) : outil de playtest par joueurs simulés réunissant les Descellés
   de Guardians et le plan Hyperbole de Stryder. Mr. Popo (orchestrateur, chambres parallèles, kill switch, Valhalla, A/B, jumeaux,
   mode mixte), 10 profils, oracles génériques, analyse (rétention KM, fun, défi, équilibre, apprentissage, économie, blocages,

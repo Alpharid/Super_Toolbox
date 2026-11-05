@@ -87,7 +87,7 @@ Quand on ouvre un projet : `heimdall.ps1 project -Name <Projet>` (détail dans `
 
 | Projet | Domaines | Outils du kit qui s'appliquent |
 |---|---|---|
-| **Stryder_Symbiosis** (jeu Godot+Jolt) | godot, physique-netcode, qa-playtest | JoltPhysics, GodotIK, godot-destruction-plugin, netfox, limboai, beehave, **Hyperbole** (1er adaptateur, plan `playtest-bots.md`) → `guides/physique-et-godot.md` |
+| **Stryder_Symbiosis** (jeu Godot+Jolt) | godot, physique-netcode, qa-playtest | JoltPhysics, GodotIK, godot-destruction-plugin, netfox, limboai, beehave, **Hyperbole** (1er adaptateur branché 2026-11-05, repo `hyperbole/`) → `guides/physique-et-godot.md` |
 | **MixMaster_Regenesis** (serveur + panel) | modding-re, godot | rea, universal-modder, Il2CppDumper, GhidraMCP → `guides/reverse-engineering-avec-claude.md` (clean-room serveur) ; Hyperbole (bots-clients de charge, piste) |
 | **Alphred_AI** (IA locale + panel + voix) | ia-agents, godot, devtools | context7, mem0, awesome-mcp-servers → `guides/ia-locale-performante.md` |
 | **WifiSentinel** (audit réseau + panel) | secu-reseau, godot | public-apis _(manques : ONVIF/RTSP, scanners — Heimdall)_ |

@@ -14,7 +14,8 @@ var persona: Dictionary
 var lobby: Dictionary = {}
 var rng := RandomNumberGenerator.new()
 var knows_wiki: bool = false
-var learned: Dictionary = {}       # "verb|area" -> valeur apprise
+var learned: Dictionary = {}       # "verb|area" -> valeur apprise ; "verb|area#contexte" -> la même, dans ce contexte
+var context: String = ""          # ce que le bot ressent en décidant (perceive()["context"]) : « faim », « calme »…
 var tried: Dictionary = {}         # id -> nombre d'essais
 var boredom: float = 0.0
 var frustration: float = 0.0
@@ -70,7 +71,10 @@ func score(o: Dictionary, t: float) -> float:
 	var key := "%s|%s" % [o.get("verb", ""), o.get("area", "")]
 	var novelty: float = 1.0 / (1.0 + float(tried.get(id, 0)))
 	s += _p("curiosity") * novelty * (0.6 + boredom)
-	s += float(learned.get(key, 0.0)) * (0.4 + _drive("mastery"))
+	var value: float = float(learned.get(key, 0.0))
+	if context != "" and learned.has(key + "#" + context):
+		value = 0.4 * value + float(learned[key + "#" + context])  # ce qui a payé dans la même situation compte d'abord
+	s += value * (0.4 + _drive("mastery"))
 	s -= float(o.get("risk", 0.0)) * (1.0 - _p("risk")) * 1.2
 	if knows_wiki and o.get("wiki") is Dictionary:
 		s += 0.5 * float((o["wiki"] as Dictionary).get("value", 0.0))
@@ -120,6 +124,7 @@ func decide(options: Array, t: float) -> Dictionary:
 	last_option = id
 	last_verb = str(chosen.get("verb", ""))
 	tried[id] = int(tried.get(id, 0)) + 1
+	chosen["_context"] = context
 	if chosen.get("disrupt", false):
 		nuisance.append(t)
 	event.emit("intent", {"bot": bot, "option": id, "score": null if is_nan(best) else snappedf(best, 0.001), "area": chosen.get("area")})
@@ -131,7 +136,11 @@ func decide(options: Array, t: float) -> Dictionary:
 func feedback(o: Dictionary, ok: bool, reward: float, t: float, dt: float, novel_result: bool = false) -> void:
 	var lr: float = _skill("learning_rate", 0.5) * 0.5
 	var key := "%s|%s" % [o.get("verb", ""), o.get("area", "")]
-	learned[key] = (1.0 - lr) * float(learned.get(key, 0.0)) + lr * (reward if ok else -0.5)
+	var value: float = reward if ok else -0.5
+	learned[key] = (1.0 - lr) * float(learned.get(key, 0.0)) + lr * value
+	var ctx := str(o.get("_context", ""))
+	if ctx != "":
+		learned[key + "#" + ctx] = (1.0 - lr) * float(learned.get(key + "#" + ctx, 0.0)) + lr * value
 	if ok:
 		fail_streak = 0
 		frustration = maxf(0.0, frustration - 0.15)

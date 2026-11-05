@@ -1,5 +1,5 @@
 {
-  "_doc": "Modèle pour un jeu Godot 4 avec l'addon addons/hyperbole (voir godot/README.md). Adapter les chemins.",
+  "_doc": "Modèle pour un jeu Godot 4 avec l'addon addons/hyperbole (voir godot/README.md). Adapter les chemins. --fixed-fps 60 = chambre accélérée ; APPDATA isolé dans la chambre (les sauvegardes du joueur ne sont pas touchées). Input est global au processus : un Einherjar par chambre si le Corps passe par Input.action_press.",
   "nom": "mon-jeu",
   "jeu": {
     "nom": "Mon jeu",
@@ -7,13 +7,18 @@
     "cmd": [
       "C:/Godot/Godot_v4.7.2-stable_win64_console.exe",
       "--headless",
+      "--fixed-fps",
+      "60",
       "--path",
       "..",
       "res://hyperbole/chambre.tscn",
       "--",
       "--hyperbole={chamber_json}"
     ],
-    "cwd": "."
+    "cwd": ".",
+    "env": {
+      "APPDATA": "{out_dir}/appdata"
+    }
   },
   "objectif": [
     "equilibre",

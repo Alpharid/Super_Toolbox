@@ -82,6 +82,7 @@ func _physics_process(delta: float) -> void:
 
 func _think(t: float) -> void:
 	var p: Dictionary = senses.perceive()
+	head.context = str(p.get("context", ""))
 	for cue: Variant in p.get("cues", []):
 		head.see_cue(str(cue), t)
 	var d: Dictionary = head.decide(senses.options(), t)

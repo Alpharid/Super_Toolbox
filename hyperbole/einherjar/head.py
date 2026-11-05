@@ -29,6 +29,7 @@ class Head:
         self.tools = set(tools or []) if allowed is None else set(allowed) & set(tools or allowed)
         self.knows_wiki = persona.get("knowledge") == "wiki" or "wiki" in self.tools
         self.learned: dict[tuple, float] = {}
+        self.context: str = ""  # ce que le bot ressent en décidant (perceive["context"]) : « faim », « calme »…
         self.tried: dict[str, int] = {}
         self.boredom = 0.0
         self.frustration = 0.0
@@ -61,7 +62,10 @@ class Head:
         n = self.tried.get(o.get("id"), 0)
         novelty = 1.0 / (1 + n)
         s += p.get("curiosity", 0.5) * novelty * (0.6 + self.boredom)
-        s += self.learned.get(key, 0.0) * (0.4 + p.get("drives", {}).get("mastery", 0.3))
+        value = self.learned.get(key, 0.0)
+        if self.context and key + (self.context,) in self.learned:
+            value = 0.4 * value + self.learned[key + (self.context,)]  # ce qui a payé dans la même situation compte d'abord
+        s += value * (0.4 + p.get("drives", {}).get("mastery", 0.3))
         s -= o.get("risk", 0.0) * (1.0 - p.get("risk", 0.5)) * 1.2
         if self.knows_wiki and isinstance(o.get("wiki"), dict):
             s += 0.5 * float(o["wiki"].get("value", 0.0))
@@ -108,6 +112,7 @@ class Head:
         self.last_option = o.get("id")
         self.last_verb = o.get("verb")
         self.tried[o.get("id")] = self.tried.get(o.get("id"), 0) + 1
+        o["_context"] = self.context
         if o.get("disrupt"):
             self.nuisance.append(t)
         self.emit("intent", bot=self.bot, option=o.get("id"), score=None if sc is None else round(sc, 3), area=o.get("area"))
@@ -120,7 +125,11 @@ class Head:
         p = self.p
         lr = p.get("skill", {}).get("learning_rate", 0.5) * 0.5
         key = (o.get("verb"), o.get("area"))
-        self.learned[key] = (1 - lr) * self.learned.get(key, 0.0) + lr * (reward if ok else -0.5)
+        value = reward if ok else -0.5
+        self.learned[key] = (1 - lr) * self.learned.get(key, 0.0) + lr * value
+        if o.get("_context"):
+            ck = key + (o["_context"],)
+            self.learned[ck] = (1 - lr) * self.learned.get(ck, 0.0) + lr * value
         if ok:
             self.fail_streak = 0
             self.frustration = max(0.0, self.frustration - 0.15)

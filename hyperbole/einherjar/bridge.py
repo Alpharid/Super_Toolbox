@@ -63,6 +63,7 @@ def serve(chamber_json: str, game_cmd: list[str]) -> int:
                 continue
             joined.setdefault(bot, clock["t"])
             if kind == "senses":
+                h.context = str((msg.get("senses") or {}).get("context", ""))
                 for cue in (msg.get("senses") or {}).get("cues", []):
                     h.see_cue(cue, clock["t"])
                 o, delay = h.decide(msg.get("options") or [], clock["t"])
