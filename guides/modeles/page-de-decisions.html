@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Décisions à prendre</title>
+<!-- Gabarit de page de décisions (guide : guides/pages-de-decisions.md). Une question par bloc, réponses à cocher, la préférence de
+     l'agent marquée « mon choix » et cochée d'avance, un champ « autre / remarque » par question, des notes libres, et un bouton
+     « Copier mes réponses » qui met le tout en texte à recoller dans la conversation. Toujours SOMBRE (une page claire ouverte la
+     nuit « flashbang » le lecteur). Vérifier avant de l'ouvrir : sh scripts/verifier_page.sh <page.html> (node --check). -->
+<style>
+:root{--fond:#1b1510;--carte:#2a2119;--texte:#efe4d0;--doux:#b9a88e;--accent:#d9774b;--trait:#4a3a2b;--choix:#3b2c1f}
+html{color-scheme:dark}
+body{margin:0;background:var(--fond);color:var(--texte);font:16px/1.55 Georgia,serif}
+main{max-width:1000px;margin:0 auto;padding:24px 16px 80px}
+h1{font-size:30px;margin:0 0 4px}.sous{color:var(--doux);margin:0 0 20px}
+.bloc{background:var(--carte);border:1px solid var(--trait);border-radius:8px;padding:16px 18px;margin:14px 0}
+.q h3{margin:0 0 4px;font-size:17px}.q p{margin:0 0 8px;color:var(--doux)}
+label.o{display:block;padding:7px 10px;margin:5px 0;border:1px solid var(--trait);border-radius:6px;cursor:pointer}
+label.o:hover{background:var(--choix)}.reco{color:var(--accent);font-size:13px;margin-left:6px}
+textarea{width:100%;box-sizing:border-box;min-height:54px;background:#120e0a;color:var(--texte);border:1px solid var(--trait);border-radius:6px;padding:8px;font:inherit;margin-top:6px}
+button{background:var(--accent);color:#1b1510;border:0;border-radius:6px;padding:12px 20px;font:bold 16px Georgia,serif;cursor:pointer;margin-top:18px}
+figure{margin:10px 0}figure img{max-width:100%;border-radius:6px;display:block}figcaption{color:var(--doux);font-size:13px;margin-top:3px}
+</style>
+</head>
+<body><main>
+<h1>Décisions à prendre</h1>
+<p class="sous">Le contexte en deux lignes : d'où viennent ces questions, ce qui a déjà été tranché, ce qui se passe après tes réponses.</p>
+<div id="q"></div>
+<div class="bloc q"><h3>Tes notes libres</h3><textarea id="libre" style="min-height:120px" placeholder="Écris ici…"></textarea></div>
+<button onclick="copier()">Copier mes réponses</button>
+<p id="ok" class="sous"></p>
+</main>
+<script>
+// Une question = [titre, texte (HTML permis : images, liens), options]. Option « Libellé|mon choix » = préférence cochée d'avance.
+// multi:true (4e élément {multi:true}) = cases à cocher au lieu de boutons radio.
+const TITRE = 'Décisions à prendre (decisions_v1)';
+const Q = [
+  ['Première question', 'Ce qu\'on décide, pourquoi ça compte, ce que chaque option change.<figure><img src="images/exemple.png" alt=""><figcaption>Une image pour juger sur pièce</figcaption></figure>',
+   ['Option A|mon choix', 'Option B', 'Ni l\'un ni l\'autre (dis pourquoi)']],
+  ['Deuxième question (plusieurs réponses)', 'Coche tout ce qui s\'applique.',
+   ['Ceci|mon choix', 'Cela', 'Autre chose'], {multi: true}],
+];
+const N = String.fromCharCode(10);
+const boite = document.getElementById('q');
+function echap(s) { return s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;'); }
+Q.forEach(function (q, i) {
+  const multi = q[3] && q[3].multi;
+  const d = document.createElement('div');
+  d.className = 'bloc q';
+  d.innerHTML = '<h3>' + (i + 1) + '. ' + q[0] + '</h3><p>' + q[1] + '</p>' + q[2].map(function (o) {
+    const p = o.split('|'), t = p[0], reco = p.length > 1;
+    return '<label class="o"><input type="' + (multi ? 'checkbox' : 'radio') + '" name="q' + i + '" value="' + echap(t) + '"' +
+      (reco ? ' checked' : '') + '> ' + t + (reco ? '<span class="reco">mon choix</span>' : '') + '</label>';
+  }).join('') + '<textarea id="n' + i + '" placeholder="Autre / remarque…"></textarea>';
+  boite.appendChild(d);
+});
+function copier() {
+  let s = TITRE + N;
+  Q.forEach(function (q, i) {
+    const pris = Array.prototype.map.call(document.querySelectorAll('input[name=q' + i + ']:checked'), function (c) { return c.value; });
+    const n = document.getElementById('n' + i).value.trim();
+    s += (i + 1) + '. ' + q[0] + ' : ' + (pris.length ? pris.join(' + ') : '(rien coché)') + (n ? ' | remarque : ' + n : '') + N;
+  });
+  const l = document.getElementById('libre').value.trim();
+  if (l) s += N + 'Notes libres :' + N + l + N;
+  const ok = document.getElementById('ok');
+  if (navigator.clipboard && window.isSecureContext !== false) {
+    navigator.clipboard.writeText(s).then(function () { ok.textContent = 'Copié : recolle-le dans la conversation.'; },
+      function () { window.prompt('Copie ce texte :', s); });
+  } else { window.prompt('Copie ce texte :', s); }
+}
+</script>
+</body>
+</html>

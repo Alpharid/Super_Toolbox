@@ -215,12 +215,14 @@
         "comfy_client.py (scripts/)",
         "guides/joueurs-ia-dans-un-jeu-en-ligne.md (les Descellés, joueurs IA, docs/11-descelles.md)",
         "guides/ia-locale-performante.md (modèle local des Descellés sur Ollama)",
-        "Hyperbole (hyperbole/) — joueurs simulés sans triche, chambres accélérées, rapports fun/défi/équilibre/bugs"
+        "Hyperbole (hyperbole/) — joueurs simulés sans triche, chambres accélérées, rapports fun/défi/équilibre/bugs",
+        "scripts/chantiers/ (chantier.ps1, chantiers_etat.sh, verrou_gpu.sh) → guides/orchestrer-des-chantiers.md : un terminal Claude par chantier, nés ici le 2026-11-05",
+        "guides/pages-de-decisions.md + guides/modeles/page-de-decisions.html + scripts/verifier_page.sh : les pages à cocher du propriétaire (sombres, Copier, node --check)"
       ],
       "guide": "guides/creer-des-assets.md",
       "manques": [
         "LoRA de style maison (v1 ratée sur Z-Image Turbo ; v2 sur le modèle de base prête, pas lancée)",
-        "musique maqâm : ACE-Step 1.5 XL branché (morceaux provisoires choisis), pas d'oud libre ni de quarts de ton",
+        "musique maqâm : ACE-Step 1.5 XL branché ; le mode passe par un squelette repris en audio→audio (lot 4 à l'écoute), mais pas d'oud libre ni de vrais quarts de ton",
         "animation des djinn : silhouettes non humaines (bêtes, arbustes, pierres, lanternes), modèles TRELLIS non riggés ; pas de capture possible (humains : CMU + robe simulée, fait)"
       ],
       "fait": [
@@ -229,7 +231,10 @@
         "2026-10-28 : animation du Gardien en local sans Mixamo : mouvements CMU (BVH) retargetés sur un squelette maison, robe simulée (tissu Blender figé en clés de forme), rendu 8 directions",
         "2026-10-29 : musique (ACE-Step 1.5 XL dans ComfyUI) et bruitages (MOSS-SoundEffect v2.0) en local ; Demucs + Whisper pour vérifier qu'aucune parole n'est chantée",
         "2026-10-30 : mise en ligne sans domaine : Tailscale Funnel (443 → port joueurs), IP réelle via X-Forwarded-For crue seulement depuis la boucle locale ; un seul .exe (launcher Godot) qui s'installe, se met à jour et met le jeu à jour (manifeste sha256)",
-        "2026-10-30 : entités 3D en série : concept Z-Image (base) → fiche Qwen-Image-Edit → TRELLIS.2 → rendu Blender 8 directions → sprites ; lueur recréée par couleur de texel (TRELLIS éteint les lumières)"
+        "2026-10-30 : entités 3D en série : concept Z-Image (base) → fiche Qwen-Image-Edit → TRELLIS.2 → rendu Blender 8 directions → sprites ; lueur recréée par couleur de texel (TRELLIS éteint les lumières)",
+        "2026-11-05 : interface décorée (cuir, vélin, laiton) : objets peints Z-Image base détourés BiRefNet, sangles et cordelettes dessinées par le code ; icônes peintes des Dons (nature morte, un objet par effet, planche de graines) ; carte à l'encre procédurale depuis le plan (tri topologique des emprises)",
+        "2026-11-06 : son sans paroles : vrais chuchotements CC0 (Freesound) inversés ou en grains, Whisper (aucun mot, fr/ar/en) puis AST pour classer, variantes vraiment différentes ; musique : squelette Karplus-Strong dans le mode repris par ACE-Step en audio→audio pour sortir du pentatonique",
+        "2026-11-07 : méthode et outils versés dans la boîte : guides/orchestrer-des-chantiers.md, guides/pages-de-decisions.md, chaînes d'art et de son dans guides/creer-des-assets.md, comfy_client.py à niveau (trellis_3d, image→image, LoRA, téléversement à empreinte)"
       ],
       "pistes": [
         "mem0 (dans la boîte) → mémoire longue des Descellés (souvenirs, relations) si la mémoire maison en PostgreSQL ne suffit pas",
@@ -240,6 +245,8 @@
         "NVIDIA Kimodo (SOMA/G1) → animations à partir de texte",
         "UniRig (VAST-AI / Tsinghua, SIGGRAPH 2025) → squelette et poids automatiques sur n'importe quel GLB, créatures non humaines comprises ; à essayer sur les GLB TRELLIS des djinn avant de rigger à la main (licence et poids publiés à vérifier)",
         "RigAnything (SIGGRAPH TOG 2025), Make-It-Animatable → autres rigs automatiques sans gabarit, à comparer à UniRig",
+        "MPFB 2 (MakeHuman pour Blender, extensions.blender.org ; code GPL-3, base, cibles, squelettes, peaux et assets système CC0) → corps humain paramétrable et squelette aux noms CMU ; adopté le 2026-11-06 pour l'essai du personnage en couches (tools/art/personnage_couches.py), à verser dans guides/creer-des-assets.md si la voie est validée",
+        "100STYLE (Ian Mason, Édimbourg 2022, CC BY 4.0, Zenodo 8127870 : 100 styles de marche, course et attente en BVH XSens 60 i/s, un seul acteur) → vraies captures libres pour un jeu payant ; adopté le 2026-11-06 pour la marche et les attentes du personnage (tools/art/personnage_posture.py : transfert, cycles choisis, retouches chiffrées, IK des jambes) ; écartées car non commerciales : Bandai Namco Research Motiondataset, LAFAN1, AMASS",
         "Hyperbole (copié) → les Descellés écrivent le journal Hyperbole (csharp/HyperboleJournal.cs, mêmes genres que Rapports.cs) : rapports par profil, rétention, jumeaux saboteur/meneur, `comparer` entre versions ; voie reel (x1) pour le réseau, chambre accélérée seulement pour le monde d'essai",
         "Hyperbole/einherjar/head.py → modèle de la Tête par profils (docs/11 §14) à reprendre dans Tete.cs (tryhard, casual, chill, fouineur, streamer…)"
       ]

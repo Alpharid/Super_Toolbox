@@ -205,6 +205,9 @@ D:\Super_Toolbox\
 ├─ heimdall\                 README (le veilleur), sources.json (domaines+sources), projects.json (projet→outils), heimdall.ps1, reports\AAAA-MM-JJ.md
 ├─ upstreams.json            registre des dépôts tiers : catégorie, licence, rôle, commit synchronisé (écrit par kit.ps1)
 ├─ scripts\kit.ps1           list / check / update / add / verify (PowerShell 5.1, UTF-8 avec BOM)
+├─ scripts\comfy_client.py   client ComfyUI de l'Atelier IA (Z-Image, Qwen-Image-Edit, TRELLIS.2)
+├─ scripts\chantiers\        chantier.ps1 (un terminal Claude par fiche, UTF-8 avec BOM), chantiers_etat.sh, verrou_gpu.sh
+├─ scripts\verifier_page.sh  vérifie une page de décisions (node --check, fond sombre, Copier, images)
 ├─ upstream\universal-modder skills\ (11 SKILL.md), um\ (CLI Python), knowledge\ (INDEX.md, games\, techniques\), examples\ (4 mods)
 ├─ upstream\rea              scripts\rea.mjs (CLI/MCP), src\, bridge\ (Ghidra/Hopper), docs\ (installation, windows-ghidra-p0…), .agents\skills\
 ├─ upstream\GhidraMCP, Il2CppDumper, minhook          outils de modding (sources) — voir CATALOGUE.md
@@ -212,7 +215,8 @@ D:\Super_Toolbox\
 ├─ upstream\netfox, limboai, beehave                  addons Godot
 ├─ upstream\public-apis, awesome*, magictools          listes de ressources (README.md / readme.md)
 ├─ guides\                  README (index par besoin), modder-un-jeu, physique-et-godot, trouver-une-ressource, creer-des-assets,
-│                           reverse-engineering-avec-claude (+ modeles\CLAUDE.re-house-rules.md), ia-locale-performante
+│                           reverse-engineering-avec-claude (+ modeles\CLAUDE.re-house-rules.md), ia-locale-performante,
+│                           orchestrer-des-chantiers, pages-de-decisions (+ modeles\page-de-decisions.html), joueurs-ia…
 └─ (ignorés par git) work\ decomp\ dumps\ captures\ .local\ .env .venv node_modules
 ```
 
@@ -225,6 +229,7 @@ D:\Super_Toolbox\
 
 ## 11. Historique
 
+- **2026-11-07** — Retour de **Guardians of the Seal** versé dans la boîte : `guides/orchestrer-des-chantiers.md` + `scripts/chantiers/` (un terminal Claude par chantier, état et alertes, file du GPU, pièges de git entre sessions) ; `guides/pages-de-decisions.md` + gabarit `guides/modeles/page-de-decisions.html` + `scripts/verifier_page.sh` ; `creer-des-assets.md` § Chaînes éprouvées (entités → sprites, icônes peintes, interface, carte à l'encre, sons sans paroles, musique par squelette, personnage MPFB 2 + 100STYLE) ; `comfy_client.py` à niveau (trellis_3d, image→image, LoRA, téléversement à empreinte) ; entrée Guardians de `projects.json` à jour.
 - **2026-11-05** — Hyperbole : 1er adaptateur branché (Stryder) ; la Tête apprend par contexte (Godot + Python) ; modèle Godot avec `--fixed-fps 60` et APPDATA isolé.
 - **2026-11-02** — **Hyperbole** (`hyperbole/`, demande de l'utilisateur) : outil de playtest par joueurs simulés réunissant les Descellés
   de Guardians et le plan Hyperbole de Stryder. Mr. Popo (orchestrateur, chambres parallèles, kill switch, Valhalla, A/B, jumeaux,

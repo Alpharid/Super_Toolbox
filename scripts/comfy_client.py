@@ -29,7 +29,7 @@ class Graphe:
                             "inputs": {k: (list(v) if isinstance(v, tuple) else v) for k, v in entrees.items()}}
         return nid
 
-    def envoyer(self, attente=900):
+    def envoyer(self, attente=3600):  # la file peut être occupée par un long TRELLIS
         cid = uuid.uuid4().hex
         data = json.dumps({"prompt": self.noeuds, "client_id": cid}).encode()
         req = urllib.request.Request(f"{SERVEUR}/prompt", data=data, headers={"Content-Type": "application/json"})
@@ -60,14 +60,20 @@ class Graphe:
 
 
 def televerser(chemin):
-    """Envoie une image locale dans le dossier input de ComfyUI ; renvoie son nom."""
+    """Envoie une image locale dans le dossier input de ComfyUI ; renvoie son nom.
+    Le nom porte l'empreinte du contenu : deux images de même nom (a/fiche_0.png, b/fiche_0.png) en file en même temps
+    s'écrasaient, et le second travail lisait l'image du premier (vu sur Guardians of the Seal : un modèle 3D fait d'après la
+    mauvaise fiche)."""
+    import hashlib
     import mimetypes
     import os
-    nom = os.path.basename(chemin)
+    donnees = open(chemin, "rb").read()
+    base, ext = os.path.splitext(os.path.basename(chemin))
+    nom = f"{base}_{hashlib.sha1(donnees).hexdigest()[:12]}{ext}"
     limite = uuid.uuid4().hex
     corps = (f"--{limite}\r\nContent-Disposition: form-data; name=\"image\"; filename=\"{nom}\"\r\n"
              f"Content-Type: {mimetypes.guess_type(nom)[0] or 'image/png'}\r\n\r\n").encode()
-    corps += open(chemin, "rb").read() + f"\r\n--{limite}\r\nContent-Disposition: form-data; name=\"overwrite\"\r\n\r\ntrue\r\n--{limite}--\r\n".encode()
+    corps += donnees + f"\r\n--{limite}\r\nContent-Disposition: form-data; name=\"overwrite\"\r\n\r\ntrue\r\n--{limite}--\r\n".encode()
     req = urllib.request.Request(f"{SERVEUR}/upload/image", data=corps,
                                  headers={"Content-Type": f"multipart/form-data; boundary={limite}"})
     return json.load(urllib.request.urlopen(req))["name"]
@@ -83,10 +89,14 @@ def _zimage_base(g, turbo=True):
 
 
 def zimage_txt2img(prompt, seed=0, largeur=1024, hauteur=1024, negatif=NEGATIF_DEFAUT, turbo=True, lot=1,
-                   controle=None, force_controle=0.7, fin_controle=1.0):
-    """Z-Image (Apache-2.0). turbo : 8 pas, cfg 1. controle : image locale (profondeur, contours…)."""
+                   controle=None, force_controle=0.7, fin_controle=1.0, image_depart=None, denoise=1.0, lora=None):
+    """Z-Image (Apache-2.0). turbo : 8 pas, cfg 1. controle : image locale (profondeur, contours…).
+
+    lora : (fichier, force), ex. ("mon_style_v1.safetensors", 1.3)."""
     g = Graphe()
     model, clip, vae = _zimage_base(g, turbo)
+    if lora:
+        model = g.n("LoraLoaderModelOnly", model=(model, 0), lora_name=lora[0], strength_model=lora[1])
     if controle:
         img = g.n("LoadImage", image=televerser(controle))
         patch = g.n("ModelPatchLoader", name="Z-Image-Turbo-Fun-Controlnet-Union-2.1-2602-8steps.safetensors")
@@ -94,12 +104,16 @@ def zimage_txt2img(prompt, seed=0, largeur=1024, hauteur=1024, negatif=NEGATIF_D
                     strength=force_controle, image=(img, 0), start_percent=0.0, end_percent=fin_controle)
     pos = g.n("CLIPTextEncode", clip=(clip, 0), text=prompt)
     neg = g.n("CLIPTextEncode", clip=(clip, 0), text=negatif)
-    lat = g.n("EmptySD3LatentImage", width=largeur, height=hauteur, batch_size=lot)
+    if image_depart:  # image → image : garde la composition, repeint la matière
+        src = g.n("LoadImage", image=televerser(image_depart))
+        lat = g.n("VAEEncode", pixels=(src, 0), vae=(vae, 0))
+    else:
+        lat = g.n("EmptySD3LatentImage", width=largeur, height=hauteur, batch_size=lot)
     ks = g.n("KSampler", model=(model, 0), seed=seed, steps=9 if turbo else 30, cfg=1.0 if turbo else 4.0,
              sampler_name="res_multistep", scheduler="simple", positive=(pos, 0), negative=(neg, 0),
-             latent_image=(lat, 0), denoise=1.0)
+             latent_image=(lat, 0), denoise=denoise)
     dec = g.n("VAEDecode", samples=(ks, 0), vae=(vae, 0))
-    g.n("SaveImage", images=(dec, 0), filename_prefix="guardians")
+    g.n("SaveImage", images=(dec, 0), filename_prefix="atelier")
     return g.envoyer()
 
 
@@ -130,5 +144,56 @@ def qwen_edit(prompt, images, seed=0, pas=30, cfg=4.0, megapixels=1.0, lora_angl
     ks = g.n("KSampler", model=(model, 0), seed=seed, steps=pas, cfg=cfg, sampler_name="euler", scheduler="simple",
              positive=(pos, 0), negative=(neg, 0), latent_image=(lat, 0), denoise=1.0)
     dec = g.n("VAEDecode", samples=(ks, 0), vae=(vae, 0))
-    g.n("SaveImage", images=(dec, 0), filename_prefix="guardians_edit")
+    g.n("SaveImage", images=(dec, 0), filename_prefix="atelier_edit")
     return g.envoyer(attente=1800)
+
+
+def trellis_3d(image, sortie_prefixe="atelier_3d", seed=42, texture=2048, cible_faces=None):
+    """TRELLIS.2 (MIT, nœuds natifs ComfyUI) : image locale → modèle 3D texturé (GLB dans output/3d/).
+
+    Renvoie le chemin relatif du GLB dans le dossier output de ComfyUI."""
+    g = Graphe()
+    img = g.n("LoadImage", image=televerser(image))
+    bg = g.n("LoadBackgroundRemovalModel", bg_removal_name="birefnet.safetensors")
+    masque = g.n("RemoveBackground", bg_removal_model=(bg, 0), image=(img, 0))
+    crop = g.n("ImageCropToMask", images=(img, 0), masks=(masque, 0), width=1024, height=1024, pad_factor=1.1,
+               grow_mask=0, background="#000000")
+    cv = g.n("CLIPVisionLoader", clip_name="dino_v3_vit_l.safetensors")
+    cond = g.n("Trellis2Conditioning", clip_vision_model=(cv, 0), image=(crop, 0))
+    unet = g.n("UNETLoader", unet_name="trellis_2_bf16.safetensors", weight_dtype="default")
+    vshape = g.n("VAELoader", vae_name="trellis_2_shape_vae_bf16.safetensors")
+    vtex = g.n("VAELoader", vae_name="trellis_2_texture_vae_bf16.safetensors")
+    # structure
+    m_s = g.n("ModelSamplingSD3", model=(g.n("RescaleCFG", model=(g.n("CFGOverride", model=(unet, 0), cfg=1.0,
+              start_percent=0.667, end_percent=1.0), 0), multiplier=0.7), 0), shift=5.0)
+    vide = g.n("EmptyTrellis2LatentStructure", batch_size=1)
+    k_s = g.n("KSampler", model=(m_s, 0), seed=seed, steps=12, cfg=7.5, sampler_name="euler", scheduler="normal",
+              positive=(cond, 0), negative=(cond, 1), latent_image=(vide, 0), denoise=1.0)
+    vox = g.n("VaeDecodeStructureTrellis2", samples=(k_s, 0), vae=(vshape, 0), resolution="32")
+    # forme
+    m_f = g.n("RescaleCFG", model=(g.n("CFGOverride", model=(unet, 0), cfg=1.0, start_percent=0.769,
+              end_percent=1.0), 0), multiplier=0.5)
+    st = g.n("Trellis2ShapeStage", positive=(cond, 0), negative=(cond, 1), voxel=(vox, 0))
+    k_f = g.n("KSampler", model=(m_f, 0), seed=seed, steps=20, cfg=7.5, sampler_name="euler", scheduler="normal",
+              positive=(st, 0), negative=(st, 1), latent_image=(st, 2), denoise=1.0)
+    up = g.n("Trellis2UpsampleStage", positive=(st, 0), negative=(st, 1), shape_latent=(k_f, 0), vae=(vshape, 0),
+             target_resolution=1536)
+    k_u = g.n("KSampler", model=(m_f, 0), seed=seed, steps=12, cfg=7.5, sampler_name="euler", scheduler="simple",
+              positive=(up, 0), negative=(up, 1), latent_image=(up, 2), denoise=1.0)
+    forme = g.n("VaeDecodeShapeTrellis", samples=(k_u, 0), vae=(vshape, 0))
+    # texture
+    tx = g.n("Trellis2TextureStage", positive=(up, 0), negative=(up, 1), shape_latent=(k_u, 0))
+    k_t = g.n("KSampler", model=(unet, 0), seed=seed + 1, steps=12, cfg=1.0, sampler_name="euler", scheduler="normal",
+              positive=(tx, 0), negative=(tx, 1), latent_image=(tx, 2), denoise=1.0)
+    couleurs = g.n("VaeDecodeTextureTrellis", samples=(k_t, 0), vae=(vtex, 0), shape_subdivides=(forme, 1))
+    # cible_faces : décime avant l'unwrap (l'unwrap de 8 M de faces prend ~25 min sur le CPU) ; la texture est cuite
+    # depuis le maillage complet (reference_mesh), donc sans trous. Sans décimation : unwrap ~25 min et cuisson à court de VRAM ; 1,5 M de faces : ~6-10 min, GLB ~45 Mo.
+    base = g.n("DecimateMesh", mesh=(forme, 0), target_face_count=cible_faces, placement_mode="midpoint") if cible_faces else forme
+    mesh = g.n("MeshSmoothNormals", mesh=(base, 0), crease_angle=180.0)
+    uv = g.n("UnwrapMesh", mesh=(mesh, 0), segmenter="pec", resolution=texture, padding=1, weld_distance=0.0002)
+    bake = g.n("BakeTextureFromVoxel", mesh=(uv, 0), voxel_colors=(couleurs, 0), texture_size=texture,
+               reference_mesh=(forme, 0))
+    tex = g.n("ApplyTextureToMesh", mesh=(uv, 0), base_color=(bake, 0), metallic=(bake, 1), roughness=(bake, 2))
+    g.n("SaveGLB", mesh=(tex, 0), filename_prefix=f"3d/{sortie_prefixe}")
+    g.envoyer(attente=3600)
+    return sortie_prefixe

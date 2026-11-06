@@ -62,6 +62,8 @@ du temps (joueurs simulés qui testent les jeux sur le PC, §1 `qa-playtest`).
 - _(rien de copié — licences surtout GPL/SSPL → référencées en lien : Nuclei, Cameradar, CrowdSec, RustScan, Lynis… voir `CATALOGUE.md` § Liens Heimdall et `heimdall/reports/`)._
 
 ### 🧰 devtools + listes transverses
+- **scripts/chantiers/** — maison · **un terminal Claude par chantier** : `chantier.ps1` (ouvre la session sur sa fiche), `chantiers_etat.sh` (état, alertes), `verrou_gpu.sh` (file du GPU partagée) → [guides/orchestrer-des-chantiers.md](guides/orchestrer-des-chantiers.md).
+- **Pages de décisions** — maison · gabarit sombre à cocher + « Copier mes réponses », `scripts/verifier_page.sh` (node --check) → [guides/pages-de-decisions.md](guides/pages-de-decisions.md).
 - **public-apis** — `public-apis/public-apis` · MIT · ~1 400 API gratuites classées.
 - **awesome-godot** — `Calinou/awesome-godot` · CC-BY-4.0 · écosystème Godot.
 - **magictools** — `ellisonleao/magictools` · MIT · création de jeux (moteurs, art, son, outils).
@@ -75,7 +77,8 @@ du temps (joueurs simulés qui testent les jeux sur le PC, §1 `qa-playtest`).
 - **Atelier IA** — `C:\Atelier_IA` · ComfyUI portable + modèles partagés (`modeles/`) · lancer `lancer_comfyui.bat` → **guide [creer-des-assets.md](guides/creer-des-assets.md)**.
 - **Modèles** (licences vérifiées UE + commercial) : Z-Image Turbo/base + Fun ControlNet (Apache) · Qwen-Image-2512 / Edit-2511 + LoRA angles + ControlNet Union (Apache) · **TRELLIS.2** image→3D natif (MIT) · BiRefNet (MIT).
 - **Krita + krita-ai-diffusion** — repeindre par-dessus / inpainting branché sur l'atelier (casse le « look IA »).
-- **scripts/comfy_client.py** — piloter ComfyUI depuis un script (txt2img, édition, upload).
+- **scripts/comfy_client.py** — piloter ComfyUI depuis un script (txt2img et image→image Z-Image, LoRA, édition Qwen, **TRELLIS.2 image→GLB**, téléversement à empreinte).
+- 📘 Chaînes éprouvées sur Guardians (entité → sprites 8 directions, icônes peintes, pièces d'interface, carte à l'encre, sons sans paroles par Whisper + AST, musique dans un mode imposé par squelette, personnage MPFB 2 + 100STYLE) → [creer-des-assets.md](guides/creer-des-assets.md) § Chaînes éprouvées.
 - Audio/vidéo : ffmpeg, Audacity, **Surge XT** (microtonal, maqâms), 7-Zip, uv. Pistes : ai-toolkit (LoRA), ACE-Step (musique), Kimodo (mouvement), Wan VACE.
 
 > Les listes se **grep**, jamais se lisent en entier. Gros outils non copiés (BepInEx, UE4SS, AssetRipper, ILSpy,
@@ -118,6 +121,7 @@ Se tient au courant de ce qui sort d'utile, et garde cet index à jour. Tout : *
 
 ### Dernières nouveautés
 <!-- HEIMDALL:LATEST -->
+- **2026-11-07** — Retour de Guardians of the Seal : orchestration en chantiers (`scripts/chantiers/`), pages de décisions (gabarit + vérificateur), chaînes d'art et de son dans `creer-des-assets.md`, `comfy_client.py` à niveau.
 - **2026-11-02** — **Hyperbole** entre dans la boîte (playtest par joueurs simulés) + veille ciblée `qa-playtest` : [heimdall/reports/2026-11-02-hyperbole.md](heimdall/reports/2026-11-02-hyperbole.md).
 - **2026-11-02** — 1 trouvaille (semaine calme) : voir [heimdall/reports/2026-11-02.md](heimdall/reports/2026-11-02.md).
 <!-- /HEIMDALL:LATEST -->

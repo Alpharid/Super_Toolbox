@@ -52,9 +52,63 @@ Une sortie 100 % IA paraît générique, et elle est difficile à protéger par 
 - **Rendu Blender → peinture cohérente** : passe de profondeur → `zimage_txt2img(…, controle="depth.png", force_controle=0.6)`.
 - **Fumée, feu, sable vivants** : effets en temps réel dans le moteur (Godot GPUParticles2D + shaders) par-dessus le sprite, pas d'images fixes.
 
-## Pas encore installé (pistes vérifiées)
-- **ai-toolkit** (ostris, MIT) ou musubi-tuner (Apache-2.0) : LoRA de style sur 24 Go (Z-Image base ou Qwen-Image).
-- **ACE-Step 1.5 / XL** (MIT, usage commercial des sorties explicitement permis) : musique ; version portable Windows. HeartMuLa 3B (Apache-2.0) en alternative.
+## Chaînes éprouvées (Guardians of the Seal, octobre-novembre 2026)
+
+Scripts de référence dans le dépôt de Guardians (privé) ; la méthode, elle, sert à tout projet. Client commun : `scripts/comfy_client.py`
+(`zimage_txt2img` avec `image_depart`/`denoise`/`lora`, `qwen_edit`, `trellis_3d`, `televerser` à empreinte).
+
+**Entité (personnage, créature, objet) → sprites 8 directions**, une commande par étape, chaque étape faite est sautée à la relance :
+1. *concept* : lot de variantes Z-Image (une par prompt, mots de peintre, négatif anti-mignon) ; le propriétaire choisit.
+2. *fiche* : `qwen_edit(gabarit + description, [concept])` → la même entité de face, bras écartés, fond gris neutre. **Nommer dans la
+   description ce qui doit rester** (une canne disparaît sinon) et ce qui ne doit pas venir (« granite rugueux, pas un œuf »).
+3. *modèle* : `trellis_3d(fiche, cible_faces=1_500_000)` → GLB (~6-10 min). Sans décimation : unwrap de 25 min puis VRAM épuisée.
+4. *rendu* : Blender, caméra du jeu, 8 directions (45° + 45° × i), 768 px, sans ombre ni décor (le jeu dessine l'ombre).
+5. *export* : recadrage commun, **îlots détachés < 1,5 % effacés** (TRELLIS laisse des débris), teintes corrigées au cas par cas
+   (TRELLIS fait virer l'indigo au turquoise ; il perd les lueurs et braises : les rajouter au rendu).
+Une liste JSON enchaîne fiche → modèle → rendu → export pour un lot ; une entité qui échoue est notée et la suivante démarre.
+Toujours **regarder chaque rendu** : un téléversement écrasé a déjà fait modeler une entité d'après la fiche d'une autre.
+
+**Icônes peintes (objets, techniques, capacités)** : une nature morte à l'huile, **un seul objet qui évoque l'effet** (jamais le
+personnage), Z-Image base (`turbo=False`, ~35 s) avec les mêmes mots de peintre que le reste de l'interface, plusieurs graines par
+icône, détourage BiRefNet (`RemoveBackground`), redressement et recadrage communs, puis une **planche de candidats** pour choisir une
+graine par icône. Essayer d'abord 4 à 6 icônes et faire valider le style, ensuite seulement le lot entier.
+
+**Pièces d'interface décorées (cuir, vélin, laiton, cordelettes)** : objets peints puis détourés comme les icônes ; ce qui doit
+s'étirer (sangles, cordelettes, coutures) est **dessiné par le code** (courbes de Bézier, texture de fibre, ombre portée) plutôt que
+peint en une image fixe ; les maquettes se montrent à la taille du jeu **et** en zoom ×2 sur une page de décisions.
+
+**Carte « relevé à la plume »** : pas un filtre posé sur la carte peinte (ça se voit toujours) ; un vrai dessin procédural fait à
+partir du **plan** du niveau (mêmes coordonnées et même projection que la carte peinte, donc clics et repères tombent juste) :
+encre sépia, trait qui tremble, hachures des faces à l'ombre, pistes en tirets, chaque élément du plan dessiné, ce qui s'élève trié
+de l'arrière vers l'avant **par tri topologique des emprises** (la seule profondeur fait passer un long rempart devant ce qu'il longe),
+chaque chose efface l'encre de ce qu'elle cache. À refaire à chaque retouche du plan.
+
+**Sons sans paroles (chuchotements, voix « qui ne disent rien »)** :
+- Sources : de **vrais** enregistrements humains (Freesound filtré **CC0**, licences recopiées dans un `licences.md`), plutôt que des
+  voix de synthèse (MOSS-VoiceGenerator, Apache-2.0, sert d'appoint ; MOSS-SoundEffect ne fait pas de voix).
+- Les rendre sans mot : **à l'envers** (aucune langue ne s'y lit) ou découpés en **grains** de quelques centaines de ms.
+- Filtrer par machine avant l'oreille : voisement bas (vraiment chuchoté) et **aucun mot reconnu par Whisper** (faster-whisper, CPU,
+  en fr, ar, en et auto ; un mot isolé de la liste des hallucinations de Whisper sur du bruit, « you », « thank you », n'écarte rien) ;
+  puis **AST** (classifieur AudioSet) pour classer les bouffées (« Gasp », « Whisper », « Breathing »).
+- Monter plusieurs variantes **vraiment différentes** (rythme, voix dominantes, nombre de voix, final), sans effet ajouté si on veut
+  du naturel ; Whisper relit le montage final et choisit la graine sans mot. Le propriétaire tranche à l'oreille sur une page d'écoute.
+
+**Musique (ACE-Step 1.5 XL dans ComfyUI)** : Turbo pour explorer, SFT pour finir ; tri technique avant l'écoute (silence,
+saturation, plage dynamique trop plate = nappe sans relief) ; mastering commun ffmpeg `loudnorm` deux passes, −16 LUFS, −1 dBTP,
+passe-haut 30 Hz. **Les modes non occidentaux ne passent pas par les tags** (tout sort pentatonique, « hijaz » écrit ne suffit pas) :
+écrire un **squelette** synthétique dans le mode (cordes pincées Karplus-Strong, souffle, percussion) et le faire reprendre par
+ACE-Step en audio→audio (débruitage partiel 0,5 à 0,8). Page d'écoute locale (`python -m http.server`) partagée par un tunnel
+`cloudflared` (le service de pages de claude.ai refuse les gros fichiers) ; méthode des pages : `guides/pages-de-decisions.md`.
+
+**Personnage 3D en couches (en cours d'essai, pas encore validé)** : corps de base **MPFB 2** (MakeHuman pour Blender : code GPL-3,
+mais base, cibles, squelettes et peaux CC0, donc utilisables dans un jeu payant), squelette aux noms CMU ; mouvements **100STYLE**
+(CC BY 4.0, 100 styles de marche, course et attente en BVH) et **CMU** (libre) transférés puis retouchés (IK des jambes). Écartés car
+non commerciaux : Bandai Namco Motiondataset, LAFAN1, AMASS. Les vêtements sont des couches à part qui cachent la peau ; la base
+reste nue (jamais de linge « par défaut » collé au corps).
+
+## Installés depuis, et pistes vérifiées
+- **ai-toolkit** (ostris, MIT ; installé dans `C:/Atelier_IA/ai-toolkit`) ou musubi-tuner (Apache-2.0) : LoRA de style sur 24 Go (Z-Image base ou Qwen-Image).
+- **ACE-Step 1.5 / XL** (MIT, usage commercial des sorties explicitement permis) : musique, **branché dans ComfyUI** (voir plus haut). HeartMuLa 3B (Apache-2.0) en alternative.
 - **NVIDIA Kimodo** (texte → mouvement ; poids SOMA/G1 sous NVIDIA Open Model License, éviter la variante SMPL-X) ; Mixamo (libre de droits dans un jeu) ; Rigify / AccuRIG 2 pour le rig.
 - **Wan 2.2 VACE / Fun Control** (Apache-2.0) : repeindre une séquence animée à partir de la profondeur Blender (il reste un peu de scintillement).
 - Audio libre : Sonniss GDC bundles, Kenney (CC0), Freesound filtré CC0, darbuka Coyotus. Pas de bonne banque libre d'oud ou de qanûn : celles qui valent le coup sont payantes (Sonokinetic, Sonuscore).
