@@ -25,5 +25,5 @@ echo "$ouverts" | while read -r nom debut; do
   echo "$etat" | grep -qiE "attente" && echo "   -> attend le propriétaire : sa page est-elle ouverte, sombre, avec un bouton Copier qui marche ?"
 done
 echo "== activité (fichiers changés depuis 20 min, par dossier)"
-find $SURVEILLER -newermt "-20 minutes" -type f -not -path '*/.git/*' 2>/dev/null | grep -vE '\.import$|/\.godot/|node_modules' \
+find $SURVEILLER -mmin -20 -type f -not -path '*/.git/*' 2>/dev/null | grep -vE '\.import$|/\.godot/|node_modules' \
   | sed 's|/[^/]*$||' | sort | uniq -c | sort -rn | head -10
