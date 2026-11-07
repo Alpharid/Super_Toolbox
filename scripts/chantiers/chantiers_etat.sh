@@ -21,6 +21,10 @@ echo "$ouverts" | while read -r nom debut; do
   if echo "$etat" | grep -qiE "Réponses.*REPRENDRE|REPRENDRE.*Réponses"; then
     [ "$age_fiche" -ge 20 ] && echo "   !! des réponses attendent depuis ${age_fiche} min : la session les a-t-elle vues ? (sinon la relancer)"
   fi
+  # réponses déposées par l'orchestrateur sous un titre « À TRAITER » (la session les remplace par « traitées » une fois faites)
+  if grep -qE "^#+ .*À TRAITER" "$fiche" && [ "$age_fiche" -ge 20 ]; then
+    echo "   !! « À TRAITER » dans la fiche depuis ${age_fiche} min sans qu'elle bouge : la session surveille-t-elle sa fiche ? (sinon la relancer)"
+  fi
   echo "$etat" | grep -qiE "FINI|CLOS" && echo "   -> fini : fermer son terminal (après avoir vérifié que tout est commité)"
   echo "$etat" | grep -qiE "attente" && echo "   -> attend le propriétaire : sa page est-elle ouverte, sombre, avec un bouton Copier qui marche ?"
 done

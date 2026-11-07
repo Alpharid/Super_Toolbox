@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Notre méthode</title>
+<meta name="description" content="Comment on travaille : un propriétaire qui décide, des sessions Claude en chantiers, des pages de décision, des agents faits maison, local d'abord. Né sur Guardians of the Seal.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fondamento&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<!-- Vitrine de guides/notre-methode.md. Règle : à chaque chantier qui crée ou change un outil maison, mettre à jour le guide, cette
+     page et INDEX.md. Chiffres relevés le 2026-11-07 dans le dépôt et les journaux de Guardians of the Seal (pas estimés). -->
+<style>
+:root{
+  --fond:#17120d;--fond2:#1d1610;--carte:#271e16;--carte2:#2f241a;--trait:#4a3a2b;--trait2:#5d4a37;
+  --texte:#efe4d0;--doux:#b9a88e;--pale:#8d7d67;--accent:#d9774b;--accent2:#e8a25f;--api:#86aebd;--local:#c9a86a;
+  --titres:'Fondamento',Georgia,serif;--corps:'Amiri',Georgia,serif;
+}
+html{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fond);color:var(--texte);font:19px/1.6 var(--corps)}
+a{color:var(--accent2);text-decoration-thickness:1px;text-underline-offset:3px}
+main{max-width:1080px;margin:0 auto;padding:0 16px 80px}
+h1,h2,h3{font-family:var(--titres);font-weight:400;letter-spacing:.01em}
+header{padding:64px 0 28px;border-bottom:1px solid var(--trait);margin-bottom:36px}
+header .sur{color:var(--accent);font-family:var(--titres);font-size:17px;margin:0 0 6px}
+h1{font-size:clamp(40px,7vw,64px);line-height:1.05;margin:0 0 14px}
+header p.chapeau{font-size:21px;color:var(--doux);max-width:760px;margin:0}
+h2{font-size:32px;margin:56px 0 6px}
+h2 + .sous{color:var(--doux);margin:0 0 20px;max-width:780px}
+h3{font-size:21px;margin:0 0 4px}
+
+/* chiffres */
+.chiffres{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:12px}
+.chiffre{background:var(--carte);border:1px solid var(--trait);border-radius:8px;padding:14px 16px}
+.chiffre b{display:block;font-family:var(--titres);font-weight:400;font-size:34px;line-height:1.1;color:var(--texte)}
+.chiffre span{color:var(--doux);font-size:16px;line-height:1.35;display:block;margin-top:4px}
+.note{color:var(--pale);font-size:15px;margin-top:10px}
+
+/* schéma */
+figure.schema{margin:0;background:var(--fond2);border:1px solid var(--trait);border-radius:10px;padding:14px}
+figure.schema svg{width:100%;height:auto;display:block}
+figure.schema figcaption{color:var(--doux);font-size:16px;margin-top:8px}
+.leg{display:inline-flex;align-items:center;gap:6px;margin-right:16px}
+.pastille{width:14px;height:10px;border-radius:2px;display:inline-block}
+
+/* principes */
+.grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:12px}
+.carte{background:var(--carte);border:1px solid var(--trait);border-radius:8px;padding:16px 18px}
+.carte p{margin:4px 0 0;color:var(--doux);font-size:17px;line-height:1.5}
+.carte .ne{color:var(--pale);font-size:15px;font-style:italic;margin-top:8px}
+
+/* outils */
+.famille{margin:26px 0 10px;color:var(--accent);font-family:var(--titres);font-size:20px}
+.outil{display:grid;grid-template-columns:1fr auto;gap:4px 14px;align-items:start}
+.outil .tag{font-size:14px;border:1px solid var(--trait2);border-radius:20px;padding:1px 10px;white-space:nowrap;color:var(--doux)}
+.outil .tag.api{border-color:var(--api);color:var(--api)}
+.outil .tag.local{border-color:var(--local);color:var(--local)}
+.outil p{grid-column:1 / -1}
+.outil .cout{grid-column:1 / -1;color:var(--texte);font-size:16px;margin-top:6px}
+.outil .cout em{color:var(--pale);font-style:normal}
+
+/* graphique des dépenses */
+.barres{background:var(--carte);border:1px solid var(--trait);border-radius:8px;padding:18px 18px 12px}
+.barre{display:grid;grid-template-columns:minmax(120px,210px) 1fr;gap:12px;align-items:center;margin:8px 0;position:relative}
+.barre .nom{color:var(--doux);font-size:17px;text-align:right}
+.barre .piste{position:relative;height:26px}
+.barre .rempli{height:100%;background:var(--accent);border-radius:0 4px 4px 0;min-width:3px}
+.barre .val{position:absolute;top:50%;transform:translateY(-50%);font-size:16px;color:var(--texte);padding-left:8px;white-space:nowrap}
+.barre:hover .rempli{background:var(--accent2)}
+.barre .bulle{display:none;position:absolute;left:50%;top:-34px;background:#0f0b08;border:1px solid var(--trait2);border-radius:6px;padding:3px 10px;font-size:15px;color:var(--texte);z-index:2;white-space:nowrap}
+.barre:hover .bulle,.barre:focus-within .bulle{display:block}
+.axe{border-top:1px solid var(--trait);margin:6px 0 0 calc(min(210px,40%) + 12px)}
+details.table{margin-top:10px;color:var(--doux);font-size:16px}
+details.table table{border-collapse:collapse;margin-top:6px}
+details.table td,details.table th{border-bottom:1px solid var(--trait);padding:3px 14px 3px 0;text-align:left}
+
+/* faiblesses */
+.lecon{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border:1px solid var(--trait);border-radius:8px;overflow:hidden;margin:10px 0}
+.lecon > div{padding:12px 14px;font-size:17px;line-height:1.45}
+.lecon .rate{background:#2b1a14}
+.lecon .appris{background:var(--carte)}
+.lecon .ou{background:var(--carte2);color:var(--doux)}
+.lecon small{display:block;font-family:var(--titres);font-size:14px;color:var(--pale);margin-bottom:4px}
+ul.pistes{padding-left:22px}ul.pistes li{margin:4px 0}
+footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--trait);color:var(--doux);font-size:16px}
+
+@media (max-width:720px){
+  body{font-size:17px}
+  .lecon{grid-template-columns:1fr}
+  .chiffres{grid-template-columns:1fr 1fr}
+  .chiffre b{font-size:28px}
+  .barre{grid-template-columns:110px 1fr}
+  .axe{margin-left:122px}
+}
+</style>
+</head>
+<body><main>
+
+<header>
+  <p class="sur">Super_Toolbox · né sur Guardians of the Seal</p>
+  <h1>Notre méthode</h1>
+  <p class="chapeau">Un propriétaire qui décide, des sessions Claude qui travaillent en chantiers, des pages de décision à cocher,
+  et des agents faits maison qui jouent, regardent, lisent, composent et peignent. Tout ce que le PC sait faire, il le fait ;
+  l'API sert quand elle vaut son prix.</p>
+</header>
+
+<section aria-labelledby="t-chiffres">
+  <h2 id="t-chiffres">Trois semaines, en chiffres</h2>
+  <p class="sous">Guardians of the Seal, un MMORPG fait à deux, du 18 octobre au 7 novembre 2026. Relevés dans le dépôt et les journaux.</p>
+  <div class="chiffres">
+    <div class="chiffre"><b>407</b><span>commits en 3 semaines</span></div>
+    <div class="chiffre"><b>20</b><span>versions publiées aux joueurs</span></div>
+    <div class="chiffre"><b>386</b><span>tests automatiques</span></div>
+    <div class="chiffre"><b>16</b><span>chantiers, 4 ou 5 en parallèle</span></div>
+    <div class="chiffre"><b>95</b><span>pages de décision</span></div>
+    <div class="chiffre"><b>3,21 $</b><span>pour 232 appels à l'API Claude</span></div>
+    <div class="chiffre"><b>38</b><span>séances de joueurs IA rapportées</span></div>
+    <div class="chiffre"><b>31</b><span>leçons écrites, tirées des retours du propriétaire</span></div>
+  </div>
+  <p class="note">Et côté fabrication, tout en local : 32 entités animées en 8 directions, 50 tuiles de carte, 75 icônes peintes,
+  44 bruitages, 844 références de paysages réunies.</p>
+</section>
+
+<section aria-labelledby="t-schema">
+  <h2 id="t-schema">Le système d'un coup d'œil</h2>
+  <p class="sous">Le propriétaire ne parle qu'à une session, l'orchestrateur. Chaque sujet a son terminal. Une question qui lui revient
+  devient une page ; sa réponse revient dans la fiche du chantier.</p>
+  <figure class="schema">
+    <svg viewBox="0 0 960 560" role="img" aria-labelledby="schema-titre schema-desc">
+      <title id="schema-titre">Schéma de la méthode</title>
+      <desc id="schema-desc">Le propriétaire envoie ses réponses à l'orchestrateur, qui les dépose dans les fiches des chantiers sous À TRAITER. Les chantiers posent leurs questions par des pages de décision que le propriétaire coche. Les chantiers appellent les agents maison : joueurs IA, musique et sons, art sur le PC ; regard et gazette par l'API Claude. Le PC passe par une file du GPU ; l'API par un client avec cache, lots et plafond. Ce qui marche revient dans la Super_Toolbox.</desc>
+      <defs>
+        <marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#b9a88e"/>
+        </marker>
+      </defs>
+      <style>
+        .b{fill:#271e16;stroke:#5d4a37;stroke-width:1.5}
+        .bp{fill:#3a2418;stroke:#d9774b;stroke-width:2}
+        .bapi{fill:#1d2528;stroke:#86aebd;stroke-width:1.5;stroke-dasharray:5 4}
+        .bloc{fill:#2a2418;stroke:#c9a86a;stroke-width:1.5}
+        .t{fill:#efe4d0;font:20px Fondamento,Georgia,serif}
+        .s{fill:#b9a88e;font:15px Amiri,Georgia,serif}
+        .f{stroke:#b9a88e;stroke-width:1.6;fill:none;marker-end:url(#fl)}
+        .fe{fill:#d9a77a;font:italic 15px Amiri,Georgia,serif}
+      </style>
+
+      <!-- propriétaire -->
+      <rect class="bp" x="30" y="30" width="200" height="70" rx="8"/>
+      <text class="t" x="130" y="62" text-anchor="middle">Le propriétaire</text>
+      <text class="s" x="130" y="85" text-anchor="middle">décide, essaie en jeu</text>
+
+      <!-- orchestrateur -->
+      <rect class="b" x="370" y="30" width="220" height="70" rx="8"/>
+      <text class="t" x="480" y="62" text-anchor="middle">L'orchestrateur</text>
+      <text class="s" x="480" y="85" text-anchor="middle">fiches, veille, relances, publie</text>
+      <path class="f" d="M230 65 L366 65"/>
+      <text class="fe" x="298" y="56" text-anchor="middle">réponses copiées</text>
+
+      <!-- chantiers -->
+      <g>
+        <rect class="b" x="720" y="22" width="210" height="38" rx="6"/><text class="s" x="825" y="46" text-anchor="middle">chantier : la boussole</text>
+        <rect class="b" x="720" y="68" width="210" height="38" rx="6"/><text class="s" x="825" y="92" text-anchor="middle">chantier : le personnage</text>
+        <rect class="b" x="720" y="114" width="210" height="38" rx="6"/><text class="s" x="825" y="138" text-anchor="middle">chantier : la musique</text>
+        <rect class="b" x="720" y="160" width="210" height="38" rx="6"/><text class="s" x="825" y="184" text-anchor="middle">chantier : l'API</text>
+        <rect class="b" x="720" y="206" width="210" height="38" rx="6"/><text class="s" x="825" y="230" text-anchor="middle">… 4 ou 5 à la fois</text>
+      </g>
+      <path class="f" d="M590 65 L716 65"/>
+      <text class="fe" x="653" y="56" text-anchor="middle">« À TRAITER »</text>
+
+      <!-- page de décision -->
+      <rect class="b" x="30" y="190" width="200" height="70" rx="8"/>
+      <text class="t" x="130" y="222" text-anchor="middle">Page de décision</text>
+      <text class="s" x="130" y="245" text-anchor="middle">sombre, à cocher, Copier</text>
+      <path class="f" d="M716 225 L236 225"/>
+      <text class="fe" x="480" y="216" text-anchor="middle">une question pour lui : une page, et le chantier continue</text>
+      <path class="f" d="M130 190 L130 104"/>
+      <text class="fe" x="140" y="152">il coche</text>
+
+      <!-- boîte -->
+      <rect class="b" x="370" y="130" width="220" height="56" rx="8"/>
+      <text class="t" x="480" y="156" text-anchor="middle">Super_Toolbox</text>
+      <text class="s" x="480" y="176" text-anchor="middle">guides, Heimdall, Hyperbole</text>
+      <path class="f" d="M716 150 L594 155"/>
+      <text class="fe" x="655" y="145" text-anchor="middle">ce qui marche</text>
+
+      <!-- bus vers les agents -->
+      <path d="M825 244 L825 300 L110 300" stroke="#8d7d67" stroke-width="1.4" fill="none"/>
+      <text class="fe" x="470" y="292" text-anchor="middle">les chantiers appellent les agents maison</text>
+      <path class="f" d="M110 300 L110 326"/><path class="f" d="M295 300 L295 326"/><path class="f" d="M480 300 L480 326"/>
+      <path class="f" d="M665 300 L665 326"/><path class="f" d="M850 300 L850 326"/>
+
+      <!-- agents -->
+      <rect class="bloc" x="30" y="330" width="160" height="70" rx="8"/>
+      <text class="t" x="110" y="360" text-anchor="middle">Joueurs IA</text><text class="s" x="110" y="383" text-anchor="middle">jouent sans tricher</text>
+      <rect class="bloc" x="215" y="330" width="160" height="70" rx="8"/>
+      <text class="t" x="295" y="360" text-anchor="middle">Art</text><text class="s" x="295" y="383" text-anchor="middle">sprites, carte, icônes</text>
+      <rect class="bloc" x="400" y="330" width="160" height="70" rx="8"/>
+      <text class="t" x="480" y="360" text-anchor="middle">Musique, sons</text><text class="s" x="480" y="383" text-anchor="middle">générés, puis triés</text>
+      <rect class="bapi" x="585" y="330" width="160" height="70" rx="8"/>
+      <text class="t" x="665" y="360" text-anchor="middle">Le regard</text><text class="s" x="665" y="383" text-anchor="middle">relit les rendus</text>
+      <rect class="bapi" x="770" y="330" width="160" height="70" rx="8"/>
+      <text class="t" x="850" y="360" text-anchor="middle">La gazette</text><text class="s" x="850" y="383" text-anchor="middle">lit les rapports</text>
+
+      <!-- socles -->
+      <path class="f" d="M110 400 L110 456"/><path class="f" d="M295 400 L295 456"/><path class="f" d="M480 400 L480 456"/>
+      <path class="f" d="M665 400 L665 456"/><path class="f" d="M850 400 L850 456"/>
+      <rect class="bloc" x="30" y="460" width="530" height="74" rx="8"/>
+      <text class="t" x="295" y="490" text-anchor="middle">Le PC (local)</text>
+      <text class="s" x="295" y="514" text-anchor="middle">CPU pour jouer et trier · GPU par une file : un ticket par étape</text>
+      <rect class="bapi" x="585" y="460" width="345" height="74" rx="8"/>
+      <text class="t" x="757" y="490" text-anchor="middle">API Claude</text>
+      <text class="s" x="757" y="514" text-anchor="middle">cache, lots à moitié prix, plafond</text>
+    </svg>
+    <figcaption>
+      <span class="leg"><span class="pastille" style="background:#2a2418;border:1.5px solid #c9a86a"></span>tourne sur le PC</span>
+      <span class="leg"><span class="pastille" style="background:#1d2528;border:1.5px dashed #86aebd"></span>passe par l'API Claude</span>
+      L'Esprit qui fait parler les joueurs IA passe aussi par l'API, avec un modèle local en secours.
+    </figcaption>
+  </figure>
+</section>
+
+<section aria-labelledby="t-principes">
+  <h2 id="t-principes">Les principes</h2>
+  <p class="sous">Chacun est né d'un vrai incident ou d'une demande du propriétaire.</p>
+  <div class="grille">
+    <div class="carte"><h3>Le propriétaire décide</h3><p>Claude propose, sa préférence cochée d'avance. Les choix de jeu se valident après essai en jeu, pas sur papier.</p></div>
+    <div class="carte"><h3>Un terminal par chantier</h3><p>Une fiche écrite est le seul contexte d'une session. 4 ou 5 à la fois au plus.</p><p class="ne">Une session qui portait cinq sujets saturait et perdait le fil.</p></div>
+    <div class="carte"><h3>Une décision, une page</h3><p>Rien ne reste en suspens dans le terminal. Page sombre, une question par bloc, « Copier mes réponses » vérifié.</p><p class="ne">Une page claire ouverte la nuit l'a ébloui.</p></div>
+    <div class="carte"><h3>Ne jamais s'arrêter pour attendre</h3><p>La session fait sa page, continue ce qui n'en dépend pas, puis surveille sa fiche.</p><p class="ne">Trois sessions sont restées figées une demi-journée sans que personne le voie.</p></div>
+    <div class="carte"><h3>Rien de provisoire, qualité d'abord</h3><p>Pas de brouillon livré « en attendant », pas de raccourci qui dégrade le résultat.</p></div>
+    <div class="carte"><h3>Essayer petit, montrer avant / après</h3><p>2 ou 3 morceaux d'abord, puis le lot entier.</p><p class="ne">Une carte entière repeinte d'un coup a été jetée.</p></div>
+    <div class="carte"><h3>Trier avant de soumettre</h3><p>Une machine écarte le raté avant l'oreille ou l'œil du propriétaire.</p><p class="ne">Des morceaux soumis sans tri l'ont fâché ; le tri existe depuis.</p></div>
+    <div class="carte"><h3>Pas de « look IA »</h3><p>Des références d'artistes humains, le style écrit en mots de peintre, des retouches à la main. Des textes où chaque phrase dit quelque chose.</p></div>
+    <div class="carte"><h3>Vérifier avant d'affirmer</h3><p>Pas de « tout tourne » sans avoir regardé chaque session ; pas de « c'est un bug » sans l'avoir revu à vitesse normale.</p></div>
+    <div class="carte"><h3>Local d'abord, crédits comptés</h3><p>Le PC fait ce qu'il sait faire. L'API quand elle est nettement meilleure, et on l'a mesuré.</p></div>
+    <div class="carte"><h3>Tout dans le projet, rien ne tourne pour rien</h3><p>Copies et essais dans le dossier du projet, archives gardées ; serveurs et modèles fermés après usage.</p></div>
+    <div class="carte"><h3>Prêt à reprendre</h3><p>À chaque push, une autre IA reprend sans contexte : document de reprise, historique daté, fiches.</p></div>
+  </div>
+</section>
+
+<section aria-labelledby="t-outils">
+  <h2 id="t-outils">Les outils maison</h2>
+  <p class="sous">Ce que chacun fait, quand l'appeler, ce qu'il coûte. Le détail est dans le guide de chacun.</p>
+
+  <div class="famille">Organisation</div>
+  <div class="grille">
+    <div class="carte outil"><h3>Les chantiers</h3><span class="tag local">PC</span>
+      <p>Un script ouvre un terminal Claude sur une fiche ; un autre dit l'état de chaque session et lève des alertes ; une veille rend la main à l'orchestrateur quand quelque chose bouge, ou quand tout est trop calme.</p>
+      <div class="cout">Gratuit <em>· <a href="../orchestrer-des-chantiers.md">orchestrer-des-chantiers.md</a></em></div></div>
+    <div class="carte outil"><h3>L'orchestrateur</h3><span class="tag">méthode</span>
+      <p>Il dépose les réponses du propriétaire dans les fiches sous « À TRAITER », relance une session figée, ferme celles qui ont fini, et seul publie.</p>
+      <div class="cout">Une session <em>· <a href="../orchestrer-des-chantiers.md">§ L'orchestrateur</a></em></div></div>
+    <div class="carte outil"><h3>Les pages de décision</h3><span class="tag">gabarit</span>
+      <p>Une question par bloc, de quoi juger sur pièce, la préférence de Claude marquée « mon choix », une remarque libre, et le bouton qui met tout en texte.</p>
+      <div class="cout">95 pages en trois semaines <em>· <a href="../pages-de-decisions.md">pages-de-decisions.md</a></em></div></div>
+    <div class="carte outil"><h3>La file du GPU</h3><span class="tag local">PC</span>
+      <p>Un ticket par étape lourde, servi dans l'ordre d'arrivée, partagé entre sessions et entre projets. Huit minutes au plus par ticket.</p>
+      <div class="cout">Gratuit <em>· <a href="../economiser-tokens-et-gpu.md">economiser-tokens-et-gpu.md</a></em></div></div>
+  </div>
+
+  <div class="famille">Agents qui jouent et qui lisent</div>
+  <div class="grille">
+    <div class="carte outil"><h3>Les joueurs IA</h3><span class="tag local">PC</span>
+      <p>Ils se connectent comme des joueurs, sans aucune triche, en sept profils, dans un monde accéléré jusqu'à ×20. Ils ont trouvé une étape du tutoriel qui bloquait 5 joueurs sur 6 et un marchand jamais approvisionné (739 achats refusés).</p>
+      <div class="cout">0 $ <em>· <a href="../joueurs-ia-dans-un-jeu-en-ligne.md">joueurs IA</a>, <a href="../../hyperbole/README.md">Hyperbole</a></em></div></div>
+    <div class="carte outil"><h3>L'Esprit</h3><span class="tag api">API</span>
+      <p>Ce qui fait parler les joueurs IA dans le chat. Choisi à l'aveugle : 20 répliques d'un petit modèle de l'API contre 20 d'un modèle local ; l'API préférée 17 fois sur 20.</p>
+      <div class="cout">≈ 0,10 $ la séance au plus <em>· modèle local en secours</em></div></div>
+    <div class="carte outil"><h3>La gazette</h3><span class="tag api">API</span>
+      <p>Les rapports d'une journée de joueurs IA en une page : ce qui bloque, l'équilibre, les anomalies, et ce qui manquait pour juger.</p>
+      <div class="cout">2 à 6 centimes <em>· <a href="../la-gazette.md">la-gazette.md</a></em></div></div>
+    <div class="carte outil"><h3>Le regard</h3><span class="tag api">API</span>
+      <p>Relit les rendus et liste les défauts, avec la fiche de chaque entité et ce que le propriétaire a dit voulu. Il signale, il ne valide pas.</p>
+      <div class="cout">≈ 0,03 $ l'image <em>· <a href="../le-regard.md">le-regard.md</a></em></div></div>
+    <div class="carte outil"><h3>La traduction</h3><span class="tag api">API</span>
+      <p>Tout le texte du jeu traduit par lots avec un glossaire validé, puis relu par une seconde passe.</p>
+      <div class="cout">1 477 entrées pour ≈ 1,80 $ <em>· <a href="../economiser-tokens-et-gpu.md">client API</a></em></div></div>
+  </div>
+
+  <div class="famille">Agents qui fabriquent</div>
+  <div class="grille">
+    <div class="carte outil"><h3>Les chaînes d'art</h3><span class="tag local">PC · GPU</span>
+      <p>Concept, fiche, modèle 3D, rendu en 8 directions, sprites ; icônes à l'huile ; carte peinte et carte à la plume ; animations par capture de mouvement ; vêtements simulés.</p>
+      <div class="cout">≈ 7 min l'entité <em>· <a href="../creer-des-assets.md">creer-des-assets.md</a></em></div></div>
+    <div class="carte outil"><h3>La musique et les sons</h3><span class="tag local">PC · GPU</span>
+      <p>Un squelette impose le mode, le modèle le reprend, un juge trie avant l'écoute (étalonné sur 59 verdicts du propriétaire), une page d'écoute recueille les avis.</p>
+      <div class="cout">0 $ <em>· <a href="../musique-de-jeu.md">musique-de-jeu.md</a></em></div></div>
+    <div class="carte outil"><h3>L'IA locale</h3><span class="tag local">PC</span>
+      <p>Un modèle local sur la carte de 24 Go, avec sa voix et son agent, pour ce qui n'a pas besoin de l'API.</p>
+      <div class="cout">0 $ <em>· <a href="../ia-locale-performante.md">ia-locale-performante.md</a></em></div></div>
+    <div class="carte outil"><h3>Heimdall</h3><span class="tag">méthode</span>
+      <p>Le veilleur de la boîte : quels outils s'appliquent à un projet, ce qui manque, ce qui sort de neuf.</p>
+      <div class="cout">Une passe de temps en temps <em>· <a href="../../heimdall/README.md">heimdall</a></em></div></div>
+  </div>
+</section>
+
+<section aria-labelledby="t-depenses">
+  <h2 id="t-depenses">Où passe l'argent de l'API</h2>
+  <p class="sous">232 appels, 3,21 $, sur un crédit de 100 $ par mois. Le plus grand modèle pour regarder et traduire, le plus petit pour bavarder.</p>
+  <div class="barres" role="group" aria-label="Dépenses de l'API par usage, en dollars">
+    <div class="barre" tabindex="0"><span class="nom">Traduction et relecture</span><span class="piste"><span class="rempli" style="display:block;width:calc(100% * 1.83 / 1.83 - 70px)"></span><span class="val" style="left:calc(100% * 1.83 / 1.83 - 70px)">1,83 $</span></span><span class="bulle">Traduction et relecture : 1,83 $ (1 477 entrées)</span></div>
+    <div class="barre" tabindex="0"><span class="nom">Le regard</span><span class="piste"><span class="rempli" style="display:block;width:calc((100% - 70px) * 1.13 / 1.83)"></span><span class="val" style="left:calc((100% - 70px) * 1.13 / 1.83)">1,13 $</span></span><span class="bulle">Le regard : 1,13 $ (dont l'audit de 65 images : 0,91 $)</span></div>
+    <div class="barre" tabindex="0"><span class="nom">Gazette et rapports</span><span class="piste"><span class="rempli" style="display:block;width:calc((100% - 70px) * 0.23 / 1.83)"></span><span class="val" style="left:calc((100% - 70px) * 0.23 / 1.83)">0,23 $</span></span><span class="bulle">Gazette et rapports en voix : 0,23 $</span></div>
+    <div class="barre" tabindex="0"><span class="nom">L'Esprit des joueurs IA</span><span class="piste"><span class="rempli" style="display:block;width:calc((100% - 70px) * 0.03 / 1.83)"></span><span class="val" style="left:calc((100% - 70px) * 0.03 / 1.83)">0,03 $</span></span><span class="bulle">L'Esprit, essais et séance compris : 0,03 $</span></div>
+    <div class="axe"></div>
+    <details class="table"><summary>Voir en tableau</summary>
+      <table><tr><th>Usage</th><th>Dépense</th></tr>
+        <tr><td>Traduction et relecture</td><td>1,83 $</td></tr><tr><td>Le regard</td><td>1,13 $</td></tr>
+        <tr><td>Gazette et rapports</td><td>0,23 $</td></tr><tr><td>L'Esprit des joueurs IA</td><td>0,03 $</td></tr>
+        <tr><td><b>Total</b></td><td><b>3,21 $</b></td></tr></table>
+    </details>
+  </div>
+  <p class="note">Ce qui tient la note basse : la moitié des appels partent en lots (moitié prix), les consignes sont en cache, la
+  sortie est imposée par un schéma, chaque appel est noté dans un journal, et plus rien ne part à 90 $.</p>
+</section>
+
+<section aria-labelledby="t-faiblesses">
+  <h2 id="t-faiblesses">Ce qui a raté, et ce qu'on en a tiré</h2>
+  <p class="sous">La méthode s'améliore par ses incidents. Chacun ici a vraiment eu lieu.</p>
+  <div class="lecon"><div class="rate"><small>Ce qui a raté</small>Une session a attendu 4 h des réponses déjà déposées dans sa fiche ; plus tard, trois sessions figées une demi-journée.</div>
+    <div class="appris"><small>Ce qu'on a appris</small>Une session ne relit pas sa fiche toute seule.</div>
+    <div class="ou"><small>Depuis</small>Sessions qui ne s'arrêtent jamais, réponses « À TRAITER », veille, alertes, relance.</div></div>
+  <div class="lecon"><div class="rate"><small>Ce qui a raté</small>Des morceaux soumis à l'écoute sans tri.</div>
+    <div class="appris"><small>Ce qu'on a appris</small>La machine trie avant l'oreille.</div>
+    <div class="ou"><small>Depuis</small>Un juge étalonné : 17 rejets sur 21 écartés d'office. Les rejets « de goût » passent encore.</div></div>
+  <div class="lecon"><div class="rate"><small>Ce qui a raté</small>Le regard voyait des défauts dans ce qui était voulu (une créature d'ombre « sans cheveux », un encrier pris pour une croix).</div>
+    <div class="appris"><small>Ce qu'on a appris</small>Un juge sans contexte se trompe sur l'intention.</div>
+    <div class="ou"><small>Depuis</small>La fiche de chaque entité et une liste de « voulus » accompagnent chaque image.</div></div>
+  <div class="lecon"><div class="rate"><small>Ce qui a raté</small>283 défauts d'un coup : le propriétaire en a jugé 58, puis a lâché.</div>
+    <div class="appris"><small>Ce qu'on a appris</small>On ne lui soumet jamais une masse brute.</div>
+    <div class="ou"><small>Depuis</small>Claude trie et regroupe d'abord ; il ne corrige que là où il n'est pas d'accord.</div></div>
+  <div class="lecon"><div class="rate"><small>Ce qui a raté</small>Un commit d'une session a embarqué le travail en cours d'une autre dans le même fichier.</div>
+    <div class="appris"><small>Ce qu'on a appris</small>Commiter un chemin prend le fichier tel qu'il est sur le disque.</div>
+    <div class="ou"><small>Depuis</small>Passer par l'index, morceau par morceau, et relire avant de commiter.</div></div>
+  <div class="lecon"><div class="rate"><small>Ce qui a raté</small>Une mesure automatique entendait 74 s de chant dans un morceau sans voix.</div>
+    <div class="appris"><small>Ce qu'on a appris</small>Un chiffre se vérifie à l'oreille avant qu'on s'y fie.</div>
+    <div class="ou"><small>Depuis</small>Le chiffre n'est plus affiché.</div></div>
+
+  <h3 style="margin-top:28px">Pistes</h3>
+  <ul class="pistes">
+    <li>Porter dans la boîte le petit client de l'API (cache, lots, plafond, journal) pour tous les projets.</li>
+    <li>Faire du regard un outil générique, chaque projet fournissant sa liste de défauts et ses « voulus ».</li>
+    <li>Brancher le journal commun d'Hyperbole dans les joueurs IA de Guardians.</li>
+    <li>Noter le coût de chaque séance de joueurs IA dans son rapport.</li>
+    <li>Recompter les chiffres de cette page par un script plutôt qu'à la main.</li>
+  </ul>
+</section>
+
+<footer>
+  <p><b>Pour que cette page reste vraie</b> : à chaque chantier qui crée ou change un outil maison, mettre à jour son guide, cette
+  page, <a href="../notre-methode.md">notre-methode.md</a> et l'index de la boîte. Chiffres relevés le 7 novembre 2026.</p>
+</footer>
+</main></body>
+</html>

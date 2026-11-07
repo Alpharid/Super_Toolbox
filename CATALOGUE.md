@@ -197,6 +197,21 @@ démo + banc de bugs injectés : `hyperbole/demo/`. Veille : [heimdall/reports/2
   [awesome-LLM-game-agent-papers](https://github.com/git-disl/awesome-LLM-game-agent-papers) (sans licence, lecture).
 - Écartés (voir le rapport) : NitroGen (non commercial), Unity ML-Agents, AltTester/GameDriver/modl.ai, PlayGodot, godot-autosim.
 
+## Outils et méthodes maison (nés sur Guardians of the Seal, 2026-11)
+
+Vue d'ensemble : [guides/notre-methode.md](guides/notre-methode.md) (principes, chiffres, faiblesses et pistes) et sa vitrine
+[guides/vitrine/notre-methode.html](guides/vitrine/notre-methode.html).
+
+| Outil | Où | Guide |
+|---|---|---|
+| Chantiers (un terminal Claude par fiche, état, veille, file du GPU) | `scripts/chantiers/` : `chantier.ps1`, `chantiers_etat.sh`, `veille_chantiers.sh`, `verrou_gpu.sh` | [orchestrer-des-chantiers.md](guides/orchestrer-des-chantiers.md) |
+| Pages de décision (gabarit sombre, « Copier mes réponses », vérificateur) | `guides/modeles/page-de-decisions.html`, `scripts/verifier_page.sh` | [pages-de-decisions.md](guides/pages-de-decisions.md) |
+| Le regard (juge visuel par l'API) | méthode ; code de référence dans le dépôt de Guardians (privé) | [le-regard.md](guides/le-regard.md) |
+| La gazette (rapports des joueurs IA → une page par jour) | méthode ; code de référence dans Guardians | [la-gazette.md](guides/la-gazette.md) |
+| Musique et sons (squelette, tri étalonné, page d'écoute) | méthode ; code de référence dans Guardians | [musique-de-jeu.md](guides/musique-de-jeu.md) |
+| Économie de tokens, de crédits et de GPU | méthode | [economiser-tokens-et-gpu.md](guides/economiser-tokens-et-gpu.md) |
+| Joueurs IA, Hyperbole | `hyperbole/` | [joueurs-ia-dans-un-jeu-en-ligne.md](guides/joueurs-ia-dans-un-jeu-en-ligne.md), [hyperbole/README.md](hyperbole/README.md) |
+
 ## Références non copiées (à récupérer depuis leurs releases quand un projet en a besoin)
 
 - Loaders / frameworks de mod : [BepInEx](https://github.com/BepInEx/BepInEx) (Unity, LGPL), [MelonLoader](https://github.com/LavaGang/MelonLoader),

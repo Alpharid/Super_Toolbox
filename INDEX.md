@@ -7,6 +7,8 @@
 **8 domaines** : `godot` · `physique-netcode` · `modding-re` · `ia-agents` · `secu-reseau` · `devtools` · `creation-assets` · `qa-playtest`.
 Deux cœurs vivants : **[Heimdall](heimdall/README.md)**, le veilleur (§ en bas), et **[Hyperbole](hyperbole/README.md)**, la salle
 du temps (joueurs simulés qui testent les jeux sur le PC, §1 `qa-playtest`).
+**Notre méthode** (comment on travaille : propriétaire, chantiers, pages de décision, agents maison, local d'abord) :
+[guides/notre-methode.md](guides/notre-methode.md), et sa vitrine [guides/vitrine/notre-methode.html](guides/vitrine/notre-methode.html).
 
 ---
 
@@ -45,6 +47,9 @@ du temps (joueurs simulés qui testent les jeux sur le PC, §1 `qa-playtest`).
 - **awesome-mcp-servers** — `punkpeye/awesome-mcp-servers` · MIT · liste de serveurs MCP (outils pour agents).
 - 📘 **IA locale rapide et fiable (24 Go)** : moteur/modèle (Qwen3.8 MTP), agent (Pi), voix FR sur CPU, web local → [guides/ia-locale-performante.md](guides/ia-locale-performante.md).
 - 📘 **Joueurs IA dans un jeu en ligne** (bots qui jouent vraiment sans tricher : Corps / Tête / Esprit LLM sur événement, mémoire et relations ; profils de joueurs sur mesure (tryhard, casual, chill, tricheur qui signale sans tricher, streamer…), rapports chiffrés + récit dans leur voix, séances d'un seul profil ou mélangées ; usages : peupler, économie, quêtes, charge, anti-triche, non-régression) → [guides/joueurs-ia-dans-un-jeu-en-ligne.md](guides/joueurs-ia-dans-un-jeu-en-ligne.md).
+- 📘 **Le regard** (juge visuel par l'API avant l'œil du propriétaire : défauts connus, contexte « voulu » par entité, ~0,03 $ l'image, tri avant de soumettre) → [guides/le-regard.md](guides/le-regard.md).
+- 📘 **La gazette** (rapports des joueurs IA → une page par jour pour corriger et équilibrer, quelques centimes, « Pour juger, il manquait ») → [guides/la-gazette.md](guides/la-gazette.md).
+- 📘 **Économiser tokens, crédits de l'API et GPU** (où tourne quoi, sessions courtes, client API avec journal, plafond, Batch, cache ; file du GPU) → [guides/economiser-tokens-et-gpu.md](guides/economiser-tokens-et-gpu.md).
 - **awesome-claude-code** — `hesreallyhim/awesome-claude-code` · CC-BY-NC-ND · skills/hooks/commandes pour Claude Code (usage perso, lien-liste).
 
 ### 🧪 qa-playtest — playtest automatisé (outil maison : Hyperbole)
@@ -62,7 +67,7 @@ du temps (joueurs simulés qui testent les jeux sur le PC, §1 `qa-playtest`).
 - _(rien de copié — licences surtout GPL/SSPL → référencées en lien : Nuclei, Cameradar, CrowdSec, RustScan, Lynis… voir `CATALOGUE.md` § Liens Heimdall et `heimdall/reports/`)._
 
 ### 🧰 devtools + listes transverses
-- **scripts/chantiers/** — maison · **un terminal Claude par chantier** : `chantier.ps1` (ouvre la session sur sa fiche), `chantiers_etat.sh` (état, alertes), `verrou_gpu.sh` (file du GPU partagée) → [guides/orchestrer-des-chantiers.md](guides/orchestrer-des-chantiers.md).
+- **scripts/chantiers/** — maison · **un terminal Claude par chantier** : `chantier.ps1` (ouvre la session sur sa fiche ; elle ne s'arrête jamais, surveille sa fiche et traite ce qui arrive sous « À TRAITER »), `chantiers_etat.sh` (état, alertes), `veille_chantiers.sh` (l'orchestrateur rend la main sur changement, calme ou point), `verrou_gpu.sh` (file du GPU partagée) → [guides/orchestrer-des-chantiers.md](guides/orchestrer-des-chantiers.md).
 - **Pages de décisions** — maison · gabarit sombre à cocher + « Copier mes réponses », `scripts/verifier_page.sh` (node --check) → [guides/pages-de-decisions.md](guides/pages-de-decisions.md).
 - **public-apis** — `public-apis/public-apis` · MIT · ~1 400 API gratuites classées.
 - **awesome-godot** — `Calinou/awesome-godot` · CC-BY-4.0 · écosystème Godot.
@@ -79,6 +84,7 @@ du temps (joueurs simulés qui testent les jeux sur le PC, §1 `qa-playtest`).
 - **Krita + krita-ai-diffusion** — repeindre par-dessus / inpainting branché sur l'atelier (casse le « look IA »).
 - **scripts/comfy_client.py** — piloter ComfyUI depuis un script (txt2img et image→image Z-Image, LoRA, édition Qwen, **TRELLIS.2 image→GLB**, téléversement à empreinte).
 - 📘 Chaînes éprouvées sur Guardians (entité → sprites 8 directions, icônes peintes, pièces d'interface, carte à l'encre, sons sans paroles par Whisper + AST, musique dans un mode imposé par squelette, personnage MPFB 2 + 100STYLE) → [creer-des-assets.md](guides/creer-des-assets.md) § Chaînes éprouvées.
+- 📘 **Musique et sons d'un jeu** (mode imposé par squelette, SFT + ScragVAE, peigne creusé, tri étalonné avant l'écoute, page d'écoute avec avis, bruitages MOSS) → [guides/musique-de-jeu.md](guides/musique-de-jeu.md).
 - Audio/vidéo : ffmpeg, Audacity, **Surge XT** (microtonal, maqâms), 7-Zip, uv. Pistes : ai-toolkit (LoRA), ACE-Step (musique), Kimodo (mouvement), Wan VACE.
 
 > Les listes se **grep**, jamais se lisent en entier. Gros outils non copiés (BepInEx, UE4SS, AssetRipper, ILSpy,
@@ -121,6 +127,7 @@ Se tient au courant de ce qui sort d'utile, et garde cet index à jour. Tout : *
 
 ### Dernières nouveautés
 <!-- HEIMDALL:LATEST -->
+- **2026-11-07** — **Notre méthode** documentée (`guides/notre-methode.md` + vitrine) ; nouveaux guides : le regard, la gazette, la musique de jeu, l'économie de tokens et de GPU ; l'orchestrateur (« À TRAITER », veille, relance) dans `orchestrer-des-chantiers.md` ; `veille_chantiers.sh`.
 - **2026-11-07** — Retour de Guardians of the Seal : orchestration en chantiers (`scripts/chantiers/`), pages de décisions (gabarit + vérificateur), chaînes d'art et de son dans `creer-des-assets.md`, `comfy_client.py` à niveau.
 - **2026-11-02** — **Hyperbole** entre dans la boîte (playtest par joueurs simulés) + veille ciblée `qa-playtest` : [heimdall/reports/2026-11-02-hyperbole.md](heimdall/reports/2026-11-02-hyperbole.md).
 - **2026-11-02** — 1 trouvaille (semaine calme) : voir [heimdall/reports/2026-11-02.md](heimdall/reports/2026-11-02.md).
