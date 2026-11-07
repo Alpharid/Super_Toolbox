@@ -127,6 +127,7 @@ Se tient au courant de ce qui sort d'utile, et garde cet index à jour. Tout : *
 
 ### Dernières nouveautés
 <!-- HEIMDALL:LATEST -->
+- **2026-11-07** (fin de nuit) — La gazette ne reprend plus ce qui est tranché et sépare « défaut prouvé » et « joueur IA perdu » ; l'Esprit des joueurs IA branché sans bloquer la boucle (quand répondre, mention « IA » à l'entrée) ; la traduction du wiki et du site (empreintes, segments).
 - **2026-11-07** — **La méthode Alpharium** documentée (`guides/notre-methode.md` + vitrine) ; nouveaux guides : le regard, la gazette, la musique de jeu, l'économie de tokens et de GPU ; l'orchestrateur (« À TRAITER », veille, relance) dans `orchestrer-des-chantiers.md` ; `veille_chantiers.sh`.
 - **2026-11-07** — Retour de Guardians of the Seal : orchestration en chantiers (`scripts/chantiers/`), pages de décisions (gabarit + vérificateur), chaînes d'art et de son dans `creer-des-assets.md`, `comfy_client.py` à niveau.
 - **2026-11-02** — **Hyperbole** entre dans la boîte (playtest par joueurs simulés) + veille ciblée `qa-playtest` : [heimdall/reports/2026-11-02-hyperbole.md](heimdall/reports/2026-11-02-hyperbole.md).

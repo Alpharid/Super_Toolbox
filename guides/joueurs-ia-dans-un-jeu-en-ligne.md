@@ -45,12 +45,24 @@ fin de session (résumé), réflexion lente toutes les 10-20 min.
 - **Chat crédible** : vitesse de frappe, fautes, silences, tout le monde ne répond pas à tout. RP : IC par défaut, OOC
   entre `(( ))` de temps en temps.
 - **Filtre avant envoi** (liste + vérification) pour les interdits du jeu ; une ligne refusée est régénérée ou le bot se tait.
+- **Brancher l'Esprit sans gêner le jeu** (fait sur Guardians, `bots/Gardiens.Descelles/Esprit/Parleur.cs`) : il écoute le chat
+  et quelques événements (K.O., niveau, capture, connexion) ; **il décide d'abord s'il répond** (murmure 90 %, son prénom 85 %,
+  groupe 50 %, proximité 35 %, zone 10 %, chance divisée par deux à chaque réplique des deux dernières minutes, une demande toutes
+  les 20 s au plus, une même sorte d'événement au plus toutes les 10 min) ; la demande part **à côté de la boucle** (une tâche
+  relue au pas suivant), puis chaque ligne est tapée à la vitesse du joueur. Caractère (RP ou non, défaut, vie, façon d'écrire)
+  tiré de sa graine, toujours le même ; souvenirs et relations gardés d'une séance à l'autre. Essai : 4 bots, 12 min, 27 appels,
+  ≈ 0,01 $ ; à corriger après lecture : un tic d'écriture tiré trop souvent, des annonces de niveau à la chaîne.
 
 ## 4. Être honnête avec les joueurs
 
 Mélanger des bots à des joueurs sans le dire, c'est de la population truquée (des MMO l'ont payé cher). Les **assumer** :
 une faction dans le lore, un compteur qui donne le détail humains / bots au survol, et à « t'es un bot ? » une
 pirouette qui ne ment pas franchement.
+
+Si l'Esprit passe par une API (Claude…), sa politique d'usage demande de dire aux utilisateurs qu'ils parlent à une IA, au
+moins au début de chaque session ou dans l'interface. Sur Guardians : **une ligne du système dans le chat à chaque entrée dans le
+monde** (« certains Gardiens de ce monde sont menés par une IA… »), le compteur, jamais **qui** ; et tant que cette ligne n'est
+pas en ligne, l'Esprit ne parle que dans le monde d'essai.
 
 ## 5. Le modèle (local de préférence)
 

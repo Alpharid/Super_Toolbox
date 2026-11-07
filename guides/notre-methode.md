@@ -88,7 +88,9 @@ dans le dépôt de Guardians (privé) ; la méthode, elle, est réutilisable.
 - **Le regard** : un modèle de l'API regarde des images (sprites, interface, carte) et liste les défauts, avec leur gravité et s'ils
   étaient déjà connus. Il signale, il ne valide pas. Environ 0,03 $ l'image. → [le-regard.md](le-regard.md)
 - **La traduction** : tout le texte du jeu extrait, traduit par lots avec un glossaire validé, puis relu par une seconde passe
-  (1 477 entrées, environ 1,70 $ avec la relecture). Méthode dans [economiser-tokens-et-gpu.md](economiser-tokens-et-gpu.md) §3.
+  (1 477 entrées, environ 1,70 $ avec la relecture). Le wiki et le site aussi (44 pages sous `/en/`, 0,57 $) : chaque traduction
+  garde l'empreinte du français traduit, **seul ce qui change est retraduit** ; les pages générées (galerie) ne passent que par
+  leurs segments de texte, gardés dans un dictionnaire. Méthode dans [economiser-tokens-et-gpu.md](economiser-tokens-et-gpu.md) §3.
 
 ### Agents qui fabriquent (en local)
 
@@ -136,6 +138,7 @@ Ce qui a raté, ce qu'on en a tiré, et ce qui reste faible.
 | Un script jetable dans `%TEMP%` importé par une autre session ; un fichier à moitié écrit qui empêche tout le projet de compiler. | Les sessions partagent plus qu'on ne croit. | Scratchpad par session ; vérifications globales aux moments calmes. |
 | Un style peint entraîné sur un modèle distillé : il ne peignait pas et inventait une signature. | Le modèle de base peignait déjà au simple prompt. | Entraîner sur le modèle de base (v2 prête, pas lancée). |
 | Un chiffre « secondes de voix » donnait 74 s de chant à un morceau qui n'en a pas (le séparateur range les flûtes avec la voix). | Une mesure automatique se vérifie à l'oreille avant qu'on s'y fie. | Le chiffre n'est plus affiché. |
+| La gazette reproposait ce qui était déjà tranché, et prenait les détours voulus des joueurs IA pour des défauts du jeu. | Un lecteur sans mémoire des décisions radote ; un bot perdu n'est pas une preuve. | Liste « déjà tranché » lue à chaque appel (« (connu) ») ; « défaut prouvé » séparé de « joueur IA perdu ». |
 | À ×20, les joueurs IA voient des centaines de « cible introuvable ». | C'est l'accélération, pas le jeu (0 à ×1). | La gazette a pour consigne de ne pas les compter comme bugs. |
 | Les documents de reprise dérivent (un compte de tests en retard d'un jour). | Un chiffre écrit à la main vieillit. | Piste : recompter les chiffres de la vitrine par un script. |
 

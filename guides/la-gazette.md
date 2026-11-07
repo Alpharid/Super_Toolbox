@@ -32,6 +32,23 @@ python tools/claude_api/gazette/gazette.py jour 2026-11-03 [--voix]   # la gazet
 python tools/claude_api/gazette/gazette.py page_jour 2026-11-03       # la page sombre à ouvrir au propriétaire
 ```
 
+## Ce qu'elle ne doit plus faire (retours du propriétaire après la première semaine)
+
+- **Reproposer ce qui est déjà tranché.** Une liste des points décidés (`deja_tranche.md` à côté du script : « où vendre » ne sera
+  pas dit, une phrase de confort quand il n'y a plus d'étape, le marqueur de quête existe déjà…) est lue par toutes les consignes ;
+  un fait qui s'y rattache sort marqué **« (connu) »**, avec le chiffre du jour s'il en apporte un. À compléter à chaque retour.
+- **Prendre un joueur IA perdu pour un défaut du jeu.** Les profils simulent exprès des erreurs (partir du mauvais côté, comprendre
+  un geste tard) ; avant d'accuser le jeu, vérifier que les bots ont **la même information que le joueur** (ici : l'objectif de
+  chaque étape, celui du marqueur de la mini-carte). La gazette sépare « défaut prouvé » (un refus qui revient, une valeur
+  impossible, un blocage chez plusieurs profils dont un aguerri) et « joueur IA perdu (peut-être une limite du bot) » ; le
+  créateur ne change pas le tutoriel sur la seule foi des bots. Les rapports en voix ne réclament plus d'aide d'interface et
+  disent « rien de neuf à proposer » plutôt que de radoter.
+- Rythme retenu : **à la reprise** (la gazette de la veille quand le propriétaire revient), pas de tâche planifiée ; un point par
+  séance seulement si le travail en cours en a besoin.
+
+Effet mesuré sur la même journée, avant / après : tout ce qui était connu est sorti marqué, et un fait neuf est remonté au lieu
+d'être noyé (le fennec qui répète le même conseil quatre fois dans une séance).
+
 ## Coût et rendement
 
 - Modèle moyen (Sonnet), réflexion moyenne ; les rapports d'une journée tronqués à 60 000 caractères.
