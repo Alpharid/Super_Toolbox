@@ -199,7 +199,7 @@ démo + banc de bugs injectés : `hyperbole/demo/`. Veille : [heimdall/reports/2
 
 ## Outils et méthodes maison (nés sur Guardians of the Seal, 2026-11)
 
-Vue d'ensemble : [guides/notre-methode.md](guides/notre-methode.md) (principes, chiffres, faiblesses et pistes) et sa vitrine
+La méthode Alpharium, vue d'ensemble : [guides/notre-methode.md](guides/notre-methode.md) (principes, chiffres, faiblesses et pistes) et sa vitrine
 [guides/vitrine/notre-methode.html](guides/vitrine/notre-methode.html).
 
 | Outil | Où | Guide |

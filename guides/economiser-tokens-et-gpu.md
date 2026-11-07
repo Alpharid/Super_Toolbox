@@ -41,6 +41,11 @@ accord). Un modèle local s'améliore par l'ingénierie : contexte, réglages, m
 
 ## 3. Les crédits de l'API : le petit client maison
 
+**D'abord, la permission.** Le crédit de l'API est payé pour des projets précis : avant de l'utiliser sur un projet, **demander au
+propriétaire, au moins une fois par projet** (« certains ne méritent pas qu'on y mette des dollars d'API »). Aujourd'hui seul
+Guardians of the Seal est autorisé. Le client porté dans cette boîte devra tenir une **liste blanche** des projets et refuser tout
+autre projet (piste validée, à faire dans son chantier).
+
 Sur Guardians, un seul module (`tools/claude_api/client.py`, 200 lignes) sert à tous les outils de l'API. Ce qu'il fait :
 
 - **La clé dans un fichier hors git** du projet, lue explicitement. **Jamais dans une variable d'environnement** : Claude Code la

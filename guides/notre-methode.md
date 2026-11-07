@@ -1,11 +1,10 @@
-# Notre méthode : un propriétaire, des sessions Claude, des outils faits maison
+# La méthode Alpharium : un propriétaire, des sessions Claude, des outils faits maison
 
 > Vue d'ensemble de la façon dont on travaille, écrite pour un humain qui découvre et pour une IA qui reprend le travail. Elle est
 > née sur **Guardians of the Seal** (un MMORPG fait à deux, un propriétaire et Claude, depuis le 18 octobre 2026) et sert à tous les
 > projets de la boîte. Ce document **relie** les guides détaillés, il ne les recopie pas. Vitrine visuelle :
-> [vitrine/notre-methode.html](vitrine/notre-methode.html).
->
-> Nom du document et de la méthode : provisoires, en attente du propriétaire.
+> [vitrine/notre-methode.html](vitrine/notre-methode.html). Le nom vient du conglomérat qui réunit les projets du propriétaire,
+> [Alpharium](https://alpharid.github.io/ACH/).
 
 ## 1. En une minute
 
@@ -48,6 +47,8 @@ Chacun est né d'un vrai incident ou d'une demande du propriétaire ; la leçon 
 | **Tout dans le projet** | Copies, essais, worktrees restent dans le dossier du projet ; le jetable va dans le scratchpad de la session, jamais dans `%TEMP%`. On garde les archives. |
 | **Rien ne tourne pour rien** | Serveur, client, ComfyUI : on ferme après usage. Les fenêtres d'essai s'ouvrent sur le second écran. |
 | **Local d'abord, crédits comptés** | Le PC fait tout ce qu'il sait faire ; l'API sert quand elle est nettement meilleure, avec cache, lots et plafond. → [economiser-tokens-et-gpu.md](economiser-tokens-et-gpu.md) |
+| **L'API, projet par projet** | Avant d'utiliser le crédit de l'API sur un projet, demander la permission au propriétaire, au moins une fois par projet : tous ne valent pas qu'on y mette des dollars. Le client refuse un projet qui n'est pas sur sa liste. |
+| **Les pages ont la voix du projet** | Une page faite pour le propriétaire (décision, fiche, vitrine) prend les polices du projet (Guardians : Fondamento pour les titres, Amiri pour le texte), toujours en thème sombre. |
 | **Libre d'abord** | Avant d'écrire un outil, chercher un dépôt libre ou un outil de studio (Heimdall, cette boîte). |
 | **Prêt à reprendre** | À chaque push, le projet se reprend sans contexte : HANDOVER, CLAUDE.md, AGENTS.md, historique daté. |
 
@@ -138,15 +139,19 @@ Ce qui a raté, ce qu'on en a tiré, et ce qui reste faible.
 | À ×20, les joueurs IA voient des centaines de « cible introuvable ». | C'est l'accélération, pas le jeu (0 à ×1). | La gazette a pour consigne de ne pas les compter comme bugs. |
 | Les documents de reprise dérivent (un compte de tests en retard d'un jour). | Un chiffre écrit à la main vieillit. | Piste : recompter les chiffres de la vitrine par un script. |
 
-Pistes proposées au propriétaire (rien n'est lancé sans son accord) :
-- porter dans cette boîte le petit client de l'API de Guardians (cache, lots, plafond, journal des dépenses), pour tous les projets ;
-- faire du regard un outil générique (le contexte « voulu » fourni par chaque projet) ;
+Pistes validées par le propriétaire le 2026-11-07, chacune dans son propre chantier (aussi dans `heimdall/projects.json`) :
+- porter dans cette boîte le petit client de l'API de Guardians (cache, lots, plafond, journal des dépenses), pour tous les projets,
+  **avec une liste blanche explicite des projets autorisés** (Guardians seul pour l'instant) : un projet absent est refusé ;
+- faire du regard un outil générique (la liste des défauts et le contexte « voulu » fournis par chaque projet) ;
 - brancher l'écrivain de journal d'Hyperbole dans les joueurs IA de Guardians (il existe, il n'est pas encore utilisé) ;
 - noter le coût de chaque séance de joueurs IA dans son rapport ;
-- recompter automatiquement les chiffres de la vitrine.
+- un script qui recompte les chiffres de la vitrine (un compte de tests écrit à la main avait déjà un jour de retard) ;
+- repasser en sombre les deux dernières pages de choix claires de Guardians.
 
 ## 6. La règle pour que ça reste vrai
 
 **À chaque chantier qui crée ou change un outil maison** : mettre à jour son guide dans `guides/`, sa ligne dans ce document et
-dans la vitrine (`guides/vitrine/notre-methode.html`), et `INDEX.md`. Une leçon tirée d'un incident va dans la section 5. Règle
+dans la vitrine (`guides/vitrine/notre-methode.html`), et `INDEX.md`. La vitrine est aussi servie par le site d'ACH
+(<https://alpharid.github.io/ACH/methode/>, fichier `web/methode/index.html` du dépôt ACH) : la recopier telle quelle à chaque
+changement et pousser ACH (ses liens sont absolus, la même page marche aux deux endroits). Une leçon tirée d'un incident va dans la section 5. Règle
 reprise dans [orchestrer-des-chantiers.md](orchestrer-des-chantiers.md) et dans le HANDOVER de chaque projet qui suit la méthode.

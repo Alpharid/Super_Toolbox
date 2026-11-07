@@ -7,7 +7,7 @@
 **8 domaines** : `godot` · `physique-netcode` · `modding-re` · `ia-agents` · `secu-reseau` · `devtools` · `creation-assets` · `qa-playtest`.
 Deux cœurs vivants : **[Heimdall](heimdall/README.md)**, le veilleur (§ en bas), et **[Hyperbole](hyperbole/README.md)**, la salle
 du temps (joueurs simulés qui testent les jeux sur le PC, §1 `qa-playtest`).
-**Notre méthode** (comment on travaille : propriétaire, chantiers, pages de décision, agents maison, local d'abord) :
+**La méthode Alpharium** (comment on travaille : propriétaire, chantiers, pages de décision, agents maison, local d'abord) :
 [guides/notre-methode.md](guides/notre-methode.md), et sa vitrine [guides/vitrine/notre-methode.html](guides/vitrine/notre-methode.html).
 
 ---
@@ -127,7 +127,7 @@ Se tient au courant de ce qui sort d'utile, et garde cet index à jour. Tout : *
 
 ### Dernières nouveautés
 <!-- HEIMDALL:LATEST -->
-- **2026-11-07** — **Notre méthode** documentée (`guides/notre-methode.md` + vitrine) ; nouveaux guides : le regard, la gazette, la musique de jeu, l'économie de tokens et de GPU ; l'orchestrateur (« À TRAITER », veille, relance) dans `orchestrer-des-chantiers.md` ; `veille_chantiers.sh`.
+- **2026-11-07** — **La méthode Alpharium** documentée (`guides/notre-methode.md` + vitrine) ; nouveaux guides : le regard, la gazette, la musique de jeu, l'économie de tokens et de GPU ; l'orchestrateur (« À TRAITER », veille, relance) dans `orchestrer-des-chantiers.md` ; `veille_chantiers.sh`.
 - **2026-11-07** — Retour de Guardians of the Seal : orchestration en chantiers (`scripts/chantiers/`), pages de décisions (gabarit + vérificateur), chaînes d'art et de son dans `creer-des-assets.md`, `comfy_client.py` à niveau.
 - **2026-11-02** — **Hyperbole** entre dans la boîte (playtest par joueurs simulés) + veille ciblée `qa-playtest` : [heimdall/reports/2026-11-02-hyperbole.md](heimdall/reports/2026-11-02-hyperbole.md).
 - **2026-11-02** — 1 trouvaille (semaine calme) : voir [heimdall/reports/2026-11-02.md](heimdall/reports/2026-11-02.md).

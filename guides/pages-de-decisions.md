@@ -13,6 +13,8 @@
 
 ## Règles
 - **Toujours sombre** (la page s'ouvre souvent la nuit ; une page claire a « flashbang » le propriétaire).
+- **Les polices du projet** : une page faite pour un projet prend sa typographie (Guardians : Fondamento pour les titres, Amiri pour le
+  texte, par Google Fonts ou les fichiers OFL du projet), pas la police par défaut du gabarit.
 - **Vérifier avant d'ouvrir** : `sh D:/Super_Toolbox/scripts/verifier_page.sh page.html` : `node --check` de chaque script (une
   apostrophe non échappée dans un texte casse tout et le bouton ne copie plus rien : vu), fond sombre, bouton Copier, images présentes.
 - Ouvrir la page tout de suite sur l'écran du propriétaire (son navigateur, pas celui par défaut si ce n'est pas le même) et la noter

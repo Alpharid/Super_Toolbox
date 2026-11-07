@@ -4,7 +4,7 @@ Points d'entrée **par besoin** (le `CATALOGUE.md` est rangé par dépôt). Chaq
 
 | Je veux… | Guide |
 |---|---|
-| **Comprendre notre façon de travailler** (propriétaire, chantiers, pages de décision, agents maison, local d'abord) et ses chiffres | [notre-methode.md](notre-methode.md) + [vitrine/notre-methode.html](vitrine/notre-methode.html) |
+| **Comprendre notre façon de travailler : la méthode Alpharium** (propriétaire, chantiers, pages de décision, agents maison, local d'abord) et ses chiffres | [notre-methode.md](notre-methode.md) + [vitrine/notre-methode.html](vitrine/notre-methode.html) |
 | Modder un jeu PC existant (Unity, Unreal, Bethesda, natif…) | [modder-un-jeu.md](modder-un-jeu.md) |
 | Faire un jeu Godot 4 avec une physique avancée (cordes, structures qui cèdent, eau, créature qui marche, coop) — ex. **Stryder_Symbiosis** | [physique-et-godot.md](physique-et-godot.md) |
 | Lire l'intérieur d'un binaire/APK avec Claude (rea, Ghidra, essaim d'agents) et le reconstruire proprement (clean-room, parité) — ex. **MixMaster_Regenesis**, **Waze_SA_Mod** | [reverse-engineering-avec-claude.md](reverse-engineering-avec-claude.md) (+ [modeles/CLAUDE.re-house-rules.md](modeles/CLAUDE.re-house-rules.md)) |

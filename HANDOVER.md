@@ -231,12 +231,12 @@ D:\Super_Toolbox\
 
 ## 11. Historique
 
-- **2026-11-07** (soir) — **Notre méthode** documentée (chantier `methode-maison` de Guardians) : `guides/notre-methode.md` (principes,
+- **2026-11-07** (soir) — **La méthode Alpharium** documentée (chantier `methode-maison` de Guardians) : `guides/notre-methode.md` (principes,
   chaque outil maison en une section, chiffres réels, faiblesses et pistes, règle de mise à jour) et sa vitrine
   `guides/vitrine/notre-methode.html` ; nouveaux guides `le-regard.md`, `la-gazette.md`, `musique-de-jeu.md`,
   `economiser-tokens-et-gpu.md` ; `orchestrer-des-chantiers.md` § L'orchestrateur (sessions qui ne s'arrêtent jamais, réponses
   « À TRAITER », veille, relance d'une session figée) ; `scripts/chantiers/veille_chantiers.sh` (nouveau), consigne de `chantier.ps1`
-  et alerte « À TRAITER » de `chantiers_etat.sh` alignées sur Guardians. Nom du document et publication : en attente du propriétaire.
+  et alerte « À TRAITER » de `chantiers_etat.sh` alignées sur Guardians. Nom retenu par le propriétaire : « la méthode Alpharium » (fichier `notre-methode.md` gardé) ; public ; vitrine aussi servie par le site d'ACH. Pistes validées dans `heimdall/projects.json` (Guardians). Règles ajoutées : demander avant d'utiliser l'API sur un projet (liste blanche à venir) ; les pages d'un projet prennent ses polices.
 - **2026-11-07** — Retour de **Guardians of the Seal** versé dans la boîte : `guides/orchestrer-des-chantiers.md` + `scripts/chantiers/` (un terminal Claude par chantier, état et alertes, file du GPU, pièges de git entre sessions) ; `guides/pages-de-decisions.md` + gabarit `guides/modeles/page-de-decisions.html` + `scripts/verifier_page.sh` ; `creer-des-assets.md` § Chaînes éprouvées (entités → sprites, icônes peintes, interface, carte à l'encre, sons sans paroles, musique par squelette, personnage MPFB 2 + 100STYLE) ; `comfy_client.py` à niveau (trellis_3d, image→image, LoRA, téléversement à empreinte) ; entrée Guardians de `projects.json` à jour.
 - **2026-11-05** — Hyperbole : 1er adaptateur branché (Stryder) ; la Tête apprend par contexte (Godot + Python) ; modèle Godot avec `--fixed-fps 60` et APPDATA isolé.
 - **2026-11-02** — **Hyperbole** (`hyperbole/`, demande de l'utilisateur) : outil de playtest par joueurs simulés réunissant les Descellés
