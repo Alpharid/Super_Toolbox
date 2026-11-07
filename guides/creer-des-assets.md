@@ -103,8 +103,7 @@ ACE-Step en audio→audio (débruitage partiel 0,5 à 0,8). Page d'écoute local
 **Personnage 3D en couches (en cours d'essai, pas encore validé)** : corps de base **MPFB 2** (MakeHuman pour Blender : code GPL-3,
 mais base, cibles, squelettes et peaux CC0, donc utilisables dans un jeu payant), squelette aux noms CMU ; mouvements **100STYLE**
 (CC BY 4.0, 100 styles de marche, course et attente en BVH) et **CMU** (libre) transférés puis retouchés (IK des jambes). Écartés car
-non commerciaux : Bandai Namco Motiondataset, LAFAN1, AMASS. Les vêtements sont des couches à part qui cachent la peau ; la base
-reste nue (jamais de linge « par défaut » collé au corps).
+non commerciaux : Bandai Namco Motiondataset, LAFAN1, AMASS. Les vêtements sont des couches à part.
 
 ## Installés depuis, et pistes vérifiées
 - **ai-toolkit** (ostris, MIT ; installé dans `C:/Atelier_IA/ai-toolkit`) ou musubi-tuner (Apache-2.0) : LoRA de style sur 24 Go (Z-Image base ou Qwen-Image).
