@@ -50,7 +50,10 @@ voie (vu deux fois : 4 h, puis trois sessions une demi-journée). D'où le cycle
 > Lis ta fiche et fais ce qu'elle demande, rien d'autre. Mets la fiche à jour au fil de l'eau (état en tête). Ne t'arrête jamais pour
 > attendre : si une décision du propriétaire manque, fais sa page (sombre, Copier), ouvre-la, et continue tout ce qui n'en dépend
 > pas. Quand il ne reste rien à faire sans lui, ne pose pas de question dans ce terminal : surveille ta fiche (en arrière-plan :
-> `until grep -q 'À TRAITER' <fiche>; do sleep 120; done`) ; traite ce qui y arrive, remplace « À TRAITER » par « traitées », et continue.
+> `until grep -qE '^#+ .*À TRAITER' <fiche>; do sleep 120; done`) ; traite ce qui y arrive, remplace « À TRAITER » par « traitées », et continue.
+>
+> La boucle cherche un **titre** (`^#+ .*À TRAITER`), pas le mot n'importe où : une fiche qui cite « À TRAITER » dans son texte (en
+> décrivant la méthode, par exemple) déclencherait la session pour rien (vu le 2026-11-07).
 
 **2. Les réponses passent par la fiche.** Le propriétaire coche sa page, copie ses réponses et les colle chez l'orchestrateur. Celui-ci
 les recopie dans la fiche du chantier, sous un titre qui contient **« À TRAITER »** (`## Réponses du propriétaire à <page>_v2 (date) :

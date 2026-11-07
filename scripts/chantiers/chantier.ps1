@@ -21,7 +21,7 @@ if ($Session) {
     $consigne = "Chantier $Nom. Lis $rel et fais ce qu'elle demande, rien d'autre. Mets la fiche à jour au fil de l'eau (état en tête). " +
         "Ne t'arrête jamais pour attendre : si une décision du propriétaire manque, fais sa page de décision (sombre, Copier), ouvre-la, " +
         "et continue tout ce qui n'en dépend pas. Quand il ne reste rien à faire sans lui, ne pose pas de question dans ce terminal : surveille ta fiche " +
-        "(en arrière-plan : until grep -q 'À TRAITER' $rel; do sleep 120; done), l'orchestrateur y dépose ses réponses sous un titre " +
+        "(en arrière-plan : until grep -qE '^#+ .*À TRAITER' $rel; do sleep 120; done), l'orchestrateur y dépose ses réponses sous un titre " +
         "« À TRAITER » ; traite-les, remplace « À TRAITER » par « traitées », et continue. Si le chantier est entièrement fini, dis-le en quelques lignes."
     if ($SansAutorisation) { claude --dangerously-skip-permissions $consigne } else { claude $consigne }
     exit
