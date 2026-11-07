@@ -83,7 +83,7 @@ du temps (joueurs simulés qui testent les jeux sur le PC, §1 `qa-playtest`).
 - **Modèles** (licences vérifiées UE + commercial) : Z-Image Turbo/base + Fun ControlNet (Apache) · Qwen-Image-2512 / Edit-2511 + LoRA angles + ControlNet Union (Apache) · **TRELLIS.2** image→3D natif (MIT) · BiRefNet (MIT).
 - **Krita + krita-ai-diffusion** — repeindre par-dessus / inpainting branché sur l'atelier (casse le « look IA »).
 - **scripts/comfy_client.py** — piloter ComfyUI depuis un script (txt2img et image→image Z-Image, LoRA, édition Qwen, **TRELLIS.2 image→GLB**, téléversement à empreinte).
-- 📘 Chaînes éprouvées sur Guardians (entité → sprites 8 directions, icônes peintes, pièces d'interface, carte à l'encre, sons sans paroles par Whisper + AST, musique dans un mode imposé par squelette, personnage MPFB 2 + 100STYLE) → [creer-des-assets.md](guides/creer-des-assets.md) § Chaînes éprouvées.
+- 📘 Chaînes éprouvées sur Guardians (entité → sprites 8 directions, icônes peintes, pièces d'interface, carte à l'encre, sons sans paroles par Whisper + AST, musique dans un mode imposé par squelette, personnage MPFB 2 + 100STYLE, vêtements simulés et tissu vivant par Dem Bones) → [creer-des-assets.md](guides/creer-des-assets.md) § Chaînes éprouvées.
 - 📘 **Musique et sons d'un jeu** (mode imposé par squelette, SFT + ScragVAE, peigne creusé, tri étalonné avant l'écoute, page d'écoute avec avis, bruitages MOSS) → [guides/musique-de-jeu.md](guides/musique-de-jeu.md).
 - Audio/vidéo : ffmpeg, Audacity, **Surge XT** (microtonal, maqâms), 7-Zip, uv. Pistes : ai-toolkit (LoRA), ACE-Step (musique), Kimodo (mouvement), Wan VACE.
 

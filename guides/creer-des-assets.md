@@ -125,6 +125,17 @@ mais base, cibles, squelettes et peaux CC0, donc utilisables dans un jeu payant)
 (CC BY 4.0, 100 styles de marche, course et attente en BVH) et **CMU** (libre) transférés puis retouchés (IK des jambes). Écartés car
 non commerciaux : Bandai Namco Motiondataset, LAFAN1, AMASS. Les vêtements sont des couches à part.
 
+**Vêtements simulés et tissu vivant (essai, 2026-11-07)** : le patron est tracé sur les mesures du corps (sa coupe à chaque hauteur
+plus l'aisance), cousu (sommets soudés) et drapé par la simulation de tissu de Blender ; une épaisseur réelle (`bmesh.ops.solidify`,
+quelques mm) ; la peau n'est retirée que là où le tissu la touche et loin de toute ouverture (jamais par régions entières : des trous
+se voient). Pour qu'il **vive**, la simulation est cuite sur chaque animation puis **réduite en quelques dizaines d'os** par
+**Dem Bones** (Electronic Arts, BSD-3 ; le module `py-dem-bones` n'a de roues que jusqu'à Python 3.12 : un venv 3.12 par uv) : le
+jeu les joue comme des os ordinaires (48 os : 3 mm d'erreur moyenne sur une robe longue). Pièges vus : partir de la pose du drapé
+et entrer dans le mouvement en douceur (sinon la toile démarre à travers les jambes) ; sous la taille, l'épingle ne suit que le
+bassin (épinglée aux cuisses, une jupe devient un sarouel) ; collision à sens unique avec normales imposées ; retirer les mains du
+double de collision (les doigts pincent la toile) ; la marche doit avancer vraiment pendant la cuisson ; raccord de boucle par fondu
+entre les deux derniers cycles (la toile n'est jamais périodique). Code : Guardians `tools/art/vetement_tunique.py`, `vetement_vivant.py`.
+
 ## Installés depuis, et pistes vérifiées
 - **ai-toolkit** (ostris, MIT ; installé dans `C:/Atelier_IA/ai-toolkit`) ou musubi-tuner (Apache-2.0) : LoRA de style sur 24 Go (Z-Image base ou Qwen-Image).
 - **ACE-Step 1.5 / XL** (MIT, usage commercial des sorties explicitement permis) : musique, **branché dans ComfyUI** (voir plus haut). HeartMuLa 3B (Apache-2.0) en alternative.
