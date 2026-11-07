@@ -100,6 +100,26 @@ passe-haut 30 Hz. **Les modes non occidentaux ne passent pas par les tags** (tou
 ACE-Step en audio→audio (débruitage partiel 0,5 à 0,8). Page d'écoute locale (`python -m http.server`) partagée par un tunnel
 `cloudflared` (le service de pages de claude.ai refuse les gros fichiers) ; méthode des pages : `guides/pages-de-decisions.md`.
 
+**Trier avant de soumettre (leçon de Guardians, 2026-11-07 : « fais des tests avant de me les soumettre »)** : jamais un rendu
+sur une page d'écoute sans tri automatique, et 1 ou 2 propositions par usage. Le juge : **Meta Audiobox Aesthetics** (CC-BY 4.0,
+`pip install audiobox_aesthetics`, poids `facebook/audiobox-aesthetics`, tourne sur CPU : ~15 s par morceau de 3 min, dans un venv
+à part avec torch cpu) : notes de 1 à 10 par tranches de 10 s, CE (plaisir d'écoute) et PQ (qualité de production). Étalonné sur
+59 verdicts d'un humain : CE moyen 5,2 pour ses rejets, ~7 pour le reste ; CE ≥ 6 recale 17 rejets sur 21 (pas les rejets « de
+goût » : voix, ambiance). À côté : **le peigne du décodeur** d'ACE-Step (raies fines tenues tout le morceau au-dessus de 6 kHz, aux
+multiples de 1 500 ou 250 Hz : l'« effet synthétique » entendu), repéré dans le spectre moyen (pic > 10-12 dB au-dessus de la
+médiane ± 300 Hz) et creusé par des coupe-bandes de ~25 Hz (`scipy.signal.iirnotch` + `filtfilt`) avant toute reprise
+audio→audio (sinon elle le recopie) ; une source trop faible (−25 LUFS) fait grésiller l'audio→audio : la remettre à −14. Combats :
+mesurer l'attaque (sonie des 3 premières secondes face au reste). Code : Guardians `tools/musique/tri.py`, `juge_aes.py`,
+`raies.py`.
+
+**La pièce écrite** (MIDI + vrais échantillons, rien de généré, donc aucun artefact) : banques **CC0** VCSL
+(`github.com/sgossner/VCSL` : darbouka, tambour sur cadre, flûtes à bec, harpe, strumstick, psaltérion…) et VSCO 2 CE
+(`github.com/sgossner/VSCO-2-CE` : violon seul, contrebasse, harpe), à copier en partie (`git clone --filter=blob:none --sparse`,
+puis `.git/info/sparse-checkout` écrit à la main : sous Git Bash, `git sparse-checkout set "/chemin"` est réécrit en chemin
+Windows). Vérifier l'octave du nommage à la mesure (VCSL nomme do3 le do du milieu). Rendu : l'échantillon le plus proche
+transposé par rééchantillonnage, nuances et alternance des prises, léger jeu humain à graine fixe, salle par convolution d'un bruit
+qui décroît. Au juge, les pièces écrites ont eu les meilleures notes (CE 7,5 à 7,8). Code : Guardians `tools/musique/ecrite.py`.
+
 **Personnage 3D en couches (en cours d'essai, pas encore validé)** : corps de base **MPFB 2** (MakeHuman pour Blender : code GPL-3,
 mais base, cibles, squelettes et peaux CC0, donc utilisables dans un jeu payant), squelette aux noms CMU ; mouvements **100STYLE**
 (CC BY 4.0, 100 styles de marche, course et attente en BVH) et **CMU** (libre) transférés puis retouchés (IK des jambes). Écartés car
