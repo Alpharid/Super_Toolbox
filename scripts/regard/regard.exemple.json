@@ -1,0 +1,19 @@
+{
+  "_note": "Modèle de configuration du regard pour un projet. Copier dans le projet (par exemple tools/regard/regard.json), adapter, puis : python D:/Super_Toolbox/scripts/regard/regard.py --config tools/regard/regard.json <images…>. Chemins relatifs à « racine », elle-même relative à ce fichier.",
+  "racine": "../..",
+  "projet": "Mon_Projet",
+  "presentation": "Tu relis des rendus pour « Mon Projet », un jeu en pixel art (forêt nordique, palette froide, contours sombres).",
+  "defauts": "tools/regard/defauts.md",
+  "voulus": "tools/regard/voulus.md",
+  "fiches": [
+    {"source": "docs/bestiaire.md", "titre": "Sa fiche du bestiaire", "alias": true},
+    {"source": "art/journal.md", "titre": "Son histoire dans l'atelier", "max": 2500}
+  ],
+  "alias": {"nom_du_fichier": "nom dans le bestiaire"},
+  "entites": {"prefixe": "entite_", "dossier": "entites"},
+  "etalon": "tools/regard/etalon.json",
+  "sorties": "rendus/regard",
+  "modele": "claude-opus-5-5",
+  "effort": "medium",
+  "usage": "regard"
+}

@@ -64,6 +64,7 @@ la chambre), `t_wall` (secondes réelles), `world`, `kind`. La plupart ont aussi
 | `run_end` | bot, duration | cause, score | jeux à « runs » (rogue-lite, Stryder) |
 | `moment` | bot, what | intensity | fun : moments à montrer (streamer) |
 | `bored` / `frustrated` | bot | duration / streak, area | fun (écrits par la Tête) |
+| `afk` | bot, duration | | absence voulue d'un profil : retirée du temps actif (l'analyse la lisait déjà) |
 | `social` | bot, with, what | | entraide, vols, groupe |
 | `say` | bot, text | | chat (Esprit) |
 | `exploit` | bot, what | steps (marche à suivre) | failles du fouineur |

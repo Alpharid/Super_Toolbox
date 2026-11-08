@@ -47,7 +47,8 @@ du temps (joueurs simulés qui testent les jeux sur le PC, §1 `qa-playtest`).
 - **awesome-mcp-servers** — `punkpeye/awesome-mcp-servers` · MIT · liste de serveurs MCP (outils pour agents).
 - 📘 **IA locale rapide et fiable (24 Go)** : moteur/modèle (Qwen3.8 MTP), agent (Pi), voix FR sur CPU, web local → [guides/ia-locale-performante.md](guides/ia-locale-performante.md).
 - 📘 **Joueurs IA dans un jeu en ligne** (bots qui jouent vraiment sans tricher : Corps / Tête / Esprit LLM sur événement, mémoire et relations ; profils de joueurs sur mesure (tryhard, casual, chill, tricheur qui signale sans tricher, streamer…), rapports chiffrés + récit dans leur voix, séances d'un seul profil ou mélangées ; usages : peupler, économie, quêtes, charge, anti-triche, non-régression) → [guides/joueurs-ia-dans-un-jeu-en-ligne.md](guides/joueurs-ia-dans-un-jeu-en-ligne.md).
-- 📘 **Le regard** (juge visuel par l'API avant l'œil du propriétaire : défauts connus, contexte « voulu » par entité, ~0,03 $ l'image, tri avant de soumettre) → [guides/le-regard.md](guides/le-regard.md).
+- 📘 **Le regard** (juge visuel par l'API avant l'œil du propriétaire : défauts connus, contexte « voulu » par entité, ~0,03 $ l'image, tri avant de soumettre) → [guides/le-regard.md](guides/le-regard.md) ; moteur générique **`scripts/regard/regard.py`** (le projet donne ses défauts, voulus et fiches dans un `regard.json`).
+- **scripts/claude_api/** — maison · **le client de l'API Claude** pour tous les projets : `claude_api.py` (`Client(projet)` : journal par projet, plafond commun sur le cycle, Batch, cache des consignes et des réponses, schéma JSON) et **`projets_autorises.json`, la liste blanche** (Guardians seul ; un projet absent est refusé : demander au propriétaire d'abord) → [guides/economiser-tokens-et-gpu.md](guides/economiser-tokens-et-gpu.md) §3.
 - 📘 **La gazette** (rapports des joueurs IA → une page par jour pour corriger et équilibrer, quelques centimes, « Pour juger, il manquait ») → [guides/la-gazette.md](guides/la-gazette.md).
 - 📘 **Économiser tokens, crédits de l'API et GPU** (où tourne quoi, sessions courtes, client API avec journal, plafond, Batch, cache ; file du GPU) → [guides/economiser-tokens-et-gpu.md](guides/economiser-tokens-et-gpu.md).
 - **awesome-claude-code** — `hesreallyhim/awesome-claude-code` · CC-BY-NC-ND · skills/hooks/commandes pour Claude Code (usage perso, lien-liste).
@@ -68,6 +69,7 @@ du temps (joueurs simulés qui testent les jeux sur le PC, §1 `qa-playtest`).
 
 ### 🧰 devtools + listes transverses
 - **scripts/chantiers/** — maison · **un terminal Claude par chantier** : `chantier.ps1` (ouvre la session sur sa fiche ; elle ne s'arrête jamais, surveille sa fiche et traite ce qui arrive sous « À TRAITER »), `chantiers_etat.sh` (état, alertes), `veille_chantiers.sh` (l'orchestrateur rend la main sur changement, calme ou point), `verrou_gpu.sh` (file du GPU partagée) → [guides/orchestrer-des-chantiers.md](guides/orchestrer-des-chantiers.md).
+- **scripts/recompter_vitrine.py** — maison · recompte les chiffres de la méthode et de sa vitrine (tests listés par `dotnet`, dépôt, journaux de l'API) et les réécrit ; `--ach` recopie la vitrine dans ACH.
 - **Pages de décisions** — maison · gabarit sombre à cocher + « Copier mes réponses », `scripts/verifier_page.sh` (node --check) → [guides/pages-de-decisions.md](guides/pages-de-decisions.md).
 - **public-apis** — `public-apis/public-apis` · MIT · ~1 400 API gratuites classées.
 - **awesome-godot** — `Calinou/awesome-godot` · CC-BY-4.0 · écosystème Godot.
@@ -127,6 +129,7 @@ Se tient au courant de ce qui sort d'utile, et garde cet index à jour. Tout : *
 
 ### Dernières nouveautés
 <!-- HEIMDALL:LATEST -->
+- **2026-11-08** — Les pistes de la méthode faites : **client de l'API avec liste blanche des projets** (`scripts/claude_api/`), **regard générique** (`scripts/regard/`), chiffres de la vitrine recomptés par script ; le journal d'Hyperbole écrit par les joueurs IA de Guardians (rapport par profil, `comparer` entre versions, coût de la séance).
 - **2026-11-07** (fin de nuit) — La gazette ne reprend plus ce qui est tranché et sépare « défaut prouvé » et « joueur IA perdu » ; l'Esprit des joueurs IA branché sans bloquer la boucle (quand répondre, mention « IA » à l'entrée) ; la traduction du wiki et du site (empreintes, segments).
 - **2026-11-07** — **La méthode Alpharium** documentée (`guides/notre-methode.md` + vitrine) ; nouveaux guides : le regard, la gazette, la musique de jeu, l'économie de tokens et de GPU ; l'orchestrateur (« À TRAITER », veille, relance) dans `orchestrer-des-chantiers.md` ; `veille_chantiers.sh`.
 - **2026-11-07** — Retour de Guardians of the Seal : orchestration en chantiers (`scripts/chantiers/`), pages de décisions (gabarit + vérificateur), chaînes d'art et de son dans `creer-des-assets.md`, `comfy_client.py` à niveau.

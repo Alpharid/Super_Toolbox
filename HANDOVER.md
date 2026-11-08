@@ -208,6 +208,9 @@ D:\Super_Toolbox\
 ├─ scripts\comfy_client.py   client ComfyUI de l'Atelier IA (Z-Image, Qwen-Image-Edit, TRELLIS.2)
 ├─ scripts\chantiers\        chantier.ps1 (un terminal Claude par fiche, UTF-8 avec BOM), chantiers_etat.sh, veille_chantiers.sh, verrou_gpu.sh
 ├─ scripts\verifier_page.sh  vérifie une page de décisions (node --check, fond sombre, Copier, images)
+├─ scripts\claude_api\       claude_api.py (client de l'API Claude : journal, plafond commun du cycle, lots, caches) + projets_autorises.json (liste blanche)
+├─ scripts\regard\           regard.py (le regard générique, par l'API) + regard.exemple.json (la configuration d'un projet)
+├─ scripts\recompter_vitrine.py  recompte les chiffres de guides/notre-methode.md et de sa vitrine (marqueurs data-n / <!--n:-->), --ach
 ├─ upstream\universal-modder skills\ (11 SKILL.md), um\ (CLI Python), knowledge\ (INDEX.md, games\, techniques\), examples\ (4 mods)
 ├─ upstream\rea              scripts\rea.mjs (CLI/MCP), src\, bridge\ (Ghidra/Hopper), docs\ (installation, windows-ghidra-p0…), .agents\skills\
 ├─ upstream\GhidraMCP, Il2CppDumper, minhook          outils de modding (sources) — voir CATALOGUE.md
@@ -231,6 +234,13 @@ D:\Super_Toolbox\
 
 ## 11. Historique
 
+- **2026-11-08** — **Les pistes de la méthode, faites** (chantier `methode-pistes` de Guardians) : `scripts/claude_api/` (le client de
+  l'API porté de Guardians, avec **liste blanche des projets** : un projet absent est refusé ; plafond commun compté sur le cycle,
+  plus sur tout le journal ; cache des réponses), `scripts/regard/` (moteur générique, données du projet dans un `regard.json`),
+  `scripts/recompter_vitrine.py` (chiffres de la vitrine recomptés, marqueurs posés) ; `HyperboleJournal.cs` branché dans les
+  Descellés (chaque séance est un run d'Hyperbole, coût de l'API dans le rapport). Guides à jour : `economiser-tokens-et-gpu.md` §3,
+  `le-regard.md`, `notre-methode.md` (§3, §5) et sa vitrine (carte « Le client de l'API », « Améliorations faites ») ; écarts :
+  `creer-des-assets.md` et `pages-de-decisions.md` (page d'écoute par `ecoute.py`, plus `http.server`).
 - **2026-11-07** (soir) — **La méthode Alpharium** documentée (chantier `methode-maison` de Guardians) : `guides/notre-methode.md` (principes,
   chaque outil maison en une section, chiffres réels, faiblesses et pistes, règle de mise à jour) et sa vitrine
   `guides/vitrine/notre-methode.html` ; nouveaux guides `le-regard.md`, `la-gazette.md`, `musique-de-jeu.md`,

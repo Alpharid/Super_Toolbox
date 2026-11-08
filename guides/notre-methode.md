@@ -77,7 +77,8 @@ dans le dépôt de Guardians (privé) ; la méthode, elle, est réutilisable.
   vers le contenu du jeu, vérifiée par un test), réglés par sept profils (moyen, aguerri, casual, débutant, explorateur, chill,
   streamer). Ils jouent dans un monde d'essai accéléré jusqu'à ×20 et rendent un rapport chiffré. Ce qu'ils ont trouvé : une étape
   du tutoriel qui bloquait 5 joueurs sur 6, un marchand jamais approvisionné (739 achats refusés dans une séance), un souk plein qui
-  bloquait une quête. Coût : le PC. → [joueurs-ia-dans-un-jeu-en-ligne.md](joueurs-ia-dans-un-jeu-en-ligne.md)
+  bloquait une quête. Coût : le PC. Chaque séance écrit aussi le journal d'**Hyperbole** (rapport par profil, rétention, `comparer`
+  entre deux versions du jeu) et dit ce qu'elle a coûté en appels de l'API. → [joueurs-ia-dans-un-jeu-en-ligne.md](joueurs-ia-dans-un-jeu-en-ligne.md)
 - **Hyperbole** (`hyperbole/`) : la généralisation des Descellés pour tout jeu, sur le PC, sans dépenser de tokens.
   → [../hyperbole/README.md](../hyperbole/README.md)
 - **L'Esprit** : ce qui fait parler les joueurs IA dans le chat. Choisi par un essai à l'aveugle : 20 situations, la réponse d'un
@@ -86,7 +87,8 @@ dans le dépôt de Guardians (privé) ; la méthode, elle, est réutilisable.
 - **La gazette** : un modèle de l'API lit les rapports d'une séance ou d'une journée de joueurs IA et en tire une page courte : ce qui
   bloque, l'équilibre, les anomalies, et ce qui manquait aux rapports pour juger. Quelques centimes. → [la-gazette.md](la-gazette.md)
 - **Le regard** : un modèle de l'API regarde des images (sprites, interface, carte) et liste les défauts, avec leur gravité et s'ils
-  étaient déjà connus. Il signale, il ne valide pas. Environ 0,03 $ l'image. → [le-regard.md](le-regard.md)
+  étaient déjà connus. Il signale, il ne valide pas. Environ 0,03 $ l'image. Moteur générique dans la boîte
+  (`scripts/regard/`) : chaque projet donne ses défauts, ses « voulus » et ses fiches dans un `regard.json`. → [le-regard.md](le-regard.md)
 - **La traduction** : tout le texte du jeu extrait, traduit par lots avec un glossaire validé, puis relu par une seconde passe
   (1 477 entrées, environ 1,70 $ avec la relecture). Le wiki et le site aussi (44 pages sous `/en/`, 0,57 $) : chaque traduction
   garde l'empreinte du français traduit, **seul ce qui change est retraduit** ; les pages générées (galerie) ne passent que par
@@ -107,22 +109,25 @@ dans le dépôt de Guardians (privé) ; la méthode, elle, est réutilisable.
 
 - **Heimdall**, le veilleur : à chaque projet, quels outils de la boîte s'appliquent et ce qui manque ; une veille régulière.
   → [../heimdall/README.md](../heimdall/README.md)
-- **Ce document et sa vitrine** : à tenir à jour (règle ci-dessous).
+- **Le client de l'API** (`scripts/claude_api/`) : journal des dépenses par projet, plafond commun sur le cycle, lots, cache des
+  consignes et des réponses, et **une liste blanche des projets** : un projet qui n'y est pas est refusé. → [economiser-tokens-et-gpu.md](economiser-tokens-et-gpu.md) §3
+- **Ce document et sa vitrine** : à tenir à jour (règle ci-dessous) ; leurs chiffres se recomptent par `scripts/recompter_vitrine.py`.
 
-## 4. Ce que ça a donné (Guardians, 18 octobre → 7 novembre 2026)
+## 4. Ce que ça a donné (Guardians, 18 octobre → <!--n:fin-->8 novembre<!--/n--> 2026)
 
-Chiffres relevés le 2026-11-07 dans le dépôt et les journaux, pas estimés :
+Chiffres relevés le <!--n:releve_iso-->2026-11-08<!--/n--> dans le dépôt et les journaux, pas estimés (recomptés par
+`scripts/recompter_vitrine.py`) :
 
 | | |
 |---|---|
-| Durée | 3 semaines, 407 commits, 20 versions publiées aux joueurs |
-| Tests automatiques | 386 (règles 180, serveur 169, joueurs IA 24, noyau du client 13) |
-| Chantiers | 16 fiches depuis le 5 novembre, 4 ou 5 en parallèle |
-| Pages de décision | 95 |
-| Leçons écrites | 31 règles tirées des retours du propriétaire, gardées en mémoire de projet |
-| API Claude | 232 appels, **3,21 $** au total (sur 100 $ par mois) ; 19 lots à moitié prix |
-| Joueurs IA | 38 séances rapportées, 7 profils |
-| Art | 32 entités animées en 8 directions, 50 tuiles de carte, 75 icônes peintes, 844 références de paysages |
+| Durée | <!--n:semaines-->3<!--/n--> semaines, <!--n:commits-->453<!--/n--> commits, <!--n:versions-->21<!--/n--> versions publiées aux joueurs |
+| Tests automatiques | <!--n:tests-->389<!--/n--> (<!--n:tests_detail-->règles 180, serveur 169, joueurs IA 27, noyau du client 13<!--/n-->) |
+| Chantiers | <!--n:chantiers-->26<!--/n--> fiches depuis le 5 novembre, 4 ou 5 en parallèle |
+| Pages de décision | <!--n:pages-->111<!--/n--> |
+| Leçons écrites | <!--n:lecons-->33<!--/n--> règles tirées des retours du propriétaire, gardées en mémoire de projet |
+| API Claude | <!--n:api_appels-->432<!--/n--> appels, **<!--n:api_dollars-->7,39 $<!--/n-->** au total (sur 100 $ par mois) ; <!--n:api_lots-->28<!--/n--> lots à moitié prix |
+| Joueurs IA | <!--n:seances-->40<!--/n--> séances rapportées, 7 profils |
+| Art | <!--n:entites-->32<!--/n--> entités animées en 8 directions, <!--n:tuiles-->50<!--/n--> tuiles de carte, <!--n:icones-->85<!--/n--> icônes peintes, 844 références de paysages |
 | Son | 44 bruitages ; tri musical étalonné sur 59 verdicts humains |
 
 ## 5. Faiblesses et pistes
@@ -141,16 +146,17 @@ Ce qui a raté, ce qu'on en a tiré, et ce qui reste faible.
 | Un chiffre « secondes de voix » donnait 74 s de chant à un morceau qui n'en a pas (le séparateur range les flûtes avec la voix). | Une mesure automatique se vérifie à l'oreille avant qu'on s'y fie. | Le chiffre n'est plus affiché. |
 | La gazette reproposait ce qui était déjà tranché, et prenait les détours voulus des joueurs IA pour des défauts du jeu. | Un lecteur sans mémoire des décisions radote ; un bot perdu n'est pas une preuve. | Liste « déjà tranché » lue à chaque appel (« (connu) ») ; « défaut prouvé » séparé de « joueur IA perdu ». |
 | À ×20, les joueurs IA voient des centaines de « cible introuvable ». | C'est l'accélération, pas le jeu (0 à ×1). | La gazette a pour consigne de ne pas les compter comme bugs. |
-| Les documents de reprise dérivent (un compte de tests en retard d'un jour). | Un chiffre écrit à la main vieillit. | Piste : recompter les chiffres de la vitrine par un script. |
+| Les documents de reprise dérivent (un compte de tests en retard d'un jour). | Un chiffre écrit à la main vieillit. | `scripts/recompter_vitrine.py` recompte les chiffres de la vitrine (tests listés par `dotnet`, journaux, dépôt) et les réécrit. |
+| Le client de l'API comptait toute sa dépense depuis le premier appel, pas celle du cycle (le crédit se renouvelle chaque mois). | Un plafond se compte sur la période qu'il protège. | Le client de la boîte compte depuis le jour du renouvellement, tous projets ensemble. |
 
-Pistes validées par le propriétaire le 2026-11-07, chacune dans son propre chantier (aussi dans `heimdall/projects.json`) :
-- porter dans cette boîte le petit client de l'API de Guardians (cache, lots, plafond, journal des dépenses), pour tous les projets,
-  **avec une liste blanche explicite des projets autorisés** (Guardians seul pour l'instant) : un projet absent est refusé ;
-- faire du regard un outil générique (la liste des défauts et le contexte « voulu » fournis par chaque projet) ;
-- brancher l'écrivain de journal d'Hyperbole dans les joueurs IA de Guardians (il existe, il n'est pas encore utilisé) ;
-- noter le coût de chaque séance de joueurs IA dans son rapport ;
-- un script qui recompte les chiffres de la vitrine (un compte de tests écrit à la main avait déjà un jour de retard) ;
-- repasser en sombre les deux dernières pages de choix claires de Guardians.
+Pistes validées par le propriétaire le 2026-11-07, **toutes faites le 2026-11-08** (chantier `methode-pistes` de Guardians) :
+- le client de l'API porté dans cette boîte (`scripts/claude_api/`), **avec une liste blanche explicite des projets autorisés**
+  (Guardians seul pour l'instant) : un projet absent est refusé ;
+- le regard générique (`scripts/regard/`) : défauts, « voulus » et fiches fournis par chaque projet ;
+- l'écrivain de journal d'Hyperbole branché dans les joueurs IA de Guardians (chaque séance est aussi un « run » d'Hyperbole) ;
+- le coût de chaque séance de joueurs IA dans son rapport ;
+- le script qui recompte les chiffres de la vitrine (`scripts/recompter_vitrine.py`) ;
+- les deux dernières pages de choix claires de Guardians repassées en sombre.
 
 ## 6. La règle pour que ça reste vrai
 

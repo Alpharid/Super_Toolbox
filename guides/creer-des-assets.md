@@ -110,8 +110,8 @@ chaque chose efface l'encre de ce qu'elle cache. À refaire à chaque retouche d
 saturation, plage dynamique trop plate = nappe sans relief) ; mastering commun ffmpeg `loudnorm` deux passes, −16 LUFS, −1 dBTP,
 passe-haut 30 Hz. **Les modes non occidentaux ne passent pas par les tags** (tout sort pentatonique, « hijaz » écrit ne suffit pas) :
 écrire un **squelette** synthétique dans le mode (cordes pincées Karplus-Strong, souffle, percussion) et le faire reprendre par
-ACE-Step en audio→audio (débruitage partiel 0,5 à 0,8). Page d'écoute locale (`python -m http.server`) partagée par un tunnel
-`cloudflared` (le service de pages de claude.ai refuse les gros fichiers) ; méthode des pages : `guides/pages-de-decisions.md`.
+ACE-Step en audio→audio (débruitage partiel 0,5 à 0,8). Page d'écoute locale servie par un petit serveur qui **enregistre l'avis de chaque
+auditeur** (`ecoute.py`, détail dans [musique-de-jeu.md](musique-de-jeu.md)), partagée par un tunnel `cloudflared` (le service de pages de claude.ai refuse les gros fichiers) ; méthode des pages : `guides/pages-de-decisions.md`.
 
 **Trier avant de soumettre (leçon de Guardians, 2026-11-07 : « fais des tests avant de me les soumettre »)** : jamais un rendu
 sur une page d'écoute sans tri automatique, et 1 ou 2 propositions par usage. Le juge : **Meta Audiobox Aesthetics** (CC-BY 4.0,

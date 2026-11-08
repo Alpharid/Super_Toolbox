@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fondamento&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <!-- Vitrine de guides/notre-methode.md. Règle : à chaque chantier qui crée ou change un outil maison, mettre à jour le guide, cette
-     page et INDEX.md. Chiffres relevés le 2026-11-07 dans le dépôt et les journaux de Guardians of the Seal (pas estimés). -->
+     page et INDEX.md. Chiffres relevés le <!--n:releve_iso-->2026-11-08<!--/n--> dans le dépôt et les journaux de Guardians of the Seal (pas estimés). -->
 <style>
 :root{
   --fond:#17120d;--fond2:#1d1610;--carte:#271e16;--carte2:#2f241a;--trait:#4a3a2b;--trait2:#5d4a37;
@@ -106,19 +106,19 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--trait);color:
 </header>
 
 <section aria-labelledby="t-chiffres">
-  <h2 id="t-chiffres">Trois semaines, en chiffres</h2>
-  <p class="sous">Guardians of the Seal, un MMORPG fait à deux, du 18 octobre au 7 novembre 2026. Relevés dans le dépôt et les journaux.</p>
+  <h2 id="t-chiffres"><span data-n="semaines_mot">Trois</span> semaines, en chiffres</h2>
+  <p class="sous">Guardians of the Seal, un MMORPG fait à deux, du 18 octobre au <span data-n="fin">8 novembre</span> 2026. Relevés dans le dépôt et les journaux.</p>
   <div class="chiffres">
-    <div class="chiffre"><b>407</b><span>commits en 3 semaines</span></div>
-    <div class="chiffre"><b>20</b><span>versions publiées aux joueurs</span></div>
-    <div class="chiffre"><b>386</b><span>tests automatiques</span></div>
-    <div class="chiffre"><b>16</b><span>chantiers, 4 ou 5 en parallèle</span></div>
-    <div class="chiffre"><b>95</b><span>pages de décision</span></div>
-    <div class="chiffre"><b>3,21 $</b><span>pour 232 appels à l'API Claude</span></div>
-    <div class="chiffre"><b>38</b><span>séances de joueurs IA rapportées</span></div>
-    <div class="chiffre"><b>31</b><span>leçons écrites, tirées des retours du propriétaire</span></div>
+    <div class="chiffre"><b data-n="commits">453</b><span>commits en <span data-n="semaines">3</span> semaines</span></div>
+    <div class="chiffre"><b data-n="versions">21</b><span>versions publiées aux joueurs</span></div>
+    <div class="chiffre"><b data-n="tests">389</b><span>tests automatiques</span></div>
+    <div class="chiffre"><b data-n="chantiers">26</b><span>chantiers, 4 ou 5 en parallèle</span></div>
+    <div class="chiffre"><b data-n="pages">111</b><span>pages de décision</span></div>
+    <div class="chiffre"><b data-n="api_dollars">7,39 $</b><span>pour <span data-n="api_appels">432</span> appels à l'API Claude</span></div>
+    <div class="chiffre"><b data-n="seances">40</b><span>séances de joueurs IA rapportées</span></div>
+    <div class="chiffre"><b data-n="lecons">33</b><span>leçons écrites, tirées des retours du propriétaire</span></div>
   </div>
-  <p class="note">Et côté fabrication, tout en local : 32 entités animées en 8 directions, 50 tuiles de carte, 75 icônes peintes,
+  <p class="note">Et côté fabrication, tout en local : <span data-n="entites">32</span> entités animées en 8 directions, <span data-n="tuiles">50</span> tuiles de carte, <span data-n="icones">85</span> icônes peintes,
   44 bruitages, 844 références de paysages réunies.</p>
 </section>
 
@@ -254,7 +254,7 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--trait);color:
       <div class="cout">Une session <em>· <a href="https://github.com/Alpharid/Super_Toolbox/blob/main/guides/orchestrer-des-chantiers.md">§ L'orchestrateur</a></em></div></div>
     <div class="carte outil"><h3>Les pages de décision</h3><span class="tag">gabarit</span>
       <p>Une question par bloc, de quoi juger sur pièce, la préférence de Claude marquée « mon choix », une remarque libre, et le bouton qui met tout en texte.</p>
-      <div class="cout">95 pages en trois semaines <em>· <a href="https://github.com/Alpharid/Super_Toolbox/blob/main/guides/pages-de-decisions.md">pages-de-decisions.md</a></em></div></div>
+      <div class="cout"><span data-n="pages">111</span> pages en <span data-n="semaines_mot_min">trois</span> semaines <em>· <a href="https://github.com/Alpharid/Super_Toolbox/blob/main/guides/pages-de-decisions.md">pages-de-decisions.md</a></em></div></div>
     <div class="carte outil"><h3>La file du GPU</h3><span class="tag local">PC</span>
       <p>Un ticket par étape lourde, servi dans l'ordre d'arrivée, partagé entre sessions et entre projets. Huit minutes au plus par ticket.</p>
       <div class="cout">Gratuit <em>· <a href="https://github.com/Alpharid/Super_Toolbox/blob/main/guides/economiser-tokens-et-gpu.md">economiser-tokens-et-gpu.md</a></em></div></div>
@@ -263,7 +263,7 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--trait);color:
   <div class="famille">Agents qui jouent et qui lisent</div>
   <div class="grille">
     <div class="carte outil"><h3>Les joueurs IA</h3><span class="tag local">PC</span>
-      <p>Ils se connectent comme des joueurs, sans aucune triche, en sept profils, dans un monde accéléré jusqu'à ×20. Ils ont trouvé une étape du tutoriel qui bloquait 5 joueurs sur 6 et un marchand jamais approvisionné (739 achats refusés).</p>
+      <p>Ils se connectent comme des joueurs, sans aucune triche, en sept profils, dans un monde accéléré jusqu'à ×20. Ils ont trouvé une étape du tutoriel qui bloquait 5 joueurs sur 6 et un marchand jamais approvisionné (739 achats refusés). Chaque séance est aussi lue par Hyperbole (rapport par profil, rétention, comparaison entre deux versions) et dit ce qu'elle a coûté.</p>
       <div class="cout">0 $ <em>· <a href="https://github.com/Alpharid/Super_Toolbox/blob/main/guides/joueurs-ia-dans-un-jeu-en-ligne.md">joueurs IA</a>, <a href="https://github.com/Alpharid/Super_Toolbox/blob/main/hyperbole/README.md">Hyperbole</a></em></div></div>
     <div class="carte outil"><h3>L'Esprit</h3><span class="tag api">API</span>
       <p>Ce qui fait parler les joueurs IA dans le chat. Choisi à l'aveugle : 20 répliques d'un petit modèle de l'API contre 20 d'un modèle local ; l'API préférée 17 fois sur 20.</p>
@@ -272,7 +272,7 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--trait);color:
       <p>Les rapports d'une journée de joueurs IA en une page : ce qui bloque, l'équilibre, les anomalies, et ce qui manquait pour juger.</p>
       <div class="cout">2 à 6 centimes <em>· <a href="https://github.com/Alpharid/Super_Toolbox/blob/main/guides/la-gazette.md">la-gazette.md</a></em></div></div>
     <div class="carte outil"><h3>Le regard</h3><span class="tag api">API</span>
-      <p>Relit les rendus et liste les défauts, avec la fiche de chaque entité et ce que le propriétaire a dit voulu. Il signale, il ne valide pas.</p>
+      <p>Relit les rendus et liste les défauts, avec la fiche de chaque entité et ce que le propriétaire a dit voulu. Il signale, il ne valide pas. Générique : chaque projet donne ses défauts et ses « voulus » dans un fichier.</p>
       <div class="cout">≈ 0,03 $ l'image <em>· <a href="https://github.com/Alpharid/Super_Toolbox/blob/main/guides/le-regard.md">le-regard.md</a></em></div></div>
     <div class="carte outil"><h3>La traduction</h3><span class="tag api">API</span>
       <p>Tout le texte du jeu traduit par lots avec un glossaire validé, puis relu par une seconde passe ; le wiki et le site aussi, et seul ce qui change est retraduit.</p>
@@ -290,6 +290,9 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--trait);color:
     <div class="carte outil"><h3>L'IA locale</h3><span class="tag local">PC</span>
       <p>Un modèle local sur la carte de 24 Go, avec sa voix et son agent, pour ce qui n'a pas besoin de l'API.</p>
       <div class="cout">0 $ <em>· <a href="https://github.com/Alpharid/Super_Toolbox/blob/main/guides/ia-locale-performante.md">ia-locale-performante.md</a></em></div></div>
+    <div class="carte outil"><h3>Le client de l'API</h3><span class="tag api">API</span>
+      <p>Un seul petit client pour tous les projets : journal de chaque appel, plafond commun sur le mois, lots à moitié prix, cache. Il tient la liste des projets autorisés par le propriétaire et refuse les autres.</p>
+      <div class="cout">Guardians seul autorisé <em>· <a href="https://github.com/Alpharid/Super_Toolbox/blob/main/guides/economiser-tokens-et-gpu.md">economiser-tokens-et-gpu.md</a></em></div></div>
     <div class="carte outil"><h3>Heimdall</h3><span class="tag">méthode</span>
       <p>Le veilleur de la boîte : quels outils s'appliquent à un projet, ce qui manque, ce qui sort de neuf.</p>
       <div class="cout">Une passe de temps en temps <em>· <a href="https://github.com/Alpharid/Super_Toolbox/blob/main/heimdall/README.md">heimdall</a></em></div></div>
@@ -298,18 +301,19 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--trait);color:
 
 <section aria-labelledby="t-depenses">
   <h2 id="t-depenses">Où passe l'argent de l'API</h2>
-  <p class="sous">232 appels, 3,21 $, sur un crédit de 100 $ par mois. Le plus grand modèle pour regarder et traduire, le plus petit pour bavarder.</p>
+  <p class="sous"><span data-n="api_appels">432</span> appels, <span data-n="api_dollars">7,39 $</span>, sur un crédit de 100 $ par mois. Le plus grand modèle pour regarder et traduire, le plus petit pour bavarder.</p>
   <div class="barres" role="group" aria-label="Dépenses de l'API par usage, en dollars">
-    <div class="barre" tabindex="0"><span class="nom">Traduction et relecture</span><span class="piste"><span class="rempli" style="display:block;width:calc(100% * 1.83 / 1.83 - 70px)"></span><span class="val" style="left:calc(100% * 1.83 / 1.83 - 70px)">1,83 $</span></span><span class="bulle">Traduction et relecture : 1,83 $ (1 477 entrées)</span></div>
-    <div class="barre" tabindex="0"><span class="nom">Le regard</span><span class="piste"><span class="rempli" style="display:block;width:calc((100% - 70px) * 1.13 / 1.83)"></span><span class="val" style="left:calc((100% - 70px) * 1.13 / 1.83)">1,13 $</span></span><span class="bulle">Le regard : 1,13 $ (dont l'audit de 65 images : 0,91 $)</span></div>
-    <div class="barre" tabindex="0"><span class="nom">Gazette et rapports</span><span class="piste"><span class="rempli" style="display:block;width:calc((100% - 70px) * 0.23 / 1.83)"></span><span class="val" style="left:calc((100% - 70px) * 0.23 / 1.83)">0,23 $</span></span><span class="bulle">Gazette et rapports en voix : 0,23 $</span></div>
-    <div class="barre" tabindex="0"><span class="nom">L'Esprit des joueurs IA</span><span class="piste"><span class="rempli" style="display:block;width:calc((100% - 70px) * 0.03 / 1.83)"></span><span class="val" style="left:calc((100% - 70px) * 0.03 / 1.83)">0,03 $</span></span><span class="bulle">L'Esprit, essais et séance compris : 0,03 $</span></div>
+<!--n:barres-->    <div class="barre" tabindex="0"><span class="nom">Traduction et relecture</span><span class="piste"><span class="rempli" style="display:block;width:calc((100% - 70px) * 3.09 / 3.42)"></span><span class="val" style="left:calc((100% - 70px) * 3.09 / 3.42)">3,09 $</span></span><span class="bulle">Traduction et relecture : 3,09 $</span></div>
+    <div class="barre" tabindex="0"><span class="nom">Le regard</span><span class="piste"><span class="rempli" style="display:block;width:calc((100% - 70px) * 3.42 / 3.42)"></span><span class="val" style="left:calc((100% - 70px) * 3.42 / 3.42)">3,42 $</span></span><span class="bulle">Le regard : 3,42 $</span></div>
+    <div class="barre" tabindex="0"><span class="nom">Gazette et rapports</span><span class="piste"><span class="rempli" style="display:block;width:calc((100% - 70px) * 0.27 / 3.42)"></span><span class="val" style="left:calc((100% - 70px) * 0.27 / 3.42)">0,27 $</span></span><span class="bulle">Gazette et rapports : 0,27 $</span></div>
+    <div class="barre" tabindex="0"><span class="nom">L&#x27;Esprit des joueurs IA</span><span class="piste"><span class="rempli" style="display:block;width:calc((100% - 70px) * 0.04 / 3.42)"></span><span class="val" style="left:calc((100% - 70px) * 0.04 / 3.42)">0,04 $</span></span><span class="bulle">L&#x27;Esprit des joueurs IA : 0,04 $</span></div>
+    <div class="barre" tabindex="0"><span class="nom">Essais et autres</span><span class="piste"><span class="rempli" style="display:block;width:calc((100% - 70px) * 0.57 / 3.42)"></span><span class="val" style="left:calc((100% - 70px) * 0.57 / 3.42)">0,57 $</span></span><span class="bulle">Essais et autres : 0,57 $</span></div>
+<!--/n-->
     <div class="axe"></div>
     <details class="table"><summary>Voir en tableau</summary>
-      <table><tr><th>Usage</th><th>Dépense</th></tr>
-        <tr><td>Traduction et relecture</td><td>1,83 $</td></tr><tr><td>Le regard</td><td>1,13 $</td></tr>
-        <tr><td>Gazette et rapports</td><td>0,23 $</td></tr><tr><td>L'Esprit des joueurs IA</td><td>0,03 $</td></tr>
-        <tr><td><b>Total</b></td><td><b>3,21 $</b></td></tr></table>
+<!--n:table--><table><tr><th>Usage</th><th>Dépense</th></tr>
+        <tr><td>Traduction et relecture</td><td>3,09 $</td></tr><tr><td>Le regard</td><td>3,42 $</td></tr><tr><td>Gazette et rapports</td><td>0,27 $</td></tr><tr><td>L&#x27;Esprit des joueurs IA</td><td>0,04 $</td></tr><tr><td>Essais et autres</td><td>0,57 $</td></tr>
+        <tr><td><b>Total</b></td><td><b>7,39 $</b></td></tr></table><!--/n-->
     </details>
   </div>
   <p class="note">Ce qui tient la note basse : la moitié des appels partent en lots (moitié prix), les consignes sont en cache, la
@@ -338,21 +342,21 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--trait);color:
     <div class="appris"><small>Ce qu'on a appris</small>Un chiffre se vérifie à l'oreille avant qu'on s'y fie.</div>
     <div class="ou"><small>Depuis</small>Le chiffre n'est plus affiché.</div></div>
 
-  <h3 style="margin-top:28px">Prochaines améliorations</h3>
-  <p class="note" style="margin-top:0">Validées par le propriétaire le 7 novembre 2026 ; chacune aura son chantier.</p>
+  <h3 style="margin-top:28px">Améliorations faites</h3>
+  <p class="note" style="margin-top:0">Validées par le propriétaire le 7 novembre 2026, faites le 8 dans un seul chantier.</p>
   <ul class="pistes">
-    <li>Porter dans la boîte le petit client de l'API (cache, lots, plafond, journal) pour tous les projets, avec une liste des projets autorisés : les autres sont refusés.</li>
-    <li>Faire du regard un outil générique, chaque projet fournissant sa liste de défauts et ses « voulus ».</li>
-    <li>Brancher le journal commun d'Hyperbole dans les joueurs IA de Guardians.</li>
-    <li>Noter le coût de chaque séance de joueurs IA dans son rapport.</li>
-    <li>Recompter les chiffres de cette page par un script plutôt qu'à la main.</li>
-    <li>Repasser en sombre les deux dernières pages de décision claires.</li>
+    <li>Le petit client de l'API (cache, lots, plafond, journal) est dans la boîte pour tous les projets, avec la liste des projets autorisés : les autres sont refusés.</li>
+    <li>Le regard est générique : chaque projet fournit sa liste de défauts et ses « voulus ».</li>
+    <li>Le journal commun d'Hyperbole est branché dans les joueurs IA de Guardians.</li>
+    <li>Chaque séance de joueurs IA dit ce qu'elle a coûté.</li>
+    <li>Les chiffres de cette page sont recomptés par un script, plus à la main.</li>
+    <li>Les deux dernières pages de décision claires sont passées en sombre.</li>
   </ul>
 </section>
 
 <footer>
   <p><b>Pour que cette page reste vraie</b> : à chaque chantier qui crée ou change un outil maison, mettre à jour son guide, cette
-  page, <a href="https://github.com/Alpharid/Super_Toolbox/blob/main/guides/notre-methode.md">notre-methode.md</a> et l'index de la boîte. Chiffres relevés le 7 novembre 2026.</p>
+  page, <a href="https://github.com/Alpharid/Super_Toolbox/blob/main/guides/notre-methode.md">notre-methode.md</a> et l'index de la boîte. Chiffres relevés le <span data-n="releve">8 novembre 2026</span> (<code>scripts/recompter_vitrine.py</code>).</p>
 </footer>
 </main></body>
 </html>

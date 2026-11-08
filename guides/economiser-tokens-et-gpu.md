@@ -43,16 +43,36 @@ accord). Un modèle local s'améliore par l'ingénierie : contexte, réglages, m
 
 **D'abord, la permission.** Le crédit de l'API est payé pour des projets précis : avant de l'utiliser sur un projet, **demander au
 propriétaire, au moins une fois par projet** (« certains ne méritent pas qu'on y mette des dollars d'API »). Aujourd'hui seul
-Guardians of the Seal est autorisé. Le client porté dans cette boîte devra tenir une **liste blanche** des projets et refuser tout
-autre projet (piste validée, à faire dans son chantier).
+Guardians of the Seal est autorisé. Le client de cette boîte tient une **liste blanche** des projets
+(`scripts/claude_api/projets_autorises.json`) et **refuse tout projet qui n'y est pas** (`ProjetNonAutorise`, dès la construction
+du client). Ajouter un projet = son accord d'abord, puis une entrée avec la date de cet accord (`autorise_le`).
 
-Sur Guardians, un seul module (`tools/claude_api/client.py`, 200 lignes) sert à tous les outils de l'API. Ce qu'il fait :
+Le client : **`scripts/claude_api/claude_api.py`** (né sur Guardians, porté le 2026-11-08 ; Guardians l'utilise par un
+branchement de quelques lignes qui garde ses anciens noms).
+
+```python
+import sys; sys.path.insert(0, r"D:\Super_Toolbox\scripts\claude_api")
+from claude_api import Client, HAIKU
+api = Client("Mon_Projet")                     # refusé si le projet n'est pas dans la liste blanche
+rep = api.appeler(HAIKU, "…", systeme="…", usage="essai", max_tokens=400, effort="low", cache_systeme=True)
+lot = api.lancer_lot([{"id": "a1", "modele": HAIKU, "contenu": "…"}], usage="audit"); res = api.attendre_lot(lot, usage="audit")
+```
+```
+python scripts/claude_api/claude_api.py projets      # la liste blanche et d'où vient la clé (jamais la clé)
+python scripts/claude_api/claude_api.py depenses     # le cycle en cours, par projet, usage et modèle
+python scripts/claude_api/claude_api.py verifier X   # autorisé ou refusé, sans appel
+```
+
+Ce qu'il fait :
 
 - **La clé dans un fichier hors git** du projet, lue explicitement. **Jamais dans une variable d'environnement** : Claude Code la
   prendrait et dépenserait le crédit de l'API au lieu de l'abonnement.
 - **Un journal de chaque appel** (date, modèle, usage, jetons, coût calculé) et un script qui totalise par usage et par modèle sur le
   cycle de facturation. La page de coût de la Console fait foi ; le journal sert à décider.
-- **Un plafond d'arrêt** : à 90 $ dépensés sur les 100 $ du cycle, plus aucun appel ne part.
+- **Un plafond d'arrêt commun** : à 90 $ dépensés sur les 100 $ du cycle (tous projets ensemble, compté depuis le jour où le crédit
+  se renouvelle, `jour_du_cycle`), plus aucun appel ne part. Un journal par projet, chaque ligne marquée de son projet.
+- **Un cache des réponses** (facultatif, `memoriser=True`) : la même demande déjà payée revient du disque, pour rien (utile pour
+  relancer une page ou un rapport sans repayer).
 - **La Batch API** (moitié prix) pour tout ce qui n'est pas pressé : audits, traductions, rapports. 19 lots, 132 appels sur 232.
 - **Le cache des consignes** : les consignes longues (règles du projet, glossaire, liste des défauts) sont mises en cache ; les appels
   suivants les relisent pour une fraction du prix.
@@ -63,7 +83,8 @@ Sur Guardians, un seul module (`tools/claude_api/client.py`, 200 lignes) sert à
 - **Un plafond par usage** : 300 appels par séance de joueurs IA (environ 0,10 $) ; 0,50 $ pour le regard avant une page.
 - Images réduites à 1 568 px, planches contact plutôt qu'une image par objet.
 
-Répartition réelle (novembre 2026) : regard 1,13 $, traduction et relecture 1,83 $, gazette et rapports 0,23 $, joueurs IA qui
+Répartition réelle (au 7 novembre 2026 ; la vitrine de la méthode tient les chiffres à jour, `scripts/recompter_vitrine.py`) :
+regard 1,13 $, traduction et relecture 1,83 $, gazette et rapports 0,23 $, joueurs IA qui
 parlent 0,03 $.
 
 ## 4. Le GPU partagé

@@ -33,6 +33,7 @@ KINDS: dict[str, tuple[str, ...]] = {
     "run_end": ("bot", "duration"),
     "moment": ("bot", "what"),
     "bored": ("bot",),
+    "afk": ("bot", "duration"),  # absence voulue (le joueur va se faire un thé) : retirée du temps actif, pas de l'ennui
     "frustrated": ("bot",),
     "social": ("bot", "with", "what"),
     "say": ("bot", "text"),

@@ -1,0 +1,18 @@
+{
+  "_regle": "Liste blanche du crédit de l'API Claude. Un projet absent est refusé. Avant d'en ajouter un : demander au propriétaire (au moins une fois par projet) et noter la date de son accord dans autorise_le.",
+  "source_cle": {
+    "fichier": "C:/Guardians_of_the_Seal/server/anthropic.env",
+    "variable": "CLE_API_CLAUDE"
+  },
+  "plafond_arret": 90,
+  "jour_du_cycle": 13,
+  "projets": {
+    "Guardians_of_the_Seal": {
+      "autorise_le": "2026-11-06",
+      "racine": "C:/Guardians_of_the_Seal",
+      "journal": "tools/claude_api/depenses.jsonl",
+      "lots": "tools/claude_api/lots.jsonl",
+      "cache": "tools/claude_api/cache_reponses"
+    }
+  }
+}

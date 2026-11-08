@@ -138,6 +138,15 @@ Genres de signalements :
 | `equilibre` | XP/h par lieu et par niveau, temps pour vaincre, K.O. par adversaire, builds gagnants, quêtes abandonnées |
 | `ressenti` | ce que le profil a vécu : ennui, confusion, frustration, envie de montrer (le récit, en résumé) |
 
+**Le même rapport au format d'Hyperbole** (fait sur Guardians le 2026-11-08) : plutôt que d'écrire ses propres analyses, le jeu
+traduit ses genres dans le journal commun (`hyperbole/csharp/HyperboleJournal.cs`, copié dans le projet) : arrivée et profil →
+`bot_join`, départ → `bot_leave` (la fin de séance n'est pas un abandon), étape → `progress`, K.O. → `death`, blocage → `stuck`,
+refus → `refusal`, parole → `say`, notion comprise → `learn`, absence → `afk`. Une séance devient un « run » (`run.json` avec la
+version du jeu = le commit, et `chambres/<monde>/journal.jsonl`) : `hyperbole.py rapport <run>` donne le rapport par profil et la
+rétention, `hyperbole.py comparer <avant> <après>` la non-régression entre deux versions. Le temps est celui du monde (réel ×
+accélération). **Le coût** : si l'Esprit passe par l'API, chaque appel porte le nom de la séance dans le journal des dépenses, et
+le rapport dit ce qu'elle a coûté.
+
 ## 8. À quoi ils servent
 
 - **Peupler le monde** au début, quand il y a peu de joueurs (et l'assumer, §4).

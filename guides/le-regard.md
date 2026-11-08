@@ -1,8 +1,9 @@
 # Le regard : un juge visuel par l'API, avant l'œil du propriétaire
 
 > Né sur Guardians of the Seal (novembre 2026). Un modèle de l'API Claude regarde des rendus (sprites, icônes, pièces d'interface,
-> blocs de carte) et liste ce qui cloche. **Il signale, il ne valide pas** : le propriétaire reste le seul juge. Code de référence :
-> `tools/claude_api/regard/` du dépôt de Guardians (privé). Vue d'ensemble : [notre-methode.md](notre-methode.md).
+> blocs de carte) et liste ce qui cloche. **Il signale, il ne valide pas** : le propriétaire reste le seul juge. **Le moteur est dans
+> cette boîte** : [`scripts/regard/regard.py`](../scripts/regard/regard.py), générique ; tout ce qui est propre à un projet est en
+> données, dans son fichier `regard.json` (modèle : `scripts/regard/regard.exemple.json`). Vue d'ensemble : [notre-methode.md](notre-methode.md).
 
 ## À quoi il sert
 
@@ -25,10 +26,19 @@
    l'interface, la carte en blocs qui se chevauchent.
 
 ```
-python tools/claude_api/regard/regard.py <images…> [--contexte "posture du Gardien, de face"] [--sortie rapport.md]
-python tools/claude_api/regard/regard.py --etalon                         # se mesurer sur des défauts déjà relevés
-python tools/claude_api/regard/regard.py --audit <familles|tout> --lot    # audit d'un lot, par la Batch API (moitié prix)
+python D:/Super_Toolbox/scripts/regard/regard.py --config <projet>/regard.json <images…> [--contexte "…"] [--sortie rapport.md]
+python D:/Super_Toolbox/scripts/regard/regard.py --config <projet>/regard.json --etalon   # se mesurer sur des défauts connus
 ```
+Le fichier du projet (`regard.json`) donne : `projet` (son nom dans la liste blanche du client de l'API : un projet absent est
+refusé), `presentation` (deux phrases sur le jeu et son style), `defauts` (le Markdown des défauts déjà relevés), `voulus` (une
+ligne `- **<nom>** : …` par entité), `fiches` (les documents où chercher la section `### <nom>` d'une entité, avec un titre, une
+longueur maximale et s'il faut passer par les `alias`), `entites` (comment reconnaître une entité dans un chemin : préfixe du
+fichier ou dossier parent), `etalon`, `sorties`, `modele`, `effort`. Dans un script : `Config.lire(…)`, `regarder(conf, image,
+contexte)`, `demande_lot(conf, id, image, contexte)` pour la Batch API, `rapport_md(…)`.
+
+Sur Guardians, `tools/claude_api/regard/regard.py` garde les mêmes commandes et ajoute l'**audit** propre à ses assets
+(`--audit <familles|tout> --lot` : une direction par entité, planches contact, carte en blocs) ; vérifié le 2026-11-08 :
+consignes et contextes identiques à l'ancien code sur 38 images.
 
 ## Ce qu'il coûte et ce qu'il vaut
 
@@ -49,6 +59,7 @@ python tools/claude_api/regard/regard.py --audit <familles|tout> --lot    # audi
 
 ## Pour un autre projet
 
-Ce qu'il faut : une liste de défauts connus propre au projet, un fichier « voulu » par entité, une fiche par entité qu'on puisse
-retrouver par son nom, un client de l'API avec cache et lots ([economiser-tokens-et-gpu.md](economiser-tokens-et-gpu.md) §3), et une
+Ce qu'il faut : l'accord du propriétaire pour y mettre du crédit (le projet entre alors dans la liste blanche), un `regard.json`
+copié du modèle, une liste de défauts connus propre au projet, un fichier « voulu » par entité, une fiche par entité qu'on puisse
+retrouver par son nom (client de l'API : [economiser-tokens-et-gpu.md](economiser-tokens-et-gpu.md) §3), et une
 page de tri ([pages-de-decisions.md](pages-de-decisions.md)) où l'avis de Claude est coché d'avance.

@@ -22,5 +22,6 @@
 - Ses réponses arrivent recopiées : les consigner **dans la doc du projet** (décisions datées), puis seulement les appliquer.
 - Pas de page pour une seule question évidente : une ligne dans la conversation suffit. Pas de page « pour lire » déguisée en page
   de décisions.
-- Audio lourd : le service de pages de claude.ai refuse les gros fichiers ; servir la page en local (`python -m http.server`) et
+- Audio lourd : le service de pages de claude.ai refuse les gros fichiers ; servir la page en local par un petit serveur qui
+  enregistre aussi les avis (`ecoute.py`, [musique-de-jeu.md](musique-de-jeu.md) ; `python -m http.server` si on ne recueille rien) et
   la partager par un tunnel (`cloudflared tunnel --url http://127.0.0.1:<port>`) si quelqu'un d'autre doit écouter.
