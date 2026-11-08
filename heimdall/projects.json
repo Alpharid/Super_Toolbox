@@ -427,7 +427,7 @@
     },
     "Ghul": {
       "chemin": "C:\\Ghul",
-      "resume": "FPS d'horreur sans interface vu par une caméra-piéton (rendu ultra réaliste), contre les ghuls du folklore arabe (un seul coup les tue, un second les ranime) ; Unreal 5.8 prévu, concept P0.",
+      "resume": "GHŪL : FPS d'horreur coop 1-8 sans interface, caméra de casque (rendu ultra réaliste), Algérie de nos jours (unité, dotation, lieux réels), contre des ghuls de plusieurs sortes ; UE 5.8.4, concept P0, mission 1 = hôpital abandonné.",
       "domaines": [
         "creation-assets",
         "physique-netcode",
@@ -436,18 +436,20 @@
       ],
       "outils_kit": [
         "Hyperbole (hyperbole/) — joueurs simulés sans triche, chambres accélérées, rapports fun/défi/équilibre/bugs (préparé : C:\\Ghul\\hyperbole, moteur commande)",
-        "ffmpeg — comparer les captures du jeu à de vraies vidéos de caméra-piéton (bruit, compression)"
+        "ffmpeg — comparer les captures du jeu à de vraies vidéos de caméra (bruit, compression)"
       ],
       "guide": "guides/creer-des-assets.md",
       "manques": [
-        "post-process caméra-piéton réaliste dans Unreal (barillet, exposition lente, bruit capteur, compression, rolling shutter)",
-        "caméra fixée au torse d'un personnage complet (corps entier, IK des mains sur l'arme)",
-        "IA de créature rôdeuse (se nourrit, rôde, charge, imite)",
-        "imitation de voix (voix volées des coéquipiers) avec voix d'acteurs consentants",
-        "son de micro de poitrine (frottements, saturation, vent)",
-        "netcode coop 1-4 Unreal si le mode coop est choisi"
+        "post-process caméra réaliste dans Unreal (barillet, exposition lente, bruit capteur, compression, rolling shutter)",
+        "caméra de casque sur un personnage complet (parallaxe de visée jouable sans viseur, IK des mains sur l'arme)",
+        "IA de créatures : rôdeur, grimpeur aux murs et au plafond, sprinteur à quatre pattes, qui se relève",
+        "voix des ghuls (rires, pleurs, chants, imitations) avec voix d'acteurs consentants",
+        "son spatial avec occlusion et propagation par les ouvertures (couloirs, pièces, étages)",
+        "netcode coop 8 joueurs Unreal",
+        "recherche documentaire du réel (unité algérienne, dotation, tenues, grades) à partir de sources publiques"
       ],
       "pistes": [
+        "Steam Audio (Valve, plugin Unreal, open source) → occlusion, propagation, réverbération par pièce (à comparer à l'audio intégré)",
         "Game Animation Sample d'Epic (motion matching, UE 5.4+) → corps complet sous la caméra (à vérifier)",
         "RealityScan (Epic) → scans maison des lieux au téléphone",
         "Fab / Megascans → photogrammétrie (licence à vérifier, hors git)",
