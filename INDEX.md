@@ -115,7 +115,7 @@ Quand on ouvre un projet : `heimdall.ps1 project -Name <Projet>` (détail dans `
 | **TIDIM** (FPS coop, familiers d'un héros IA vantard) | godot, ia-agents, qa-playtest | Hyperbole (familiers simulés par profils, équilibre de la barre d'ego) |
 | **Alpharium_ALL** (club social familial 3D, Godot 4.7 web ; reprend la Maquette Three.js et le KSC) | godot, creation-assets, qa-playtest, devtools | limbo_console, gdtoolkit, **Hyperbole** (charge à 32, économie), le regard (si autorisé), Atelier IA + TRELLIS.2 (décimé pour le web), musique de jeu → roadmap `C:\Alpharium_KSC\docs\fusion\ROADMAP.md` |
 | **Alpharium_KSC** (le même club en Habbo 2D, TypeScript/Node, en service chez Annes) | devtools, qa-playtest | Hyperbole (pont TCP), pages de décisions |
-| **Ghul** (FPS d'horreur sans interface à la caméra-piéton, Unreal 5.8 prévu) | creation-assets, physique-netcode, ia-agents, qa-playtest | **Hyperbole** (préparé, moteur commande), ffmpeg _(manques : post-process bodycam UE, caméra au torse, IA rôdeuse, voix volées, micro de poitrine — Heimdall)_ → `guides/creer-des-assets.md` |
+| **Ghul** (GHŪL : FPS d'horreur coop 1-8 sans interface, caméra de casque, Algérie réelle, Unreal 5.8) | creation-assets, physique-netcode, ia-agents, qa-playtest | **Hyperbole** (préparé, moteur commande), ffmpeg _(manques : post-process caméra UE, caméra de casque, IA de créatures (grimpeur, sprinteur), voix des ghuls, son spatial, coop 8 — Heimdall)_ → `guides/creer-des-assets.md` |
 
 **Jeux** : tout projet de jeu passe par **Hyperbole** avant les vrais joueurs (`hyperbole.py init <projet>`), c'est là que
 se testent l'équilibre, le fun et les bugs sans dépenser de tokens.
