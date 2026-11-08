@@ -87,7 +87,11 @@ reste, sous « À TRAITER »), tuer son `claude.exe` (le processus dont la ligne
   incident va dans « Faiblesses et pistes » de `notre-methode.md`.
 
 ## Pièges vus (tous réels)
-- **`git add` laissé dans l'index** par une session part dans le commit d'une autre : toujours `git commit -- <chemins>`.
+- **`git add` laissé dans l'index** par une session part dans le commit d'une autre : l'index est **commun** à toutes les sessions
+  (vu le 2026-11-08 : seize fichiers d'un chantier partis sous le message d'un autre, `git add` et `git commit` lancés à deux
+  minutes d'écart). Fichiers entièrement à soi : `git commit -- <chemins>`. Sinon, `git add` (ou l'index préparé) **et**
+  `git commit` dans la **même** commande, `git diff --cached --stat` juste avant. Si c'est arrivé : ne pas réécrire une branche
+  partagée ; un commit vide (`--allow-empty`) qui suit porte le bon message.
 - **`git commit -- <chemin>` commite le fichier tel qu'il est sur le disque**, avec le travail en cours des autres sessions dans ce
   même fichier. Pour un seul morceau d'un fichier partagé : passer par l'index (`git add -p`, ou `git hash-object -w` +
   `git update-index --cacheinfo`), vérifier `git diff --cached`, puis `git commit` **sans** chemin.
