@@ -113,6 +113,8 @@ Quand on ouvre un projet : `heimdall.ps1 project -Name <Projet>` (détail dans `
 | **MM2_Web** (Midtown Madness 2 dans le navigateur, OpenMM2 → WASM) | devtools, modding-re | coop-anything (annuaire, pour un futur multi) → `guides/porter-un-jeu-pc-dans-le-navigateur.md` |
 | **Sanctuary** (rogue-lite : mini-jeu Electron + futur dungeon crawler 3D) | godot, creation-assets, qa-playtest | Hyperbole (runs : survie, causes de mort, contenu épuisé) |
 | **TIDIM** (FPS coop, familiers d'un héros IA vantard) | godot, ia-agents, qa-playtest | Hyperbole (familiers simulés par profils, équilibre de la barre d'ego) |
+| **Alpharium_ALL** (club social familial 3D, Godot 4.7 web ; reprend la Maquette Three.js et le KSC) | godot, creation-assets, qa-playtest, devtools | limbo_console, gdtoolkit, **Hyperbole** (charge à 32, économie), le regard (si autorisé), Atelier IA + TRELLIS.2 (décimé pour le web), musique de jeu → roadmap `C:\Alpharium_KSC\docs\fusion\ROADMAP.md` |
+| **Alpharium_KSC** (le même club en Habbo 2D, TypeScript/Node, en service chez Annes) | devtools, qa-playtest | Hyperbole (pont TCP), pages de décisions |
 | **Ghul** (FPS d'horreur sans interface à la caméra-piéton, Unreal 5.8 prévu) | creation-assets, physique-netcode, ia-agents, qa-playtest | **Hyperbole** (préparé, moteur commande), ffmpeg _(manques : post-process bodycam UE, caméra au torse, IA rôdeuse, voix volées, micro de poitrine — Heimdall)_ → `guides/creer-des-assets.md` |
 
 **Jeux** : tout projet de jeu passe par **Hyperbole** avant les vrais joueurs (`hyperbole.py init <projet>`), c'est là que

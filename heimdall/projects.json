@@ -453,6 +453,58 @@
         "Fab / Megascans → photogrammétrie (licence à vérifier, hors git)",
         "Tokyo_Hikitori tools/ → banc d'essai de performance UE 5.8 et scripts de build à reprendre"
       ]
+    },
+    "Alpharium_ALL": {
+      "chemin": "C:\\Alpharium_KSC",
+      "resume": "Alpharium Luxurious Lounge (ALL) : club social familial 3D, Godot 4.7.2 export Web (Compatibility), serveur autoritaire headless + web.js ; devient la version principale, reprend la vibe de la Maquette Three.js et le contenu du KSC. Roadmap : docs/fusion/ROADMAP.md. (Dossier au nom croisé : renommage en attente, Q1.)",
+      "domaines": [
+        "godot",
+        "creation-assets",
+        "qa-playtest",
+        "devtools",
+        "ia-agents"
+      ],
+      "outils_kit": [
+        "limbo_console — console + compteur de perf dans le build web (mesure sur le vrai téléphone)",
+        "godot-gdscript-toolkit — gdlint/gdformat avant de découper les fichiers géants",
+        "Hyperbole (hyperbole/) — joueurs simulés : charge à 32, économie Kc/jetons, non-régression",
+        "Le regard (scripts/regard/) — juge visuel des captures (si autorisé, Q34)",
+        "Pages de décisions (guides/pages-de-decisions.md) — polices Cinzel + Lora, palette #060a17/#c9a24a",
+        "Atelier IA + TRELLIS.2 — pièces maîtresses, à décimer 1-5 k faces pour le web",
+        "Musique de jeu (ACE-Step, tri.py) + MOSS-SoundEffect — radio et bruitages"
+      ],
+      "guide": "guides/creer-des-assets.md",
+      "manques": [
+        "mode capture Godot à poses fixes par zone/thème/qualité",
+        "pipeline lightmaps pour une carte générée en code (EditorScript → .tscn + UV2 + LightmapGI) sur le web Compatibility",
+        "télémétrie images/s d'un client web vers le serveur",
+        "cuisson de textures canvas (textures.js) → PNG par Puppeteer",
+        "son spatial en mode Sample sur le web (sans effets de bus)"
+      ],
+      "pistes": [
+        "godot-mcp (cité par le brief) → piloter/capturer l'éditeur : à évaluer par Heimdall",
+        "netfox → seulement si un vrai karting physique en réseau l'exige",
+        "beehave/limboai → comportements des animaux et PNJ si réécriture"
+      ]
+    },
+    "Alpharium_KSC": {
+      "chemin": "C:\\Project_ALL",
+      "resume": "Alpharium Kaddour Social Club (KSC) : salon familial Habbo 2D iso, TypeScript/Node 24, en service chez Annes ; reste une entité à part (construction Habbo, Studio de sprites). Son contenu est repris dans l'ALL. (Dossier au nom croisé : renommage en attente.)",
+      "domaines": [
+        "devtools",
+        "qa-playtest",
+        "ia-agents"
+      ],
+      "outils_kit": [
+        "Hyperbole (hyperbole/) — joueurs simulés, pont TCP pour un moteur non Godot",
+        "Pages de décisions"
+      ],
+      "manques": [
+        "TURN pour le vocal WebRTC sur réseaux fermés"
+      ],
+      "pistes": [
+        "scripts/claude_api → Alphred IA en second moteur (accord API à demander)"
+      ]
     }
   }
 }
