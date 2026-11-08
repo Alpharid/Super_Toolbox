@@ -19,8 +19,11 @@ if ($Session) {
     # La session ne s'arrête jamais pour attendre : l'orchestrateur ne peut pas écrire dans ce terminal, il dépose les réponses du
     # propriétaire dans la fiche sous un titre qui contient « À TRAITER » (guide § L'orchestrateur ; Guardians, 2026-11-07).
     $consigne = "Chantier $Nom. Lis $rel et fais ce qu'elle demande, rien d'autre. Mets la fiche à jour au fil de l'eau (état en tête). " +
-        "Ne t'arrête jamais pour attendre : si une décision du propriétaire manque, fais sa page de décision (sombre, Copier), ouvre-la, " +
-        "et continue tout ce qui n'en dépend pas. Quand il ne reste rien à faire sans lui, ne pose pas de question dans ce terminal : surveille ta fiche " +
+        "Ne t'arrête jamais pour attendre : si une décision du propriétaire manque, fais sa page de décision (sombre, Copier), ouvre-la, et continue tout ce qui n'en dépend pas. " +
+        "Si le propriétaire te colle ici des réponses qui ne sont pas pour ce chantier (le titre de leur page dit à qui elles vont), " +
+        "dépose-les telles quelles dans la fiche du bon chantier (même dossier que ta fiche) sous un titre « Réponses du propriétaire (<date>) : À TRAITER », " +
+        "sinon dans la fiche orchestrateur.md de ce dossier, et dis-le-lui en une ligne. " +
+        "Quand il ne reste rien à faire sans lui, ne pose pas de question dans ce terminal : surveille ta fiche " +
         "(en arrière-plan : until grep -qE '^#+ .*À TRAITER' $rel; do sleep 120; done), l'orchestrateur y dépose ses réponses sous un titre " +
         "« À TRAITER » ; traite-les, remplace « À TRAITER » par « traitées », et continue. Si le chantier est entièrement fini, dis-le en quelques lignes."
     if ($SansAutorisation) { claude --dangerously-skip-permissions $consigne } else { claude $consigne }
@@ -28,4 +31,6 @@ if ($Session) {
 }
 $args2 = @('-NoExit', '-ExecutionPolicy', 'Bypass', '-File', $PSCommandPath, '-Nom', $Nom, '-Racine', $Racine, '-Fiches', $Fiches, '-Session')
 if ($SansAutorisation) { $args2 += '-SansAutorisation' }
-wt -w 0 nt -d $Racine --title "$(Split-Path -Leaf $Racine) : $Nom" powershell @args2
+# Les chantiers s'ouvrent dans leur propre fenêtre « Chantiers », jamais dans celle de l'orchestrateur (le propriétaire, 2026-11-08 :
+# il collait ses réponses dans un onglet de chantier au lieu de l'orchestrateur).
+wt -w Chantiers nt -d $Racine --title "$(Split-Path -Leaf $Racine) : $Nom" powershell @args2

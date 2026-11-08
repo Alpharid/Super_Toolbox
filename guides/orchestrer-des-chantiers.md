@@ -76,6 +76,12 @@ reste, sous « À TRAITER »), tuer son `claude.exe` (le processus dont la ligne
 - **Vérifier avant d'affirmer** : `chantiers_etat.sh` avant de dire « rien n'est bloqué ». Une session ne relit pas sa fiche toute
   seule : **réponses déposées dans sa fiche par un autre = la relancer** (lui écrire « relis ta fiche »).
 - Fermer les terminaux des sessions finies (après avoir vérifié que tout est commité).
+- **Deux fenêtres** : l'orchestrateur seul dans la sienne, les chantiers dans la fenêtre « Chantiers » (`chantier.ps1` ouvre `wt -w
+  Chantiers`). Dans une seule fenêtre, chaque nouvel onglet passe au premier plan et le propriétaire colle ses réponses dans un
+  chantier au lieu de l'orchestrateur (Guardians, 2026-11-08). Filet : la consigne fait déposer des réponses mal arrivées dans la fiche
+  du bon chantier (ou `orchestrateur.md`) sous « À TRAITER ».
+- **Une page de suivi qui se recharge seule** (`<meta http-equiv="refresh">`) plutôt que de rouvrir une page à chaque nouvelle :
+  chaque ouverture fait un onglet de plus. La feuille de route ne pose pas de question : les questions vont sur une page à part.
 - **Outils maison** : un chantier qui crée ou change un outil maison met à jour son guide dans `guides/`, sa ligne dans
   [notre-methode.md](notre-methode.md) et dans la vitrine (`guides/vitrine/notre-methode.html`), et `INDEX.md`. Une leçon tirée d'un
   incident va dans « Faiblesses et pistes » de `notre-methode.md`.
