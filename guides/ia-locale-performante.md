@@ -38,6 +38,27 @@
 Protocole : mêmes 3 tâches > 50k tokens, même modèle, Claude Code vs Pi → compter boucles, appels ratés, réussite.
 Aider stagne (dernier push mai 2026) ; Crush = licence FSL (pas libre).
 
+**Mesuré sur Alphred (Claude Code sur Qwen 3.6 27B, 2026-11-07/08)** :
+- **Échantillonnage** : les modèles Qwen arrivent réglés « conversation » (`presence_penalty 1.5`, `temperature 1`). Pour un agent,
+  passer au réglage « code » conseillé par Qwen (`presence_penalty 0`, `temperature 0.6`, `top_p 0.95`, `top_k 20`) : le 1.5 pénalise
+  chaque token déjà vu (chemins, noms, JSON des appels d'outils) → caractères chinois, coquilles, affirmations fausses. Le plus simple
+  est un 2e alias (`FROM <modèle>` + 2 `PARAMETER`) : sous Ollama 0.40.15, deux alias du même fichier au même contexte partagent
+  **un seul** chargement en VRAM, chacun gardant son réglage.
+- **Consignes** : le CLAUDE.md global de l'utilisateur et les gros CLAUDE.md de projet (`@HANDOVER.md`, 10-22k tokens) sont relus à
+  chaque tour : les exclure (`claudeMdExcludes`) ou ne les signaler qu'au-delà d'une taille → 1er tour 16,6k → 5,4k tokens, entrée
+  ÷ 2,6 sur un gros dépôt. Le cache de prompt d'Ollama, lui, est sain (seule la fin du prompt est recalculée).
+- **Liste blanche** : y mettre les vérifications sûres (`python -m py_compile`, `node --check`, `echo`), sinon l'agent boucle sur
+  « requires approval » et finit par affirmer une vérification qu'il n'a pas faite.
+- Banc réutilisable : `D:\Alphred_AI\scripts\test-agent-contexte.ps1` (4 tâches vérifiées sur clone jetable).
+- **Conversation aussi** (A/B 10 questions × 3 réglages, `D:\Alphred_AI\tools\ab_conversation.py`) : avec presence 1.5, des
+  caractères chinois et des mots anglais surgissent en pleine phrase ; presence 0 + temperature 0.7 les fait disparaître sans perte
+  sur les réponses vérifiables. Aucun réglage n'empêche un 27B d'**inventer des faits** (anecdotes, dates) : recherche web obligatoire.
+- **Où un 27B local remplace l'API** (test de reprise du 2026-11-08, mêmes tâches pour Alphred et Sonnet, même harnais) :
+  entrée d'historique depuis `git log` → oui ; traduction de chaînes de jeu → aussi bon, mais **contrôle par script** (il en
+  oublie et dit « tout est fait ») ; tests unitaires → avec relecture (valeurs en dur) ; enquête chiffrée → avec relecture (calcul de
+  tête faux) ; faits → non. Temps : ×3 à ×6 plus lent que Sonnet (11 min contre 2,5 min pour les 4 tâches), coût 0 contre 0,57 $.
+  Banc : `D:\Alphred_AI\scripts\test-reprise.ps1` (copie git worktree dans le projet, retirée après collecte).
+
 ## 3. Voix (Sonnette) — sans prendre de VRAM au LLM
 
 | Brique | Outil | Gain | Coût |
