@@ -39,6 +39,18 @@
 VSCO 2 CE). Rien de généré, donc aucun artefact : au juge, ce sont les meilleures notes du projet (CE 7,5 à 7,8). Détail dans
 [creer-des-assets.md](creer-des-assets.md).
 
+**Refaire un morceau déjà en jeu sans le dénaturer** (`lot6.py` de Guardians) : deux voies, à présenter côte à côte avec l'actuelle
+(avant / après), tout passé au tri, l'avant compris : la **nettoyée seule** (`raies.py` puis `nettoyer.py` : aucune génération, rien
+d'autre ne bouge) et la **reprise proche** (la recette d'origine plus un négatif contre le synthétique ; source = le fichier du jeu aux
+raies creusées ; débruitage 0,35 à 0,5). Trier une **copie** du fichier du jeu : le tri écrit son rapport à côté du fichier.
+
+**De vraies voix libres (Freesound)** (`freesound.py`) : la recherche se fait avec la clé d'API, mais l'original (WAV) ne se
+télécharge que par **OAuth2** au nom d'un compte ; les aperçus publics (MP3 128 kb/s) sont trop pauvres pour des voix tenues jouées en
+notes. Une page locale (jamais derrière un tunnel) où l'on colle la clé et clique « Autoriser » ; secrets dans un `.env` hors git ;
+filtre `license:"Creative Commons 0"` à la recherche, licence revérifiée au téléchargement, chaque source notée (id, auteur, page).
+
+**Toujours un champ « notes libres »** en bas d'une page de choix, en plus de la remarque de chaque question.
+
 ## Les bruitages
 
 - **MOSS-SoundEffect v2** (Apache-2.0, GPU) : 6 candidats par son, 30 s au plus pour une ambiance ; 44 bruitages faits pour Guardians.

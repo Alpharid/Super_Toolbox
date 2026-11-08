@@ -86,7 +86,7 @@ du temps (joueurs simulés qui testent les jeux sur le PC, §1 `qa-playtest`).
 - **Krita + krita-ai-diffusion** — repeindre par-dessus / inpainting branché sur l'atelier (casse le « look IA »).
 - **scripts/comfy_client.py** — piloter ComfyUI depuis un script (txt2img et image→image Z-Image, LoRA, édition Qwen, **TRELLIS.2 image→GLB**, téléversement à empreinte).
 - 📘 Chaînes éprouvées sur Guardians (entité → sprites 8 directions, icônes peintes, pièces d'interface, carte à l'encre, sons sans paroles par Whisper + AST, musique dans un mode imposé par squelette, personnage MPFB 2 + 100STYLE, vêtements simulés et tissu vivant par Dem Bones, logo et icône d'un jeu : relief en grand, pixel de 16 à 32 px, .ico de fenêtre par échelle) → [creer-des-assets.md](guides/creer-des-assets.md) § Chaînes éprouvées.
-- 📘 **Musique et sons d'un jeu** (mode imposé par squelette, SFT + ScragVAE, peigne creusé, tri étalonné avant l'écoute, page d'écoute avec avis, bruitages MOSS) → [guides/musique-de-jeu.md](guides/musique-de-jeu.md).
+- 📘 **Musique et sons d'un jeu** (mode imposé par squelette, SFT + ScragVAE, peigne creusé, tri étalonné avant l'écoute, page d'écoute avec avis et notes libres, morceau en jeu refait de près en avant / après, vraies voix CC0 de Freesound par OAuth2, bruitages MOSS) → [guides/musique-de-jeu.md](guides/musique-de-jeu.md).
 - Audio/vidéo : ffmpeg, Audacity, **Surge XT** (microtonal, maqâms), 7-Zip, uv. Pistes : ai-toolkit (LoRA), ACE-Step (musique), Kimodo (mouvement), Wan VACE.
 
 > Les listes se **grep**, jamais se lisent en entier. Gros outils non copiés (BepInEx, UE4SS, AssetRipper, ILSpy,
