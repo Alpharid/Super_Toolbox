@@ -424,6 +424,35 @@
       "pistes": [
         "Hyperbole → familiers simulés par profils (support, chill, saboteur qui vole la gloire) pour équilibrer la barre d'ego ; la Tête d'Hyperbole peut servir de base au héros IA"
       ]
+    },
+    "Ghul": {
+      "chemin": "C:\\Ghul",
+      "resume": "FPS d'horreur sans interface vu par une caméra-piéton (rendu ultra réaliste), contre les ghuls du folklore arabe (un seul coup les tue, un second les ranime) ; Unreal 5.8 prévu, concept P0.",
+      "domaines": [
+        "creation-assets",
+        "physique-netcode",
+        "ia-agents",
+        "qa-playtest"
+      ],
+      "outils_kit": [
+        "Hyperbole (hyperbole/) — joueurs simulés sans triche, chambres accélérées, rapports fun/défi/équilibre/bugs (préparé : C:\\Ghul\\hyperbole, moteur commande)",
+        "ffmpeg — comparer les captures du jeu à de vraies vidéos de caméra-piéton (bruit, compression)"
+      ],
+      "guide": "guides/creer-des-assets.md",
+      "manques": [
+        "post-process caméra-piéton réaliste dans Unreal (barillet, exposition lente, bruit capteur, compression, rolling shutter)",
+        "caméra fixée au torse d'un personnage complet (corps entier, IK des mains sur l'arme)",
+        "IA de créature rôdeuse (se nourrit, rôde, charge, imite)",
+        "imitation de voix (voix volées des coéquipiers) avec voix d'acteurs consentants",
+        "son de micro de poitrine (frottements, saturation, vent)",
+        "netcode coop 1-4 Unreal si le mode coop est choisi"
+      ],
+      "pistes": [
+        "Game Animation Sample d'Epic (motion matching, UE 5.4+) → corps complet sous la caméra (à vérifier)",
+        "RealityScan (Epic) → scans maison des lieux au téléphone",
+        "Fab / Megascans → photogrammétrie (licence à vérifier, hors git)",
+        "Tokyo_Hikitori tools/ → banc d'essai de performance UE 5.8 et scripts de build à reprendre"
+      ]
     }
   }
 }
