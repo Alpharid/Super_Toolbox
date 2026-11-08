@@ -77,6 +77,19 @@ graine par icône. Essayer d'abord 4 à 6 icônes et faire valider le style, ens
 s'étirer (sangles, cordelettes, coutures) est **dessiné par le code** (courbes de Bézier, texture de fibre, ombre portée) plutôt que
 peint en une image fixe ; les maquettes se montrent à la taille du jeu **et** en zoom ×2 sur une page de décisions.
 
+**Logo et icône d'un jeu (cachet de cire, 16 px à 256 px)** : des pistes dessinées en SVG par le code (resvg), montrées à 16, 24,
+32, 64 et 256 px sur fond sombre et clair, dans la barre des tâches, la barre de titre, l'écran de démarrage et à côté du nom ; le
+regard (relecture par un modèle de vision) à chaque passe, avant que le propriétaire voie la page (il a écarté un œil dans un
+triangle, une roue dentée, une bague à diamant, une pastille de notification). Le choix fait, **deux dessins** : le grand en relief
+(carte des hauteurs à 1024 px : lèvre de la cire versée, champ pressé un peu de travers, gravure inégalement venue, bulles crevées,
+peau ridée ; normales, lumière du haut à gauche, brillance par plaques ; puis réductions), et **16, 20, 24 et 32 px dessinés au
+pixel** (une réduction du grand fait une tache). Une `.ico` multi-tailles porte les deux. **Piège Godot sous Windows** : la
+fenêtre reçoit la *plus grande* image de `windows_native_icon`, que Windows réduit au point près (à 100 %, le 256 sort crénelé à
+32 px dans la barre des tâches ; vérifié en relevant l'icône par `WM_GETICON`) : une `.ico` de fenêtre par échelle d'écran (plus
+grande image 32, 40, 48 ou 64 px) et un petit script qui prend celle de l'écran au démarrage. L'écran de démarrage : l'emblème
+seul à sa taille (`boot_splash/stretch_mode=0`) sur la couleur de fond. Sur le site : favicon `.ico` et logo avec une empreinte
+en `?v=` (le cache garde l'ancien sinon). Tout se refait d'une commande (`decliner.py <piste> --brancher`).
+
 **Carte « relevé à la plume »** : pas un filtre posé sur la carte peinte (ça se voit toujours) ; un vrai dessin procédural fait à
 partir du **plan** du niveau (mêmes coordonnées et même projection que la carte peinte, donc clics et repères tombent juste) :
 encre sépia, trait qui tremble, hachures des faces à l'ombre, pistes en tirets, chaque élément du plan dessiné, ce qui s'élève trié

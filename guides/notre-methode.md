@@ -95,7 +95,8 @@ dans le dépôt de Guardians (privé) ; la méthode, elle, est réutilisable.
 ### Agents qui fabriquent (en local)
 
 - **Les chaînes d'art** : entité → sprites en 8 directions (concept, fiche, modèle 3D, rendu, export), icônes peintes, pièces
-  d'interface décorées, carte peinte et carte « relevé à la plume », animations par capture de mouvement, vêtements simulés.
+  d'interface décorées, carte peinte et carte « relevé à la plume », animations par capture de mouvement, vêtements simulés,
+  logo et icône du jeu (relief de cire en grand, dessin au pixel de 16 à 32 px, une icône de fenêtre par échelle d'écran).
   Sur Guardians : 32 entités en jeu, 50 tuiles de carte, 75 icônes validées. → [creer-des-assets.md § Chaînes éprouvées](creer-des-assets.md#chaînes-éprouvées-guardians-of-the-seal-octobre-novembre-2026)
 - **La musique et les sons** : génération locale dans un mode imposé, nettoyage, tri automatique étalonné sur les verdicts du
   propriétaire, page d'écoute partagée ; bruitages et sons sans paroles. → [musique-de-jeu.md](musique-de-jeu.md)
