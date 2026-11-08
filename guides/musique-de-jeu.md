@@ -48,6 +48,12 @@ raies creusées ; débruitage 0,35 à 0,5). Trier une **copie** du fichier du je
 télécharge que par **OAuth2** au nom d'un compte ; les aperçus publics (MP3 128 kb/s) sont trop pauvres pour des voix tenues jouées en
 notes. Une page locale (jamais derrière un tunnel) où l'on colle la clé et clique « Autoriser » ; secrets dans un `.env` hors git ;
 filtre `license:"Creative Commons 0"` à la recherche, licence revérifiée au téléchargement, chaque source notée (id, auteur, page).
+Pour **jouer une vraie voix en notes** (`voix.py banque`) : chercher une **série d'un même chanteur** (une note tenue par fichier :
+« single note » ; mieux qu'un assortiment de voix), mesurer la hauteur de chaque prise (autocorrélation au **premier pic** proche du
+maximum : l'argmax saute d'octave ; lissage sur 7 trames contre le vibrato), départager par le nom donné quand la mesure tombe entre
+deux notes, **remettre chaque note juste** (rééchantillonnage de quelques dizaines de cents), puis l'échantillonneur transpose au plus
+d'un demi-ton. Whisper invente des mots sur une syllabe tenue (« daaa » → « Done. ») : n'écarter qu'une prise où il entend une phrase.
+Poser la voix sur un morceau déjà gardé (même tempo) plutôt que la faire reprendre au modèle : il la rendrait synthétique.
 
 **Toujours un champ « notes libres »** en bas d'une page de choix, en plus de la remarque de chaque question.
 
