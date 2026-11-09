@@ -234,6 +234,7 @@ D:\Super_Toolbox\
 
 ## 11. Historique
 
+- **2026-11-09** — Digest Heimdall hebdo : semaine calme (llama.cpp 0.8/0.9, ComfyUI 0.37 avec TRELLIS.2 natif), aucun ajout.
 - **2026-11-08** — **Les pistes de la méthode, faites** (chantier `methode-pistes` de Guardians) : `scripts/claude_api/` (le client de
   l'API porté de Guardians, avec **liste blanche des projets** : un projet absent est refusé ; plafond commun compté sur le cycle,
   plus sur tout le journal ; cache des réponses), `scripts/regard/` (moteur générique, données du projet dans un `regard.json`),
