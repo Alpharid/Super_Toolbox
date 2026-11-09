@@ -216,6 +216,11 @@ class Api:
     def supprimer_role(self, rid): return self.requete("DELETE", f"/guilds/{self.serveur}/roles/{rid}")
     def modifier_serveur(self, c): return self.requete("PATCH", f"/guilds/{self.serveur}", c)
     def accueil(self, c): return self.requete("PUT", f"/guilds/{self.serveur}/onboarding", c)
+    def accueil_actuel(self):
+        try:
+            return self.requete("GET", f"/guilds/{self.serveur}/onboarding")
+        except RuntimeError:
+            return None
     def regles_automod(self): return self.requete("GET", f"/guilds/{self.serveur}/auto-moderation/rules")
     def creer_automod(self, c): return self.requete("POST", f"/guilds/{self.serveur}/auto-moderation/rules", c)
     def modifier_automod(self, rid, c): return self.requete("PATCH", f"/guilds/{self.serveur}/auto-moderation/rules/{rid}", c)
@@ -307,19 +312,25 @@ class Construction:
             if diff:
                 self.note(f"rôle « {r['nom']} » : {', '.join(diff)} corrigés")
                 self.faire(self.api.modifier_role, ex["id"], diff)
-        # L'ordre : sous le rôle du bot, dans l'ordre du fichier.
-        if mon_role:
-            hauts = [r for r in voulus if existants.get(r["nom"]) and existants[r["nom"]]["position"] >= mon_role["position"]]
-            if hauts:
-                self.note("ATTENTION : glisser le rôle du bot au-dessus de " + ", ".join(r["nom"] for r in hauts)
-                          + " (Paramètres du serveur → Rôles) : il ne peut donner que des rôles plus bas que le sien")
-        ordre = [{"id": self.ids_roles[r["nom"]], "position": len(voulus) - i} for i, r in enumerate(voulus)
-                 if not str(self.ids_roles[r["nom"]]).startswith("(")]
-        if ordre and self.appliquer:
-            try:
-                self.api.ordonner_roles(ordre)
-            except RuntimeError as e:
-                self.note(f"ordre des rôles non appliqué ({e})")
+        # L'ordre : le rôle du bot en tête (il ne donne que des rôles plus bas que le sien), puis ceux du fichier, dans l'ordre.
+        # Discord accepte de monter le rôle du bot quand il est dans la même requête (vu sur le serveur d'essai, 2026-11-09) ;
+        # les rôles neufs naissent tous à la position 1, d'où cette remise en ordre.
+        ids = ([mon_role["id"]] if mon_role else []) + [self.ids_roles[r["nom"]] for r in voulus]
+        ids = [i for i in ids if not str(i).startswith("(")]
+        if ids:
+            actuels = {r["id"]: r["position"] for r in (self.api.roles() if self.appliquer else existants.values())}
+            pos = [actuels.get(i, -1) for i in ids]
+            en_ordre = all(a > b for a, b in zip(pos, pos[1:])) and len(ids) == len(pos)
+            if not en_ordre:
+                if self.appliquer:
+                    try:
+                        self.api.ordonner_roles([{"id": i, "position": len(ids) - k} for k, i in enumerate(ids)])
+                        self.note("ordre des rôles remis (le bot en tête)")
+                    except RuntimeError as e:
+                        self.note(f"ATTENTION : ordre des rôles refusé ({e}) : glisser le rôle du bot tout en haut (Paramètres du "
+                                  "serveur → Rôles) : il ne peut donner que des rôles plus bas que le sien")
+                else:
+                    self.note("ordre des rôles à remettre (le bot en tête)")
         en_trop = [n for n, r in existants.items() if n != "@everyone" and not r.get("managed")
                    and n not in {x["nom"] for x in self.cfg.get("roles", [])}]
         for n in en_trop:
@@ -389,7 +400,7 @@ class Construction:
                     # pas de ce passage : on garde seulement sa place dans l'ordre
                     sid = self.ids_salons.get(s["nom"]) or (ancien or {}).get("id")
                     if sid:
-                        ordre.append({"id": sid, "position": position, "parent_id": ex["id"]})
+                        ordre.append({"id": sid, "position": position})
                     continue
                 gab = s.get("gabarit") or cat.get("gabarit")
                 corps = {"name": s["nom"], "type": t, "parent_id": ex["id"],
@@ -420,8 +431,14 @@ class Construction:
                         self.note(f"salon #{s['nom']} : {', '.join(diff)} corrigés")
                         self.faire(self.api.modifier_salon, ancien["id"], diff)
                 self.ids_salons[s["nom"]] = ancien["id"]
-                ordre.append({"id": ancien["id"], "position": position, "parent_id": ex["id"]})
-        ordre = [o for o in ordre if not str(o["id"]).startswith("(") and not str(o.get("parent_id", "")).startswith("(")]
+                ordre.append({"id": ancien["id"], "position": position})
+        # L'ordre seulement (le parent est posé à la création ou corrigé plus haut : Discord refuse d'en changer plusieurs à la
+        # fois dans cette requête). Rien n'est envoyé si l'ordre actuel est déjà le bon.
+        ordre = [o for o in ordre if not str(o["id"]).startswith("(")]
+        if self.appliquer and ordre:
+            actuels = {x["id"]: x.get("position", 0) for x in self.api.salons()}
+            if [o["id"] for o in sorted(ordre, key=lambda o: (actuels.get(o["id"], -1), o["position"]))] == [o["id"] for o in ordre]:
+                ordre = []
         if self.appliquer and ordre:
             try:
                 self.api.ordonner_salons(ordre)
@@ -460,6 +477,17 @@ class Construction:
             self.g.update(diff)
 
     # -- l'accueil natif
+    @staticmethod
+    def empreinte_accueil(a: dict | None):
+        """Ce qui compte dans l'accueil, sans les identifiants des questions (Discord les garde, le fichier les refait)."""
+        if not a:
+            return None
+        return (bool(a.get("enabled")), tuple(sorted(str(i) for i in a.get("default_channel_ids", []))),
+                tuple((q.get("title"), bool(q.get("single_select")), bool(q.get("required")),
+                       tuple((o.get("title"), o.get("description") or None, tuple(sorted(map(str, o.get("role_ids") or []))),
+                              tuple(sorted(map(str, o.get("channel_ids") or [])))) for o in q.get("options", [])))
+                      for q in a.get("prompts", [])))
+
     def accueil(self):
         acc = self.cfg.get("accueil")
         if not acc or not acc.get("actif"):
@@ -474,6 +502,8 @@ class Construction:
                               "single_select": bool(q.get("unique")), "required": bool(q.get("obligatoire")), "in_onboarding": True})
         corps = {"prompts": questions, "default_channel_ids": ids(acc.get("salons_par_defaut", []), self.ids_salons),
                  "enabled": True, "mode": 0}
+        if self.empreinte_accueil(self.api.accueil_actuel()) == self.empreinte_accueil(corps):
+            return  # déjà tel que le fichier le veut
         self.note(f"accueil : {len(questions)} questions, {len(corps['default_channel_ids'])} salons par défaut")
         if self.appliquer:
             try:
@@ -508,15 +538,15 @@ class Construction:
             elif r["type"] == "mentions":
                 meta = {"mention_total_limit": r.get("limite", 5), "mention_raid_protection_enabled": bool(r.get("anti_raid"))}
             corps = {"name": r["nom"], "event_type": 1, "trigger_type": trig, "trigger_metadata": meta, "actions": actions,
-                     "enabled": True, "exempt_roles": [self.ids_roles[x] for x in r.get("exceptions_roles", []) if x in self.ids_roles
-                                                       and not str(self.ids_roles[x]).startswith("(")]}
+                     "enabled": True, "exempt_roles": sorted(self.ids_roles[x] for x in r.get("exceptions_roles", []) if x in self.ids_roles
+                                                       and not str(self.ids_roles[x]).startswith("("))}
             ex = existants.get(r["nom"])
             try:
                 if not ex:
                     self.note(f"AutoMod « {r['nom']} » : créée")
                     self.faire(self.api.creer_automod, corps)
                 else:
-                    diff = {k: v for k, v in corps.items() if k not in ("event_type", "trigger_type") and not contient(ex.get(k), v)}
+                    diff = {k: v for k, v in corps.items() if k not in ("event_type", "trigger_type") and not (sorted(map(str, ex.get(k) or [])) == sorted(map(str, v)) if k == "exempt_roles" else contient(ex.get(k), v))}
                     if diff:
                         self.note(f"AutoMod « {r['nom']} » : {', '.join(diff)} corrigés")
                         self.faire(self.api.modifier_automod, ex["id"], diff)

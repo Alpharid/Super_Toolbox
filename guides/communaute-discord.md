@@ -1,6 +1,7 @@
 # Un serveur Discord de jeu, construit par script
 
-Né sur Guardians of the Seal (2026-11-09, `communaute/discord/` du projet). Outil : **`scripts/discord/construire.py`** et le
+Né sur Guardians of the Seal (2026-11-09, `communaute/discord/` du projet) ; **essayé sur un vrai serveur** le jour même : construit,
+relancé deux fois sans rien changer. Outil : **`scripts/discord/construire.py`** et le
 gabarit **`scripts/discord/modele_serveur.yaml`** ; tests : `python -m unittest discover -s tests` (un faux Discord en mémoire).
 
 ## L'idée
@@ -22,8 +23,15 @@ la suite sans rien casser.
   un salon pour les avis de Discord : le script crée d'abord les salons simples, active la Communauté, puis crée le reste.
 - **L'accueil natif** (Onboarding) veut au moins 7 salons par défaut, dont 5 où l'on peut écrire (règle vue dans les fils de
   Discord, pas dans la doc) ; les identifiants des questions neuves sont des flocons fabriqués par le script.
-- **Le rôle du bot** doit être au-dessus des rôles qu'il donne ; le bot ne peut pas monter le sien : le script le signale, le
-  propriétaire le glisse.
+- **Le rôle du bot** doit être au-dessus des rôles qu'il donne. Les rôles neufs naissent tous à la position 1, le bot compris ;
+  Discord accepte pourtant de monter le rôle du bot **s'il est dans la même requête que les autres, en tête** (vu sur un vrai
+  serveur, 2026-11-09). Si Discord refuse, le script demande au propriétaire de le glisser à la main.
+- **L'ordre des salons** : la requête d'ordre ne doit pas changer de parent (« Only one channel can have a parent_id modified at a
+  time ») : le parent se pose à la création, l'ordre ne porte que les positions, et rien n'est envoyé si l'ordre est déjà bon.
+- **L'accueil** : le relire (`GET /onboarding`) et comparer sans les identifiants des questions, sinon chaque passage le renvoie ;
+  de même, Discord rend les rôles exemptés de l'AutoMod dans un autre ordre : comparer triés.
+- **Le compte personnel, jamais** : piloter un compte utilisateur par un script (« self-bot ») est interdit et peut le faire
+  bannir. Le propriétaire crée l'application et colle son jeton (Guardians : `preparer_essai.bat` trouve seul le serveur).
 - **2FA obligatoire pour la modération** : seul le propriétaire peut l'activer (pas l'API).
 - **Les notifications** : serveur réglé sur « mentions seulement », un rôle d'alerte choisi par le membre (« Alerte Alpha »), que
   seuls le studio et le bot mentionnent ; jamais `@everyone`.

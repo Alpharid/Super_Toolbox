@@ -83,7 +83,11 @@ class FauxDiscord:
             assert self.g.get("rules_channel_id") or c.get("rules_channel_id"), "Communauté sans salon de règles"
         self.g.update(c)
 
-    def accueil(self, c): self.accueil_recu = c
+    def accueil(self, c):
+        self.ecrit()
+        self.accueil_recu = c
+
+    def accueil_actuel(self): return copy.deepcopy(self.accueil_recu)
     def regles_automod(self): return copy.deepcopy(self.regles)
 
     def creer_automod(self, c):
@@ -191,11 +195,20 @@ class TestsConstruire(unittest.TestCase):
         self.assertTrue(any("vieux-salon" in j and "laissé" in j for j in journal))
         self.assertIn("5", {s["id"] for s in faux.liste_salons})
 
-    def test_le_bot_trop_bas_est_signale(self):
+    def test_l_ordre_des_roles_met_le_bot_en_tete(self):
         faux, etat = FauxDiscord(), {}
         construire(faux, self.cfg, 1, True, etat)
-        next(r for r in faux.liste_roles if r["id"] == "900")["position"] = 0
-        journal, _ = construire(faux, self.cfg, 1, False, etat)
+        par_pos = [r["name"] for r in sorted(faux.liste_roles, key=lambda r: -r["position"])]
+        self.assertEqual(par_pos[:3], ["Bot d'essai", "Studio", "Modération"])
+        journal, _ = construire(faux, self.cfg, 1, True, etat)
+        self.assertFalse(any("ordre des rôles" in j for j in journal), journal)   # déjà en ordre : rien
+
+    def test_un_refus_d_ordre_est_signale(self):
+        faux, etat = FauxDiscord(), {}
+        def refuser(l):
+            raise RuntimeError("PATCH roles → 400 Missing Permissions")
+        faux.ordonner_roles = refuser
+        journal, _ = construire(faux, self.cfg, 1, True, etat)
         self.assertTrue(any("glisser le rôle du bot" in j for j in journal))
 
     def test_lecture_seule(self):
