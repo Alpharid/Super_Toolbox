@@ -111,6 +111,9 @@ dans le dépôt de Guardians (privé) ; la méthode, elle, est réutilisable.
   → [../heimdall/README.md](../heimdall/README.md)
 - **Le client de l'API** (`scripts/claude_api/`) : journal des dépenses par projet, plafond commun sur le cycle, lots, cache des
   consignes et des réponses, et **une liste blanche des projets** : un projet qui n'y est pas est refusé. → [economiser-tokens-et-gpu.md](economiser-tokens-et-gpu.md) §3
+- **Le serveur Discord par script** (`scripts/discord/`) : tout le serveur d'un jeu (rôles, salons par phases, droits, accueil,
+  AutoMod, textes) dans un fichier ; le script fait le plan, puis l'applique sans rien supprimer ; essayé contre un faux Discord.
+  Son bot ne publie rien seul : il dépose un brouillon et attend un clic. → [communaute-discord.md](communaute-discord.md)
 - **Ce document et sa vitrine** : à tenir à jour (règle ci-dessous) ; leurs chiffres se recomptent par `scripts/recompter_vitrine.py`.
 
 ## 4. Ce que ça a donné (Guardians, 18 octobre → <!--n:fin-->8 novembre<!--/n--> 2026)
