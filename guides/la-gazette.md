@@ -41,13 +41,17 @@ python tools/claude_api/gazette/gazette.py page_jour 2026-11-03       # la page 
   un geste tard) ; avant d'accuser le jeu, vérifier que les bots ont **la même information que le joueur** (ici : l'objectif de
   chaque étape, celui du marqueur de la mini-carte). La gazette sépare « défaut prouvé » (un refus qui revient, une valeur
   impossible, un blocage chez plusieurs profils dont un aguerri) et « joueur IA perdu (peut-être une limite du bot) » ; le
-  créateur ne change pas le tutoriel sur la seule foi des bots. Les rapports en voix ne réclament plus d'aide d'interface et
-  disent « rien de neuf à proposer » plutôt que de radoter.
+  créateur ne change pas le tutoriel sur la seule foi des bots. Les rapports en voix ne réclament plus d'aide d'interface.
 - **Mélanger le vérifié et le deviné.** La gazette ne lit que les rapports chiffrés ; ce que la session a **vérifié dans le code**
   (la cause d'un blocage, un défaut prouvé, une mesure faite à part) va dans `notes.md` du jour (`art/rendus/gazette/jour_<date>/`),
   écrit à la main : il s'affiche **en tête** de la page avec l'avis de la session, et la gazette le reçoit pour ne jamais le contredire
   (2026-11-08 : un bot bloqué toute une séance, cause lue dans le code, corrigée, vérifiée à la séance suivante). La page ne repose
   plus les questions déjà tranchées (rythme, nombre de rapports en voix) : des remarques libres seulement.
+- **Être trop longue** (deuxième semaine : « j'ai pas tout lu, il y en a vraiment trop, et ils spamment le « Rien de neuf à
+  proposer » »). Leçon : demander au modèle de *dire* qu'il n'a rien de neuf produit un rapport par profil qui le répète. Chaque rapport
+  en voix finit désormais par une étiquette (`Neuf : défaut | idée | mesure | rien`) ; la page ne montre que les rapports utiles, les
+  plus utiles d'abord, **six au plus par jour**, et compte les autres en une ligne (le 9 : 41 rapports, 35 sans rien de neuf). Le
+  point du jour tient en 200 à 400 mots, les notes de la session en 300 environ : une gazette se lit en quelques minutes.
 - Rythme retenu : **à la reprise** (la gazette de la veille quand le propriétaire revient), pas de tâche planifiée ; un point par
   séance seulement si le travail en cours en a besoin.
 
