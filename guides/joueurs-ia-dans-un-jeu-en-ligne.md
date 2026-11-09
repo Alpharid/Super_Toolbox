@@ -42,6 +42,10 @@ fin de session (résumé), réflexion lente toutes les 10-20 min.
   sans règle « niveau X = zone X ». Builds essayés, mesurés, gardés → une méta émerge. Rumeurs pondérées par la confiance.
 - **Mémoire** : souvenirs datés avec importance, résumés de session, compactage des vieux souvenirs (contre la dérive),
   **graphe de relations** (affinité, confiance, rancune, dette) mis à jour par les événements. Outil possible : `mem0` (dans la boîte).
+  **Donner au LLM la vérité de son personnage** (toutes ses quêtes et ce que chacune demande, ce qu'il a fini) et lui dire que sa
+  fiche fait foi, pas le chat : sans elle, une rumeur du chat entre dans les souvenirs de chacun et tourne en boucle (vu sur
+  Guardians : vingt joueurs IA « bloqués » sur une quête qui ne demandait que de monter de niveau, et qui « attendaient » une quête
+  qu'ils avaient finie, un après-midi entier). Jamais d'identifiant du jeu brut dans ce qu'on lui passe : il le recopie dans le chat.
 - **Chat crédible** : vitesse de frappe, fautes, silences, tout le monde ne répond pas à tout. RP : IC par défaut, OOC
   entre `(( ))` de temps en temps.
 - **Filtre avant envoi** (liste + vérification) pour les interdits du jeu ; une ligne refusée est régénérée ou le bot se tait.
