@@ -55,6 +55,25 @@ deux notes, **remettre chaque note juste** (rééchantillonnage de quelques diza
 d'un demi-ton. Whisper invente des mots sur une syllabe tenue (« daaa » → « Done. ») : n'écarter qu'une prise où il entend une phrase.
 Poser la voix sur un morceau déjà gardé (même tempo) plutôt que la faire reprendre au modèle : il la rendrait synthétique.
 
+**Rejouer un morceau généré avec de vrais instruments** (`reecrire.py` de Guardians) : quand un rendu a « un mood à lui » mais un
+timbre synthétique, on garde ses notes et on change le son. Demucs `htdemucs_6s` (6 pistes) → **Basic Pitch** (Spotify, Apache-2.0 :
+audio → notes et MIDI ; son modèle **ONNX** tourne sans TensorFlow : venv Python 3.12, `uv pip install --no-deps basic-pitch` puis
+onnxruntime, librosa, pretty_midi, resampy, scikit-learn, mir_eval) → l'échantillonneur de la pièce écrite, piste par piste (basse
+→ contrebasse en pizz, notes tenues → flûte ou violon, notes brèves → harpe). Jeu humain gardé (aucune quantification). Pièges : une
+piste **presque vide** se transcrit quand même en centaines de notes fantômes (ignorer une piste sous 1 % de l'énergie, la batterie
+sous 2 %) ; des cordes de métal pincées font compter leurs attaques comme du « grésillement » au tri. Premier essai : le juge la
+préfère nettement au rendu d'origine (7,5 contre 5,6).
+
+**Un « grésillement » sans nom peut être de l'écrêtage** : la source collée à 0 dBFS (des milliers d'échantillons) garde ses crêtes
+coupées même une fois normalisée pour le jeu. Mesurer l'écrêtage **de la source** ; `ffmpeg -af adeclip,volume=-6dB` redessine
+chaque crête d'après ce qui l'entoure (puis raies et bouffées). Sur Guardians : 45 bouffées → 2.
+
+**La musique de combat qui ne coupe pas** (Godot, `sons.gd` de Guardians) : mesurer les écarts réels entre deux combats (les joueurs
+IA : 80 % ≤ 10 s, 90 % ≤ 19 s, 98 % ≤ 60 s), tenir la musique ~15 s après le dernier coup, l'éteindre en ~10 s (un coup pendant le
+fondu la fait remonter), et **reprendre le même morceau là où il était** si un combat revient dans la minute ; la zone reprend aussi le
+sien. Sans cela, le joueur n'entend que des débuts de morceaux. Vérifier par un script Godot sans fenêtre qui étend le vrai script
+avec un faux état de jeu.
+
 **Toujours un champ « notes libres »** en bas d'une page de choix, en plus de la remarque de chaque question.
 
 ## Les bruitages
