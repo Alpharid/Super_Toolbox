@@ -132,6 +132,7 @@ Se tient au courant de ce qui sort d'utile, et garde cet index à jour. Tout : *
 
 ### Dernières nouveautés
 <!-- HEIMDALL:LATEST -->
+- **2026-11-09** — 4 trouvailles (semaine calme) : voir [heimdall/reports/2026-11-09.md](heimdall/reports/2026-11-09.md).
 - **2026-11-08** — Les pistes de la méthode faites : **client de l'API avec liste blanche des projets** (`scripts/claude_api/`), **regard générique** (`scripts/regard/`), chiffres de la vitrine recomptés par script ; le journal d'Hyperbole écrit par les joueurs IA de Guardians (rapport par profil, `comparer` entre versions, coût de la séance).
 - **2026-11-07** (fin de nuit) — La gazette ne reprend plus ce qui est tranché et sépare « défaut prouvé » et « joueur IA perdu » ; l'Esprit des joueurs IA branché sans bloquer la boucle (quand répondre, mention « IA » à l'entrée) ; la traduction du wiki et du site (empreintes, segments).
 - **2026-11-07** — **La méthode Alpharium** documentée (`guides/notre-methode.md` + vitrine) ; nouveaux guides : le regard, la gazette, la musique de jeu, l'économie de tokens et de GPU ; l'orchestrateur (« À TRAITER », veille, relance) dans `orchestrer-des-chantiers.md` ; `veille_chantiers.sh`.
