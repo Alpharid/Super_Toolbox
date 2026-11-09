@@ -61,8 +61,9 @@ audio → notes et MIDI ; son modèle **ONNX** tourne sans TensorFlow : venv Pyt
 onnxruntime, librosa, pretty_midi, resampy, scikit-learn, mir_eval) → l'échantillonneur de la pièce écrite, piste par piste (basse
 → contrebasse en pizz, notes tenues → flûte ou violon, notes brèves → harpe). Jeu humain gardé (aucune quantification). Pièges : une
 piste **presque vide** se transcrit quand même en centaines de notes fantômes (ignorer une piste sous 1 % de l'énergie, la batterie
-sous 2 %) ; des cordes de métal pincées font compter leurs attaques comme du « grésillement » au tri. Premier essai : le juge la
-préfère nettement au rendu d'origine (7,5 contre 5,6).
+sous 2 %) ; des cordes de métal pincées font compter leurs attaques comme du « grésillement » au tri. Leçons du premier essai (refusé à l'oreille : « un bordel », « pourquoi un piano ? ») : la harpe aux notes serrées sonne
+piano ; la transcription relève aussi harmoniques et échos : **une seule note à la fois par instrument** (la plus forte) et
+**trois instruments au plus**, tous du monde du jeu (1 380 notes → 368). Un juge qui préfère le rendu ne suffit pas : l'oreille tranche.
 
 **Un « grésillement » sans nom peut être de l'écrêtage** : la source collée à 0 dBFS (des milliers d'échantillons) garde ses crêtes
 coupées même une fois normalisée pour le jeu. Mesurer l'écrêtage **de la source** ; `ffmpeg -af adeclip,volume=-6dB` redessine
