@@ -382,11 +382,11 @@ messages:
     # Where the game stands
     The public roadmap will be posted here, and kept up to date with every release.
 
-# Les guildes (ou équipes) reconnues : chacune devient un rôle « Guilde · <nom> » et un salon dans sa catégorie
-# (construire.py, deplier_guildes). La catégorie doit exister plus haut.
+# Les guildes (ou équipes) reconnues : chacune a un rôle « Guilde · <nom> », une vitrine (tout le monde lit, la guilde écrit)
+# et un salon privé « <nom>-entre-nous » que son chef ouvre ou referme par le bot ; le chef (chef: identifiant Discord) gère les
+# messages de ses salons. La catégorie doit exister plus haut.
 guildes:
   categorie: "<Catégorie des guildes>"
-  visible: tous          # tous : tout le monde lit, la guilde écrit ; membres : salon fermé
   liste: []
 
 # Réglages du bot (bot/)

@@ -251,7 +251,7 @@ class TestsConstruire(unittest.TestCase):
         cfg = copy.deepcopy(self.cfg)
         cfg["categories"].append({"nom": "Guildes", "phase": 3, "salons": []})
         cfg["guildes"]["categorie"] = "Guildes"
-        cfg["guildes"]["liste"] = [{"nom": "La Compagnie du Nord", "couleur": "#7a5a3a", "sujet": "Mercenaires"}]
+        cfg["guildes"]["liste"] = [{"nom": "La Compagnie du Nord", "couleur": "#7a5a3a", "sujet": "Mercenaires", "chef": "123456789012345678"}]
         cfg = C.deplier_guildes(cfg)
         self.assertEqual(C.verifier(cfg), [])
         faux, etat = FauxDiscord(), {}
@@ -263,9 +263,23 @@ class TestsConstruire(unittest.TestCase):
         self.assertTrue(int(cibles["1"]["deny"]) & envoyer)            # les autres lisent sans écrire
         self.assertFalse(int(cibles["1"]["deny"]) & (1 << C.PERMISSIONS["view_channel"]))
         self.assertTrue(int(cibles[role["id"]]["allow"]) & envoyer)
+        # Le salon privé : la guilde seule ; le chef gère les messages de ses salons
+        prive = next(s for s in faux.liste_salons if s["name"] == "la-compagnie-du-nord-entre-nous")
+        cibles = {o["id"]: o for o in prive["permission_overwrites"]}
+        voir = 1 << C.PERMISSIONS["view_channel"]
+        self.assertTrue(int(cibles["1"]["deny"]) & voir)
+        chef = cibles["123456789012345678"]
+        self.assertEqual(chef["type"], 1)
+        self.assertTrue(int(chef["allow"]) & (1 << C.PERMISSIONS["pin_messages"]))
         faux.appels = 0
         construire(faux, cfg, 3, True, etat)
         self.assertEqual(faux.appels, 0)
+        # Le chef l'ouvre (par le bot) : le constructeur ne le referme pas
+        tous = next(o for o in prive["permission_overwrites"] if o["id"] == "1")
+        tous["deny"], tous["allow"] = "0", str(voir | (1 << C.PERMISSIONS["send_messages"]))
+        construire(faux, cfg, 3, True, etat)
+        self.assertEqual(faux.appels, 0)
+        self.assertEqual(int(next(o for o in prive["permission_overwrites"] if o["id"] == "1")["deny"]), 0)
         # Pas de guilde en phase 1
         faux2 = FauxDiscord()
         construire(faux2, cfg, 1, True, {})

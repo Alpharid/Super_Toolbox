@@ -49,8 +49,11 @@ la suite sans rien casser.
   pleins ; **Discord ne laisse renommer un salon que deux fois en dix minutes** (le bot le dit au lieu d'échouer en silence) ;
   copier les droits de la catégorie à la création (l'API ne les recopie pas seule) ; garder les identifiants pour éteindre au
   redémarrage ceux restés vides ; un salon par membre, une attente entre deux, un plafond. Modèle : `bot/` de Guardians (`/feu`).
-- **Les guildes reconnues** : section `guildes:` (une entrée = un rôle « Guilde · <nom> » et un salon dans sa catégorie ;
-  `visible: tous` = tout le monde lit, la guilde écrit).
+- **Les guildes reconnues** : section `guildes:` (une entrée = un rôle « Guilde · <nom> », une vitrine où tout le monde lit et où
+  la guilde écrit, et un salon privé « <nom>-entre-nous ») ; le chef (`chef:` son identifiant) reçoit un droit **à son nom**
+  (`membre:<id>`, type 1) pour gérer et **épingler** (Discord a séparé `pin_messages`, bit 51, de « gérer les messages » en 2025)
+  et ouvre ou referme son salon privé par le bot ; ce salon est `ouverture_libre` : le constructeur ne remet pas son droit
+  « @everyone », sinon chaque passage refermerait ce que la guilde a ouvert.
 - **Un bot qui publie ne publie rien seul** : il dépose un brouillon dans un salon privé avec « Publier / Ne pas publier » (règle
   Alpharium : rien ne part dehors sans un clic du propriétaire). Modèle : le bot de Guardians (`communaute/discord/bot/` du projet :
   état du serveur de jeu, notes de version, rôles au choix, liste d'attente de l'accès anticipé, discord.py 2.7.1).

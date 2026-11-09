@@ -41,7 +41,7 @@ PERMISSIONS = {
     "use_external_stickers": 37, "send_messages_in_threads": 38, "use_embedded_activities": 39,
     "moderate_members": 40, "view_creator_monetization_analytics": 41, "use_soundboard": 42,
     "create_guild_expressions": 43, "create_events": 44, "use_external_sounds": 45, "send_voice_messages": 46,
-    "send_polls": 49, "use_external_apps": 50,
+    "send_polls": 49, "use_external_apps": 50, "pin_messages": 51,
 }
 TYPES = {"texte": 0, "vocal": 2, "categorie": 4, "annonces": 5, "scene": 13, "forum": 15}
 # Ces types exigent le mode Communauté : ils sont créés après son activation.
@@ -80,38 +80,46 @@ def charger(chemin: str) -> dict:
 
 
 def deplier_guildes(cfg: dict) -> dict:
-    """Les guildes reconnues (section guildes:) deviennent chacune un rôle et un salon écrit dans leur catégorie.
+    """Les guildes reconnues (section guildes:) : chacune a un rôle, une vitrine et un salon privé dans leur catégorie.
 
     guildes:
       categorie: "Les Guildes"         # elle doit exister dans categories:
-      visible: tous                     # tous : tout le monde lit, la guilde écrit ; membres : salon fermé aux autres
       liste:
         - nom: "La Compagnie du Nord"
           couleur: "#7a5a3a"
           sujet: "Mercenaires · Mercenaries"
-    Ajouter une guilde = une entrée ici, puis construire.py --appliquer. La retirer = l'enlever (et --elaguer)."""
+          chef: "123456789012345678"    # identifiant Discord du chef : il gère les messages de ses deux salons
+    La vitrine : tout le monde lit, la guilde écrit. Le salon privé (« <nom>-entre-nous ») : la guilde seule ; le chef peut
+    l'ouvrir aux autres ou le refermer (/guilde ouvrir, /guilde fermer : le bot), et le constructeur ne le referme pas
+    (ouverture_libre). Ajouter une guilde = une entrée ici, puis construire.py --appliquer ; la retirer = l'enlever (--elaguer)."""
     g = cfg.get("guildes") or {}
     if not g.get("liste"):
         return cfg
     cat = next((c for c in cfg.get("categories", []) if c["nom"] == g.get("categorie")), None)
     if cat is None:
         raise ValueError(f"guildes : la catégorie « {g.get('categorie')} » n'existe pas")
-    ouvert = g.get("visible", "tous") == "tous"
     deja = {r["nom"] for r in cfg.get("roles", [])}
     for guilde in g["liste"]:
         role = f"Guilde · {guilde['nom']}"
         if role not in deja:
             cfg.setdefault("roles", []).append({"nom": role, "phase": cat.get("phase", 1), "couleur": guilde.get("couleur"),
                                                 "separe": False, "mentionnable": False, "permissions": [],
-                                                "note": "Guilde reconnue (voir le guide communaute-discord) : donné par la modération ou son chef."})
+                                                "note": "Guilde reconnue : donné par la modération ou à la demande de son chef."})
             deja.add(role)
-        droits = {"@everyone": {"refuser": ["send_messages", "create_public_threads"] if ouvert else ["view_channel"]},
-                  role: {"autoriser": ["view_channel", "send_messages", "create_public_threads", "attach_files", "embed_links"]},
-                  "@bot": {"autoriser": ["view_channel", "send_messages"]}}
+        ecrire = ["view_channel", "send_messages", "create_public_threads", "attach_files", "embed_links", "read_message_history"]
+        commun = {role: {"autoriser": ecrire}, "@bot": {"autoriser": ["view_channel", "send_messages", "manage_roles"]}}
         if "Modération" in deja:
-            droits["Modération"] = {"autoriser": ["view_channel", "send_messages"]}
-        cat.setdefault("salons", []).append({"nom": nom_salon(guilde["nom"], "texte"), "type": "texte",
-                                             "sujet": guilde.get("sujet", ""), "droits": droits})
+            commun["Modération"] = {"autoriser": ["view_channel", "send_messages"]}
+        if guilde.get("chef"):
+            commun[f"membre:{guilde['chef']}"] = {"autoriser": ecrire + ["manage_messages", "pin_messages", "manage_threads"]}
+        base = nom_salon(guilde["nom"], "texte")
+        cat.setdefault("salons", []).append({
+            "nom": base, "type": "texte", "sujet": guilde.get("sujet", ""),
+            "droits": dict(commun, **{"@everyone": {"refuser": ["send_messages", "create_public_threads"]}})})
+        cat["salons"].append({
+            "nom": f"{base}-entre-nous", "type": "texte", "ouverture_libre": True,
+            "sujet": "Le salon de la guilde : fermé aux autres, sauf si son chef l'ouvre · The guild's own channel",
+            "droits": dict(commun, **{"@everyone": {"refuser": ["view_channel"]}})})
     return cfg
 
 
@@ -126,7 +134,7 @@ def verifier(cfg: dict) -> list[str]:
 
     def droits(d: dict, ou: str):
         for cible, regle in (d or {}).items():
-            if cible not in connus:
+            if cible not in connus and not re.fullmatch(r"membre:\d{15,21}", cible):
                 err.append(f"{ou} : rôle inconnu « {cible} »")
             for sens in ("autoriser", "refuser"):
                 for p in regle.get(sens, []):
@@ -401,10 +409,11 @@ class Construction:
                 d["refuser"] |= set(r.get("refuser", []))
         sortie = []
         for cible, r in regles.items():
-            rid = self.ids_roles.get(cible)
+            membre = cible.startswith("membre:")
+            rid = cible[7:] if membre else self.ids_roles.get(cible)
             if rid is None:
                 continue  # rôle d'une phase pas encore construite
-            sortie.append({"id": rid, "type": 0, "allow": str(bits(sorted(r["autoriser"]))),
+            sortie.append({"id": rid, "type": 1 if membre else 0, "allow": str(bits(sorted(r["autoriser"]))),
                            "deny": str(bits(sorted(r["refuser"] - r["autoriser"])))})
         return sorted(sortie, key=lambda o: o["id"])
 
@@ -471,6 +480,12 @@ class Construction:
                         diff["parent_id"] = ex["id"]
                     if corps.get("topic") and (ancien.get("topic") or "") != corps["topic"]:
                         diff["topic"] = corps["topic"]
+                    if s.get("ouverture_libre"):
+                        # le salon s'ouvre et se ferme par le bot (/guilde) : garder le droit « @everyone » qu'il porte
+                        tous = str(self.ids_roles.get("@everyone"))
+                        actuel = [o for o in ancien.get("permission_overwrites", []) if str(o["id"]) == tous]
+                        corps["permission_overwrites"] = sorted(
+                            [o for o in corps["permission_overwrites"] if str(o["id"]) != tous] + actuel, key=lambda o: o["id"])
                     if not self.memes_droits(ancien.get("permission_overwrites", []), corps["permission_overwrites"]):
                         diff["permission_overwrites"] = corps["permission_overwrites"]
                     if s["type"] == "forum":
