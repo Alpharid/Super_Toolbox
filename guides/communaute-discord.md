@@ -54,6 +54,10 @@ la suite sans rien casser.
   (`membre:<id>`, type 1) pour gérer et **épingler** (Discord a séparé `pin_messages`, bit 51, de « gérer les messages » en 2025)
   et ouvre ou referme son salon privé par le bot ; ce salon est `ouverture_libre` : le constructeur ne remet pas son droit
   « @everyone », sinon chaque passage refermerait ce que la guilde a ouvert.
+- **Un jeu de plateau dans un message** : 5 rangées de 5 boutons, c'est la limite d'un message (un 5 × 5 tient, pas un bouton de
+  plus : les autres actions passent par une commande) ; on édite le message à chaque coup ; le pion choisi et ses cases par la
+  couleur des boutons. Tester sans Discord : `discord.ui.View()` veut une boucle asyncio (`asyncio.run`). Modèle : la table
+  d'Atay de Guardians (`bot/jeux.py` pour les règles, `bot/table.py` pour les boutons), avec des jeux traditionnels sourcés.
 - **Un bot qui publie ne publie rien seul** : il dépose un brouillon dans un salon privé avec « Publier / Ne pas publier » (règle
   Alpharium : rien ne part dehors sans un clic du propriétaire). Modèle : le bot de Guardians (`communaute/discord/bot/` du projet :
   état du serveur de jeu, notes de version, rôles au choix, liste d'attente de l'accès anticipé, discord.py 2.7.1).
