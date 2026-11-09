@@ -129,12 +129,12 @@ categories:
         type: texte
         gabarit: lecture_seule
         sujet: "Bienvenue · Welcome. Choisissez vos alertes ici · pick your alerts here."
-        message: bienvenue
+        message: [bienvenue, welcome]       # un message par langue, aussi complets l'un que l'autre
       - nom: "règles"
         type: texte
         gabarit: lecture_seule
         sujet: "Les règles du serveur · Server rules"
-        message: regles
+        message: [regles, rules]
       - nom: "annonces"
         type: annonces
         gabarit: lecture_seule_reactions
@@ -143,7 +143,7 @@ categories:
         type: texte
         gabarit: lecture_seule_reactions
         sujet: "Ce qui est fait, ce qui vient · What's done, what's next"
-        message: feuille_de_route
+        message: [feuille_de_route, roadmap]
 
   - nom: "Le Studio"
     phase: 1
@@ -196,9 +196,17 @@ categories:
 
   - nom: "Vocal"
     phase: 1
+    # Les salons vocaux que le bot ouvre aux membres (« Créer un vocal ») vivent ici : le constructeur ne les élague jamais.
+    vocaux_libres: true
+    droits:
+      "@bot": {autoriser: [view_channel, manage_channels, move_members, connect]}
     salons:
       - nom: "Discussion vocale"
         type: vocal
+      - nom: "Créer un vocal · Create a voice channel"
+        type: vocal
+        droits:
+          "@everyone": {refuser: [speak]}
       - nom: "La Scène"
         phase: 2
         type: scene
@@ -327,7 +335,9 @@ automod:
       type: spam
       actions: [bloquer, alerter]
 
-# Les textes que le bot pose et tient à jour (un message par salon, modifié en place si le texte change)
+# Les textes que le bot pose et tient à jour (modifiés en place si le texte change). Un message par langue, chacun complet :
+# une langue résumée sous l'autre se remarque, et ses lecteurs sont peut-être la majorité. « #salon » devient un lien cliquable
+# quand le salon existe. 2000 caractères au plus par message.
 messages:
   bienvenue: |
     # Bienvenue
@@ -337,25 +347,47 @@ messages:
     → Les règles : #règles · Les nouvelles : #annonces · Les coulisses : #journal-de-développement
 
     Les boutons ci-dessous vous donnent les alertes que vous voulez, et seulement celles-là.
-
+  welcome: |
     # Welcome
-    <The same in English.> Pick your alerts with the buttons below.
+    <The same two sentences, translated in full.>
+
+    **The game isn't open yet.** Here, we only show what's finished, nothing else.
+    → Rules: #règles · News: #annonces · Behind the scenes: #journal-de-développement
+
+    The buttons below give you the alerts you want, and only those.
   regles: |
     # Les règles
-    1. **Le respect d'abord.** Pas d'insulte, de harcèlement, de haine.
-    2. **Pas de politique.**
-    3. **Pas de publicité** ni de liens d'invitation sans l'accord de la modération.
-    4. **Pas de triche** : une faille se signale en privé à la modération, elle sera créditée.
-    5. **Pas de vente** de comptes ou d'objets contre de l'argent réel.
-    6. **Le bon salon** : une idée = un fil dans #suggestions ; un problème = un fil dans #support.
-    7. **Pas de fuite** : ce qui est sous embargo reste sous embargo.
-    La modération peut avertir, rendre muet, exclure ou bannir ; chaque sanction est notée.
+    1. **Le respect d'abord.** Pas d'insulte, de harcèlement ni de haine. On a le droit de ne pas être d'accord : on le dit sans attaquer personne.
+    2. **Pas de publicité** ni de liens d'invitation sans l'accord de la modération.
+    3. **Pas de triche** : une faille se signale en privé à la modération, elle sera créditée.
+    4. **Pas de vente** de comptes ou d'objets contre de l'argent réel.
+    5. **Le bon salon** : une idée = un fil dans #suggestions ; un problème = un fil dans #support.
+    6. **Pas de fuite** : ce qui est sous embargo reste sous embargo.
 
+    La modération peut avertir, rendre muet, exclure ou bannir ; chaque sanction est notée.
+  rules: |
     # Rules
-    Be respectful · No politics · No ads or invite links · No cheating (report exploits privately) · No real-money trading · Use the right channel · Respect embargoes.
+    1. **Respect first.** No insults, harassment or hate. You're free to disagree: say so without attacking anyone.
+    2. **No advertising**, and no invite links without the moderators' approval.
+    3. **No cheating**: report an exploit privately to the moderators; you'll be credited for it.
+    4. **No selling** accounts or items for real money.
+    5. **The right channel**: one idea = one thread in #suggestions; one problem = one thread in #support.
+    6. **No leaks**: anything under embargo stays under embargo.
+
+    Moderators may warn, mute, kick or ban; every action is logged.
   feuille_de_route: |
     # Où en est le jeu
     La feuille de route publique sera posée ici, et tenue à jour à chaque publication.
+  roadmap: |
+    # Where the game stands
+    The public roadmap will be posted here, and kept up to date with every release.
+
+# Les guildes (ou équipes) reconnues : chacune devient un rôle « Guilde · <nom> » et un salon dans sa catégorie
+# (construire.py, deplier_guildes). La catégorie doit exister plus haut.
+guildes:
+  categorie: "<Catégorie des guildes>"
+  visible: tous          # tous : tout le monde lit, la guilde écrit ; membres : salon fermé
+  liste: []
 
 # Réglages du bot (bot/)
 bot:

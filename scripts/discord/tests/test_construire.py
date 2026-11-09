@@ -155,9 +155,12 @@ class TestsConstruire(unittest.TestCase):
         annonces = next(s for s in faux.liste_salons if s["name"] == "annonces")
         self.assertEqual(annonces["type"], 5)
         self.assertIn("bienvenue", etat)
-        # Les boutons des rôles au choix sur le message de bienvenue
-        m = faux.message(next(s["id"] for s in faux.liste_salons if s["name"] == "bienvenue"), etat["bienvenue"])
-        self.assertIn("role:Alerte Alpha", [b["custom_id"] for b in m["components"][0]["components"]])
+        # Un message par langue ; les boutons des rôles au choix sous le dernier (l'anglais)
+        bienvenue = next(s["id"] for s in faux.liste_salons if s["name"] == "bienvenue")
+        fr, en = faux.message(bienvenue, etat["bienvenue"]), faux.message(bienvenue, etat["bienvenue/welcome"])
+        self.assertEqual(fr["components"], [])
+        self.assertIn("role:Alerte Alpha", [b["custom_id"] for b in en["components"][0]["components"]])
+        self.assertTrue(en["content"].startswith("# Welcome"))
         self.assertEqual(len(faux.regles), 4)
         self.assertGreaterEqual(len(faux.accueil_recu["default_channel_ids"]), 7)
         faux.appels = 0
@@ -210,6 +213,63 @@ class TestsConstruire(unittest.TestCase):
         faux.ordonner_roles = refuser
         journal, _ = construire(faux, self.cfg, 1, True, etat)
         self.assertTrue(any("glisser le rôle du bot" in j for j in journal))
+
+    def test_les_salons_cites_sont_cliquables(self):
+        faux, etat = FauxDiscord(), {}
+        construire(faux, self.cfg, 1, True, etat)
+        regles = next(s for s in faux.liste_salons if s["name"] == "règles")
+        bienvenue = next(s["id"] for s in faux.liste_salons if s["name"] == "bienvenue")
+        texte = faux.message(bienvenue, etat["bienvenue"])["content"]
+        self.assertIn(f"<#{regles['id']}>", texte)
+        self.assertNotIn("#règles", texte)
+        # Un salon d'une phase pas encore construite reste écrit en clair
+        texte = faux.message(regles["id"], etat["règles"])["content"]
+        self.assertIn("#support", texte)
+
+    def test_l_anglais_est_aussi_complet_que_le_francais(self):
+        m = self.cfg["messages"]
+        for fr, en in (("bienvenue", "welcome"), ("regles", "rules"), ("feuille_de_route", "roadmap")):
+            self.assertEqual(m[fr].count("\n"), m[en].count("\n"), en)   # même nombre de lignes : rien de résumé
+
+    def test_les_feux_des_joueurs_ne_sont_jamais_elagues(self):
+        faux, etat = FauxDiscord(), {}
+        construire(faux, self.cfg, 1, True, etat)
+        coin = next(s["id"] for s in faux.liste_salons if s["name"] == "Vocal")
+        faux.liste_salons.append({"id": "77777", "name": "Le vocal de Sam", "type": 2, "parent_id": coin})
+        faux.liste_salons.append({"id": "88888", "name": "vieux-vocal", "type": 2, "parent_id": None})
+        C.Construction.args_elaguer = True
+        try:
+            journal, _ = construire(faux, self.cfg, 1, True, etat)
+        finally:
+            C.Construction.args_elaguer = False
+        ids = {s["id"] for s in faux.liste_salons}
+        self.assertIn("77777", ids)                 # un feu allumé : jamais touché
+        self.assertNotIn("88888", ids)              # le reste est élagué comme avant
+        self.assertFalse(any("Le vocal de Sam" in j for j in journal))
+
+    def test_une_guilde_reconnue_a_son_role_et_son_salon(self):
+        cfg = copy.deepcopy(self.cfg)
+        cfg["categories"].append({"nom": "Guildes", "phase": 3, "salons": []})
+        cfg["guildes"]["categorie"] = "Guildes"
+        cfg["guildes"]["liste"] = [{"nom": "La Compagnie du Nord", "couleur": "#7a5a3a", "sujet": "Mercenaires"}]
+        cfg = C.deplier_guildes(cfg)
+        self.assertEqual(C.verifier(cfg), [])
+        faux, etat = FauxDiscord(), {}
+        construire(faux, cfg, 3, True, etat)
+        role = next(r for r in faux.liste_roles if r["name"] == "Guilde · La Compagnie du Nord")
+        salon = next(s for s in faux.liste_salons if s["name"] == "la-compagnie-du-nord")
+        cibles = {o["id"]: o for o in salon["permission_overwrites"]}
+        envoyer = 1 << C.PERMISSIONS["send_messages"]
+        self.assertTrue(int(cibles["1"]["deny"]) & envoyer)            # les autres lisent sans écrire
+        self.assertFalse(int(cibles["1"]["deny"]) & (1 << C.PERMISSIONS["view_channel"]))
+        self.assertTrue(int(cibles[role["id"]]["allow"]) & envoyer)
+        faux.appels = 0
+        construire(faux, cfg, 3, True, etat)
+        self.assertEqual(faux.appels, 0)
+        # Pas de guilde en phase 1
+        faux2 = FauxDiscord()
+        construire(faux2, cfg, 1, True, {})
+        self.assertNotIn("la-compagnie-du-nord", {s["name"] for s in faux2.liste_salons})
 
     def test_lecture_seule(self):
         faux, etat = FauxDiscord(), {}

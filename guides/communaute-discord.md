@@ -39,6 +39,18 @@ la suite sans rien casser.
 - **Discord renvoie plus de champs qu'on n'en écrit** : comparer seulement ce que le fichier fixe (`contient()`), sinon chaque
   passage « corrige » tout.
 - **Débit** : lire `X-RateLimit-*`, attendre `retry_after` sur un 429 ; 10 000 requêtes refusées en 10 min = adresse bannie.
+- **Un message par langue, chacun complet** (`message: [bienvenue, welcome]`) : une langue résumée sous l'autre se voit (le
+  propriétaire de Guardians l'a relevé : les anglophones seront peut-être la majorité) ; et 2000 caractères au plus par message.
+  Les boutons vont sous le dernier. `#salon` dans un texte devient un lien cliquable (`<#id>`) quand le salon existe.
+- **Ne pas interdire de sujets** aux membres : le respect et « pas d'attaque » suffisent, la modération traite chaque débat
+  comme les autres (une règle « pas de religion ni de politique » a été jugée infantilisante).
+- **Les salons vocaux des membres** (« Créer un vocal ») : entrer dans un salon-porte fait ouvrir par le bot un salon à soi,
+  ouvert à tous, éteint quand il est vide. Pièges : marquer la catégorie `vocaux_libres`, sinon `--elaguer` supprime des salons
+  pleins ; **Discord ne laisse renommer un salon que deux fois en dix minutes** (le bot le dit au lieu d'échouer en silence) ;
+  copier les droits de la catégorie à la création (l'API ne les recopie pas seule) ; garder les identifiants pour éteindre au
+  redémarrage ceux restés vides ; un salon par membre, une attente entre deux, un plafond. Modèle : `bot/` de Guardians (`/feu`).
+- **Les guildes reconnues** : section `guildes:` (une entrée = un rôle « Guilde · <nom> » et un salon dans sa catégorie ;
+  `visible: tous` = tout le monde lit, la guilde écrit).
 - **Un bot qui publie ne publie rien seul** : il dépose un brouillon dans un salon privé avec « Publier / Ne pas publier » (règle
   Alpharium : rien ne part dehors sans un clic du propriétaire). Modèle : le bot de Guardians (`communaute/discord/bot/` du projet :
   état du serveur de jeu, notes de version, rôles au choix, liste d'attente de l'accès anticipé, discord.py 2.7.1).

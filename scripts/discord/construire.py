@@ -76,7 +76,43 @@ class Erreurs(Exception):
 
 def charger(chemin: str) -> dict:
     with open(chemin, encoding="utf-8") as f:
-        return yaml.safe_load(f)
+        return deplier_guildes(yaml.safe_load(f))
+
+
+def deplier_guildes(cfg: dict) -> dict:
+    """Les guildes reconnues (section guildes:) deviennent chacune un rôle et un salon écrit dans leur catégorie.
+
+    guildes:
+      categorie: "Les Guildes"         # elle doit exister dans categories:
+      visible: tous                     # tous : tout le monde lit, la guilde écrit ; membres : salon fermé aux autres
+      liste:
+        - nom: "La Compagnie du Nord"
+          couleur: "#7a5a3a"
+          sujet: "Mercenaires · Mercenaries"
+    Ajouter une guilde = une entrée ici, puis construire.py --appliquer. La retirer = l'enlever (et --elaguer)."""
+    g = cfg.get("guildes") or {}
+    if not g.get("liste"):
+        return cfg
+    cat = next((c for c in cfg.get("categories", []) if c["nom"] == g.get("categorie")), None)
+    if cat is None:
+        raise ValueError(f"guildes : la catégorie « {g.get('categorie')} » n'existe pas")
+    ouvert = g.get("visible", "tous") == "tous"
+    deja = {r["nom"] for r in cfg.get("roles", [])}
+    for guilde in g["liste"]:
+        role = f"Guilde · {guilde['nom']}"
+        if role not in deja:
+            cfg.setdefault("roles", []).append({"nom": role, "phase": cat.get("phase", 1), "couleur": guilde.get("couleur"),
+                                                "separe": False, "mentionnable": False, "permissions": [],
+                                                "note": "Guilde reconnue (voir le guide communaute-discord) : donné par la modération ou son chef."})
+            deja.add(role)
+        droits = {"@everyone": {"refuser": ["send_messages", "create_public_threads"] if ouvert else ["view_channel"]},
+                  role: {"autoriser": ["view_channel", "send_messages", "create_public_threads", "attach_files", "embed_links"]},
+                  "@bot": {"autoriser": ["view_channel", "send_messages"]}}
+        if "Modération" in deja:
+            droits["Modération"] = {"autoriser": ["view_channel", "send_messages"]}
+        cat.setdefault("salons", []).append({"nom": nom_salon(guilde["nom"], "texte"), "type": "texte",
+                                             "sujet": guilde.get("sujet", ""), "droits": droits})
+    return cfg
 
 
 def verifier(cfg: dict) -> list[str]:
@@ -124,8 +160,9 @@ def verifier(cfg: dict) -> list[str]:
             if s.get("gabarit") and s["gabarit"] not in gabarits:
                 err.append(f"{ou} : gabarit inconnu")
             droits(s.get("droits"), ou)
-            if s.get("message") and s["message"] not in cfg.get("messages", {}):
-                err.append(f"{ou} : message « {s['message']} » absent de messages:")
+            for cle in cles_messages(s):
+                if cle not in cfg.get("messages", {}):
+                    err.append(f"{ou} : message « {cle} » absent de messages:")
             if len(s.get("sujet", "")) > 1024:
                 err.append(f"{ou} : sujet trop long (1024 au plus)")
             if s["type"] == "forum" and len(s.get("etiquettes", [])) > 20:
@@ -240,6 +277,20 @@ def contient(reel, voulu) -> bool:
     if isinstance(voulu, list):
         return isinstance(reel, list) and len(reel) == len(voulu) and all(contient(a, b) for a, b in zip(reel, voulu))
     return str(reel) == str(voulu) if voulu is not None else reel in (None, "", [])
+
+
+def cles_messages(salon: dict) -> list:
+    """Les messages d'un salon : une clé, ou une liste (un message par langue, dans l'ordre où ils paraissent)."""
+    m = salon.get("message")
+    return [] if not m else [m] if isinstance(m, str) else list(m)
+
+
+def lier_salons(texte: str, ids: dict) -> str:
+    """« #règles » devient un lien cliquable (<#id>) quand le salon existe déjà ; sinon le texte reste tel quel."""
+    def lien(m):
+        sid = ids.get(m.group(1))
+        return f"<#{sid}>" if sid and not str(sid).startswith("(") else m.group(0)
+    return re.sub(r"#([\w-]+)", lien, texte)
 
 
 def boutons_de(message: dict) -> list:
@@ -447,7 +498,12 @@ class Construction:
         if seulement_communaute is not False:
             voulus = {(nom_salon(s["nom"], s["type"]), TYPES[s["type"]]) for c in self.cfg.get("categories", [])
                       for s in c.get("salons", [])} | {(c["nom"], 4) for c in self.cfg.get("categories", [])}
+            # Les salons vocaux que le bot ouvre aux joueurs (les « feux ») vivent dans une catégorie marquée
+            # vocaux_libres : ils ne sont pas dans le fichier et ne doivent jamais être élagués.
+            libres = {str(self.ids_salons.get(c["nom"])) for c in self.cfg.get("categories", []) if c.get("vocaux_libres")}
             for s in existants:
+                if s["type"] == 2 and str(s.get("parent_id")) in libres:
+                    continue
                 if (s["name"], s["type"]) not in voulus and not (s["type"] == 0 and (s["name"], 5) in voulus):
                     self.note(f"salon « {s['name']} » : absent du fichier" + (" → supprimé" if self.args_elaguer else " (laissé)"))
                     if self.args_elaguer:
@@ -559,26 +615,32 @@ class Construction:
         boutons = self.cfg.get("bot", {}).get("roles_au_choix", {})
         for cat in self.cfg.get("categories", []):
             for s in cat.get("salons", []):
-                cle = s.get("message")
+                cles = cles_messages(s)
                 sid = self.ids_salons.get(s["nom"])
-                if not cle or not sid or str(sid).startswith("(") or not self.visible(s, cat.get("phase", 1)):
+                if not cles or not sid or str(sid).startswith("(") or not self.visible(s, cat.get("phase", 1)):
                     continue
-                corps = {"content": textes[cle].strip(), "allowed_mentions": {"parse": []}}
-                if boutons.get("salon") == s["nom"]:
-                    roles = [r for r in boutons.get("roles", []) if r in self.ids_roles]
-                    lignes = [roles[i:i + 5] for i in range(0, len(roles), 5)]
-                    corps["components"] = [{"type": 1, "components": [
-                        {"type": 2, "style": 2, "label": r, "custom_id": f"role:{r}"} for r in ligne]} for ligne in lignes]
-                connu = self.etat_messages.get(s["nom"])
-                ancien = self.api.message(sid, connu) if connu else None
-                if not ancien:
-                    self.note(f"#{s['nom']} : message « {cle} » posté")
-                    m = self.faire(self.api.poster, sid, corps)
-                    if self.appliquer:
-                        self.etat_messages[s["nom"]] = m["id"]
-                elif ancien.get("content") != corps["content"] or boutons_de(ancien) != boutons_de(corps):
-                    self.note(f"#{s['nom']} : message « {cle} » mis à jour")
-                    self.faire(self.api.modifier_message, sid, connu, corps)
+                for rang, cle in enumerate(cles):
+                    corps = {"content": lier_salons(textes[cle].strip(), self.ids_salons),
+                             "allowed_mentions": {"parse": []}, "components": []}
+                    # Les boutons des rôles au choix vont sous le dernier message du salon (le plus près du lecteur)
+                    if boutons.get("salon") == s["nom"] and rang == len(cles) - 1:
+                        roles = [r for r in boutons.get("roles", []) if r in self.ids_roles]
+                        lignes = [roles[i:i + 5] for i in range(0, len(roles), 5)]
+                        corps["components"] = [{"type": 1, "components": [
+                            {"type": 2, "style": 2, "label": r, "custom_id": f"role:{r}"} for r in ligne]}
+                            for ligne in lignes]
+                    # Le premier message garde la clé du salon (états déjà écrits) ; les suivants « salon/clé »
+                    etat = s["nom"] if rang == 0 else f"{s['nom']}/{cle}"
+                    connu = self.etat_messages.get(etat)
+                    ancien = self.api.message(sid, connu) if connu else None
+                    if not ancien:
+                        self.note(f"#{s['nom']} : message « {cle} » posté")
+                        m = self.faire(self.api.poster, sid, corps)
+                        if self.appliquer:
+                            self.etat_messages[etat] = m["id"]
+                    elif ancien.get("content") != corps["content"] or boutons_de(ancien) != boutons_de(corps):
+                        self.note(f"#{s['nom']} : message « {cle} » mis à jour")
+                        self.faire(self.api.modifier_message, sid, connu, corps)
 
     def tout(self, communaute=True, accueil=True, automod=True, messages=True):
         print(f"Serveur « {self.g.get('name')} », phase {self.phase}, {'APPLIQUÉ' if self.appliquer else 'plan seulement'}")
