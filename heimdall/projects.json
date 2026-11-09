@@ -237,6 +237,7 @@
         "2026-11-07 : méthode et outils versés dans la boîte : guides/orchestrer-des-chantiers.md, guides/pages-de-decisions.md, chaînes d'art et de son dans guides/creer-des-assets.md, comfy_client.py à niveau (trellis_3d, image→image, LoRA, téléversement à empreinte)"
       ],
       "pistes": [
+        "scripts/discord/ (maison, 2026-11-09) → FAIT : le Discord du jeu en fichier et son constructeur (communaute/discord/ du projet) ; restent tickets, bugs vers une base, liaison des comptes, Atay en personnage ; à essayer pour le lancement : Press Kitty (kit presse gratuit), SullyGnome (trouver des streamers), Steam Curator Connect, Keymailer/Partnier, Lurkit (Woovit fermé)",
         "mem0 (dans la boîte) → mémoire longue des Descellés (souvenirs, relations) si la mémoire maison en PostgreSQL ne suffit pas",
         "llama.cpp llama-server -np N → débit en parallèle pour beaucoup de Descellés si Ollama ne suit pas",
         "ai-toolkit (MIT) → LoRA de style sur peintres du domaine public (Guillaumet, Fromentin, Dinet)",

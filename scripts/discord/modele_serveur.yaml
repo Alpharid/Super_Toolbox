@@ -1,0 +1,378 @@
+# Gabarit d'un serveur Discord de jeu indé, par phases (Super_Toolbox, scripts/discord/ ; guide : guides/communaute-discord.md).
+# Né sur Guardians of the Seal (communaute/discord/serveur.yaml). Copier ce fichier dans le projet, remplacer les textes
+# entre chevrons <…>, puis : python construire.py --verifier ; --env <fichier.env> (le plan) ; --appliquer --phase 1.
+#
+# construire.py lit ce fichier et met le serveur au même état : il crée ce qui manque, corrige ce qui a changé, ne supprime
+# rien (il liste ce qui est en trop ; --elaguer pour supprimer). Essayer d'abord sur le serveur d'essai.
+#
+# Phases (docs/26 §C) : un salon ou un rôle n'est construit que si sa phase <= la phase demandée (--phase).
+#   1 = l'identité en ligne (ouvert, calme : annonces, journal, lore, deux salons de discussion)
+#   2 = l'annonce (état du serveur, notes de version, bestiaire, support, créateurs, scène)
+#   3 = l'Alpha test officiel (salons de l'Alpha, recherche de groupe, bugs de l'Alpha)
+#
+# Rôles spéciaux dans les permissions : "@everyone" (tout le monde), "@bot" (le rôle du bot, créé par Discord à son arrivée).
+# Permissions : les noms de construire.py (PERMISSIONS) ; « autoriser » / « refuser » par rôle, le reste hérite.
+
+serveur:
+  nom: "<Nom du jeu>"
+  # 0 rien, 1 e-mail vérifié, 2 inscrit depuis 5 min, 3 membre depuis 10 min, 4 téléphone vérifié
+  niveau_verification: 2
+  # 0 tout, 1 mentions seulement : on ne sonne que ceux qu'on appelle (les rôles d'alerte), jamais tout le monde
+  notifications_par_defaut: 1
+  # 0 aucun, 1 membres sans rôle, 2 tout le monde
+  filtre_contenu_explicite: 2
+  langue: "fr"
+  salon_regles: "règles"
+  salon_mises_a_jour: "modération"        # où Discord envoie ses avis aux modérateurs (privé)
+  salon_systeme: "journal-du-bot"         # arrivées, boosts : pas devant tout le monde
+
+roles:
+  # Dans l'ordre d'affichage, du plus haut au plus bas (le rôle du bot doit rester au-dessus de ceux qu'il donne).
+  - nom: "Studio"
+    phase: 1
+    couleur: "#c8a15a"
+    separe: true
+    mentionnable: false
+    permissions: []
+    note: "Le studio : le propriétaire seul. Pas de droits : il est le propriétaire du serveur, ce rôle ne sert qu'à le montrer."
+  - nom: "Modération"
+    phase: 1
+    couleur: "#8f3b2e"
+    separe: true
+    mentionnable: true
+    permissions: [view_channel, send_messages, read_message_history, add_reactions, embed_links, attach_files,
+                  manage_messages, manage_threads, moderate_members, kick_members, view_audit_log,
+                  create_public_threads, send_messages_in_threads, use_application_commands, connect, speak,
+                  mute_members, move_members]
+    note: "2FA obligatoire (réglage du serveur à mettre par le propriétaire : voir README)."
+  - nom: "Créateur de contenu"
+    phase: 2
+    couleur: "#6f8a5b"
+    separe: false
+    mentionnable: false
+    permissions: []
+    note: "Streamers et vidéastes reconnus (module I) : accès au salon des créateurs."
+  - nom: "Testeur de l'Alpha"
+    phase: 3
+    couleur: "#4f7a8a"
+    separe: true
+    mentionnable: true
+    permissions: []
+    note: "Invité à une vague de l'Alpha (donné par le bot)."
+  - nom: "Fondateur"
+    phase: 3
+    couleur: "#a3753c"
+    separe: false
+    mentionnable: false
+    permissions: []
+    note: "Les premiers joueurs de l'Alpha : un titre, jamais un avantage."
+  # Les rôles au choix (accueil de Discord, et boutons du bot dans #bienvenue)
+  - nom: "Alerte Alpha"
+    phase: 1
+    couleur: null
+    mentionnable: false        # seul le studio et le bot peuvent le mentionner
+    permissions: []
+    au_choix: true
+    note: "Prévenu à l'ouverture des inscriptions et de chaque vague de l'Alpha. Rien d'autre."
+  - nom: "Alerte Journal"
+    phase: 1
+    couleur: null
+    mentionnable: false
+    permissions: []
+    au_choix: true
+    note: "Prévenu de chaque journal de développement."
+  - nom: "Français"
+    phase: 1
+    couleur: null
+    mentionnable: false
+    permissions: []
+    au_choix: true
+  - nom: "English"
+    phase: 1
+    couleur: null
+    mentionnable: false
+    permissions: []
+    au_choix: true
+
+# Ce que tout membre peut faire partout, sauf exception d'un salon. Pas de liens ni de pièces jointes par défaut : ils
+# s'ouvrent salon par salon (créations, bugs), c'est la première défense contre les arnaques aux liens.
+permissions_de_base: [view_channel, send_messages, read_message_history, add_reactions, use_application_commands,
+                      send_messages_in_threads, create_public_threads, connect, speak, use_voice_activation,
+                      change_nickname]
+
+# Gabarits de droits réutilisés par les salons
+gabarits:
+  lecture_seule:
+    "@everyone": {refuser: [send_messages, create_public_threads, add_reactions]}
+    "@bot": {autoriser: [view_channel, send_messages, embed_links, attach_files, manage_messages]}
+    "Modération": {autoriser: [send_messages]}
+  lecture_seule_reactions:
+    "@everyone": {refuser: [send_messages, create_public_threads], autoriser: [add_reactions]}
+    "@bot": {autoriser: [view_channel, send_messages, embed_links, attach_files, manage_messages]}
+  prive_equipe:
+    "@everyone": {refuser: [view_channel]}
+    "Modération": {autoriser: [view_channel, send_messages, read_message_history]}
+    "@bot": {autoriser: [view_channel, send_messages, embed_links, attach_files, read_message_history]}
+  avec_images:
+    "@everyone": {autoriser: [attach_files, embed_links]}
+  alpha:
+    "@everyone": {refuser: [view_channel]}
+    "Testeur de l'Alpha": {autoriser: [view_channel]}
+    "Modération": {autoriser: [view_channel]}
+    "@bot": {autoriser: [view_channel, send_messages, embed_links]}
+
+categories:
+  - nom: "Accueil"
+    phase: 1
+    salons:
+      - nom: "bienvenue"
+        type: texte
+        gabarit: lecture_seule
+        sujet: "Bienvenue · Welcome. Choisissez vos alertes ici · pick your alerts here."
+        message: bienvenue
+      - nom: "règles"
+        type: texte
+        gabarit: lecture_seule
+        sujet: "Les règles du serveur · Server rules"
+        message: regles
+      - nom: "annonces"
+        type: annonces
+        gabarit: lecture_seule_reactions
+        sujet: "Les nouvelles du jeu, rares et vraies · Game news, rare and real"
+      - nom: "feuille-de-route"
+        type: texte
+        gabarit: lecture_seule_reactions
+        sujet: "Ce qui est fait, ce qui vient · What's done, what's next"
+        message: feuille_de_route
+
+  - nom: "Le Studio"
+    phase: 1
+    salons:
+      - nom: "journal-de-développement"
+        type: annonces
+        gabarit: lecture_seule_reactions
+        sujet: "Les coulisses, chaque semaine · Behind the scenes, every week"
+      - nom: "lore"
+        type: texte
+        gabarit: lecture_seule_reactions
+        sujet: "L'histoire du monde · The world's story"
+      - nom: "galerie"
+        type: texte
+        gabarit: lecture_seule_reactions
+        sujet: "Art du jeu, fini et peint · Finished game art"
+      - nom: "musique"
+        type: texte
+        gabarit: lecture_seule_reactions
+        sujet: "Les musiques du jeu · The game's music"
+      - nom: "bestiaire"
+        phase: 2
+        type: texte
+        gabarit: lecture_seule_reactions
+        sujet: "Une créature révélée chaque semaine · A creature revealed every week"
+
+  - nom: "La Communauté"
+    phase: 1
+    salons:
+      - nom: "discussion"
+        type: texte
+        sujet: "On parle en français · French chat"
+      - nom: "discussion-en"
+        type: texte
+        sujet: "English chat"
+      - nom: "théories-du-lore"
+        type: texte
+        sujet: "Vos théories · Lore theories"
+      - nom: "vos-créations"
+        type: texte
+        gabarit: avec_images
+        sujet: "Vos dessins, musiques, histoires · Your fan art and stories"
+      - nom: "hors-sujet"
+        type: texte
+        sujet: "Tout le reste · Everything else"
+      - nom: "suggestions"
+        type: forum
+        sujet: "Une idée par fil. Cherchez avant de poster · One idea per thread, search first."
+        etiquettes: ["Gameplay", "Interface", "Monde", "Social", "Économie", "Autre"]
+
+  - nom: "Vocal"
+    phase: 1
+    salons:
+      - nom: "Discussion vocale"
+        type: vocal
+      - nom: "La Scène"
+        phase: 2
+        type: scene
+        sujet: "Les veillées du studio : questions, écoute de musiques, annonces en direct"
+
+  - nom: "Aide"
+    phase: 2
+    salons:
+      - nom: "état-du-serveur"
+        type: texte
+        gabarit: lecture_seule_reactions
+        sujet: "Mis à jour par le bot chaque minute · Live server status"
+      - nom: "notes-de-version"
+        type: annonces
+        gabarit: lecture_seule_reactions
+        sujet: "Chaque mise à jour du jeu · Every game update"
+      - nom: "support"
+        type: forum
+        gabarit: avec_images
+        sujet: "Un problème pour jouer ? Un fil par problème · Can't play? One thread per issue."
+        etiquettes: ["Installation", "Connexion", "Compte", "Résolu"]
+
+  - nom: "L'Alpha"
+    phase: 3
+    gabarit: alpha
+    salons:
+      - nom: "alpha-annonces"
+        type: annonces
+        gabarit: alpha
+        sujet: "Vagues, remises à zéro, maintenances · Waves, wipes, maintenance"
+      - nom: "alpha-discussion"
+        type: texte
+        gabarit: alpha
+      - nom: "alpha-bugs"
+        type: forum
+        gabarit: alpha
+        sujet: "Un bug par fil : où, quoi, comment le refaire, une capture · One bug per thread"
+        etiquettes: ["Combat", "Quêtes", "Interface", "Serveur", "Corrigé"]
+      - nom: "recherche-de-groupe"
+        type: texte
+        gabarit: alpha
+      - nom: "Groupe I"
+        type: vocal
+        gabarit: alpha
+      - nom: "Groupe II"
+        type: vocal
+        gabarit: alpha
+
+  - nom: "Créateurs"
+    phase: 2
+    salons:
+      - nom: "créateurs"
+        type: texte
+        gabarit: prive_equipe
+        droits:
+          "Créateur de contenu": {autoriser: [view_channel, send_messages, read_message_history, attach_files, embed_links]}
+        sujet: "Accès, kit presse, dates d'embargo · Press kit and embargo dates"
+
+  - nom: "Équipe"
+    phase: 1
+    gabarit: prive_equipe
+    salons:
+      - nom: "modération"
+        type: texte
+        gabarit: prive_equipe
+        sujet: "Entre modérateurs. Toute sanction se note ici."
+      - nom: "à-valider"
+        type: texte
+        gabarit: prive_equipe
+        sujet: "Le bot dépose ici ce qu'il voudrait publier (notes de version…) : rien ne part sans un clic."
+      - nom: "journal-du-bot"
+        type: texte
+        gabarit: prive_equipe
+        sujet: "Arrivées, départs, AutoMod, erreurs du bot."
+
+# L'accueil natif de Discord (Onboarding) : questions à l'arrivée → rôles et salons. Exige le mode Communauté.
+accueil:
+  actif: true
+  # Salons montrés à tout nouveau membre (Discord en veut au moins 7, dont 5 où l'on peut écrire)
+  salons_par_defaut: ["bienvenue", "règles", "annonces", "journal-de-développement", "lore", "galerie", "musique",
+                      "discussion", "discussion-en", "théories-du-lore", "vos-créations", "hors-sujet", "suggestions"]
+  questions:
+    - titre: "Quelle langue parlez-vous ? · Which language do you speak?"
+      unique: false
+      obligatoire: true
+      options:
+        - titre: "Français"
+          roles: ["Français"]
+          salons: ["discussion"]
+        - titre: "English"
+          roles: ["English"]
+          salons: ["discussion-en"]
+    - titre: "Que voulez-vous recevoir ? · What should we ping you for?"
+      description: "Rien d'autre que ce que vous cochez · Only what you tick"
+      unique: false
+      obligatoire: false
+      options:
+        - titre: "L'ouverture de l'Alpha · Alpha opening"
+          description: "Inscriptions et vagues d'invitations · Sign-ups and invite waves"
+          roles: ["Alerte Alpha"]
+        - titre: "Les journaux de développement · Devlogs"
+          description: "Une fois par semaine au plus · At most weekly"
+          roles: ["Alerte Journal"]
+
+# AutoMod natif de Discord (il bloque avant que le message paraisse)
+automod:
+  alerte_dans: "journal-du-bot"
+  regles:
+    - nom: "Mots interdits (listes de Discord)"
+      type: preset
+      listes: [injures, sexuel, insultes_haineuses]
+      actions: [bloquer, alerter]
+    - nom: "Arnaques et liens d'invitation"
+      type: mots
+      mots: ["*free nitro*", "*nitro gratuit*", "*steam gift*", "*steamcommunity.ru*", "*airdrop*", "*crypto giveaway*"]
+      motifs: ["discord(?:app)?\\.(?:gg|com/invite)/\\w+"]
+      exceptions_roles: ["Modération", "Studio"]
+      actions: [bloquer, alerter]
+      message_bloque: "Les liens d'invitation et les « cadeaux » ne passent pas ici · Invite links and 'free gifts' are blocked."
+    - nom: "Pluie de mentions"
+      type: mentions
+      limite: 5
+      anti_raid: true
+      actions: [bloquer, alerter, exclure_10_min]
+    - nom: "Messages en rafale"
+      type: spam
+      actions: [bloquer, alerter]
+
+# Les textes que le bot pose et tient à jour (un message par salon, modifié en place si le texte change)
+messages:
+  bienvenue: |
+    # Bienvenue
+    <Deux phrases sur le monde du jeu : une image concrète, pas d'adjectifs creux.>
+
+    **Le jeu n'est pas encore ouvert.** Ici, on montre ce qui est fini, rien d'autre.
+    → Les règles : #règles · Les nouvelles : #annonces · Les coulisses : #journal-de-développement
+
+    Les boutons ci-dessous vous donnent les alertes que vous voulez, et seulement celles-là.
+
+    # Welcome
+    <The same in English.> Pick your alerts with the buttons below.
+  regles: |
+    # Les règles
+    1. **Le respect d'abord.** Pas d'insulte, de harcèlement, de haine.
+    2. **Pas de politique.**
+    3. **Pas de publicité** ni de liens d'invitation sans l'accord de la modération.
+    4. **Pas de triche** : une faille se signale en privé à la modération, elle sera créditée.
+    5. **Pas de vente** de comptes ou d'objets contre de l'argent réel.
+    6. **Le bon salon** : une idée = un fil dans #suggestions ; un problème = un fil dans #support.
+    7. **Pas de fuite** : ce qui est sous embargo reste sous embargo.
+    La modération peut avertir, rendre muet, exclure ou bannir ; chaque sanction est notée.
+
+    # Rules
+    Be respectful · No politics · No ads or invite links · No cheating (report exploits privately) · No real-money trading · Use the right channel · Respect embargoes.
+  feuille_de_route: |
+    # Où en est le jeu
+    La feuille de route publique sera posée ici, et tenue à jour à chaque publication.
+
+# Réglages du bot (bot/)
+bot:
+  # Où le bot lit l'état du jeu et ses notes de version (le serveur de jeu ; sur le PC : en local)
+  adresse_jeu: "http://127.0.0.1:<port>"
+  adresse_publique_site: ""              # à remplir avec le vrai domaine (docs/26 §B) : lien « Télécharger »
+  etat:
+    salon: "état-du-serveur"
+    toutes_les_s: 60
+  notes:
+    a_valider: "à-valider"
+    publier_dans: "notes-de-version"
+    toutes_les_s: 300
+  roles_au_choix:
+    salon: "bienvenue"
+    roles: ["Alerte Alpha", "Alerte Journal", "Français", "English"]
+  alpha:
+    role_alerte: "Alerte Alpha"
+    role_testeur: "Testeur de l'Alpha"
+  journal: "journal-du-bot"
