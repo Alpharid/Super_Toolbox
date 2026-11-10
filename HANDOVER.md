@@ -234,6 +234,7 @@ D:\Super_Toolbox\
 
 ## 11. Historique
 
+- **2026-11-10** — Nouveau domaine Heimdall **`auto-diag`** (OBD, CAN, UDS, GMLAN : sources dans `heimdall/sources.json`, rapport `heimdall/reports/2026-11-10-auto-diag.md`) et nouveau projet **Valisa** (`C:\Valisa`) dans `heimdall/projects.json`.
 - **2026-11-08** — **Les pistes de la méthode, faites** (chantier `methode-pistes` de Guardians) : `scripts/claude_api/` (le client de
   l'API porté de Guardians, avec **liste blanche des projets** : un projet absent est refusé ; plafond commun compté sur le cycle,
   plus sur tout le journal ; cache des réponses), `scripts/regard/` (moteur générique, données du projet dans un `regard.json`),

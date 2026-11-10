@@ -508,6 +508,32 @@
       "pistes": [
         "scripts/claude_api → Alphred IA en second moteur (accord API à demander)"
       ]
+    },
+    "Valisa": {
+      "chemin": "C:\\Valisa",
+      "resume": "Valisa (« la valise ») : diagnostic + codage auto universel, une voiture à la fois ; .exe portable sur clé (Windows) + Kali-Pi ; moteur Python + UI web style VFD Opel 80s ; rapport RTA (HTML) + JSON pour l'IA. Voiture n°1 : Opel Corsa D 2011 (antibrouillards à activer dans le BCM).",
+      "domaines": [
+        "auto-diag",
+        "devtools",
+        "modding-re"
+      ],
+      "outils_kit": [
+        "Pages de décisions",
+        "Heimdall — domaine auto-diag (reports/2026-11-10-auto-diag.md)"
+      ],
+      "manques": [
+        "seed/key GMLAN et format de la Variant Configuration du BCM Corsa D (non publics → capture d'une session OP-COM)",
+        "base libre des codes défaut constructeur (B/U Opel, PSA)",
+        "protocole Subaru SSM (GC8 JDM)"
+      ],
+      "pistes": [
+        "python-can + can-isotp + udsoncan + cantools à réutiliser",
+        "scapy contrib/automotive/gm et ddt4all à étudier (GPL : sans copier)",
+        "SavvyCAN pour analyser les captures",
+        "ELM327-emulator pour tester sans voiture",
+        "Nuitka --onefile pour l'exe portable",
+        "OBDex pour les descriptions de codes"
+      ]
     }
   }
 }

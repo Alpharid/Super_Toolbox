@@ -4,7 +4,7 @@
 > domaine, en une ligne par outil. Pour le détail d'un outil → `CATALOGUE.md`. Pour « je veux faire X » → `guides/`.
 > **Ne pas lire `CATALOGUE.md` ni fouiller `upstream/` tant que cet index suffit** (économie de tokens).
 
-**8 domaines** : `godot` · `physique-netcode` · `modding-re` · `ia-agents` · `secu-reseau` · `devtools` · `creation-assets` · `qa-playtest`.
+**9 domaines** : `godot` · `physique-netcode` · `modding-re` · `ia-agents` · `secu-reseau` · `devtools` · `creation-assets` · `qa-playtest` · `auto-diag`.
 Deux cœurs vivants : **[Heimdall](heimdall/README.md)**, le veilleur (§ en bas), et **[Hyperbole](hyperbole/README.md)**, la salle
 du temps (joueurs simulés qui testent les jeux sur le PC, §1 `qa-playtest`).
 **La méthode Alpharium** (comment on travaille : propriétaire, chantiers, pages de décision, agents maison, local d'abord) :
@@ -67,6 +67,9 @@ du temps (joueurs simulés qui testent les jeux sur le PC, §1 `qa-playtest`).
 ### 🛡️ secu-reseau — sécurité, réseau & audit défensif
 - _(rien de copié — licences surtout GPL/SSPL → référencées en lien : Nuclei, Cameradar, CrowdSec, RustScan, Lynis… voir `CATALOGUE.md` § Liens Heimdall et `heimdall/reports/`)._
 
+### 🚗 auto-diag — diagnostic & codage automobile (OBD, CAN, UDS, GMLAN)
+- _(rien de copié pour l'instant — liens, veille du 2026-11-10 : [rapport](heimdall/reports/2026-11-10-auto-diag.md))_ : **python-can** (LGPL), **can-isotp**, **udsoncan**, **cantools** (MIT) à réutiliser ; **OBDex** (codes défaut, données CC0) ; à étudier sans copier (GPL) : **scapy** `contrib/automotive/gm` (GMLAN), **ddt4all** (codage par fichiers de données), OpenVehicleDiag, CaringCaribou ; **SavvyCAN** (analyse de captures) ; **ELM327-emulator** (tests sans voiture). Adaptateurs : OBDLink MX+/EX (STN), CANable 2.0 candleLight (sonde).
+
 ### 🧰 devtools + listes transverses
 - **scripts/chantiers/** — maison · **un terminal Claude par chantier** : `chantier.ps1` (ouvre la session sur sa fiche ; elle ne s'arrête jamais, surveille sa fiche et traite ce qui arrive sous « À TRAITER »), `chantiers_etat.sh` (état, alertes), `veille_chantiers.sh` (l'orchestrateur rend la main sur changement, calme ou point), `verrou_gpu.sh` (file du GPU partagée) → [guides/orchestrer-des-chantiers.md](guides/orchestrer-des-chantiers.md).
 - **scripts/recompter_vitrine.py** — maison · recompte les chiffres de la méthode et de sa vitrine (tests listés par `dotnet`, dépôt, journaux de l'API) et les réécrit ; `--ach` recopie la vitrine dans ACH.
@@ -116,6 +119,7 @@ Quand on ouvre un projet : `heimdall.ps1 project -Name <Projet>` (détail dans `
 | **TIDIM** (FPS coop, familiers d'un héros IA vantard) | godot, ia-agents, qa-playtest | Hyperbole (familiers simulés par profils, équilibre de la barre d'ego) |
 | **Alpharium_KSC** (Kaddour Social Club : club social familial 3D, Godot 4.7 web ; reprend la Maquette Three.js et le Project ALL) | godot, creation-assets, qa-playtest, devtools | limbo_console, gdtoolkit, **Hyperbole** (charge à 32, économie), Atelier IA + TRELLIS.2 (décimé pour le web), musique de jeu → roadmap `C:\Alpharium_KSC\docs\fusion\ROADMAP.md` |
 | **Project_ALL** (Alpharium Luxurious Lounge : le même club en Habbo 2D, TypeScript/Node, en service chez Annes) | devtools, qa-playtest | Hyperbole (pont TCP), pages de décisions |
+| **Valisa** (« la valise » : diagnostic + codage auto, une voiture à la fois, .exe portable + Kali-Pi) | auto-diag, devtools, modding-re | Pages de décisions, python-can/can-isotp/udsoncan (pistes) _(manques : seed/key GMLAN et config BCM Corsa D (capture OP-COM), codes défaut constructeur libres, Subaru SSM — Heimdall)_ |
 | **Ghul** (GHŪL : FPS d'horreur coop 1-8 sans interface, caméra de casque, Algérie réelle, Unreal 5.8) | creation-assets, physique-netcode, ia-agents, qa-playtest | **Hyperbole** (préparé, moteur commande), ffmpeg _(manques : post-process caméra UE, caméra de casque, IA de créatures (grimpeur, sprinteur), voix des ghuls, son spatial, coop 8 — Heimdall)_ → `guides/creer-des-assets.md` |
 
 **Jeux** : tout projet de jeu passe par **Hyperbole** avant les vrais joueurs (`hyperbole.py init <projet>`), c'est là que
@@ -133,6 +137,7 @@ Se tient au courant de ce qui sort d'utile, et garde cet index à jour. Tout : *
 
 ### Dernières nouveautés
 <!-- HEIMDALL:LATEST -->
+- **2026-11-10** — Nouveau domaine **`auto-diag`** (diagnostic & codage automobile), né avec **Valisa** : [heimdall/reports/2026-11-10-auto-diag.md](heimdall/reports/2026-11-10-auto-diag.md).
 - **2026-11-09** — Retour de Guardians (chantier lancement) : **le serveur Discord construit par script** (`scripts/discord/`, gabarit par phases, tests sans Discord) et son guide ; le bot qui ne publie rien sans un clic.
 - **2026-11-08** — Les pistes de la méthode faites : **client de l'API avec liste blanche des projets** (`scripts/claude_api/`), **regard générique** (`scripts/regard/`), chiffres de la vitrine recomptés par script ; le journal d'Hyperbole écrit par les joueurs IA de Guardians (rapport par profil, `comparer` entre versions, coût de la séance).
 - **2026-11-07** (fin de nuit) — La gazette ne reprend plus ce qui est tranché et sépare « défaut prouvé » et « joueur IA perdu » ; l'Esprit des joueurs IA branché sans bloquer la boucle (quand répondre, mention « IA » à l'entrée) ; la traduction du wiki et du site (empreintes, segments).

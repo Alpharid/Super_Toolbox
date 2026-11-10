@@ -433,6 +433,86 @@
           "type": "topic"
         }
       ]
+    },
+    "auto-diag": {
+      "nom": "Diagnostic & codage automobile (OBD, CAN, UDS, GMLAN)",
+      "mots_cles": [
+        "obd2",
+        "elm327",
+        "stn obdlink",
+        "python-can",
+        "iso-tp",
+        "uds",
+        "kwp2000",
+        "gmlan",
+        "socketcan",
+        "candlelight",
+        "j2534",
+        "ecu coding",
+        "dtc database"
+      ],
+      "eviter": [
+        "clés/algorithmes volés à un constructeur",
+        "bases d'outils constructeurs piratées",
+        "contournement d'antidémarrage / clés de voiture"
+      ],
+      "sources": [
+        {
+          "nom": "python-can — releases",
+          "url": "https://github.com/hardbyte/python-can/releases",
+          "type": "releases"
+        },
+        {
+          "nom": "udsoncan — releases",
+          "url": "https://github.com/pylessard/python-udsoncan/releases",
+          "type": "releases"
+        },
+        {
+          "nom": "python-can-isotp — releases",
+          "url": "https://github.com/pylessard/python-can-isotp/releases",
+          "type": "releases"
+        },
+        {
+          "nom": "ddt4all (codage Renault par ELM327, modèle de conception)",
+          "url": "https://github.com/cedricp/ddt4all",
+          "type": "releases"
+        },
+        {
+          "nom": "scapy — automotive (GMLAN, UDS)",
+          "url": "https://github.com/secdev/scapy/tree/master/scapy/contrib/automotive",
+          "type": "releases"
+        },
+        {
+          "nom": "roffe/gocan (GMLAN en Go)",
+          "url": "https://github.com/roffe/gocan",
+          "type": "releases"
+        },
+        {
+          "nom": "OpenVehicleDiag",
+          "url": "https://github.com/rnd-ash/OpenVehicleDiag",
+          "type": "releases"
+        },
+        {
+          "nom": "SavvyCAN",
+          "url": "https://github.com/collin80/SavvyCAN/releases",
+          "type": "releases"
+        },
+        {
+          "nom": "OBDex (codes défaut CC0)",
+          "url": "https://github.com/foerbsnavi/OBDex",
+          "type": "releases"
+        },
+        {
+          "nom": "GitHub topic obd2",
+          "url": "https://github.com/topics/obd2",
+          "type": "topic"
+        },
+        {
+          "nom": "GitHub topic can-bus",
+          "url": "https://github.com/topics/can-bus",
+          "type": "topic"
+        }
+      ]
     }
   }
 }
