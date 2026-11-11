@@ -21,6 +21,7 @@ Points d'entrée **par besoin** (le `CATALOGUE.md` est rangé par dépôt). Chaq
 | Tirer des rapports de joueurs IA une page par jour utile aux corrections et à l'équilibrage | [la-gazette.md](la-gazette.md) |
 | Faire la musique et les sons d'un jeu en local, triés avant l'écoute (mode imposé, juge audio, page d'écoute) | [musique-de-jeu.md](musique-de-jeu.md) (+ [creer-des-assets.md](creer-des-assets.md)) |
 | Dépenser peu : tokens des sessions, crédits de l'API (journal, plafond, Batch, cache), GPU partagé | [economiser-tokens-et-gpu.md](economiser-tokens-et-gpu.md) |
+| Écrire le moins de code qui fait tout le travail (règles tirées de Ponytail), et savoir quand ne pas le faire (jeu, DA, matériel) | [code-sobre.md](code-sobre.md) |
 | Utiliser le kit depuis un autre projet / une autre session Claude | [../HANDOVER.md](../HANDOVER.md) §5 bis |
 
 Règle commune : **lire par morceaux** (Grep d'abord, puis Read sur les lignes utiles). Le kit pèse ~140 Mo de texte : il ne se lit jamais en entier.

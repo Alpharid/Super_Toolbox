@@ -37,6 +37,7 @@ accord). Un modèle local s'améliore par l'ingénierie : contexte, réglages, m
 - **Ne pas dépenser de tokens pour ce qu'une machine teste** : les joueurs IA et Hyperbole jouent sur le PC ; les scénarios d'essai
   prennent les captures ; les scripts de vérification (`verifier_page.sh`, tests) disent oui ou non.
 - **Garder une marge** avant la limite d'usage : finir proprement (fiche à jour, commits) plutôt que couper au milieu.
+- **Écrire moins de code** (gain mesuré modeste, ~10 %, mais moins à relire ensuite), dosé selon le projet → [code-sobre.md](code-sobre.md).
 - Le bon moment pour `/clear` se dit au propriétaire (fin de chantier, contexte qui s'alourdit).
 
 ## 3. Les crédits de l'API : le petit client maison

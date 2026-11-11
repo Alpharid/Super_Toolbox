@@ -51,6 +51,7 @@ du temps (joueurs simulés qui testent les jeux sur le PC, §1 `qa-playtest`).
 - **scripts/claude_api/** — maison · **le client de l'API Claude** pour tous les projets : `claude_api.py` (`Client(projet)` : journal par projet, plafond commun sur le cycle, Batch, cache des consignes et des réponses, schéma JSON) et **`projets_autorises.json`, la liste blanche** (Guardians seul ; un projet absent est refusé : demander au propriétaire d'abord) → [guides/economiser-tokens-et-gpu.md](guides/economiser-tokens-et-gpu.md) §3.
 - 📘 **La gazette** (rapports des joueurs IA → une page par jour pour corriger et équilibrer, quelques centimes, « Pour juger, il manquait ») → [guides/la-gazette.md](guides/la-gazette.md).
 - 📘 **Économiser tokens, crédits de l'API et GPU** (où tourne quoi, sessions courtes, client API avec journal, plafond, Batch, cache ; file du GPU) → [guides/economiser-tokens-et-gpu.md](guides/economiser-tokens-et-gpu.md).
+- 📘 **Le code sobre** (règles tirées de Ponytail sans le plugin : l'échelle avant d'écrire, bug corrigé à la racine, raccourcis signés `shortcut:`, ce qu'on ne coupe jamais, **quand l'appliquer et quand non** : jamais sur le ressenti de jeu ni la DA) → [guides/code-sobre.md](guides/code-sobre.md).
 - **awesome-claude-code** — `hesreallyhim/awesome-claude-code` · CC-BY-NC-ND · skills/hooks/commandes pour Claude Code (usage perso, lien-liste).
 
 ### 🧪 qa-playtest — playtest automatisé (outil maison : Hyperbole)

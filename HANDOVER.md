@@ -234,6 +234,7 @@ D:\Super_Toolbox\
 
 ## 11. Historique
 
+- **2026-11-11** — Nouveau guide **`guides/code-sobre.md`** : les règles utiles de Ponytail (`DietrichGebert/ponytail`, MIT) reprises **sans installer le plugin** (gain mesuré par JetBrains : −10 % de coût, pas −22 %), avec un tableau « quand appliquer / quand non » (pleine dose sur bugs et outils, jamais sur le ressenti de jeu, la DA ni les garde-fous du matériel). Liens dans `INDEX.md`, `guides/README.md`, `economiser-tokens-et-gpu.md`.
 - **2026-11-10** — Nouveau domaine Heimdall **`auto-diag`** (OBD, CAN, UDS, GMLAN : sources dans `heimdall/sources.json`, rapport `heimdall/reports/2026-11-10-auto-diag.md`) et nouveau projet **Valisa** (`C:\Valisa`) dans `heimdall/projects.json`.
 - **2026-11-08** — **Les pistes de la méthode, faites** (chantier `methode-pistes` de Guardians) : `scripts/claude_api/` (le client de
   l'API porté de Guardians, avec **liste blanche des projets** : un projet absent est refusé ; plafond commun compté sur le cycle,
